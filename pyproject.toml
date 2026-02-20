@@ -4,6 +4,10 @@ version = "0.0.1"
 description = "Sandbox conexion WABAPI"
 requires-python = ">=3.13"
 dependencies = [
+    "dotenv>=0.9.9",
     "fastapi",
+    "google>=3.0.0",
+    "sqlalchemy>=2.0.46",
+    "sqlmodel>=0.0.34",
     "uvicorn",
 ]
