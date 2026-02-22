@@ -67,4 +67,4 @@ if __name__ == "__main__":
     # Puedes pasar una fecha específica como "18/02/26" o dejarlo vacío para "ayer"
     # Ejemplo: ejecutar_proceso_ocr("18/02/26")
     #ejecutar_proceso_ocr()
-    ejecutar_proceso_ocr("18/02/26")
+    ejecutar_proceso_ocr("09/02/26")
