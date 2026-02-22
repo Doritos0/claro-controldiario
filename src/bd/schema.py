@@ -1,3 +1,4 @@
+from datetime import datetime
 from sqlmodel import Field, SQLModel
 from sqlalchemy import Column, ForeignKey, Index, Integer
 
@@ -22,6 +23,22 @@ class Venta(SQLModel, table=True):
     lead_id: int = Field(sa_column=Column(Integer, ForeignKey(LEAD_ID, ondelete="RESTRICT"), nullable = False))
     detalle_venta: str = Field(max_length=255)
     monto: int
+
+class RequestCache(SQLModel, table=True):  # pyright: ignore[reportCallIssue]
+    id: int | None = Field(default=None, primary_key=True)
+    model: str = Field(max_length=50)
+    fecha: datetime = Field()
+    request_text: str = Field(default="")
+    request_hash: str = Field(max_length=64)
+    response_text: str = Field()
+    tiempo_ms: int = Field()
+    imagen_size: int = Field(default=0)
+    imagen_x: int = Field(default=0)
+    imagen_y: int = Field(default=0)
+    tokens_input: int = Field(default=0)
+    tokens_thoughts: int = Field(default=0)
+    tokens_output: int = Field(default=0)
+    tokens_total: int = Field(default=0)
     
 
 #Ejecutivo (Nombre / Estado / EPS)

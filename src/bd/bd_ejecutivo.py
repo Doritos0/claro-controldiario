@@ -13,7 +13,7 @@ class EjecutivoService:
         with Session(self.engine) as session:
             ejecutivo_existe = session.exec(select(Ejecutivo).where(func.lower(Ejecutivo.nombre) == nombre.lower())).first()
             if ejecutivo_existe:
-                return ejecutivo_existe
+                return Ejecutivo.model_validate(ejecutivo_existe)
             ejecutivo = Ejecutivo(nombre=nombre, estado=estado, eps=eps)
             session.add(ejecutivo)
             session.commit()
