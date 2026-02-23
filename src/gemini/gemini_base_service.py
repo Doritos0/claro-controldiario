@@ -22,7 +22,9 @@ class GeminiBaseService:
         self.client: Client = Client(api_key=llm_config.gemini_api_key)
         self.model_ocr = llm_config.gemini_model_ocr
         if self.model_ocr.startswith("gemini-2.5"):
-            self.model_ocr_config = GenerateContentConfig(response_mime_type="application/json", response_schema=LIVERespuesta)
+            self.model_ocr_config = GenerateContentConfig(response_mime_type="application/json")
+        if self.model_ocr.startswith("gemini-3"):
+            self.model_ocr_config = GenerateContentConfig(response_mime_type="application/json")
         else:
             raise ValueError(f"Modelo OCR no soportado: {self.model_ocr}")
         self.request_cache_service = RequestCacheService()

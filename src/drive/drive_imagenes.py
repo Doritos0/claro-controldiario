@@ -39,66 +39,76 @@ class DriveImagenesService:
         
         return build('drive', 'v3', credentials=creds)
 
-    def obtener_imagenes_del_dia(self, fecha: str = None) -> list[dict]:
+    def obtener_imagenes(self, fecha: str = None, full_scan: bool = False) -> list[dict]:
         """
-        Navega por la estructura: Root -> Mes -> Ejecutivo -> Día
-        fecha format: "DD/MM/YY" (ej: "18/02/26")
+        Si full_scan es True, ignora la fecha y trae TODO lo del mes actual.
+        Si full_scan es False, trae solo lo de la fecha (o ayer).
         """
-        if not fecha:
+        meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
+                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+        
+        # Manejo de fecha por defecto (Ayer)
+        if not fecha and not full_scan:
             ayer = datetime.now() - timedelta(days=1)
             fecha = ayer.strftime("%d/%m/%y")
-        
-        dia, mes_num, anio = fecha.split("/")
-        meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
-                 "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-        nombre_mes_anio = f"{meses[int(mes_num)-1]} 20{anio}"
 
-        logging.info(f"Iniciando búsqueda para el día {fecha}...")
-        
-        ejecutivos = self.ejecutivo_service.get_ejecutivos_sql()
-        for ejecutivo in ejecutivos:
-            print(ejecutivo.nombre)
-        
-        # 1. Buscar carpeta del Mes
+        # Determinar el Mes a buscar
+        if full_scan:
+            hoy = datetime.now()
+            nombre_mes_anio = f"{meses[hoy.month - 1]} {hoy.year}"
+            logging.info(f"MODO FULL SCAN: Buscando todo en {nombre_mes_anio}")
+        else:
+            dia, mes_num, anio = fecha.split("/")
+            nombre_mes_anio = f"{meses[int(mes_num)-1]} 20{anio}"
+            logging.info(f"MODO FECHA: Buscando para el día {fecha} en {nombre_mes_anio}")
+
         id_mes = self._buscar_por_nombre(nombre_mes_anio, self.root_folder_id)
         if not id_mes:
             logging.error(f"No se encontró la carpeta del mes: {nombre_mes_anio}")
             return []
 
         resultados = []
+        ejecutivos = self.ejecutivo_service.get_ejecutivos_sql()
 
-        # 2. Iterar ejecutivos
         for ejecutivo in ejecutivos:
-            logging.debug(f"Buscando carpeta de {ejecutivo.nombre}...")
             id_ejecutivo = self._buscar_por_nombre(ejecutivo.nombre, id_mes)
-            
-            if id_ejecutivo:
-                id_dia = self._buscar_por_nombre(fecha, id_ejecutivo)
+            if not id_ejecutivo:
+                continue
                 
-                if id_dia:
-                    # 4. Listar y descargar imágenes
+            if full_scan:
+                # Buscamos todas las subcarpetas (que son los días) dentro del ejecutivo
+                carpetas_dias = self._listar_subcarpetas(id_ejecutivo)
+                for id_dia, nombre_dia in carpetas_dias:
                     archivos = self._listar_archivos_en_carpeta(id_dia)
                     for f_id, f_name in archivos:
-                        logging.info(f"Descargando imagen: {f_name} de {ejecutivo.nombre}")
-                        img_data = self._download_file(f_id)
-                        
-                        resultados.append({
-                            "ejecutivo": ejecutivo,
-                            "data": img_data,
-                            "filename": f_name,
-                            "fecha": fecha
-                        })
-                else:
-                    logging.warning(f"No hay carpeta del día {fecha} para {ejecutivo}")
+                        resultados.append(self._preparar_item(ejecutivo, f_id, f_name, nombre_dia))
             else:
-                logging.warning(f"No se encontró carpeta para el ejecutivo: {ejecutivo}")
+                # Búsqueda normal por una sola fecha
+                id_dia = self._buscar_por_nombre(fecha, id_ejecutivo)
+                if id_dia:
+                    archivos = self._listar_archivos_en_carpeta(id_dia)
+                    for f_id, f_name in archivos:
+                        resultados.append(self._preparar_item(ejecutivo, f_id, f_name, fecha))
 
         return resultados
 
-    #MAS ADELANTE ESTE ARCHIVO PODRIA DIVIRSE EN
-    # DRIVE SERVICE (AUTENTICAS, BUSCAR, LISTAR, DESCARGAR) / IMAGENES_SERVICE (ENCONTRAR LAS IMAGENES)
+    def _listar_subcarpetas(self, parent_id: str):
+        """Auxiliar para listar carpetas (días) de un ejecutivo"""
+        query = f"'{parent_id}' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false"
+        response = self.drive_service.files().list(q=query, fields="files(id, name)").execute()
+        return [(f['id'], f['name']) for f in response.get('files', [])]
+
+    def _preparar_item(self, ejecutivo, f_id, f_name, fecha_str):
+        """Auxiliar para no repetir código de descarga"""
+        logging.info(f"Descargando {f_name} del día {fecha_str} para {ejecutivo.nombre}")
+        return {
+            "ejecutivo": ejecutivo,
+            "data": self._download_file(f_id),
+            "filename": f_name,
+            "fecha": fecha_str
+        }
+
     def _buscar_por_nombre(self, nombre: str, parent_id: str):
-        """Busca una carpeta por nombre dentro de un padre específico."""
         query = (f"name = '{nombre}' and '{parent_id}' in parents and "
                  f"mimeType = 'application/vnd.google-apps.folder' and trashed = false")
         response = self.drive_service.files().list(q=query, fields="files(id)").execute()
@@ -106,13 +116,11 @@ class DriveImagenesService:
         return files[0]['id'] if files else None
 
     def _listar_archivos_en_carpeta(self, folder_id: str):
-        """Retorna lista de (id, name) de imágenes en una carpeta."""
         query = f"'{folder_id}' in parents and mimeType contains 'image/' and trashed = false"
         response = self.drive_service.files().list(q=query, fields="files(id, name)").execute()
         return [(f['id'], f['name']) for f in response.get('files', [])]
 
     def _download_file(self, file_id: str):
-        """Descarga el contenido del archivo en bytes."""
         request = self.drive_service.files().get_media(fileId=file_id)
         fh = BytesIO()
         downloader = MediaIoBaseDownload(fh, request)

@@ -15,7 +15,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-def ejecutar_proceso_ocr(fecha_objetivo: str = None):
+def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
     """
     Orquestador que descarga imágenes de Drive y las procesa con Gemini OCR.
     """
@@ -39,7 +39,7 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None):
         # 3. Obtener imágenes del día
         # Si fecha_objetivo es None, el servicio tomará el día de ayer por defecto
         logging.info(f"Buscando imágenes para la fecha: {fecha_objetivo or 'Ayer (default)'}")
-        imagenes_descargadas = drive_service.obtener_imagenes_del_dia(fecha_objetivo)
+        imagenes_descargadas = drive_service.obtener_imagenes(fecha_objetivo, full_scan)
 
         if not imagenes_descargadas:
             logging.warning("No se encontraron imágenes para procesar.")
@@ -72,5 +72,4 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None):
 if __name__ == "__main__":
     # Puedes pasar una fecha específica como "18/02/26" o dejarlo vacío para "ayer"
     # Ejemplo: ejecutar_proceso_ocr("18/02/26")
-    #ejecutar_proceso_ocr()
-    ejecutar_proceso_ocr("18/02/26")
+    ejecutar_proceso_ocr()

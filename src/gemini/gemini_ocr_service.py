@@ -1,3 +1,4 @@
+from datetime import datetime
 import logging
 import time
 from io import BytesIO
@@ -24,14 +25,27 @@ class GeminiOCRService(GeminiBaseService):
                 format_detected = img.format.lower()
                 mime_type = f"image/{format_detected}"
                 
-            user_prompt_str = (
-                "Eres un asistente experto en lectura de imagenes y conversion a texto. "
-                "Recibiras una imagen obtenida desde un archivo PNG que consisten en metricas claves de un TikTok LIVE"
-                "Debes devolver Fecha LIVE, Hora Inicio LIVE, Duracion LIVE, Hora Termino LIVE (Hora Inicio + Duracion LIVE)"
-                "Visualizaciones, Espectadores Unicos, Espectadores Activos, Duracion media de la visualizacion, Pico de espectadores simultaneos"
-                "Por favor, organiza esta información en una estructura con las columnas correspondientes a los datos solicitados"
-                "En caso de no encontrar nada, devolver columnas vacias"
-            )
+                user_prompt_str = (
+                    "Eres un experto en extracción de datos. Extrae las métricas de TikTok LIVE de la imagen en formato JSON. "
+                    f"Asume que el año actual es {datetime.now().year}. "
+                    "REGLAS CRÍTICAS DE FORMATO: "
+                    "1. fecha_live: Formato 'YYYY-MM-DD'. "
+                    "2. Tiempos (inicio, duración, término, media): Formato 'HH:MM:SS'. "
+                    "   - Si la duración es '47 min', escribe '00:47:00'. "
+                    "   - Si es '1 h 3 min', escribe '01:03:00'. "
+                    "   - NO uses microsegundos ni zonas horarias (Z)." \
+                    "   - hora_termino_live debe ser la suma de hora_inicio_live + duracion_live, en caso no encontrar alguna de estas hora_termino_live sera null "
+                    "3. Números: Solo enteros sin puntos ni comas. "
+                    "4. Si un dato no es visible o no se encuentra, usa null. "
+                    "5. Si un dato no se encuentra, usa null. "
+                        "EJEMPLO DE SALIDA: "
+                        "{"
+                        "\"fecha_live\": \"2026-02-06\", \"hora_inicio_live\": \"15:16:00\", \"duracion_live\": \"00:47:00\", "
+                        "\"hora_termino_live\": \"16:03:00\", \"visualizaciones\": 2600, \"espectadores_unicos\": 2200, "
+                        "\"espectadores_activos\": 101, \"duracion_media_visualizacion\": \"00:00:37\", \"pico_espectadores_simultaneos\": 261"
+                        "}"
+                    ""
+                )
             
             # 3. Verificar Caché (usando el método de tu GeminiBaseService)
             request_hash = self.hash_contenido(user_prompt_str, image_bytes)
