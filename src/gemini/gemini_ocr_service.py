@@ -4,13 +4,14 @@ from io import BytesIO
 from PIL import Image
 from google.genai import types
 
+from src.gemini.estructura import LIVERespuesta
 from src.gemini.gemini_base_service import GeminiBaseService, ImagenInfo
 
 class GeminiOCRService(GeminiBaseService):
     def __init__(self):
         super().__init__()
 
-    def procesar_imagen_drive(self, image_bytes: bytes, filename: str) -> str:
+    def get_respuesta_ocr(self, image_bytes: bytes, filename: str) -> LIVERespuesta:
         """
         Recibe los bytes de una imagen descargada de Drive,
         la procesa con Gemini y guarda en caché.
@@ -24,11 +25,12 @@ class GeminiOCRService(GeminiBaseService):
                 mime_type = f"image/{format_detected}"
                 
             user_prompt_str = (
-                "Extrae las siguientes métricas de la imagen: "
-                "Agente (título), Horas Efectivas (duración total), Visualizaciones, "
-                "Espectadores Unicos, Espectadores Activos, Duración media de visualización, "
-                "Peak Espectadores (pico simultáneo) y Adherencia (media simultánea). "
-                "Devuelve solo los datos, sin texto adicional."
+                "Eres un asistente experto en lectura de imagenes y conversion a texto. "
+                "Recibiras una imagen obtenida desde un archivo PNG que consisten en metricas claves de un TikTok LIVE"
+                "Debes devolver Fecha LIVE, Hora Inicio LIVE, Duracion LIVE, Hora Termino LIVE (Hora Inicio + Duracion LIVE)"
+                "Visualizaciones, Espectadores Unicos, Espectadores Activos, Duracion media de la visualizacion, Pico de espectadores simultaneos"
+                "Por favor, organiza esta información en una estructura con las columnas correspondientes a los datos solicitados"
+                "En caso de no encontrar nada, devolver columnas vacias"
             )
             
             # 3. Verificar Caché (usando el método de tu GeminiBaseService)
@@ -51,10 +53,10 @@ class GeminiOCRService(GeminiBaseService):
             
             # 5. Llamada a la API
             start_time = time.time()
-            response = self.obtener_respuesta_ocr([user_content, byte_content])
+            response, live_respuesta = self.obtener_respuesta_ocr([user_content, byte_content])
             tiempo_ms = int((time.time() - start_time) * 1000)
             
-            response_text = response.text or ""
+            response_text = live_respuesta.model_dump_json(indent=2)
 
             # 6. Guardar en SQLModel (RequestCache)
             token_info = self.get_tokens(imagen_info, response)
@@ -68,7 +70,7 @@ class GeminiOCRService(GeminiBaseService):
                 tiempo_ms=tiempo_ms
             )
 
-            return response_text
+            return live_respuesta
 
         except Exception as e:
             logging.error(f"Error procesando imagen de Drive {filename}: {e}")

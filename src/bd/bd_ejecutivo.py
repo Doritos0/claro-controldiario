@@ -11,7 +11,7 @@ class EjecutivoService:
 
     def guardar_ejecutivo_sql(self, nombre: str, estado: str, eps: str) -> Ejecutivo:
         with Session(self.engine) as session:
-            ejecutivo_existe = session.exec(select(Ejecutivo).where(func.lower(Ejecutivo.nombre) == nombre.lower())).first()
+            ejecutivo_existe = session.exec(select(Ejecutivo).where(func.lower(Ejecutivo.nombre) == nombre.lower())).scalars().first()
             if ejecutivo_existe:
                 return Ejecutivo.model_validate(ejecutivo_existe)
             ejecutivo = Ejecutivo(nombre=nombre, estado=estado, eps=eps)
@@ -19,3 +19,10 @@ class EjecutivoService:
             session.commit()
             session.refresh(ejecutivo)
             return ejecutivo
+        
+    def get_ejecutivos_sql(self) -> list[Ejecutivo]:
+        with Session(self.engine) as session:
+            ejecutivos = session.exec(
+                select(Ejecutivo)
+            ).scalars().all()
+            return list(ejecutivos)

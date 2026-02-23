@@ -3,8 +3,11 @@ import logging
 from dotenv import load_dotenv
 
 # Importamos tus servicios
+from src.bd.schema import Ejecutivo
 from src.drive.drive_imagenes import DriveImagenesService
 from src.gemini.gemini_ocr_service import GeminiOCRService
+from src.bd.bd_live import LIVEService
+
 
 # Configuración de logging para ver qué está pasando en consola
 logging.basicConfig(
@@ -31,6 +34,7 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None):
         logging.info("Inicializando servicios de Drive y Gemini...")
         drive_service = DriveImagenesService(credentials_path, root_folder_id)
         ocr_service = GeminiOCRService()
+        live_service = LIVEService()
 
         # 3. Obtener imágenes del día
         # Si fecha_objetivo es None, el servicio tomará el día de ayer por defecto
@@ -45,14 +49,16 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None):
 
         # 4. Procesar cada imagen
         for item in imagenes_descargadas:
-            ejecutivo = item['ejecutivo']
+            ejecutivo: Ejecutivo = item['ejecutivo']
             filename = item['filename']
             image_bytes = item['data']
 
             logging.info(f"--- Procesando: {filename} (Ejecutivo: {ejecutivo}) ---")
 
             # Llamada al servicio OCR
-            resultado = ocr_service.procesar_imagen_drive(image_bytes, filename)
+            resultado = ocr_service.get_respuesta_ocr(image_bytes, filename)
+
+            live_service.guardar_LIVE_metricas_sql(ejecutivo.id, resultado)
 
             # 5. Mostrar resultado por consola
             print(f"\nRESULTADO PARA {ejecutivo} ({filename}):")
@@ -67,4 +73,4 @@ if __name__ == "__main__":
     # Puedes pasar una fecha específica como "18/02/26" o dejarlo vacío para "ayer"
     # Ejemplo: ejecutar_proceso_ocr("18/02/26")
     #ejecutar_proceso_ocr()
-    ejecutar_proceso_ocr("09/02/26")
+    ejecutar_proceso_ocr("18/02/26")

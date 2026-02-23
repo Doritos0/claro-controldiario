@@ -8,6 +8,8 @@ from google.genai.types import GenerateContentConfig, GenerateContentResponse,Pa
 from src.bd.bd_request_cache import RequestCacheService, TokenInfo
 from src.config.llm_config import LlmConfig, get_llm_config
 
+from src.gemini.estructura import LIVERespuesta
+
 class ImagenInfo(BaseModel):
     data: bytes
     mime_type: str
@@ -20,16 +22,19 @@ class GeminiBaseService:
         self.client: Client = Client(api_key=llm_config.gemini_api_key)
         self.model_ocr = llm_config.gemini_model_ocr
         if self.model_ocr.startswith("gemini-2.5"):
-            self.model_ocr_config = GenerateContentConfig(response_mime_type="text/plain")
+            self.model_ocr_config = GenerateContentConfig(response_mime_type="application/json", response_schema=LIVERespuesta)
         else:
             raise ValueError(f"Modelo OCR no soportado: {self.model_ocr}")
         self.request_cache_service = RequestCacheService()
 
-    def obtener_respuesta_ocr(self, contents: list[Part]):
-        return self.client.models.generate_content(model=self.model_ocr, contents=contents, config=self.model_ocr_config)
+    def obtener_respuesta_ocr(self, contents: list[Part]) -> tuple[GenerateContentResponse, LIVERespuesta]:
+        response = self.client.models.generate_content(model=self.model_ocr, contents=contents, config=self.model_ocr_config)
+        ocr_respuesta : LIVERespuesta = LIVERespuesta.model_validate_json(response.text)
+
+        return response, ocr_respuesta
     
     def obtener_request_ocr_hash(self, request_hash: str):
-        return self.request_cache_service.obtener_request_cache_sql(self.model_ocr, request_hash)
+        response = self.request_cache_service.obtener_request_cache_sql(self.model_ocr, request_hash)
     
     def guardar_request_ocr_hash(self, request_text: str, request_hash: str, response_text: str, token_info: TokenInfo, tiempo_ms: int) -> None:
         self.request_cache_service.guardar_request_cache_sql(self.model_ocr, request_text, request_hash, response_text, token_info, tiempo_ms)

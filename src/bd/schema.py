@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date, time
 from sqlmodel import Field, SQLModel
 from sqlalchemy import Column, ForeignKey, Index, Integer
 
@@ -23,6 +23,19 @@ class Venta(SQLModel, table=True):
     lead_id: int = Field(sa_column=Column(Integer, ForeignKey(LEAD_ID, ondelete="RESTRICT"), nullable = False))
     detalle_venta: str = Field(max_length=255)
     monto: int
+
+class LIVE(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    ejecutivo_id: int = Field(sa_column=Column(Integer, ForeignKey(EJECUTIVO_ID, ondelete="RESTRICT"), nullable = False))
+    fecha_live: date = Field()
+    hora_inicio: time = Field()
+    duracion_live: time = Field()
+    hora_termino: time = Field()
+    visualizaciones: int = Field()
+    espectadores_unicos: int = Field()
+    espectadores_activos: int = Field()
+    duracion_media_visualizacion: time = Field()
+    pico_espectadores_simultaneos: int = Field()
 
 class RequestCache(SQLModel, table=True):  # pyright: ignore[reportCallIssue]
     id: int | None = Field(default=None, primary_key=True)

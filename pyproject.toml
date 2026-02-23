@@ -13,6 +13,6 @@ dependencies = [
     "google-genai>=1.64.0",
     "pillow>=12.1.1",
     "sqlalchemy>=2.0.46",
-    "sqlmodel>=0.0.34",
+    "sqlmodel>=0.0.32",
     "uvicorn",
 ]

@@ -14,4 +14,6 @@ engine = get_engine()
 def inicializar_bd_sqlite() -> Engine:
     logging.info("Inicializando base de datos SQLite")
     SQLModel.metadata.create_all(engine)
+    inspector = inspect(engine)
+    print(f"Tablas detectadas: {inspector.get_table_names()}")
     logging.info(f"Tablas creadas correctamente")

@@ -9,6 +9,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 
+from src.bd.bd_ejecutivo import EjecutivoService
+
 class DriveImagenesService:
     def __init__(self, credentials_path: str, root_folder_id: str):
         self.scopes = ['https://www.googleapis.com/auth/drive.readonly']
@@ -16,12 +18,8 @@ class DriveImagenesService:
         self.root_folder_id = root_folder_id
         
         # Autenticación y creación del cliente
-        self.service = self._autenticar()
-        
-        self.ejecutivos = [
-            "Ada Rengifo", "Bárbara Cruz", "Daniela Baeza", 
-            "Paulina Cataldo", "Rafael Cayun", "Tania Alviar"
-        ]
+        self.drive_service = self._autenticar()
+        self.ejecutivo_service = EjecutivoService()
 
     def _autenticar(self):
         """Maneja el flujo de OAuth2 para Desktop App."""
@@ -57,6 +55,10 @@ class DriveImagenesService:
 
         logging.info(f"Iniciando búsqueda para el día {fecha}...")
         
+        ejecutivos = self.ejecutivo_service.get_ejecutivos_sql()
+        for ejecutivo in ejecutivos:
+            print(ejecutivo.nombre)
+        
         # 1. Buscar carpeta del Mes
         id_mes = self._buscar_por_nombre(nombre_mes_anio, self.root_folder_id)
         if not id_mes:
@@ -66,19 +68,18 @@ class DriveImagenesService:
         resultados = []
 
         # 2. Iterar ejecutivos
-        for ejecutivo in self.ejecutivos:
-            logging.debug(f"Buscando carpeta de {ejecutivo}...")
-            id_ejecutivo = self._buscar_por_nombre(ejecutivo, id_mes)
+        for ejecutivo in ejecutivos:
+            logging.debug(f"Buscando carpeta de {ejecutivo.nombre}...")
+            id_ejecutivo = self._buscar_por_nombre(ejecutivo.nombre, id_mes)
             
             if id_ejecutivo:
-                # 3. Buscar carpeta del Día
                 id_dia = self._buscar_por_nombre(fecha, id_ejecutivo)
                 
                 if id_dia:
                     # 4. Listar y descargar imágenes
                     archivos = self._listar_archivos_en_carpeta(id_dia)
                     for f_id, f_name in archivos:
-                        logging.info(f"Descargando imagen: {f_name} de {ejecutivo}")
+                        logging.info(f"Descargando imagen: {f_name} de {ejecutivo.nombre}")
                         img_data = self._download_file(f_id)
                         
                         resultados.append({
@@ -94,23 +95,25 @@ class DriveImagenesService:
 
         return resultados
 
+    #MAS ADELANTE ESTE ARCHIVO PODRIA DIVIRSE EN
+    # DRIVE SERVICE (AUTENTICAS, BUSCAR, LISTAR, DESCARGAR) / IMAGENES_SERVICE (ENCONTRAR LAS IMAGENES)
     def _buscar_por_nombre(self, nombre: str, parent_id: str):
         """Busca una carpeta por nombre dentro de un padre específico."""
         query = (f"name = '{nombre}' and '{parent_id}' in parents and "
                  f"mimeType = 'application/vnd.google-apps.folder' and trashed = false")
-        response = self.service.files().list(q=query, fields="files(id)").execute()
+        response = self.drive_service.files().list(q=query, fields="files(id)").execute()
         files = response.get('files', [])
         return files[0]['id'] if files else None
 
     def _listar_archivos_en_carpeta(self, folder_id: str):
         """Retorna lista de (id, name) de imágenes en una carpeta."""
         query = f"'{folder_id}' in parents and mimeType contains 'image/' and trashed = false"
-        response = self.service.files().list(q=query, fields="files(id, name)").execute()
+        response = self.drive_service.files().list(q=query, fields="files(id, name)").execute()
         return [(f['id'], f['name']) for f in response.get('files', [])]
 
     def _download_file(self, file_id: str):
         """Descarga el contenido del archivo en bytes."""
-        request = self.service.files().get_media(fileId=file_id)
+        request = self.drive_service.files().get_media(fileId=file_id)
         fh = BytesIO()
         downloader = MediaIoBaseDownload(fh, request)
         done = False

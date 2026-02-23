@@ -1062,7 +1062,7 @@ requires-dist = [
     { name = "google-genai", specifier = ">=1.64.0" },
     { name = "pillow", specifier = ">=12.1.1" },
     { name = "sqlalchemy", specifier = ">=2.0.46" },
-    { name = "sqlmodel", specifier = ">=0.0.34" },
+    { name = "sqlmodel", specifier = ">=0.0.32" },
     { name = "uvicorn" },
 ]
 
