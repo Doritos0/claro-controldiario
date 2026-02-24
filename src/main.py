@@ -1,7 +1,16 @@
+from pathlib import Path
 from fastapi import FastAPI
+from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.config.log_config import configurar_log
+
+local_path = Path(__file__).parent
+
+env_file = local_path.parent / ".env"
+
+print(f"env_path: {env_file}")
+load_dotenv(env_file)
 
 configurar_log()
 

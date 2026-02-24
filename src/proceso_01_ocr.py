@@ -9,12 +9,6 @@ from src.gemini.gemini_ocr_service import GeminiOCRService
 from src.bd.bd_live import LIVEService
 
 
-# Configuración de logging para ver qué está pasando en consola
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-
 def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
     """
     Orquestador que descarga imágenes de Drive y las procesa con Gemini OCR.
