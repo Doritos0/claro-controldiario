@@ -36,6 +36,7 @@ class LIVE(SQLModel, table=True):
     espectadores_activos: int = Field(default=None, nullable=True)
     duracion_media_visualizacion: time = Field(default=None, nullable=True)
     pico_espectadores_simultaneos: int = Field(default=None, nullable=True)
+    nombre_captura: str = Field()
 
 class RequestCache(SQLModel, table=True):  # pyright: ignore[reportCallIssue]
     id: int | None = Field(default=None, primary_key=True)

@@ -15,13 +15,22 @@ class LIVEService():
     def __init__(self, engine: Engine | None = None):
         self.engine = engine or get_engine()
 
-    def guardar_LIVE_metricas_sql(self, ejecutivo_id: int, metricas: LIVERespuesta):
+    def guardar_LIVE_metricas_sql(self, ejecutivo_id: int, nombre_captura: str, metricas: LIVERespuesta):
+        live = self.get_LIVE_por_captura(nombre_captura)
+        if live:
+            logging.debug(f"LIVE ya ingresado")
+            return None
         with Session(self.engine) as session:
-            LIVE_nuevo = self.get_nuevo_LIVE_sql(ejecutivo_id=ejecutivo_id, fila=metricas)
+            LIVE_nuevo = self.get_nuevo_LIVE_sql(ejecutivo_id=ejecutivo_id, nombre_captura=nombre_captura, metricas=metricas)
             session.add(LIVE_nuevo)
             session.commit()
             session.refresh(LIVE_nuevo)
             return LIVE_nuevo
+        
+    def get_LIVE_por_captura(self, nombre_captura: str):
+        with Session(self.engine) as session:
+            live = session.exec(select(LIVE).where(LIVE.nombre_captura == nombre_captura)).first()
+            return live
 
     @staticmethod
     def parse_time_string(time_str: str | None) -> time | None:
@@ -58,7 +67,7 @@ class LIVEService():
         logging.warning(f"No se pudo convertir el tiempo: {time_str}")
         return None
 
-    def guardar_LIVE_metricas_sql(self, ejecutivo_id: int, metricas: LIVERespuesta):
+    def get_nuevo_LIVE_sql(self, ejecutivo_id: int, nombre_captura: str, metricas: LIVERespuesta):
         with Session(self.engine) as session:
             # Aquí aplicamos la conversión
             LIVE_nuevo = LIVE(
@@ -71,7 +80,8 @@ class LIVEService():
                 espectadores_unicos=metricas.espectadores_unicos,
                 espectadores_activos=metricas.espectadores_activos,
                 duracion_media_visualizacion=self.parse_time_string(metricas.duracion_media_visualizacion),
-                pico_espectadores_simultaneos=metricas.pico_espectadores_simultaneos
+                pico_espectadores_simultaneos=metricas.pico_espectadores_simultaneos,
+                nombre_captura=nombre_captura
             )
             session.add(LIVE_nuevo)
             session.commit()

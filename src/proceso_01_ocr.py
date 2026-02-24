@@ -58,7 +58,7 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
             # Llamada al servicio OCR
             resultado = ocr_service.get_respuesta_ocr(image_bytes, filename)
 
-            live_service.guardar_LIVE_metricas_sql(ejecutivo.id, resultado)
+            live_service.guardar_LIVE_metricas_sql(ejecutivo.id, filename, resultado)
 
             # 5. Mostrar resultado por consola
             print(f"\nRESULTADO PARA {ejecutivo} ({filename}):")
@@ -70,6 +70,4 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
         logging.error(f"Error crítico en el proceso: {e}")
 
 if __name__ == "__main__":
-    # Puedes pasar una fecha específica como "18/02/26" o dejarlo vacío para "ayer"
-    # Ejemplo: ejecutar_proceso_ocr("18/02/26")
     ejecutar_proceso_ocr()

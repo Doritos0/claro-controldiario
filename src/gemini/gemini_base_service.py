@@ -23,7 +23,7 @@ class GeminiBaseService:
         self.model_ocr = llm_config.gemini_model_ocr
         if self.model_ocr.startswith("gemini-2.5"):
             self.model_ocr_config = GenerateContentConfig(response_mime_type="application/json")
-        if self.model_ocr.startswith("gemini-3"):
+        elif self.model_ocr.startswith("gemini-3"):
             self.model_ocr_config = GenerateContentConfig(response_mime_type="application/json")
         else:
             raise ValueError(f"Modelo OCR no soportado: {self.model_ocr}")

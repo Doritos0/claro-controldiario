@@ -7,16 +7,25 @@ from google.genai import types
 
 from src.gemini.estructura import LIVERespuesta
 from src.gemini.gemini_base_service import GeminiBaseService, ImagenInfo
+from src.bd.bd_live import LIVEService
 
 class GeminiOCRService(GeminiBaseService):
     def __init__(self):
         super().__init__()
+        self.live_service = LIVEService()
 
     def get_respuesta_ocr(self, image_bytes: bytes, filename: str) -> LIVERespuesta:
         """
         Recibe los bytes de una imagen descargada de Drive,
         la procesa con Gemini y guarda en caché.
         """
+
+        respuesta = self.live_service.get_LIVE_por_captura(nombre_captura=filename)
+
+        if respuesta:
+            logging.debug("LIVE ya procesado")
+            return respuesta
+
         try:
             # 1. Obtener metadatos de la imagen con PIL
             with Image.open(BytesIO(image_bytes)) as img:
