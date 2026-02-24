@@ -3,7 +3,7 @@ import logging
 from pydantic import BaseModel
 
 from google.genai import Client
-from google.genai.types import GenerateContentConfig, GenerateContentResponse,Part
+from google.genai.types import GenerateContentConfig, GenerateContentResponse,Part, ThinkingConfig, ThinkingLevel
 
 from src.bd.bd_request_cache import RequestCacheService, TokenInfo
 from src.config.llm_config import LlmConfig, get_llm_config
@@ -22,9 +22,16 @@ class GeminiBaseService:
         self.client: Client = Client(api_key=llm_config.gemini_api_key)
         self.model_ocr = llm_config.gemini_model_ocr
         if self.model_ocr.startswith("gemini-2.5"):
-            self.model_ocr_config = GenerateContentConfig(response_mime_type="application/json")
+            self.model_ocr_config = GenerateContentConfig(
+                response_mime_type="application/json",
+                response_json_schema=LIVERespuesta.model_json_schema()
+            )
         elif self.model_ocr.startswith("gemini-3"):
-            self.model_ocr_config = GenerateContentConfig(response_mime_type="application/json")
+            self.model_ocr_config = GenerateContentConfig(
+                response_mime_type="application/json",
+                response_json_schema=LIVERespuesta.model_json_schema(),
+                thinking_config=ThinkingConfig(thinking_level=ThinkingLevel.LOW)
+            )
         else:
             raise ValueError(f"Modelo OCR no soportado: {self.model_ocr}")
         self.request_cache_service = RequestCacheService()

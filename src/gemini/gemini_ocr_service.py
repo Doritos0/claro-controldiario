@@ -46,7 +46,6 @@ class GeminiOCRService(GeminiBaseService):
                     "   - hora_termino_live debe ser la suma de hora_inicio_live + duracion_live, en caso no encontrar alguna de estas hora_termino_live sera null "
                     "3. Números: Solo enteros sin puntos ni comas. "
                     "4. Si un dato no es visible o no se encuentra, usa null. "
-                    "5. Si un dato no se encuentra, usa null. "
                         "EJEMPLO DE SALIDA: "
                         "{"
                         "\"fecha_live\": \"2026-02-06\", \"hora_inicio_live\": \"15:16:00\", \"duracion_live\": \"00:47:00\", "
