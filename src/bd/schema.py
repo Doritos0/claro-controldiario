@@ -15,14 +15,13 @@ class Ejecutivo(SQLModel, table=True):
 class Lead(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     ejecutivo_id: int = Field(sa_column=Column(Integer, ForeignKey(EJECUTIVO_ID, ondelete="RESTRICT"), nullable = False))
-    nombre: str = Field(max_length=255)
-    rut: str = Field(max_length=10, unique=True)
+    nombre: str | None = Field(max_length=255)
+    rut: str = Field(max_length=10)
 
 class Venta(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     lead_id: int = Field(sa_column=Column(Integer, ForeignKey(LEAD_ID, ondelete="RESTRICT"), nullable = False))
-    detalle_venta: str = Field(max_length=255)
-    monto: int
+    fecha_venta: date = Field()
 
 class LIVE(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)

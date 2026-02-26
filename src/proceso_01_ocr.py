@@ -64,4 +64,5 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
         logging.error(f"Error crítico en el proceso: {e}")
 
 if __name__ == "__main__":
+    #Ej. "18/02/26"
     ejecutar_proceso_ocr()
