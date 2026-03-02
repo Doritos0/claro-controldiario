@@ -1,89 +1,105 @@
-from datetime import datetime, time
-import logging
+from __future__ import annotations
 
-from src.bd.schema import LIVE
+from datetime import datetime, time
+import hashlib
+import logging
 
 from sqlalchemy import Engine
 from sqlmodel import Session, select
-from pydantic import BaseModel
 
+from src.bd.schema import LIVE
 from src.config.engine_config import get_engine
 from src.gemini.estructura import LIVERespuesta
 
-class LIVEService():
+
+class LIVEService:
     engine: Engine
+
     def __init__(self, engine: Engine | None = None):
         self.engine = engine or get_engine()
 
-    def guardar_LIVE_metricas_sql(self, ejecutivo_id: int, nombre_captura: str, metricas: LIVERespuesta):
-        live = self.get_LIVE_por_captura(nombre_captura)
-        if live:
-            logging.debug(f"LIVE ya ingresado")
-            return None
+    def guardar_LIVE_metricas_sql(
+        self,
+        ejecutivo_id: int,
+        nombre_captura: str,
+        metricas: LIVERespuesta,
+        drive_file_id: str | None = None,
+        content_bytes: bytes | None = None,
+    ):
+        content_hash = hashlib.sha256(content_bytes).hexdigest() if content_bytes else None
         with Session(self.engine) as session:
-            LIVE_nuevo = self.get_nuevo_LIVE_sql(ejecutivo_id=ejecutivo_id, nombre_captura=nombre_captura, metricas=metricas)
-            session.add(LIVE_nuevo)
-            session.commit()
-            session.refresh(LIVE_nuevo)
-            return LIVE_nuevo
-        
-    def get_LIVE_por_captura(self, nombre_captura: str):
-        with Session(self.engine) as session:
+            if drive_file_id:
+                live = session.exec(select(LIVE).where(LIVE.drive_file_id == drive_file_id)).first()
+                if live:
+                    logging.debug("LIVE ya existe por drive_file_id")
+                    return None
+            if content_hash:
+                live = session.exec(select(LIVE).where(LIVE.content_hash == content_hash)).first()
+                if live:
+                    logging.debug("LIVE ya existe por content_hash")
+                    return None
             live = session.exec(select(LIVE).where(LIVE.nombre_captura == nombre_captura)).first()
-            return live
+            if live:
+                logging.debug("LIVE ya ingresado por nombre_captura")
+                return None
+
+            live_nuevo = self.build_live_entity(
+                ejecutivo_id=ejecutivo_id,
+                nombre_captura=nombre_captura,
+                metricas=metricas,
+                drive_file_id=drive_file_id,
+                content_hash=content_hash,
+            )
+            session.add(live_nuevo)
+            session.commit()
+            session.refresh(live_nuevo)
+            return live_nuevo
 
     @staticmethod
     def parse_time_string(time_str: str | None) -> time | None:
-        """Convierte formatos como '15:16', '15:16:00' o '1h 30m' a objeto time."""
         if not time_str or time_str == "null":
             return None
-        
-        # Si ya es un objeto time (por si acaso), devolverlo
         if isinstance(time_str, time):
             return time_str
 
-        # Limpiar el string
-        time_str = time_str.strip().lower()
-
-        formats = ["%H:%M:%S", "%H:%M", "%I:%M %p"]
-        for fmt in formats:
+        value = time_str.strip().lower()
+        for fmt in ["%H:%M:%S", "%H:%M", "%I:%M %p"]:
             try:
-                return datetime.strptime(time_str, fmt).time()
+                return datetime.strptime(value, fmt).time()
             except ValueError:
                 continue
-        
-        # Si es una duración tipo "47 min" o "1 h 3 min"
-        # Esto es un fallback simple, puedes mejorarlo si es necesario
+
         try:
-            if "min" in time_str:
-                m = int(time_str.split("min")[0].strip().split()[-1])
-                h = 0
-                if "h" in time_str:
-                    h = int(time_str.split("h")[0].strip())
+            if "min" in value:
+                m = int(value.split("min")[0].strip().split()[-1])
+                h = int(value.split("h")[0].strip()) if "h" in value else 0
                 return time(hour=h, minute=m)
-        except:
+        except Exception:  # noqa: BLE001
             pass
 
-        logging.warning(f"No se pudo convertir el tiempo: {time_str}")
+        logging.warning("No se pudo convertir el tiempo: %s", time_str)
         return None
 
-    def get_nuevo_LIVE_sql(self, ejecutivo_id: int, nombre_captura: str, metricas: LIVERespuesta):
-        with Session(self.engine) as session:
-            # Aquí aplicamos la conversión
-            LIVE_nuevo = LIVE(
-                ejecutivo_id=ejecutivo_id,
-                fecha_live=metricas.fecha_live,
-                hora_inicio=self.parse_time_string(metricas.hora_inicio_live),
-                duracion_live=self.parse_time_string(metricas.duracion_live),
-                hora_termino=self.parse_time_string(metricas.hora_termino_live),
-                visualizaciones=metricas.visualizaciones,
-                espectadores_unicos=metricas.espectadores_unicos,
-                espectadores_activos=metricas.espectadores_activos,
-                duracion_media_visualizacion=self.parse_time_string(metricas.duracion_media_visualizacion),
-                pico_espectadores_simultaneos=metricas.pico_espectadores_simultaneos,
-                nombre_captura=nombre_captura
-            )
-            session.add(LIVE_nuevo)
-            session.commit()
-            session.refresh(LIVE_nuevo)
-            return LIVE_nuevo
+    def build_live_entity(
+        self,
+        ejecutivo_id: int,
+        nombre_captura: str,
+        metricas: LIVERespuesta,
+        drive_file_id: str | None,
+        content_hash: str | None,
+    ) -> LIVE:
+        return LIVE(
+            ejecutivo_id=ejecutivo_id,
+            fecha_live=metricas.fecha_live,
+            hora_inicio=self.parse_time_string(metricas.hora_inicio_live),
+            duracion_live=self.parse_time_string(metricas.duracion_live),
+            hora_termino=self.parse_time_string(metricas.hora_termino_live),
+            visualizaciones=metricas.visualizaciones,
+            espectadores_unicos=metricas.espectadores_unicos,
+            espectadores_activos=metricas.espectadores_activos,
+            duracion_media_visualizacion=self.parse_time_string(str(metricas.duracion_media_visualizacion) if metricas.duracion_media_visualizacion else None),
+            pico_espectadores_simultaneos=metricas.pico_espectadores_simultaneos,
+            nombre_captura=nombre_captura,
+            drive_file_id=drive_file_id,
+            content_hash=content_hash,
+        )
