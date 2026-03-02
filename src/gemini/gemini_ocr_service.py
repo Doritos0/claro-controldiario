@@ -42,7 +42,8 @@ class GeminiOCRService(GeminiBaseService):
                     "2. Tiempos (inicio, duración, término, media): Formato 'HH:MM:SS'. "
                     "   - Si la duración es '47 min', escribe '00:47:00'. "
                     "   - Si es '1 h 3 min', escribe '01:03:00'. "
-                    "   - NO uses microsegundos ni zonas horarias (Z)." \
+                    "   - PROHIBIDO: No añadas zonas horarias, ni sufijos como '-26:00', '+00:00' o la letra 'Z'. "
+                    "   - PROHIBIDO: No incluyas microsegundos. "
                     "   - hora_termino_live debe ser la suma de hora_inicio_live + duracion_live, en caso no encontrar alguna de estas hora_termino_live sera null "
                     "3. Números: Solo enteros sin puntos ni comas. "
                     "4. Si un dato no es visible o no se encuentra, usa null. "

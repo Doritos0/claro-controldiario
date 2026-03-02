@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from datetime import date, time
+from typing import Optional
 
 class LIVERespuesta(BaseModel):
     fecha_live: date | None
@@ -9,5 +10,5 @@ class LIVERespuesta(BaseModel):
     visualizaciones: int | None
     espectadores_unicos: int | None
     espectadores_activos: int | None
-    duracion_media_visualizacion: time | None
+    duracion_media_visualizacion: Optional[str] | None
     pico_espectadores_simultaneos: int | None

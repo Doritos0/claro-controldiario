@@ -34,37 +34,39 @@ class LIVEService():
 
     @staticmethod
     def parse_time_string(time_str: str | None) -> time | None:
-        """Convierte formatos como '15:16', '15:16:00' o '1h 30m' a objeto time."""
-        if not time_str or time_str == "null":
+        """Limpia y convierte strings de tiempo, manejando alucinaciones de Gemini."""
+        if not time_str or str(time_str).lower() == "null":
             return None
         
-        # Si ya es un objeto time (por si acaso), devolverlo
-        if isinstance(time_str, time):
-            return time_str
-
-        # Limpiar el string
-        time_str = time_str.strip().lower()
-
-        formats = ["%H:%M:%S", "%H:%M", "%I:%M %p"]
+        # 1. Limpieza de alucinaciones (ej: '00:00:14-26:00' -> '00:00:14')
+        # Cortamos en el primer guion, espacio o signo de suma
+        limpio = str(time_str).split('-')[0].split('+')[0].split(' ')[0].strip()
+        
+        # 2. Intentar formatos estándar
+        formats = ["%H:%M:%S", "%H:%M", "%I:%M:%S %p", "%I:%M %p"]
         for fmt in formats:
             try:
-                return datetime.strptime(time_str, fmt).time()
+                return datetime.strptime(limpio, fmt).time()
             except ValueError:
                 continue
-        
-        # Si es una duración tipo "47 min" o "1 h 3 min"
-        # Esto es un fallback simple, puedes mejorarlo si es necesario
+                
+        # 3. Fallback para duraciones de TikTok (ej: "25 min", "1 h 2 min")
         try:
-            if "min" in time_str:
-                m = int(time_str.split("min")[0].strip().split()[-1])
-                h = 0
-                if "h" in time_str:
-                    h = int(time_str.split("h")[0].strip())
-                return time(hour=h, minute=m)
+            time_str_low = str(time_str).lower()
+            h, m, s = 0, 0, 0
+            if "h" in time_str_low:
+                h = int(time_str_low.split("h")[0].strip().split()[-1])
+            if "min" in time_str_low:
+                m = int(time_str_low.split("min")[0].strip().split()[-1])
+            if "s" in time_str_low:
+                s = int(time_str_low.split("s")[0].strip().split()[-1])
+            
+            if h or m or s:
+                return time(hour=h % 24, minute=m % 60, second=s % 60)
         except:
             pass
 
-        logging.warning(f"No se pudo convertir el tiempo: {time_str}")
+        logging.warning(f"No se pudo parsear el tiempo tras limpieza: {time_str}")
         return None
 
     def get_nuevo_LIVE_sql(self, ejecutivo_id: int, nombre_captura: str, metricas: LIVERespuesta):
