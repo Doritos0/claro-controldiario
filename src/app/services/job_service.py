@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 import json
 from typing import Iterable
 
@@ -83,8 +83,8 @@ class JobService:
                     self._log(session, job.id, status, msg)
                     session.commit()
 
-                # MVP: placeholder warnings until Drive/OCR adapters are wired.
-                warnings.append("MVP: Integración Drive/OCR en modo scaffold; conectar servicios productivos.")
+                # MVP scaffold: no detiene el job y deja advertencias para visibilidad en dashboard.
+                warnings.append("Integración Drive/OCR pendiente: mostrando métricas parciales disponibles.")
                 self._upsert_daily_summaries(session, job)
 
                 if warnings:
@@ -114,6 +114,9 @@ class JobService:
                 )
             ).first()
             if existing:
+                if existing.leads is None or existing.ventas is None:
+                    existing.warnings = self._merge_warning(existing.warnings, "Excel no encontrado para la fecha objetivo")
+                    session.add(existing)
                 continue
             summary = ExecutiveDailySummary(
                 ejecutivo_id=ejecutivo.id,
@@ -121,9 +124,29 @@ class JobService:
                 leads=None,
                 ventas=None,
                 total_rows=None,
-                warnings="Pendiente carga Excel real",
+                warnings="Excel no encontrado para la fecha objetivo",
             )
             session.add(summary)
+
+    @staticmethod
+    def _merge_warning(existing: str | None, new_warning: str) -> str:
+        if not existing:
+            return new_warning
+        if new_warning in existing:
+            return existing
+        return f"{existing}; {new_warning}"
+
+    @staticmethod
+    def _time_to_hours(value: time | None) -> float:
+        if value is None:
+            return 0.0
+        return (value.hour * 3600 + value.minute * 60 + value.second) / 3600
+
+    @staticmethod
+    def _safe_ratio(numerator: int | float | None, denominator: int | float | None) -> float | None:
+        if numerator is None or denominator is None or denominator == 0:
+            return None
+        return round(float(numerator) / float(denominator), 4)
 
     def list_jobs(self) -> list[JobRun]:
         with Session(self.engine) as session:
@@ -140,51 +163,100 @@ class JobService:
     def report_daily(self, date_str: str) -> dict:
         fecha = datetime.strptime(date_str, "%d/%m/%y").date()
         with Session(self.engine) as session:
-            summaries = session.exec(
-                select(ExecutiveDailySummary, Ejecutivo)
-                .join(Ejecutivo, Ejecutivo.id == ExecutiveDailySummary.ejecutivo_id)
-                .where(ExecutiveDailySummary.fecha == fecha)
-            ).all()
-            live_rows = session.exec(
-                select(LIVE, Ejecutivo)
-                .join(Ejecutivo, Ejecutivo.id == LIVE.ejecutivo_id)
-                .where(LIVE.fecha_live == fecha)
-            ).all()
-
-        exec_items = [
-            {
-                "ejecutivo": ejecutivo.nombre,
-                "leads": summary.leads,
-                "ventas": summary.ventas,
-                "total_rows": summary.total_rows,
-                "warnings": summary.warnings,
+            ejecutivos = list(session.exec(select(Ejecutivo).order_by(Ejecutivo.nombre)).all())
+            summaries = {
+                summary.ejecutivo_id: summary
+                for summary in session.exec(
+                    select(ExecutiveDailySummary).where(ExecutiveDailySummary.fecha == fecha)
+                ).all()
             }
-            for summary, ejecutivo in summaries
-        ]
+            live_rows = session.exec(
+                select(LIVE).where(LIVE.fecha_live == fecha)
+            ).all()
 
-        total_leads = sum(item["leads"] or 0 for item in exec_items)
-        total_ventas = sum(item["ventas"] or 0 for item in exec_items)
-
-        top_visualizaciones = sorted(
-            [
+        live_by_exec: dict[int, dict] = {}
+        for live in live_rows:
+            bucket = live_by_exec.setdefault(
+                live.ejecutivo_id,
                 {
-                    "ejecutivo": ejecutivo.nombre,
-                    "visualizaciones": live.visualizaciones or 0,
-                    "hora_inicio": str(live.hora_inicio) if live.hora_inicio else None,
+                    "horas_efectivas": 0.0,
+                    "visualizaciones": 0,
+                    "espectadores_unicos": 0,
+                    "espectadores_activos": 0,
+                    "duracion_media_visualizacion_horas": 0.0,
+                    "duracion_media_count": 0,
+                    "peak_espectadores": 0,
+                },
+            )
+            bucket["horas_efectivas"] += self._time_to_hours(live.duracion_live)
+            bucket["visualizaciones"] += live.visualizaciones or 0
+            bucket["espectadores_unicos"] += live.espectadores_unicos or 0
+            bucket["espectadores_activos"] += live.espectadores_activos or 0
+            if live.duracion_media_visualizacion:
+                bucket["duracion_media_visualizacion_horas"] += self._time_to_hours(live.duracion_media_visualizacion)
+                bucket["duracion_media_count"] += 1
+            bucket["peak_espectadores"] = max(bucket["peak_espectadores"], live.pico_espectadores_simultaneos or 0)
+
+        rows = []
+        for ejecutivo in ejecutivos:
+            hrs_live = 2.0
+            live_info = live_by_exec.get(
+                ejecutivo.id,
+                {
+                    "horas_efectivas": 0.0,
+                    "visualizaciones": 0,
+                    "espectadores_unicos": 0,
+                    "espectadores_activos": 0,
+                    "duracion_media_visualizacion_horas": 0.0,
+                    "duracion_media_count": 0,
+                    "peak_espectadores": 0,
+                },
+            )
+            summary = summaries.get(ejecutivo.id)
+            leads = summary.leads if summary else None
+            ventas = summary.ventas if summary else None
+            warning = summary.warnings if summary and summary.warnings else "Excel no encontrado para la fecha objetivo"
+
+            duracion_media = None
+            if live_info["duracion_media_count"] > 0:
+                duracion_media = round(
+                    live_info["duracion_media_visualizacion_horas"] / live_info["duracion_media_count"],
+                    4,
+                )
+
+            rows.append(
+                {
+                    "fecha": date_str,
+                    "eps": ejecutivo.eps or "PHOENIX",
+                    "agente": ejecutivo.nombre,
+                    "estado_agente": ejecutivo.estado,
+                    "hrs_live": hrs_live,
+                    "horas_efectivas": round(live_info["horas_efectivas"], 4),
+                    "adherencia": self._safe_ratio(live_info["horas_efectivas"], hrs_live),
+                    "leads": leads,
+                    "ventas": ventas,
+                    "conversion": self._safe_ratio(ventas, leads),
+                    "visualizaciones": live_info["visualizaciones"],
+                    "espectadores_unicos": live_info["espectadores_unicos"],
+                    "espectadores_activos": live_info["espectadores_activos"],
+                    "duracion_media_visualizacion": duracion_media,
+                    "peak_espectadores": live_info["peak_espectadores"],
+                    "warnings": warning,
                 }
-                for live, ejecutivo in live_rows
-            ],
-            key=lambda x: x["visualizaciones"],
-            reverse=True,
-        )[:5]
+            )
+
+        total_leads = sum(row["leads"] or 0 for row in rows)
+        total_ventas = sum(row["ventas"] or 0 for row in rows)
+        total_visualizaciones = sum(row["visualizaciones"] for row in rows)
 
         return {
             "fecha": date_str,
             "totales": {
                 "leads": total_leads,
                 "ventas": total_ventas,
-                "lives": len(live_rows),
+                "conversion_global": self._safe_ratio(total_ventas, total_leads),
+                "visualizaciones": total_visualizaciones,
+                "agentes": len(rows),
             },
-            "ejecutivos": exec_items,
-            "top_live_vistas": top_visualizaciones,
+            "rows": rows,
         }

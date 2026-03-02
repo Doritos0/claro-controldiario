@@ -23,7 +23,7 @@ class RunRequest(BaseModel):
 class EjecutivoCreate(BaseModel):
     nombre: str
     estado: str = "ACTIVO"
-    eps: str = "CLARO"
+    eps: str = "PHOENIX"
 
 
 @router.post("/run")
@@ -95,23 +95,39 @@ def report_daily(date: str) -> dict:  # noqa: A002
 def dashboard() -> str:
     report = job_service.report_daily((date.today() - timedelta(days=1)).strftime("%d/%m/%y"))
     rows = "".join(
-        f"<tr><td>{item['ejecutivo']}</td><td>{item['leads']}</td><td>{item['ventas']}</td><td>{item['warnings'] or ''}</td></tr>"
-        for item in report["ejecutivos"]
-    )
-    top_rows = "".join(
-        f"<li>{item['ejecutivo']} - {item['visualizaciones']} vistas (inicio {item['hora_inicio'] or 'N/A'})</li>"
-        for item in report["top_live_vistas"]
+        "<tr>"
+        f"<td>{item['fecha']}</td>"
+        f"<td>{item['eps']}</td>"
+        f"<td>{item['agente']}</td>"
+        f"<td>{item['estado_agente']}</td>"
+        f"<td>{item['hrs_live']}</td>"
+        f"<td>{item['horas_efectivas']}</td>"
+        f"<td>{item['adherencia'] if item['adherencia'] is not None else 'N/A'}</td>"
+        f"<td>{item['leads'] if item['leads'] is not None else 'N/A'}</td>"
+        f"<td>{item['ventas'] if item['ventas'] is not None else 'N/A'}</td>"
+        f"<td>{item['conversion'] if item['conversion'] is not None else 'N/A'}</td>"
+        f"<td>{item['visualizaciones']}</td>"
+        f"<td>{item['espectadores_unicos']}</td>"
+        f"<td>{item['espectadores_activos']}</td>"
+        f"<td>{item['duracion_media_visualizacion'] if item['duracion_media_visualizacion'] is not None else 'N/A'}</td>"
+        f"<td>{item['peak_espectadores']}</td>"
+        f"<td>{item['warnings'] or ''}</td>"
+        "</tr>"
+        for item in report["rows"]
     )
     return f"""
     <html><body>
     <h1>Dashboard TikTok Live (MVP)</h1>
     <p>Fecha: {report['fecha']}</p>
-    <p>Leads globales: {report['totales']['leads']} | Ventas globales: {report['totales']['ventas']} | Lives: {report['totales']['lives']}</p>
-    <h2>Resumen por ejecutivo</h2>
+    <p>Leads globales: {report['totales']['leads']} | Ventas globales: {report['totales']['ventas']} | Conversión global: {report['totales']['conversion_global'] if report['totales']['conversion_global'] is not None else 'N/A'} | Visualizaciones globales: {report['totales']['visualizaciones']} | Agentes: {report['totales']['agentes']}</p>
     <table border='1' cellpadding='5'>
-      <tr><th>Ejecutivo</th><th>Leads</th><th>Ventas</th><th>Warnings</th></tr>
+      <tr>
+        <th>FECHA</th><th>EPS</th><th>AGENTE</th><th>ESTADO AGENTE</th><th>HRS. LIVE</th>
+        <th>HORAS EFECTIVAS</th><th>Adherencia</th><th>Leads</th><th>Ventas</th><th>Conversión</th>
+        <th>Visualizaciones</th><th>Espectadores Unicos</th><th>EspectadoresActivos</th>
+        <th>Duración Media deVisualización</th><th>Peak Espectadores</th><th>Warnings</th>
+      </tr>
       {rows}
     </table>
-    <h2>Top vistas LIVE</h2><ul>{top_rows}</ul>
     </body></html>
     """
