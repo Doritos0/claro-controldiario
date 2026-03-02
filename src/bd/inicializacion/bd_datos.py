@@ -16,4 +16,8 @@ def inicializar_datos():
     assert rafael_cayun is not None
     tania_alviar = ejecutivo_service.guardar_ejecutivo_sql("Tania Alviar", "ACTIVO", "PHOENIX").id
     assert tania_alviar is not None
+    blanca_flores = ejecutivo_service.guardar_ejecutivo_sql("Blanca Flores", "ACTIVO", "PHOENIX").id
+    assert blanca_flores is not None
+    isi_pastenes = ejecutivo_service.guardar_ejecutivo_sql("Isi Pastenes", "ACTIVO", "PHOENIX").id
+    assert isi_pastenes is not None
     logging.info("Base de datos limpiada y clientes iniciales guardados")

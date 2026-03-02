@@ -7,6 +7,7 @@ from src.bd.schema import Ejecutivo
 from src.drive.drive_imagenes import DriveImagenesService
 from src.gemini.gemini_ocr_service import GeminiOCRService
 from src.bd.bd_live import LIVEService
+from src.config.log_config import configurar_log
 
 
 def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
@@ -14,6 +15,7 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
     Orquestador que descarga imágenes de Drive y las procesa con Gemini OCR.
     """
     # 1. Cargar configuración desde el .env
+    configurar_log()
     load_dotenv()
     
     credentials_path = os.getenv("GOOGLE_DRIVE_CREDENTIALS_PATH")
@@ -65,4 +67,4 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
 
 if __name__ == "__main__":
     #Ej. "18/02/26"
-    ejecutar_proceso_ocr()
+    ejecutar_proceso_ocr("27/02/26")
