@@ -55,6 +55,10 @@ class LIVEService:
             session.refresh(live_nuevo)
             return live_nuevo
 
+    def get_LIVE_por_captura(self, nombre_captura: str):
+        with Session(self.engine) as session:
+            return session.exec(select(LIVE).where(LIVE.nombre_captura == nombre_captura)).first()
+
     @staticmethod
     def parse_time_string(time_str: str | None) -> time | None:
         if not time_str or time_str == "null":

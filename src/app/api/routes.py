@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import date, timedelta
+from datetime import date as date_module, timedelta
 import json
 
 from fastapi import APIRouter, BackgroundTasks
@@ -28,7 +28,7 @@ class EjecutivoCreate(BaseModel):
 
 @router.post("/run")
 def run_job(payload: RunRequest, background_tasks: BackgroundTasks) -> dict:
-    fecha = payload.fecha_objetivo or (date.today() - timedelta(days=1)).strftime("%d/%m/%y")
+    fecha = payload.fecha_objetivo or (date_module.today() - timedelta(days=1)).strftime("%d/%m/%y")
     job = job_service.create_job(fecha)
     background_tasks.add_task(job_service.run_pipeline, job["id"])
     return {"job_id": job["id"], "status": job["status"], "fecha_objetivo": fecha}
@@ -92,8 +92,9 @@ def report_daily(date: str) -> dict:  # noqa: A002
 
 
 @router.get("/dashboard", response_class=HTMLResponse)
-def dashboard() -> str:
-    report = job_service.report_daily((date.today() - timedelta(days=1)).strftime("%d/%m/%y"))
+def dashboard(date: str | None = None) -> str:  # noqa: A002
+    selected_date = date or (date_module.today() - timedelta(days=1)).strftime("%d/%m/%y")
+    report = job_service.report_daily(selected_date)
     rows = "".join(
         "<tr>"
         f"<td>{item['fecha']}</td>"
@@ -117,6 +118,11 @@ def dashboard() -> str:
     )
     return f"""
     <html><body>
+    <form method='get' action='/dashboard'>
+      <label>Fecha (DD/MM/YY):</label>
+      <input name='date' value='{selected_date}' />
+      <button type='submit'>Ver</button>
+    </form>
     <h1>Dashboard TikTok Live (MVP)</h1>
     <p>Fecha: {report['fecha']}</p>
     <p>Leads globales: {report['totales']['leads']} | Ventas globales: {report['totales']['ventas']} | Conversión global: {report['totales']['conversion_global'] if report['totales']['conversion_global'] is not None else 'N/A'} | Visualizaciones globales: {report['totales']['visualizaciones']} | Agentes: {report['totales']['agentes']}</p>

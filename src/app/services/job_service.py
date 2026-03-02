@@ -8,6 +8,7 @@ from sqlmodel import Session, select
 
 from src.bd.schema import Ejecutivo, ExecutiveDailySummary, JobLog, JobRun, LIVE
 from src.config.engine_config import get_engine
+from src.proceso_01_ocr import ejecutar_proceso_ocr
 
 STAGES = [
     "PENDING",
@@ -74,7 +75,27 @@ class JobService:
                 for status, msg in [
                     ("VALIDATING_STRUCTURE", "Validando estructura en Drive para fecha objetivo"),
                     ("DOWNLOADING_FILES", "Descargando imágenes y excels por ejecutivo"),
-                    ("OCR_IMAGES", "Procesando OCR de imágenes con Ollama Qwen2.5VL"),
+                ]:
+                    self._set_status(session, job, status)
+                    self._log(session, job.id, status, msg)
+                    session.commit()
+
+                self._set_status(session, job, "OCR_IMAGES")
+                self._log(session, job.id, "OCR_IMAGES", "Ejecutando orquestador OCR real (ejecutar_proceso_ocr)")
+                session.commit()
+                ocr_result = ejecutar_proceso_ocr(fecha_objetivo=job.fecha_objetivo, full_scan=False)
+                warnings.extend(ocr_result.get("warnings", []))
+                if ocr_result.get("errors"):
+                    warnings.extend(ocr_result["errors"])
+                self._log(
+                    session,
+                    job.id,
+                    "OCR_IMAGES",
+                    f"OCR procesadas={ocr_result.get('processed', 0)} guardadas={ocr_result.get('saved', 0)}",
+                )
+                session.commit()
+
+                for status, msg in [
                     ("PROCESSING_EXCEL", "Procesando reglas de negocio de Excel"),
                     ("SAVING_RESULTS", "Persistiendo métricas LIVE y resumen diario"),
                     ("PROVISIONING_NEXT_DAY", "Provisionando carpetas para fecha siguiente"),
@@ -83,8 +104,6 @@ class JobService:
                     self._log(session, job.id, status, msg)
                     session.commit()
 
-                # MVP scaffold: no detiene el job y deja advertencias para visibilidad en dashboard.
-                warnings.append("Integración Drive/OCR pendiente: mostrando métricas parciales disponibles.")
                 self._upsert_daily_summaries(session, job)
 
                 if warnings:
