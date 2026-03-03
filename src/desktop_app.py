@@ -132,7 +132,7 @@ class ControlDiarioApp:
         if result.dashboard_path is None:
             self.status_text.set(result.message)
             messagebox.showwarning("No se generó dashboard", result.message)
-            self._intentar_configurar_root_folder(result.message)
+            self._intentar_autoconfig(result.message)
             return
 
         self._dashboard_path = Path(result.dashboard_path)
@@ -157,21 +157,45 @@ class ControlDiarioApp:
         cfg.setdefault("google_drive_credentials_path", "credentials.json")
         cfg_path.write_text(json.dumps(cfg, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    def _intentar_configurar_root_folder(self, message: str) -> bool:
-        if "GOOGLE_DRIVE_ROOT_FOLDER_ID" not in message:
-            return False
+    def _intentar_autoconfig(self, message: str) -> bool:
+        if "GOOGLE_DRIVE_ROOT_FOLDER_ID" in message:
+            folder_id = simpledialog.askstring(
+                "Configuración inicial",
+                "Ingresa el GOOGLE_DRIVE_ROOT_FOLDER_ID para dejar la app configurada:",
+                parent=self.root,
+            )
+            if not folder_id:
+                return False
+            self._guardar_root_folder_id(folder_id)
+            messagebox.showinfo("Configuración guardada", "Root Folder ID guardado. Vuelve a generar el reporte.")
+            return True
 
-        folder_id = simpledialog.askstring(
-            "Configuración inicial",
-            "Ingresa el GOOGLE_DRIVE_ROOT_FOLDER_ID para dejar la app configurada:",
-            parent=self.root,
-        )
-        if not folder_id:
-            return False
+        if "GEMINI_API_KEY" in message:
+            api_key = simpledialog.askstring(
+                "Configuración inicial",
+                "Ingresa tu GEMINI_API_KEY para dejar la app configurada:",
+                parent=self.root,
+            )
+            if not api_key:
+                return False
 
-        self._guardar_root_folder_id(folder_id)
-        messagebox.showinfo("Configuración guardada", "Root Folder ID guardado. Vuelve a generar el reporte.")
-        return True
+            cfg_path = Path.cwd() / "app_config.json"
+            cfg = {}
+            if cfg_path.exists():
+                try:
+                    cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+                    if not isinstance(cfg, dict):
+                        cfg = {}
+                except Exception:
+                    cfg = {}
+
+            cfg["gemini_api_key"] = api_key.strip()
+            cfg.setdefault("gemini_model_ocr", "gemini-3-flash-preview")
+            cfg_path.write_text(json.dumps(cfg, ensure_ascii=False, indent=2), encoding="utf-8")
+            messagebox.showinfo("Configuración guardada", "GEMINI_API_KEY guardada. Vuelve a generar el reporte.")
+            return True
+
+        return False
 
     def _post_generacion_error(self, exc: Exception) -> None:
         if self.btn_generar is not None:

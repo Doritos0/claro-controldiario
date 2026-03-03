@@ -1,11 +1,10 @@
 from __future__ import annotations
 
+import json
 import os
 import shutil
 import sys
 from pathlib import Path
-
-from sqlmodel import Session, select
 
 
 def _app_home_dir() -> Path:
@@ -38,7 +37,38 @@ def _copy_if_exists(filename: str, dest_dir: Path) -> Path | None:
     return None
 
 
+def _load_json(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def _apply_runtime_env_from_config(app_home: Path) -> None:
+    cfg_path = app_home / "app_config.json"
+    cfg = _load_json(cfg_path)
+
+    mapping = {
+        "google_drive_root_folder_id": "GOOGLE_DRIVE_ROOT_FOLDER_ID",
+        "google_drive_credentials_path": "GOOGLE_DRIVE_CREDENTIALS_PATH",
+        "gemini_api_key": "GEMINI_API_KEY",
+        "gemini_model_ocr": "GEMINI_MODEL_OCR",
+    }
+
+    for cfg_key, env_key in mapping.items():
+        if os.getenv(env_key):
+            continue
+        value = cfg.get(cfg_key)
+        if isinstance(value, str) and value.strip():
+            os.environ[env_key] = value.strip()
+
+
 def _ensure_db_ready(db_path: Path) -> None:
+    from sqlmodel import Session, select
+
     from src.bd.inicializacion.bd_init import inicializar_bd_sqlite
     from src.bd.inicializacion.bd_datos import inicializar_datos
     from src.bd.schema import Ejecutivo
@@ -74,5 +104,6 @@ def bootstrap_runtime() -> Path:
     # Ajustar cwd para que artifacts/ y otros archivos queden en carpeta de app
     os.chdir(app_home)
 
+    _apply_runtime_env_from_config(app_home)
     _ensure_db_ready(db_path)
     return app_home

@@ -88,11 +88,16 @@ Archivo recomendado `app_config.json`:
 ```json
 {
   "google_drive_root_folder_id": "TU_FOLDER_ID",
-  "google_drive_credentials_path": "credentials.json"
+  "google_drive_credentials_path": "credentials.json",
+  "gemini_api_key": "TU_GEMINI_API_KEY",
+  "gemini_model_ocr": "gemini-3-flash-preview"
 }
 ```
 
 > Para entregar al usuario final: distribuye la carpeta `dist/ControlDiarioClaro/` completa, incluyendo `app_config.json` y `credentials.json`.
+
+Además, para OCR debes configurar `gemini_api_key` (o `GEMINI_API_KEY`).
+La app puede pedirla en el primer intento y guardarla automáticamente en `app_config.json`.
 
 
 ### Base de datos lista para usar (primer arranque)
