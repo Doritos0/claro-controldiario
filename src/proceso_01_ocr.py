@@ -79,4 +79,4 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
 
 if __name__ == "__main__":
     #Ej. "18/02/26"
-    ejecutar_proceso_ocr()
+    ejecutar_proceso_ocr("02/03/26")

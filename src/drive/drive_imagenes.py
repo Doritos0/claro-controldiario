@@ -87,11 +87,16 @@ class DriveImagenesService:
             carpetas_dias = self.encontrar_archivo(query_dias)
 
             for dia in carpetas_dias:
-                logging.info(f"Se esta buscando entre las carpetas de dias")
+                logging.info(f"Se esta buscando entre las carpetas de dias - {dia['title']}")
                 query_img = f"'{dia['id']}' in parents and mimeType contains 'image/' and trashed = false"
                 imagenes = self.encontrar_archivo(query_img)
 
+                query_excel = f"'{dia['id']}' in parents and (mimeType = 'application/vnd.google-apps.spreadsheet' or mimeType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' or mimeType = 'application/vnd.ms-excel') and trashed = false"
+
+                excels = self.encontrar_archivo(query_excel)
+
                 logging.info(f"Se encontraron {len(imagenes)} imagenes")
+                logging.info(f"Se encontraron {len(excels)} excels")
 
                 for img in imagenes:
                     logging.info(f"Descargando: {img['title']} - ID {img['id']} ({ejecutivo.nombre} - {dia['title']})")
@@ -102,6 +107,10 @@ class DriveImagenesService:
                         "filename": img['title'],
                         "fecha": dia['title']
                     })
+
+                for exc in excels:
+                    print(f"Acá ira codigo de procesamiento de excel")
+
         logging.info(f"Servicio de descarga de imagenes completado se envian {len(resultados)} imagenes")
         return resultados
     
