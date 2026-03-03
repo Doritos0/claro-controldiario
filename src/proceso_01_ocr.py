@@ -101,7 +101,7 @@ def ejecutar_proceso_ocr_con_resultado(
                 resultado = ocr_service.get_respuesta_ocr(image_bytes, filename)
                 live_service.guardar_LIVE_metricas_sql(ejecutivo.id, filename, resultado)
 
-        dashboard_path = dashboard_service.generar_dashboard_diario(fecha_dashboard)
+        dashboard_path = dashboard_service.generar_dashboard_diario(fecha_dashboard, empresa_id=empresa_id)
         if dashboard_path:
             return OCRExecutionResult(
                 dashboard_path=dashboard_path,

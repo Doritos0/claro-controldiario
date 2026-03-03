@@ -134,6 +134,12 @@ class ControlDiarioApp:
 
         if result.dashboard_path is None:
             self.status_text.set(result.message)
+            if self.image_label is not None:
+                self.image_label.configure(image="", text="No se generó dashboard para esta empresa/fecha.")
+            self._img_ref = None
+            self._dashboard_path = None
+            if self.btn_guardar is not None:
+                self.btn_guardar.configure(state="disabled")
             messagebox.showwarning("No se generó dashboard", result.message)
             self._intentar_autoconfig(result.message)
             return

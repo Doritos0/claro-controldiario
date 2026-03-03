@@ -91,8 +91,8 @@ class DashboardDiarioService:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
-    def generar_dashboard_diario(self, fecha_objetivo: date) -> Path | None:
-        filas = self._obtener_filas(fecha_objetivo)
+    def generar_dashboard_diario(self, fecha_objetivo: date, empresa_id: int | None = None) -> Path | None:
+        filas = self._obtener_filas(fecha_objetivo, empresa_id=empresa_id)
         if not filas:
             logging.warning("No hay registros LIVE para construir dashboard diario")
             return None
@@ -102,12 +102,15 @@ class DashboardDiarioService:
         logging.info("Dashboard diario generado en %s", ruta)
         return ruta
 
-    def _obtener_filas(self, fecha_objetivo: date) -> list[DashboardFila]:
+    def _obtener_filas(self, fecha_objetivo: date, empresa_id: int | None = None) -> list[DashboardFila]:
         filas: list[DashboardFila] = []
         kpi_horas = 2.0
 
         with Session(self.engine) as session:
-            ejecutivos = session.exec(select(Ejecutivo)).all()
+            statement = select(Ejecutivo)
+            if empresa_id is not None:
+                statement = statement.where(Ejecutivo.empresa_id == empresa_id)
+            ejecutivos = session.exec(statement).all()
             for ejecutivo in ejecutivos:
                 lives = session.exec(
                     select(LIVE).where(
