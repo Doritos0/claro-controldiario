@@ -113,12 +113,13 @@ class ControlDiarioApp:
 
     def _generar_reporte_worker(self) -> None:
         try:
-            fecha_input = None
             if self.fecha_modo.get() == "manual":
                 fecha_input = self.fecha_manual.get().strip()
                 resolver_fecha_objetivo(fecha_input)
+                dashboard_path = ejecutar_proceso_ocr(fecha_objetivo=fecha_input, full_scan=False)
+            else:
+                dashboard_path = ejecutar_proceso_ocr()
 
-            dashboard_path = ejecutar_proceso_ocr(fecha_objetivo=fecha_input, full_scan=False)
             self.root.after(0, lambda: self._post_generacion_ok(dashboard_path))
         except Exception as exc:
             self.root.after(0, lambda: self._post_generacion_error(exc))
