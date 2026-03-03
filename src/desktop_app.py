@@ -129,7 +129,7 @@ class ControlDiarioApp:
             self.btn_generar.configure(state="normal")
 
         if dashboard_path is None:
-            self.status_text.set("Proceso finalizado, pero no se generó dashboard (sin datos para la fecha).")
+            self.status_text.set("Proceso finalizado sin dashboard. Revisa .env/credenciales o que existan datos para la fecha.")
             return
 
         self._dashboard_path = Path(dashboard_path)

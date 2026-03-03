@@ -1,6 +1,4 @@
-import os
 import logging
-from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from io import BytesIO
 
@@ -14,10 +12,6 @@ from pydrive2.drive import GoogleDrive
 
 from src.bd.bd_ejecutivo import EjecutivoService
 
-load_dotenv()
-
-credenciales = os.getenv("GOOGLE_DRIVE_CREDENTIALS_PATH")
-
 class DriveImagenesService:
     def __init__(self, credentials_path: str, root_folder_id: str):
         self.credentials_path = credentials_path
@@ -28,11 +22,11 @@ class DriveImagenesService:
     def _autenticar(self):
         logging.info(f"Funcion de autenticación comienza ejecución")
         gauth = GoogleAuth()
-        gauth.LoadCredentialsFile(credenciales)
+        gauth.LoadCredentialsFile(self.credentials_path)
 
         if gauth.access_token_expired:
             gauth.Refresh()
-            gauth.SaveCredentialsFile(credenciales)
+            gauth.SaveCredentialsFile(self.credentials_path)
         else:
             gauth.Authorize()
 

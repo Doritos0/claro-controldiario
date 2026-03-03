@@ -63,6 +63,19 @@ El ejecutable se genera en:
 
 ---
 
+
+### Importante para ejecución en `.exe`
+
+El ejecutable necesita acceso a las variables de entorno de Drive:
+- `GOOGLE_DRIVE_CREDENTIALS_PATH`
+- `GOOGLE_DRIVE_ROOT_FOLDER_ID`
+
+Opciones recomendadas:
+1. Colocar un archivo `.env` junto al `.exe` en `dist/ControlDiarioClaro/`.
+2. O definir esas variables a nivel del sistema operativo en Windows.
+
+Si `GOOGLE_DRIVE_CREDENTIALS_PATH` es relativo, la app intentará resolverlo desde la carpeta del `.exe`, el `cwd` o la ubicación del proyecto.
+
 ## 4) Flujo esperado para el usuario final
 
 1. Instala/abre `ControlDiarioClaro.exe`.
