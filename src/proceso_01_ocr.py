@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 import logging
@@ -25,21 +26,19 @@ class OCRExecutionResult:
     success: bool
 
 
+@dataclass
+class RuntimeConfig:
+    credentials_path_raw: str | None
+    root_folder_id: str | None
+
+
 def _load_runtime_env() -> tuple[Path | None, list[Path]]:
-    """
-    Carga .env desde ubicaciones compatibles con ejecución local y PyInstaller.
-    """
     candidate_paths: list[Path] = []
 
     if getattr(sys, "frozen", False):
         candidate_paths.append(Path(sys.executable).resolve().parent / ".env")
 
-    candidate_paths.extend(
-        [
-            Path.cwd() / ".env",
-            Path(__file__).resolve().parents[1] / ".env",
-        ]
-    )
+    candidate_paths.extend([Path.cwd() / ".env", Path(__file__).resolve().parents[1] / ".env"])
 
     for env_path in candidate_paths:
         if env_path.exists():
@@ -48,6 +47,46 @@ def _load_runtime_env() -> tuple[Path | None, list[Path]]:
 
     load_dotenv()
     return None, candidate_paths
+
+
+def _load_runtime_config_file() -> tuple[dict, Path | None]:
+    candidate_paths: list[Path] = []
+
+    if getattr(sys, "frozen", False):
+        candidate_paths.append(Path(sys.executable).resolve().parent / "app_config.json")
+
+    candidate_paths.extend(
+        [
+            Path.cwd() / "app_config.json",
+            Path(__file__).resolve().parents[1] / "app_config.json",
+        ]
+    )
+
+    for cfg_path in candidate_paths:
+        if cfg_path.exists():
+            try:
+                content = json.loads(cfg_path.read_text(encoding="utf-8"))
+                return content if isinstance(content, dict) else {}, cfg_path
+            except Exception:
+                logging.exception("No se pudo leer app_config.json en %s", cfg_path)
+                return {}, cfg_path
+
+    return {}, None
+
+
+def _resolve_runtime_config() -> tuple[RuntimeConfig, Path | None, list[Path], Path | None]:
+    env_path, env_candidates = _load_runtime_env()
+    config_file, config_path = _load_runtime_config_file()
+
+    credentials_path_raw = (
+        os.getenv("GOOGLE_DRIVE_CREDENTIALS_PATH")
+        or config_file.get("google_drive_credentials_path")
+        or "credentials.json"
+    )
+
+    root_folder_id = os.getenv("GOOGLE_DRIVE_ROOT_FOLDER_ID") or config_file.get("google_drive_root_folder_id")
+
+    return RuntimeConfig(credentials_path_raw=credentials_path_raw, root_folder_id=root_folder_id), env_path, env_candidates, config_path
 
 
 def _resolve_credentials_path(raw_path: str | None, env_path: Path | None) -> str | None:
@@ -75,73 +114,67 @@ def _resolve_credentials_path(raw_path: str | None, env_path: Path | None) -> st
     return str(path)
 
 
-def ejecutar_proceso_ocr_con_resultado(
-    fecha_objetivo: str | None = None,
-    full_scan: bool = False,
-) -> OCRExecutionResult:
-    """
-    Orquestador que descarga imágenes de Drive y las procesa con Gemini OCR.
-    Retorna un resultado detallado para consumo de UI.
-    """
+def ejecutar_proceso_ocr_con_resultado(fecha_objetivo: str | None = None, full_scan: bool = False) -> OCRExecutionResult:
     configurar_log()
-    env_path, env_candidates = _load_runtime_env()
 
-    credentials_path = _resolve_credentials_path(os.getenv("GOOGLE_DRIVE_CREDENTIALS_PATH"), env_path)
-    root_folder_id = os.getenv("GOOGLE_DRIVE_ROOT_FOLDER_ID")
+    runtime_cfg, env_path, env_candidates, config_path = _resolve_runtime_config()
+    credentials_path = _resolve_credentials_path(runtime_cfg.credentials_path_raw, env_path)
+    root_folder_id = runtime_cfg.root_folder_id
 
-    if not credentials_path or not root_folder_id:
+    if not root_folder_id:
         env_locations = " | ".join(str(p) for p in env_candidates)
         msg = (
-            "Faltan variables de entorno requeridas (GOOGLE_DRIVE_CREDENTIALS_PATH / "
-            "GOOGLE_DRIVE_ROOT_FOLDER_ID). "
-            f".env encontrado: {env_path or 'NO'}. Rutas buscadas: {env_locations}"
+            "Falta GOOGLE_DRIVE_ROOT_FOLDER_ID. Puedes definirlo en .env o en app_config.json. "
+            f".env encontrado: {env_path or 'NO'}. app_config.json: {config_path or 'NO'}. "
+            f"Rutas .env buscadas: {env_locations}"
         )
         logging.error(msg)
         return OCRExecutionResult(dashboard_path=None, message=msg, success=False)
 
-    if not Path(credentials_path).exists():
-        msg = f"No existe el archivo de credenciales en la ruta resuelta: {credentials_path}"
+    if not credentials_path or not Path(credentials_path).exists():
+        msg = (
+            "No se encontró el archivo de credenciales de Drive. "
+            f"Ruta resuelta: {credentials_path}. "
+            "Configura GOOGLE_DRIVE_CREDENTIALS_PATH en .env o google_drive_credentials_path en app_config.json "
+            "(si no se define, se usa credentials.json junto al .exe)."
+        )
         logging.error(msg)
         return OCRExecutionResult(dashboard_path=None, message=msg, success=False)
 
     try:
         fecha_dashboard = resolver_fecha_objetivo(fecha_objetivo)
 
-        logging.info("Inicializando servicios de Drive y Gemini...")
         drive_service = DriveImagenesService(credentials_path, root_folder_id)
         ocr_service = GeminiOCRService()
         live_service = LIVEService()
         dashboard_service = DashboardDiarioService()
 
-        logging.info("Buscando imágenes para la fecha: %s", fecha_objetivo or "Ayer (default)")
         imagenes_descargadas = drive_service.obtener_imagenes(fecha_objetivo, full_scan)
 
-        if not imagenes_descargadas:
-            logging.warning("No se encontraron imágenes para procesar.")
-        else:
-            logging.info("Se encontraron %s imágenes. Iniciando OCR...", len(imagenes_descargadas))
-
+        if imagenes_descargadas:
             for item in imagenes_descargadas:
                 ejecutivo: Ejecutivo = item["ejecutivo"]
                 filename = item["filename"]
                 image_bytes = item["data"]
-
-                logging.info("--- Procesando: %s (Ejecutivo: %s) ---", filename, ejecutivo)
-
                 resultado = ocr_service.get_respuesta_ocr(image_bytes, filename)
                 live_service.guardar_LIVE_metricas_sql(ejecutivo.id, filename, resultado)
 
         dashboard_path = dashboard_service.generar_dashboard_diario(fecha_dashboard)
         if dashboard_path:
-            msg = f"Dashboard diario generado: {dashboard_path}"
-            return OCRExecutionResult(dashboard_path=dashboard_path, message=msg, success=True)
+            return OCRExecutionResult(
+                dashboard_path=dashboard_path,
+                message=f"Dashboard diario generado: {dashboard_path}",
+                success=True,
+            )
 
-        msg = (
-            "No se generó dashboard para la fecha objetivo. "
-            "Puede que no existan imágenes/datos LIVE para ese día o que la carpeta no coincida en Drive."
+        return OCRExecutionResult(
+            dashboard_path=None,
+            message=(
+                "No se generó dashboard para la fecha objetivo. "
+                "Verifica que existan carpetas/imágenes en Drive para esa fecha y que el root folder sea correcto."
+            ),
+            success=False,
         )
-        logging.warning(msg)
-        return OCRExecutionResult(dashboard_path=None, message=msg, success=False)
 
     except Exception as e:
         msg = f"Error crítico en el proceso OCR: {e}"
@@ -150,7 +183,6 @@ def ejecutar_proceso_ocr_con_resultado(
 
 
 def ejecutar_proceso_ocr(fecha_objetivo: str | None = None, full_scan: bool = False):
-    """Compatibilidad hacia atrás: retorna solo Path | None."""
     return ejecutar_proceso_ocr_con_resultado(fecha_objetivo=fecha_objetivo, full_scan=full_scan).dashboard_path
 
 

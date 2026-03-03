@@ -1,0 +1,4 @@
+{
+  "google_drive_root_folder_id": "REEMPLAZAR_CON_FOLDER_ID_DE_DRIVE",
+  "google_drive_credentials_path": "credentials.json"
+}

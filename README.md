@@ -56,6 +56,7 @@ pyinstaller --noconfirm --windowed --name ControlDiarioClaro \
   --add-data "settings.yaml;." \
   --add-data "client_secret.json;." \
   --add-data "credentials.json;." \
+  --add-data "app_config.json;." \
   run_desktop.py
 ```
 
@@ -74,16 +75,23 @@ El ejecutable se genera en:
 
 ### Importante para ejecución en `.exe`
 
-El ejecutable necesita acceso a las variables de entorno de Drive:
-- `GOOGLE_DRIVE_CREDENTIALS_PATH`
-- `GOOGLE_DRIVE_ROOT_FOLDER_ID`
+El ejecutable queda preparado para usar configuración local sin depender de rutas de tu computador.
 
-Opciones recomendadas:
-1. Colocar un archivo `.env` junto al `.exe` en `dist/ControlDiarioClaro/`.
-2. O definir esas variables a nivel del sistema operativo en Windows.
+La app resuelve configuración en este orden:
+1. Variables de entorno (`.env`) si existen.
+2. `app_config.json` junto al `.exe`.
+3. Valor por defecto para credenciales: `credentials.json` junto al `.exe`.
 
-Si `GOOGLE_DRIVE_CREDENTIALS_PATH` es relativo, la app intentará resolverlo desde la carpeta del `.exe`, el `cwd` o la ubicación del proyecto.
+Archivo recomendado `app_config.json`:
 
+```json
+{
+  "google_drive_root_folder_id": "TU_FOLDER_ID",
+  "google_drive_credentials_path": "credentials.json"
+}
+```
+
+> Para entregar al usuario final: distribuye la carpeta `dist/ControlDiarioClaro/` completa, incluyendo `app_config.json` y `credentials.json`.
 
 ### Diagnóstico rápido en app de escritorio
 

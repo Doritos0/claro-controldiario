@@ -50,6 +50,7 @@ python -m PyInstaller --noconfirm --windowed --name ControlDiarioClaro ^
   --add-data "settings.yaml;." ^
   --add-data "client_secret.json;." ^
   --add-data "credentials.json;." ^
+  --add-data "app_config.json;." ^
   run_desktop.py
 
 if errorlevel 1 (
