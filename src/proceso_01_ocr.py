@@ -17,6 +17,7 @@ from src.reportes.dashboard_diario_service import (
     DashboardDiarioService,
     resolver_fecha_objetivo,
 )
+from src.runtime_setup import bootstrap_runtime
 
 
 @dataclass
@@ -115,6 +116,7 @@ def _resolve_credentials_path(raw_path: str | None, env_path: Path | None) -> st
 
 
 def ejecutar_proceso_ocr_con_resultado(fecha_objetivo: str | None = None, full_scan: bool = False) -> OCRExecutionResult:
+    bootstrap_runtime()
     configurar_log()
 
     runtime_cfg, env_path, env_candidates, config_path = _resolve_runtime_config()

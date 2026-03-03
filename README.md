@@ -57,6 +57,7 @@ pyinstaller --noconfirm --windowed --name ControlDiarioClaro \
   --add-data "client_secret.json;." \
   --add-data "credentials.json;." \
   --add-data "app_config.json;." \
+  --add-data "CLARO-TIKTOK.db;." \
   run_desktop.py
 ```
 
@@ -92,6 +93,20 @@ Archivo recomendado `app_config.json`:
 ```
 
 > Para entregar al usuario final: distribuye la carpeta `dist/ControlDiarioClaro/` completa, incluyendo `app_config.json` y `credentials.json`.
+
+
+### Base de datos lista para usar (primer arranque)
+
+El ejecutable inicializa automáticamente una base SQLite local del usuario (no depende de rutas del PC del desarrollador):
+- Carpeta de datos en Windows: `%LOCALAPPDATA%/ControlDiarioClaro/`
+- Archivo DB: `CLARO-TIKTOK.db`
+
+En el primer arranque:
+1. Copia una DB base incluida en el ejecutable (si existe).
+2. Crea tablas faltantes automáticamente.
+3. Si no hay ejecutivos, carga ejecutivos iniciales por defecto.
+
+Con esto se evita el error `no such table: ejecutivo`.
 
 ### Diagnóstico rápido en app de escritorio
 

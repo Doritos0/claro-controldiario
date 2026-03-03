@@ -1,10 +1,11 @@
 from __future__ import annotations
 
+import json
 from datetime import datetime, timedelta
 from pathlib import Path
 import threading
 import tkinter as tk
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog, messagebox, simpledialog, ttk
 
 from PIL import Image, ImageTk
 
@@ -131,6 +132,7 @@ class ControlDiarioApp:
         if result.dashboard_path is None:
             self.status_text.set(result.message)
             messagebox.showwarning("No se generó dashboard", result.message)
+            self._intentar_configurar_root_folder(result.message)
             return
 
         self._dashboard_path = Path(result.dashboard_path)
@@ -139,6 +141,37 @@ class ControlDiarioApp:
 
         if self.btn_guardar is not None:
             self.btn_guardar.configure(state="normal")
+
+    def _guardar_root_folder_id(self, folder_id: str) -> None:
+        cfg_path = Path.cwd() / "app_config.json"
+        cfg = {}
+        if cfg_path.exists():
+            try:
+                cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+                if not isinstance(cfg, dict):
+                    cfg = {}
+            except Exception:
+                cfg = {}
+
+        cfg["google_drive_root_folder_id"] = folder_id.strip()
+        cfg.setdefault("google_drive_credentials_path", "credentials.json")
+        cfg_path.write_text(json.dumps(cfg, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    def _intentar_configurar_root_folder(self, message: str) -> bool:
+        if "GOOGLE_DRIVE_ROOT_FOLDER_ID" not in message:
+            return False
+
+        folder_id = simpledialog.askstring(
+            "Configuración inicial",
+            "Ingresa el GOOGLE_DRIVE_ROOT_FOLDER_ID para dejar la app configurada:",
+            parent=self.root,
+        )
+        if not folder_id:
+            return False
+
+        self._guardar_root_folder_id(folder_id)
+        messagebox.showinfo("Configuración guardada", "Root Folder ID guardado. Vuelve a generar el reporte.")
+        return True
 
     def _post_generacion_error(self, exc: Exception) -> None:
         if self.btn_generar is not None:

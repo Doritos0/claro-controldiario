@@ -51,6 +51,7 @@ python -m PyInstaller --noconfirm --windowed --name ControlDiarioClaro ^
   --add-data "client_secret.json;." ^
   --add-data "credentials.json;." ^
   --add-data "app_config.json;." ^
+  --add-data "CLARO-TIKTOK.db;." ^
   run_desktop.py
 
 if errorlevel 1 (
