@@ -46,6 +46,11 @@ if errorlevel 1 (
 
 echo [3/3] Generando ejecutable...
 python -m PyInstaller --noconfirm --windowed --name ControlDiarioClaro ^
+  --collect-all "googleapiclient" ^
+  --collect-all "google_auth_oauthlib" ^
+  --collect-all "pydantic" ^
+  --collect-all "sqlmodel" ^
+  --collect-all "sqlalchemy" ^
   --add-data "src\docs;src\docs" ^
   --add-data "settings.yaml;." ^
   --add-data "client_secret.json;." ^

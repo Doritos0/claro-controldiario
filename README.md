@@ -52,6 +52,11 @@ Desde la **raíz del proyecto**:
 
 ```bash
 pyinstaller --noconfirm --windowed --name ControlDiarioClaro \
+  --collect-all "googleapiclient" \
+  --collect-all "google_auth_oauthlib" \
+  --collect-all "pydantic" \
+  --collect-all "sqlmodel" \
+  --collect-all "sqlalchemy" \
   --add-data "src/docs;src/docs" \
   --add-data "settings.yaml;." \
   --add-data "client_secret.json;." \
@@ -78,10 +83,10 @@ El ejecutable se genera en:
 
 El ejecutable queda preparado para usar configuración local sin depender de rutas de tu computador.
 
-La app resuelve configuración en este orden:
-1. Variables de entorno (`.env`) si existen.
-2. `app_config.json` junto al `.exe`.
-3. Valor por defecto para credenciales: `credentials.json` junto al `.exe`.
+La app resuelve configuración en modo **Zero-Config**:
+1. Lee `app_config.json` incluido junto al `.exe` (copiado a `%LOCALAPPDATA%/ClaroControlDiario/`).
+2. Usa `credentials.json` local del usuario en esa misma carpeta.
+3. Mantiene compatibilidad con variables de entorno si existen, pero ya no depende de `.env`.
 
 Archivo recomendado `app_config.json`:
 

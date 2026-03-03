@@ -7,34 +7,39 @@ import sys
 from pathlib import Path
 
 
-def _app_home_dir() -> Path:
+APP_DIR_NAME = "ClaroControlDiario"
+
+
+def get_resource_path(relative_path: str) -> Path:
+    """
+    Ruta de recursos de solo lectura (bundle PyInstaller o repo local).
+    """
+    base_path = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parents[1]))
+    return base_path / relative_path
+
+
+def get_app_home_dir() -> Path:
     local_app_data = os.getenv("LOCALAPPDATA")
     if local_app_data:
-        return Path(local_app_data) / "ControlDiarioClaro"
-    return Path.home() / ".control_diario_claro"
+        return Path(local_app_data) / APP_DIR_NAME
+    return Path.home() / f".{APP_DIR_NAME.lower()}"
 
 
-def _bundled_candidate_paths(filename: str) -> list[Path]:
-    candidates: list[Path] = []
-    if getattr(sys, "frozen", False):
-        exe_dir = Path(sys.executable).resolve().parent
-        candidates.append(exe_dir / filename)
-        meipass = getattr(sys, "_MEIPASS", None)
-        if meipass:
-            candidates.append(Path(meipass) / filename)
-    candidates.append(Path.cwd() / filename)
-    candidates.append(Path(__file__).resolve().parents[1] / filename)
-    return candidates
+def _copy_resource_to_app_home(relative_path: str, app_home: Path) -> Path | None:
+    src = get_resource_path(relative_path)
+    if not src.exists():
+        return None
 
+    dst = app_home / relative_path
+    dst.parent.mkdir(parents=True, exist_ok=True)
 
-def _copy_if_exists(filename: str, dest_dir: Path) -> Path | None:
-    for src in _bundled_candidate_paths(filename):
-        if src.exists():
-            dest = dest_dir / filename
-            if not dest.exists():
-                shutil.copy2(src, dest)
-            return dest
-    return None
+    if src.is_dir():
+        if not dst.exists():
+            shutil.copytree(src, dst)
+    else:
+        if not dst.exists():
+            shutil.copy2(src, dst)
+    return dst
 
 
 def _load_json(path: Path) -> dict:
@@ -56,6 +61,8 @@ def _apply_runtime_env_from_config(app_home: Path) -> None:
         "google_drive_credentials_path": "GOOGLE_DRIVE_CREDENTIALS_PATH",
         "gemini_api_key": "GEMINI_API_KEY",
         "gemini_model_ocr": "GEMINI_MODEL_OCR",
+        "ambiente": "AMBIENTE",
+        "bd_name": "BD_NAME",
     }
 
     for cfg_key, env_key in mapping.items():
@@ -66,7 +73,7 @@ def _apply_runtime_env_from_config(app_home: Path) -> None:
             os.environ[env_key] = value.strip()
 
 
-def _ensure_db_ready(db_path: Path) -> None:
+def _ensure_db_ready() -> None:
     from sqlmodel import Session, select
 
     from src.bd.inicializacion.bd_init import inicializar_bd_sqlite
@@ -85,25 +92,25 @@ def _ensure_db_ready(db_path: Path) -> None:
 
 
 def bootstrap_runtime() -> Path:
-    app_home = _app_home_dir()
+    app_home = get_app_home_dir()
     app_home.mkdir(parents=True, exist_ok=True)
+
+    # Activos read-only empaquetados
+    _copy_resource_to_app_home("CLARO-TIKTOK.db", app_home)
+    _copy_resource_to_app_home("credentials.json", app_home)
+    _copy_resource_to_app_home("app_config.json", app_home)
+    _copy_resource_to_app_home("settings.yaml", app_home)
+    _copy_resource_to_app_home("client_secret.json", app_home)
+    _copy_resource_to_app_home("src/docs", app_home)
 
     os.environ.setdefault("AMBIENTE", "sqlite")
 
     db_path = app_home / "CLARO-TIKTOK.db"
+    if not db_path.exists():
+        db_path.touch()
     os.environ["BD_PATH"] = str(db_path)
 
-    if not db_path.exists():
-        seeded = _copy_if_exists("CLARO-TIKTOK.db", app_home)
-        if seeded is None:
-            db_path.touch()
-
-    _copy_if_exists("credentials.json", app_home)
-    _copy_if_exists("app_config.json", app_home)
-
-    # Ajustar cwd para que artifacts/ y otros archivos queden en carpeta de app
     os.chdir(app_home)
-
     _apply_runtime_env_from_config(app_home)
-    _ensure_db_ready(db_path)
+    _ensure_db_ready()
     return app_home
