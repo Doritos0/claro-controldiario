@@ -8,6 +8,10 @@ from src.drive.drive_imagenes import DriveImagenesService
 from src.gemini.gemini_ocr_service import GeminiOCRService
 from src.bd.bd_live import LIVEService
 from src.config.log_config import configurar_log
+from src.reportes.dashboard_diario_service import (
+    DashboardDiarioService,
+    resolver_fecha_objetivo,
+)
 
 
 def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
@@ -26,11 +30,14 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
         return
 
     try:
+        fecha_dashboard = resolver_fecha_objetivo(fecha_objetivo)
+
         # 2. Inicializar servicios
         logging.info("Inicializando servicios de Drive y Gemini...")
         drive_service = DriveImagenesService(credentials_path, root_folder_id)
         ocr_service = GeminiOCRService()
         live_service = LIVEService()
+        dashboard_service = DashboardDiarioService()
 
         # 3. Obtener imágenes del día
         # Si fecha_objetivo es None, el servicio tomará el día de ayer por defecto
@@ -39,28 +46,33 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
 
         if not imagenes_descargadas:
             logging.warning("No se encontraron imágenes para procesar.")
-            return
+        else:
+            logging.info(f"Se encontraron {len(imagenes_descargadas)} imágenes. Iniciando OCR...")
 
-        logging.info(f"Se encontraron {len(imagenes_descargadas)} imágenes. Iniciando OCR...")
+            # 4. Procesar cada imagen
+            for item in imagenes_descargadas:
+                ejecutivo: Ejecutivo = item['ejecutivo']
+                filename = item['filename']
+                image_bytes = item['data']
 
-        # 4. Procesar cada imagen
-        for item in imagenes_descargadas:
-            ejecutivo: Ejecutivo = item['ejecutivo']
-            filename = item['filename']
-            image_bytes = item['data']
+                logging.info(f"--- Procesando: {filename} (Ejecutivo: {ejecutivo}) ---")
 
-            logging.info(f"--- Procesando: {filename} (Ejecutivo: {ejecutivo}) ---")
+                # Llamada al servicio OCR
+                resultado = ocr_service.get_respuesta_ocr(image_bytes, filename)
 
-            # Llamada al servicio OCR
-            resultado = ocr_service.get_respuesta_ocr(image_bytes, filename)
+                live_service.guardar_LIVE_metricas_sql(ejecutivo.id, filename, resultado)
 
-            live_service.guardar_LIVE_metricas_sql(ejecutivo.id, filename, resultado)
+                # 5. Mostrar resultado por consola
+                print(f"\nRESULTADO PARA {ejecutivo} ({filename}):")
+                print("-" * 40)
+                print(resultado)
+                print("-" * 40 + "\n")
 
-            # 5. Mostrar resultado por consola
-            print(f"\nRESULTADO PARA {ejecutivo} ({filename}):")
-            print("-" * 40)
-            print(resultado)
-            print("-" * 40 + "\n")
+        dashboard_path = dashboard_service.generar_dashboard_diario(fecha_dashboard)
+        if dashboard_path:
+            print(f"Dashboard diario generado: {dashboard_path}")
+        else:
+            print("No se pudo generar dashboard diario: no hay datos LIVE para la fecha objetivo.")
 
     except Exception as e:
         logging.error(f"Error crítico en el proceso: {e}")
