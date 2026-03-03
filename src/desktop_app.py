@@ -8,7 +8,7 @@ from tkinter import filedialog, messagebox, ttk
 
 from PIL import Image, ImageTk
 
-from src.proceso_01_ocr import ejecutar_proceso_ocr
+from src.proceso_01_ocr import ejecutar_proceso_ocr_con_resultado
 from src.reportes.dashboard_diario_service import resolver_fecha_objetivo
 
 
@@ -116,23 +116,24 @@ class ControlDiarioApp:
             if self.fecha_modo.get() == "manual":
                 fecha_input = self.fecha_manual.get().strip()
                 resolver_fecha_objetivo(fecha_input)
-                dashboard_path = ejecutar_proceso_ocr(fecha_objetivo=fecha_input, full_scan=False)
+                result = ejecutar_proceso_ocr_con_resultado(fecha_objetivo=fecha_input, full_scan=False)
             else:
-                dashboard_path = ejecutar_proceso_ocr()
+                result = ejecutar_proceso_ocr_con_resultado()
 
-            self.root.after(0, lambda: self._post_generacion_ok(dashboard_path))
+            self.root.after(0, lambda: self._post_generacion_result(result))
         except Exception as exc:
             self.root.after(0, lambda: self._post_generacion_error(exc))
 
-    def _post_generacion_ok(self, dashboard_path: Path | None) -> None:
+    def _post_generacion_result(self, result) -> None:
         if self.btn_generar is not None:
             self.btn_generar.configure(state="normal")
 
-        if dashboard_path is None:
-            self.status_text.set("Proceso finalizado sin dashboard. Revisa .env/credenciales o que existan datos para la fecha.")
+        if result.dashboard_path is None:
+            self.status_text.set(result.message)
+            messagebox.showwarning("No se generó dashboard", result.message)
             return
 
-        self._dashboard_path = Path(dashboard_path)
+        self._dashboard_path = Path(result.dashboard_path)
         self.status_text.set(f"Dashboard generado correctamente: {self._dashboard_path.name}")
         self._mostrar_dashboard(self._dashboard_path)
 

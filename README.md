@@ -84,6 +84,11 @@ Opciones recomendadas:
 
 Si `GOOGLE_DRIVE_CREDENTIALS_PATH` es relativo, la app intentará resolverlo desde la carpeta del `.exe`, el `cwd` o la ubicación del proyecto.
 
+
+### Diagnóstico rápido en app de escritorio
+
+Si el proceso no genera dashboard, la app ahora muestra un mensaje detallado con la causa probable (variables faltantes, ruta de credenciales inválida o ausencia de datos/imágenes para la fecha).
+
 ## 4) Flujo esperado para el usuario final
 
 1. Instala/abre `ControlDiarioClaro.exe`.
