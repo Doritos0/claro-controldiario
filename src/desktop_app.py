@@ -37,6 +37,7 @@ class ControlDiarioApp:
         self.image_label: ttk.Label | None = None
         self.btn_generar: ttk.Button | None = None
         self.btn_guardar: ttk.Button | None = None
+        self.btn_logout: ttk.Button | None = None
 
         self._build_login()
 
@@ -85,6 +86,9 @@ class ControlDiarioApp:
 
         self.btn_guardar = ttk.Button(button_bar, text="Descargar dashboard", command=self._descargar_dashboard, state="disabled")
         self.btn_guardar.pack(side="left", padx=(8, 0))
+
+        self.btn_logout = ttk.Button(button_bar, text="Cerrar sesión", command=self._cerrar_sesion)
+        self.btn_logout.pack(side="right")
 
         ttk.Label(self.main_frame, textvariable=self.status_text).pack(anchor="w", pady=(4, 8))
 
@@ -240,6 +244,21 @@ class ControlDiarioApp:
 
         Path(destino).write_bytes(self._dashboard_path.read_bytes())
         messagebox.showinfo("Descarga completa", f"Dashboard guardado en:\n{destino}")
+
+
+    def _cerrar_sesion(self) -> None:
+        if self.main_frame is not None:
+            self.main_frame.destroy()
+            self.main_frame = None
+
+        self.username.set("")
+        self.password.set("")
+        self._empresa_id = None
+        self._dashboard_path = None
+        self._img_ref = None
+        self.status_text.set("Inicia sesión para generar tu reporte.")
+
+        self._build_login()
 
 
 def run_desktop_app() -> None:
