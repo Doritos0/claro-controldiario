@@ -118,6 +118,12 @@ En el primer arranque:
 
 Con esto se evita el error `no such table: ejecutivo`.
 
+
+### Logs de ejecución
+
+La aplicación escribe logs en `logs.txt` (consola + archivo) para diagnóstico.
+En modo ejecutable, el archivo queda en `%LOCALAPPDATA%/ClaroControlDiario/logs.txt`.
+
 ### Diagnóstico rápido en app de escritorio
 
 Si el proceso no genera dashboard, la app ahora muestra un mensaje detallado con la causa probable (variables faltantes, ruta de credenciales inválida o ausencia de datos/imágenes para la fecha).

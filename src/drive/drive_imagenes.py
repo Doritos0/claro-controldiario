@@ -104,7 +104,7 @@ class DriveImagenesService:
                     })
 
                 for exc in excels:
-                    print(f"Acá ira codigo de procesamiento de excel")
+                    logging.info("Excel detectado para %s en %s (pendiente de procesamiento)", ejecutivo.nombre, dia["title"])
 
         logging.info(f"Servicio de descarga de imagenes completado se envian {len(resultados)} imagenes")
         return resultados

@@ -138,6 +138,6 @@ def ejecutar_proceso_ocr(
 
 if __name__ == "__main__":
     home = bootstrap_runtime()
-    print(f"App home: {home}")
+    logging.info("App home: %s", home)
     result = ejecutar_proceso_ocr_con_resultado("02/03/26")
-    print(result.message)
+    logging.info(result.message)
