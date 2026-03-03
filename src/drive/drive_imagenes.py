@@ -13,10 +13,11 @@ from pydrive2.drive import GoogleDrive
 from src.bd.bd_ejecutivo import EjecutivoService
 
 class DriveImagenesService:
-    def __init__(self, credentials_path: str, root_folder_id: str):
+    def __init__(self, credentials_path: str, root_folder_id: str, empresa_id: int | None = None):
         self.credentials_path = credentials_path
         self.root_folder_id = root_folder_id
         self.ejecutivo_service = EjecutivoService()
+        self.empresa_id = empresa_id
         self.drive = self._autenticar()
 
     def _autenticar(self):
@@ -62,7 +63,7 @@ class DriveImagenesService:
         id_mes = carpetas_mes[0]['id']
         resultados = []
 
-        ejecutivos = self.ejecutivo_service.get_ejecutivos_sql()
+        ejecutivos = self.ejecutivo_service.get_ejecutivos_sql(empresa_id=self.empresa_id)
 
         for ejecutivo in ejecutivos:
             logging.info(f"Se esta buscando por ejecutivo")

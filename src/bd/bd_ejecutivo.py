@@ -21,9 +21,10 @@ class EjecutivoService:
             session.refresh(ejecutivo)
             return ejecutivo
 
-    def get_ejecutivos_sql(self) -> list[Ejecutivo]:
+    def get_ejecutivos_sql(self, empresa_id: int | None = None) -> list[Ejecutivo]:
         with Session(self.engine) as session:
-            ejecutivos = session.exec(
-                select(Ejecutivo)
-            ).scalars().all()
+            statement = select(Ejecutivo)
+            if empresa_id is not None:
+                statement = statement.where(Ejecutivo.empresa_id == empresa_id)
+            ejecutivos = session.exec(statement).scalars().all()
             return list(ejecutivos)

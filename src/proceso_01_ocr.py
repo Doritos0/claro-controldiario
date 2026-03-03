@@ -49,7 +49,11 @@ def _resolve_runtime_config(app_home: Path) -> tuple[str | None, str | None]:
     return credentials_path, root_folder_id
 
 
-def ejecutar_proceso_ocr_con_resultado(fecha_objetivo: str | None = None, full_scan: bool = False) -> OCRExecutionResult:
+def ejecutar_proceso_ocr_con_resultado(
+    fecha_objetivo: str | None = None,
+    full_scan: bool = False,
+    empresa_id: int | None = None,
+) -> OCRExecutionResult:
     app_home = bootstrap_runtime()
     configurar_log()
 
@@ -82,7 +86,7 @@ def ejecutar_proceso_ocr_con_resultado(fecha_objetivo: str | None = None, full_s
     try:
         fecha_dashboard = resolver_fecha_objetivo(fecha_objetivo)
 
-        drive_service = DriveImagenesService(credentials_path, root_folder_id)
+        drive_service = DriveImagenesService(credentials_path, root_folder_id, empresa_id=empresa_id)
         ocr_service = GeminiOCRService()
         live_service = LIVEService()
         dashboard_service = DashboardDiarioService(output_dir=str(app_home / "artifacts"))
@@ -120,8 +124,16 @@ def ejecutar_proceso_ocr_con_resultado(fecha_objetivo: str | None = None, full_s
         return OCRExecutionResult(dashboard_path=None, message=msg, success=False)
 
 
-def ejecutar_proceso_ocr(fecha_objetivo: str | None = None, full_scan: bool = False):
-    return ejecutar_proceso_ocr_con_resultado(fecha_objetivo=fecha_objetivo, full_scan=full_scan).dashboard_path
+def ejecutar_proceso_ocr(
+    fecha_objetivo: str | None = None,
+    full_scan: bool = False,
+    empresa_id: int | None = None,
+):
+    return ejecutar_proceso_ocr_con_resultado(
+        fecha_objetivo=fecha_objetivo,
+        full_scan=full_scan,
+        empresa_id=empresa_id,
+    ).dashboard_path
 
 
 if __name__ == "__main__":

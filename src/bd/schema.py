@@ -1,16 +1,24 @@
 from datetime import datetime, date, time
 from sqlmodel import Field, SQLModel
-from sqlalchemy import Column, ForeignKey, Index, Integer
+from sqlalchemy import Column, ForeignKey, Integer
 
 
 EJECUTIVO_ID = "ejecutivo.id"
 LEAD_ID = "lead.id"
 EMPRESA_ID = "empresa.id"
+USUARIO_ID = "usuario.id"
 
 
 class Empresa(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     nombre: str
+
+
+class Usuario(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    empresa_id: int = Field(sa_column=Column(Integer, ForeignKey(EMPRESA_ID, ondelete="RESTRICT"), nullable=False))
+    user: str
+    password: str
 
 
 class Ejecutivo(SQLModel, table=True):
@@ -23,20 +31,20 @@ class Ejecutivo(SQLModel, table=True):
 
 class Lead(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    ejecutivo_id: int = Field(sa_column=Column(Integer, ForeignKey(EJECUTIVO_ID, ondelete="RESTRICT"), nullable = False))
+    ejecutivo_id: int = Field(sa_column=Column(Integer, ForeignKey(EJECUTIVO_ID, ondelete="RESTRICT"), nullable=False))
     nombre: str | None = Field(max_length=255)
     rut: str = Field(max_length=10)
 
 
 class Venta(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    lead_id: int = Field(sa_column=Column(Integer, ForeignKey(LEAD_ID, ondelete="RESTRICT"), nullable = False))
+    lead_id: int = Field(sa_column=Column(Integer, ForeignKey(LEAD_ID, ondelete="RESTRICT"), nullable=False))
     fecha_venta: date = Field()
 
 
 class LIVE(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    ejecutivo_id: int = Field(sa_column=Column(Integer, ForeignKey(EJECUTIVO_ID, ondelete="RESTRICT"), nullable = False))
+    ejecutivo_id: int = Field(sa_column=Column(Integer, ForeignKey(EJECUTIVO_ID, ondelete="RESTRICT"), nullable=False))
     fecha_live: date = Field(default=None, nullable=True)
     hora_inicio: time = Field(default=None, nullable=True)
     duracion_live: time = Field(default=None, nullable=True)
@@ -64,9 +72,3 @@ class RequestCache(SQLModel, table=True):  # pyright: ignore[reportCallIssue]
     tokens_thoughts: int = Field(default=0)
     tokens_output: int = Field(default=0)
     tokens_total: int = Field(default=0)
-
-
-#Ejecutivo (Nombre / Estado / EPS)
-#Lead (Datos solicitados para Front Claro)
-# Venta (Lead Asociado, Detalles de la venta*)
-# GeminiCache(Modelo, RequestText, RequestHash) → Extracción Data cliente Gemini-2.0-Flash-Lite / Extracción Data venta Gemini-2.5-flash-lite maybe 3-flash-preview

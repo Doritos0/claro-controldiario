@@ -4,6 +4,7 @@ from sqlalchemy import func, select
 from sqlmodel import Session
 
 from src.bd.bd_ejecutivo import EjecutivoService
+from src.bd.bd_usuario import UsuarioService
 from src.bd.schema import Empresa
 from src.config.engine_config import get_engine
 
@@ -24,7 +25,11 @@ def _get_or_create_empresa(nombre: str) -> Empresa:
 
 def inicializar_datos():
     empresa_claro = _get_or_create_empresa("Claro")
-    _get_or_create_empresa("WOM")
+    empresa_wom = _get_or_create_empresa("WOM")
+
+    usuario_service = UsuarioService()
+    usuario_service.guardar_usuario_sql(empresa_id=empresa_claro.id, user="claro", password="claro123")
+    usuario_service.guardar_usuario_sql(empresa_id=empresa_wom.id, user="wom", password="wom123")
 
     ejecutivo_service = EjecutivoService()
     daniela_baeza = ejecutivo_service.guardar_ejecutivo_sql("Daniela Baeza", "ACTIVO", "PHOENIX", empresa_claro.id).id
@@ -43,4 +48,4 @@ def inicializar_datos():
     assert blanca_flores is not None
     isi_pastenes = ejecutivo_service.guardar_ejecutivo_sql("Isi Pastenes", "ACTIVO", "PHOENIX", empresa_claro.id).id
     assert isi_pastenes is not None
-    logging.info("Base de datos inicializada con empresas y ejecutivos por defecto")
+    logging.info("Base de datos inicializada con empresas, usuarios y ejecutivos por defecto")

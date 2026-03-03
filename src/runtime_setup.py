@@ -78,7 +78,7 @@ def _ensure_db_ready() -> None:
 
     from src.bd.inicializacion.bd_init import inicializar_bd_sqlite
     from src.bd.inicializacion.bd_datos import inicializar_datos
-    from src.bd.schema import Ejecutivo
+    from src.bd.schema import Ejecutivo, Usuario
     from src.config.engine_config import get_engine
 
     inicializar_bd_sqlite()
@@ -86,8 +86,9 @@ def _ensure_db_ready() -> None:
     engine = get_engine()
     with Session(engine) as session:
         has_exec = session.exec(select(Ejecutivo).limit(1)).first() is not None
+        has_users = session.exec(select(Usuario).limit(1)).first() is not None
 
-    if not has_exec:
+    if not has_exec or not has_users:
         inicializar_datos()
 
 

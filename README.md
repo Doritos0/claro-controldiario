@@ -30,9 +30,9 @@ La app muestra:
 python run_desktop.py
 ```
 
-Credenciales por defecto del login:
-- Usuario: `admin`
-- Contraseña: `claro123`
+Credenciales iniciales por empresa:
+- Claro: usuario `claro` / contraseña `claro123`
+- WOM: usuario `wom` / contraseña `wom123`
 
 > Recomendación: para producción, compilar el ejecutable y distribuirlo al usuario final.
 

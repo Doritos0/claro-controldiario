@@ -9,6 +9,7 @@ from tkinter import filedialog, messagebox, simpledialog, ttk
 
 from PIL import Image, ImageTk
 
+from src.bd.bd_usuario import UsuarioService
 from src.proceso_01_ocr import ejecutar_proceso_ocr_con_resultado
 from src.reportes.dashboard_diario_service import resolver_fecha_objetivo
 
@@ -28,6 +29,8 @@ class ControlDiarioApp:
 
         self._dashboard_path: Path | None = None
         self._img_ref: ImageTk.PhotoImage | None = None
+        self._empresa_id: int | None = None
+        self._usuario_service = UsuarioService()
 
         self.login_frame: ttk.Frame | None = None
         self.main_frame: ttk.Frame | None = None
@@ -92,10 +95,10 @@ class ControlDiarioApp:
         self.image_label.pack(fill="both", expand=True, padx=8, pady=8)
 
     def _login(self) -> None:
-        expected_user = "admin"
-        expected_password = "claro123"
+        usuario = self._usuario_service.autenticar(self.username.get().strip(), self.password.get().strip())
 
-        if self.username.get().strip() == expected_user and self.password.get() == expected_password:
+        if usuario is not None:
+            self._empresa_id = usuario.empresa_id
             assert self.login_frame is not None
             self.login_frame.destroy()
             self._build_main()
@@ -117,9 +120,9 @@ class ControlDiarioApp:
             if self.fecha_modo.get() == "manual":
                 fecha_input = self.fecha_manual.get().strip()
                 resolver_fecha_objetivo(fecha_input)
-                result = ejecutar_proceso_ocr_con_resultado(fecha_objetivo=fecha_input, full_scan=False)
+                result = ejecutar_proceso_ocr_con_resultado(fecha_objetivo=fecha_input, full_scan=False, empresa_id=self._empresa_id)
             else:
-                result = ejecutar_proceso_ocr_con_resultado()
+                result = ejecutar_proceso_ocr_con_resultado(empresa_id=self._empresa_id)
 
             self.root.after(0, lambda: self._post_generacion_result(result))
         except Exception as exc:
