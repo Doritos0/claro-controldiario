@@ -48,6 +48,8 @@ pip install pyinstaller
 
 ### Comando de empaquetado
 
+Desde la **raíz del proyecto**:
+
 ```bash
 pyinstaller --noconfirm --windowed --name ControlDiarioClaro \
   --add-data "src/docs;src/docs" \
@@ -55,6 +57,12 @@ pyinstaller --noconfirm --windowed --name ControlDiarioClaro \
   --add-data "client_secret.json;." \
   --add-data "credentials.json;." \
   run_desktop.py
+```
+
+O usando el script helper (puedes ejecutarlo incluso estando dentro de `packaging/`):
+
+```bash
+.\build_windows_exe.bat
 ```
 
 El ejecutable se genera en:
