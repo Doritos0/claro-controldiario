@@ -14,7 +14,7 @@ from src.reportes.dashboard_diario_service import (
 )
 
 
-def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
+def ejecutar_proceso_ocr(fecha_objetivo: str | None = None, full_scan: bool = False):
     """
     Orquestador que descarga imágenes de Drive y las procesa con Gemini OCR.
     """
@@ -27,7 +27,7 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
 
     if not credentials_path or not root_folder_id:
         logging.error("Faltan variables de entorno en el archivo .env")
-        return
+        return None
 
     try:
         fecha_dashboard = resolver_fecha_objetivo(fecha_objetivo)
@@ -74,8 +74,11 @@ def ejecutar_proceso_ocr(fecha_objetivo: str = None, full_scan: bool = False):
         else:
             print("No se pudo generar dashboard diario: no hay datos LIVE para la fecha objetivo.")
 
+        return dashboard_path
+
     except Exception as e:
         logging.error(f"Error crítico en el proceso: {e}")
+        return None
 
 if __name__ == "__main__":
     #Ej. "18/02/26"
