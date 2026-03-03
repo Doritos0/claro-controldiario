@@ -1,6 +1,6 @@
 import logging
 
-from sqlalchemy import Engine, text, inspect
+from sqlalchemy import Engine, inspect, text
 from sqlmodel import SQLModel
 
 from src.config.engine_config import get_engine
@@ -9,11 +9,35 @@ from src.bd import schema
 
 engine = get_engine()
 
-#si se cambia la base de datos crear otro metodo
-#para inicializarse
+
+# si se cambia la base de datos crear otro metodo
+# para inicializarse
 def inicializar_bd_sqlite() -> Engine:
     logging.info("Inicializando base de datos SQLite")
     SQLModel.metadata.create_all(engine)
-    inspector = inspect(engine)
-    print(f"Tablas detectadas: {inspector.get_table_names()}")
-    logging.info(f"Tablas creadas correctamente")
+
+    with engine.begin() as conn:
+        inspector = inspect(conn)
+        tablas = inspector.get_table_names()
+
+        if "empresa" not in tablas:
+            conn.execute(text("CREATE TABLE empresa (id INTEGER PRIMARY KEY, nombre VARCHAR NOT NULL)"))
+
+        # garantizar empresa base
+        conn.execute(text("INSERT INTO empresa (nombre) SELECT 'Claro' WHERE NOT EXISTS (SELECT 1 FROM empresa WHERE lower(nombre)='claro')"))
+        conn.execute(text("INSERT INTO empresa (nombre) SELECT 'WOM' WHERE NOT EXISTS (SELECT 1 FROM empresa WHERE lower(nombre)='wom')"))
+
+        cols_ejecutivo = {col['name'] for col in inspector.get_columns("ejecutivo")} if "ejecutivo" in tablas else set()
+        if "empresa_id" not in cols_ejecutivo and "ejecutivo" in tablas:
+            conn.execute(text("ALTER TABLE ejecutivo ADD COLUMN empresa_id INTEGER"))
+
+        # backfill a Claro para filas existentes
+        conn.execute(
+            text(
+                "UPDATE ejecutivo SET empresa_id = (SELECT id FROM empresa WHERE lower(nombre)='claro' LIMIT 1) "
+                "WHERE empresa_id IS NULL"
+            )
+        )
+
+    logging.info("Tablas creadas/actualizadas correctamente")
+    return engine

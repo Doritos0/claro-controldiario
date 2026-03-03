@@ -5,12 +5,21 @@ from sqlalchemy import Column, ForeignKey, Index, Integer
 
 EJECUTIVO_ID = "ejecutivo.id"
 LEAD_ID = "lead.id"
+EMPRESA_ID = "empresa.id"
+
+
+class Empresa(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    nombre: str
+
 
 class Ejecutivo(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
+    empresa_id: int = Field(sa_column=Column(Integer, ForeignKey(EMPRESA_ID, ondelete="RESTRICT"), nullable=False))
     nombre: str
     estado: str #EnumEstado
     eps: str
+
 
 class Lead(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
@@ -18,10 +27,12 @@ class Lead(SQLModel, table=True):
     nombre: str | None = Field(max_length=255)
     rut: str = Field(max_length=10)
 
+
 class Venta(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     lead_id: int = Field(sa_column=Column(Integer, ForeignKey(LEAD_ID, ondelete="RESTRICT"), nullable = False))
     fecha_venta: date = Field()
+
 
 class LIVE(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
@@ -36,6 +47,7 @@ class LIVE(SQLModel, table=True):
     duracion_media_visualizacion: time = Field(default=None, nullable=True)
     pico_espectadores_simultaneos: int = Field(default=None, nullable=True)
     nombre_captura: str = Field()
+
 
 class RequestCache(SQLModel, table=True):  # pyright: ignore[reportCallIssue]
     id: int | None = Field(default=None, primary_key=True)
@@ -52,7 +64,7 @@ class RequestCache(SQLModel, table=True):  # pyright: ignore[reportCallIssue]
     tokens_thoughts: int = Field(default=0)
     tokens_output: int = Field(default=0)
     tokens_total: int = Field(default=0)
-    
+
 
 #Ejecutivo (Nombre / Estado / EPS)
 #Lead (Datos solicitados para Front Claro)

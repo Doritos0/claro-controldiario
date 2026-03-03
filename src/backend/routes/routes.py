@@ -17,12 +17,14 @@ class EjecutivoRest(BaseModel):
     nombre: str
     estado: str #EnumEstado
     eps: str #PHOENIX
+    empresa_id: int
 
 @router.post("/ejecutivos", operation_id="crear_ejecutivo", tags=["web"], response_model=int)
 def crear_ejecutivo(payload: EjecutivoRest) -> int:
     ejecutivo_service = EjecutivoService()
     ejecutivo_creado = ejecutivo_service.guardar_ejecutivo_sql(nombre=payload.nombre,
                                                                estado=payload.estado,
-                                                               eps=payload.eps)
+                                                               eps=payload.eps,
+                                                               empresa_id=payload.empresa_id)
     assert ejecutivo_creado is not None
     return ejecutivo_creado.id
