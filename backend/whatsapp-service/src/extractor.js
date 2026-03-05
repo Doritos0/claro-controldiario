@@ -70,18 +70,3 @@ class WhatsAppDownloader {
         console.log(`Proceso finalizado. Se guardaron ${contador} imágenes en: ${carpeta}`);
     }
 }
-
-// --- MODO DE USO ---
-(async () => {
-    const downloader = new WhatsAppDownloader();
-    await downloader.iniciar();
-
-    try {
-        // Cambia 'Nombre de Tu Grupo' y la fecha deseada
-        await downloader.descargarFotosPorFecha('prueba rpa', '04/03/2026');
-    } catch (error) {
-        console.error('❌ Error:', error.message);
-    } finally {
-        process.exit();
-    }
-})();
