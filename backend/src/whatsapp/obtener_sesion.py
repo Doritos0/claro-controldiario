@@ -154,58 +154,66 @@ class WhatsAppService:
                 remitente = self._obtener_remitente(msg)
                 prefijo_archivo = self._crear_prefijo_nombre(fecha_objetivo, remitente)
 
+                botones_foto = msg.find_elements(By.XPATH, ".//*[@role='button' and @aria-label='Abrir foto']")
+                if not botones_foto:
+                    continue
+
                 if "album" in data_id:
                     logging.info(f"ÁLBUM detectado de {remitente}.")
                     self.descargar_album(chrome, msg, prefijo_archivo)
                 else:
-                    botones_foto = msg.find_elements(By.XPATH, ".//*[@role='button' and @aria-label='Abrir foto']")
-                    if botones_foto:
-                        logging.info(f"FOTO individual detectada de {remitente}.")
-                        self.descargar_foto_unica(chrome, botones_foto[0], prefijo_archivo)
+                    # Puede ser individual o un carrusel que no venga marcado como album en data-id
+                    logging.info(f"MEDIA detectada de {remitente}.")
+                    self.descargar_foto_unica(chrome, botones_foto[0], prefijo_archivo)
 
             except Exception:
                 logging.exception("Error procesando mensaje multimedia")
                 continue
 
     def descargar_foto_unica(self, chrome, elemento_click, prefijo_archivo: str):
-        """Abre una foto, la descarga y cierra el visor."""
+        """Abre multimedia y descarga (single o carrusel) según el estado del visor."""
         elemento_click.click()
-        self.ejecutar_descarga_en_visor(chrome, prefijo_archivo)
+        self._descargar_desde_visor(chrome, prefijo_archivo)
         self.cerrar_visor(chrome)
 
     def descargar_album(self, chrome, contenedor_album, prefijo_archivo: str):
         """Entra en un álbum y recorre las fotos descargando una a una."""
         primera_foto = contenedor_album.find_element(By.XPATH, ".//*[@role='button' and @aria-label='Abrir foto']")
         primera_foto.click()
+        self._descargar_desde_visor(chrome, prefijo_archivo)
+        self.cerrar_visor(chrome)
+
+    def _descargar_desde_visor(self, chrome, prefijo_archivo: str):
+        """Descarga desde visor; si hay contador X de Y, navega hasta completar."""
         self._esperar_visor_abierto(chrome)
+        estado = self._obtener_estado_carrusel(chrome)
 
-        indice = 1
+        # Caso individual
+        if not estado:
+            self.ejecutar_descarga_en_visor(chrome, prefijo_archivo)
+            return
+
+        # Caso carrusel/álbum
         while True:
-            self.ejecutar_descarga_en_visor(chrome, f"{prefijo_archivo}_{indice:02d}")
-            estado = self._obtener_estado_carrusel(chrome)
+            actual, total = estado
+            sufijo = f"_{actual:02d}" if total > 1 else ""
+            self.ejecutar_descarga_en_visor(chrome, f"{prefijo_archivo}{sufijo}")
+            logging.info(f"Carrusel: imagen {actual} de {total}")
 
-            if estado:
-                actual, total = estado
-                logging.info(f"Álbum: imagen {actual} de {total}")
-                if actual >= total:
-                    logging.info("Fin del álbum alcanzado por contador de carrusel.")
-                    break
-            else:
-                # Fallback si no hay contador visible
-                if not self._click_siguiente_en_visor(chrome, timeout=2):
-                    logging.info("Fin del álbum alcanzado (sin botón siguiente).")
-                    break
-                indice += 1
-                continue
-
-            if not self._click_siguiente_en_visor(chrome, timeout=4):
-                logging.info("No se pudo avanzar a la siguiente imagen del álbum.")
+            if actual >= total:
+                logging.info("Fin de carrusel alcanzado por contador X de Y.")
                 break
 
-            indice += 1
-            time.sleep(0.8)
+            if not self._click_siguiente_en_visor(chrome, timeout=4):
+                logging.warning("No se pudo avanzar en carrusel aunque X < Y.")
+                break
 
-        self.cerrar_visor(chrome)
+            time.sleep(0.8)
+            nuevo_estado = self._obtener_estado_carrusel(chrome)
+            if not nuevo_estado:
+                logging.warning("Se perdió el contador del carrusel tras avanzar.")
+                break
+            estado = nuevo_estado
 
     def ejecutar_descarga_en_visor(self, chrome, prefijo_archivo: str):
         """Presiona el botón de descarga dentro del visor de imágenes."""
