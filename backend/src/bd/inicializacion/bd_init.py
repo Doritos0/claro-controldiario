@@ -24,6 +24,9 @@ def inicializar_bd_sqlite() -> Engine:
         if "usuario" not in tablas:
             conn.execute(text("CREATE TABLE usuario (id INTEGER PRIMARY KEY, empresa_id INTEGER NOT NULL, user VARCHAR NOT NULL, password VARCHAR NOT NULL)"))
 
+        if "configuracion" not in tablas:
+            conn.execute(text("CREATE TABLE configuracion (id INTEGER PRIMARY KEY, usuario_id INTEGER NOT NULL UNIQUE, grupo_wsp VARCHAR NOT NULL)"))
+
         conn.execute(text("INSERT INTO empresa (nombre) SELECT 'Claro' WHERE NOT EXISTS (SELECT 1 FROM empresa WHERE lower(nombre)='claro')"))
         conn.execute(text("INSERT INTO empresa (nombre) SELECT 'WOM' WHERE NOT EXISTS (SELECT 1 FROM empresa WHERE lower(nombre)='wom')"))
 
