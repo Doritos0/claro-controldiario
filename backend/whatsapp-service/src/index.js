@@ -8,6 +8,10 @@ const PORT = Number(process.env.WHATSAPP_SERVICE_PORT || 3020);
 const BASE_DIR = path.resolve(__dirname, '..');
 const SESSION_DIR = path.join(BASE_DIR, 'sessions');
 const DEFAULT_DOWNLOADS_DIR = path.join(BASE_DIR, 'downloads');
+const FETCH_BATCH_SIZE = Number(process.env.WA_FETCH_BATCH_SIZE || 200);
+const FETCH_MAX_BATCHES = Number(process.env.WA_FETCH_MAX_BATCHES || 60);
+const FETCH_MAX_MS = Number(process.env.WA_FETCH_MAX_MS || 120000);
+const MEDIA_DOWNLOAD_TIMEOUT_MS = Number(process.env.WA_MEDIA_DOWNLOAD_TIMEOUT_MS || 20000);
 
 fs.mkdirSync(SESSION_DIR, { recursive: true });
 fs.mkdirSync(DEFAULT_DOWNLOADS_DIR, { recursive: true });
@@ -79,6 +83,13 @@ function parseDateInput(dateStr) {
   return { start, end, folderName: `${match[1]}-${match[2]}-${match[3]}` };
 }
 
+function withTimeout(promise, timeoutMs, errorMessage) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error(errorMessage)), timeoutMs))
+  ]);
+}
+
 async function findGroupChatByName(groupName) {
   const chats = await client.getChats();
   const normalizedTarget = groupName.trim().toLowerCase();
@@ -92,10 +103,20 @@ async function fetchMessagesForDate(chat, start, end) {
   const messages = [];
   let before;
   let reachedOlderThanDay = false;
+  const startedAt = Date.now();
+  let batchNumber = 0;
 
-  while (!reachedOlderThanDay) {
-    const batch = await chat.fetchMessages({ limit: 200, ...(before ? { before } : {}) });
+  while (!reachedOlderThanDay && batchNumber < FETCH_MAX_BATCHES) {
+    if (Date.now() - startedAt > FETCH_MAX_MS) {
+      console.warn('[WhatsApp] fetchMessagesForDate alcanzó timeout global.');
+      break;
+    }
+
+    batchNumber += 1;
+    const batch = await chat.fetchMessages({ limit: FETCH_BATCH_SIZE, ...(before ? { before } : {}) });
     if (!batch.length) break;
+
+    console.log(`[WhatsApp] Lote ${batchNumber}: ${batch.length} mensajes`);
 
     for (const msg of batch) {
       const msgDate = new Date(msg.timestamp * 1000);
@@ -111,6 +132,10 @@ async function fetchMessagesForDate(chat, start, end) {
     before = batch[batch.length - 1];
   }
 
+  if (batchNumber >= FETCH_MAX_BATCHES) {
+    console.warn('[WhatsApp] fetchMessagesForDate alcanzó el máximo de lotes configurado.');
+  }
+
   return messages;
 }
 
@@ -121,7 +146,11 @@ async function downloadImagesFromMessages(messages, outputDir, datePrefix) {
     if (!msg.hasMedia) continue;
     if (msg.type !== 'image') continue;
 
-    const media = await msg.downloadMedia();
+    const media = await withTimeout(
+      msg.downloadMedia(),
+      MEDIA_DOWNLOAD_TIMEOUT_MS,
+      `Timeout descargando media para mensaje ${msg.id?._serialized || 'unknown'}`
+    );
     if (!media) continue;
 
     const senderRaw = msg._data?.notifyName || msg.author || msg.from || 'desconocido';
@@ -177,7 +206,12 @@ app.post('/whatsapp/download-images', async (req, res) => {
       return res.status(404).json({ ok: false, message: `No se encontró el grupo '${groupName}'.` });
     }
 
-    const dayMessages = await fetchMessagesForDate(chat, start, end);
+    const dayMessages = await Promise.race([
+      fetchMessagesForDate(chat, start, end),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Timeout buscando mensajes en el chat.')), FETCH_MAX_MS + 10000)
+      )
+    ]);
     const saved = await downloadImagesFromMessages(dayMessages, outputDir, folderName);
 
     return res.json({

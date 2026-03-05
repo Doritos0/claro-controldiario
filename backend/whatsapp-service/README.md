@@ -66,3 +66,16 @@ Ejemplo de respuesta:
   "totalImagesSaved": 5
 }
 ```
+
+## Troubleshooting rápido
+
+Si una solicitud queda demorando mucho:
+
+1. Verifica estado antes de pedir descarga:
+   - `GET /health` debe devolver `whatsappReady: true`.
+2. El servicio ahora tiene límites de tiempo y paginación para evitar bloqueos largos.
+3. Puedes ajustar por variables de entorno:
+   - `WA_FETCH_BATCH_SIZE` (default `200`)
+   - `WA_FETCH_MAX_BATCHES` (default `60`)
+   - `WA_FETCH_MAX_MS` (default `120000`)
+   - `WA_MEDIA_DOWNLOAD_TIMEOUT_MS` (default `20000`)
