@@ -198,22 +198,69 @@ class WhatsAppService:
     def ejecutar_descarga_en_visor(self, chrome, prefijo_archivo: str):
         """Presiona el botón de descarga dentro del visor de imágenes."""
         try:
+            self._esperar_visor_abierto(chrome)
             antes = set(DOWNLOAD_DIR.glob("*"))
-            btn_descarga = WebDriverWait(chrome, 5).until(
-                EC.element_to_be_clickable((By.XPATH, "//*[@role='button' and (@title='Descargar' or @aria-label='Descargar')]"))
-            )
-            btn_descarga.click()
+            self._click_descargar_en_visor(chrome)
             archivo = self._esperar_archivo_descargado(antes)
             if archivo:
                 self._renombrar_descarga(archivo, prefijo_archivo)
+            else:
+                logging.warning("No se detectó archivo descargado tras pulsar descargar.")
         except Exception:
             logging.exception("No se pudo descargar la imagen")
+
+    def _esperar_visor_abierto(self, chrome):
+        """Espera a que el visor de multimedia esté completamente visible."""
+        selectores_visor = [
+            "//*[@role='button' and (@title='Cerrar' or @aria-label='Cerrar' or @aria-label='Close' or @title='Close')]",
+            "//*[@role='button' and (@title='Descargar' or @aria-label='Descargar' or @aria-label='Download' or @title='Download')]",
+            "//*[@data-icon='download' or @data-icon='x' or @data-icon='x-alt']",
+        ]
+        for xpath in selectores_visor:
+            try:
+                WebDriverWait(chrome, 6).until(EC.presence_of_element_located((By.XPATH, xpath)))
+                return
+            except TimeoutException:
+                continue
+        raise TimeoutException("No se detectó apertura del visor de imagen.")
+
+    def _click_descargar_en_visor(self, chrome):
+        """Click robusto del botón Descargar con múltiples variantes de selector."""
+        candidatos = [
+            "//*[@role='button' and (@title='Descargar' or @aria-label='Descargar')]",
+            "//*[@role='button' and (@title='Download' or @aria-label='Download')]",
+            "//*[self::button or self::div][.//*[@data-icon='download']]",
+            "//*[@data-icon='download']/ancestor::*[@role='button' or self::button][1]",
+        ]
+
+        ultimo_error = None
+        for xpath in candidatos:
+            try:
+                btn = WebDriverWait(chrome, 4).until(EC.presence_of_element_located((By.XPATH, xpath)))
+                chrome.execute_script("arguments[0].scrollIntoView({block: 'center'});", btn)
+                try:
+                    WebDriverWait(chrome, 2).until(EC.element_to_be_clickable((By.XPATH, xpath)))
+                    btn.click()
+                except Exception:
+                    chrome.execute_script("arguments[0].click();", btn)
+                return
+            except Exception as exc:
+                ultimo_error = exc
+                continue
+
+        raise TimeoutException(f"No se encontró botón de descarga en el visor: {ultimo_error}")
 
     def cerrar_visor(self, chrome):
         """Cierra el visor de imágenes (botón X o tecla Esc)."""
         try:
-            btn_cerrar = chrome.find_element(By.XPATH, "//div[@title='Cerrar']")
-            btn_cerrar.click()
+            btn_cerrar = chrome.find_element(
+                By.XPATH,
+                "//*[@role='button' and (@title='Cerrar' or @aria-label='Cerrar' or @title='Close' or @aria-label='Close')]"
+            )
+            try:
+                btn_cerrar.click()
+            except Exception:
+                chrome.execute_script("arguments[0].click();", btn_cerrar)
         except:
             # Si falla el clic, mandamos la tecla Escape
             from selenium.webdriver.common.keys import Keys
@@ -268,7 +315,7 @@ class WhatsAppService:
         objetivo_normalizado = _normalizar_texto(fecha_objetivo)
 
         mensajes = chrome.execute_script(
-            """
+            r"""
             const normalizar = (v) => (v || '').toLowerCase().trim().replace(/\s+/g, ' ');
             const objetivo = arguments[0];
             const main = document.querySelector('#main');
