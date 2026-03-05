@@ -1,0 +1,54 @@
+{
+  "name": "claro-control-diario-desktop",
+  "version": "1.0.0",
+  "private": true,
+  "main": "main.cjs",
+  "scripts": {
+    "dev": "ELECTRON_DEV=1 electron .",
+    "pack": "electron-builder --dir",
+    "dist:win": "electron-builder --win nsis",
+    "verify": "node scripts/verify-artifacts.cjs"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.claro.controldiario",
+    "productName": "ControlDiarioClaro",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.cjs",
+      "preload.cjs"
+    ],
+    "extraResources": [
+      {
+        "from": "../frontend/dist",
+        "to": "frontend"
+      },
+      {
+        "from": "../release/backend",
+        "to": "backend"
+      },
+      {
+        "from": "../release/whatsapp-service",
+        "to": "whatsapp-service"
+      },
+      {
+        "from": "../backend/app_config.json",
+        "to": "config/app_config.json"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

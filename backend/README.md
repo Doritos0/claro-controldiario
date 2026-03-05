@@ -1,11 +1,12 @@
 # Control Diario Claro TikTok (FastAPI + Express + React)
 
 ## Arquitectura
-- `whatsapp-service` (Express): inicia sesión en WhatsApp Web, entrega QR y descarga imágenes por grupo/fecha.
-- `src` (FastAPI): autentica usuarios, guarda configuración por usuario, procesa imágenes con Gemini y escribe en SQLite.
-- `frontend` (React): login y panel para generar reportes, registrar ejecutivos y configurar grupo WhatsApp.
+- `backend/whatsapp-service` (Express): sesión WhatsApp + QR + descarga de imágenes.
+- `backend/src` (FastAPI): autenticación, configuración por usuario, proceso OCR + DB.
+- `frontend` (React): interfaz para login, reportes, configuración y QR.
+- `desktop` (Electron): contenedor de escritorio que orquesta los dos backends y la UI.
 
-## Ejecutar en localhost
+## Ejecutar en localhost (sin empaquetar)
 
 ### 1) WhatsApp API (Express)
 ```bash
@@ -30,23 +31,39 @@ npm run dev -- --host 0.0.0.0 --port 5173
 ```
 UI: `http://localhost:5173`
 
-## Flujo de uso
-1. Login en frontend.
-2. Si no existe configuración, ingresar `grupo_wsp`.
-3. Botón “Iniciar sesión WhatsApp” para mostrar QR.
-4. Generar reporte (ayer o fecha específica):
-   - FastAPI invoca `POST /descargar-imagenes` en Express.
-   - FastAPI lee `backend/whatsapp-service/src/descargas/<fecha>`.
-   - Gemini procesa imágenes y se insertan `LIVE` en DB.
-   - Se genera dashboard diario.
+## Generar instalador `.exe` (Electron)
 
-## Empaquetado recomendado (.exe)
-Para tres procesos (Node + Python + UI), la estrategia más robusta es **Electron** como contenedor:
-- React compilado como frontend embebido.
-- Electron arranca FastAPI y Express como subprocesos.
-- `electron-builder` genera instalador Windows.
+> Objetivo: un instalador único de Windows que incluya UI + FastAPI + whatsapp-service.
 
-Ventajas:
-- Un único instalador para usuario final.
-- Mejor manejo de procesos múltiples que PyInstaller solo.
-- Permite reiniciar servicios internos y mostrar estado (QR/sesión) en UI.
+### Requisitos en la máquina Windows de build
+- Python instalado y en `PATH`.
+- Node.js + npm instalados.
+
+### Estructura de build
+1. `backend.exe` (PyInstaller) -> `release/backend/backend.exe`
+2. `whatsapp-service.exe` (pkg) -> `release/whatsapp-service/whatsapp-service.exe`
+3. `frontend/dist` (Vite build)
+4. `electron-builder` crea instalador NSIS desde `desktop/`.
+
+### Comando único (recomendado)
+Desde la raíz del repo, ejecutar:
+```bat
+packaging\build_electron_installer.bat
+```
+
+### Comandos por etapa (manual)
+```bat
+packaging\build_backend_exe.bat
+packaging\build_whatsapp_exe.bat
+cd frontend && npm install && npm run build
+cd desktop && npm install && npm run verify && npm run dist:win
+```
+
+### Salida esperada
+- Instalador en: `desktop/dist/`
+- Binarios intermedios en: `release/backend/` y `release/whatsapp-service/`
+
+## Notas operativas
+- En desarrollo, Electron puede arrancar FastAPI y Express en modo comando (`python -m uvicorn` y `npm start`).
+- En producción empaquetada, Electron levanta los binarios incluidos (`backend.exe`, `whatsapp-service.exe`).
+- Si cambia la configuración base, actualiza `backend/app_config.json` antes de empaquetar.
