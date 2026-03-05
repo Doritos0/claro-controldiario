@@ -5,7 +5,7 @@
   "bin": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "build:win": "pkg src/server.js --targets node20-win-x64 --output dist/whatsapp-service.exe"
+    "build:win": "pkg src/server.js --targets node18-win-x64 --output dist/whatsapp-service.exe"
   },
   "dependencies": {
     "cors": "^2.8.5",

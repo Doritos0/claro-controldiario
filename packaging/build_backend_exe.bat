@@ -9,7 +9,15 @@ if not exist "%OUT%" mkdir "%OUT%"
 pushd "%ROOT%\backend"
 if errorlevel 1 exit /b 1
 
-python -m pip install --upgrade pyinstaller >nul
+REM Entornos creados con uv pueden no traer pip, por eso evitamos depender de pip aqui.
+python -m PyInstaller --version >nul 2>&1
+if errorlevel 1 (
+  echo [ERROR] PyInstaller no esta disponible en este entorno.
+  echo         Instala con: uv add pyinstaller  (o pip install pyinstaller)
+  popd
+  exit /b 1
+)
+
 python -m PyInstaller --noconfirm --onefile --name backend run_fastapi.py
 if errorlevel 1 (
   echo [ERROR] No se pudo generar backend.exe

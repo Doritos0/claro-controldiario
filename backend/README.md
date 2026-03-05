@@ -63,6 +63,15 @@ cd desktop && npm install && npm run verify && npm run dist:win
 - Instalador en: `desktop/dist/`
 - Binarios intermedios en: `release/backend/` y `release/whatsapp-service/`
 
+
+### Errores comunes y solución rápida
+- **`No module named pip` al ejecutar `build_backend_exe.bat`**:
+  - El script ya no usa `pip` automáticamente. Solo requiere que `PyInstaller` exista en tu entorno activo.
+  - Instala con `uv add pyinstaller` dentro de `backend/`.
+- **`pkg Error! No available node version satisfies ...`**:
+  - `pkg` no soporta targets arbitrarios según tu Node local.
+  - Este proyecto usa `node18-win-x64` como target de build para `whatsapp-service.exe`.
+
 ## Notas operativas
 - En desarrollo, Electron puede arrancar FastAPI y Express en modo comando (`python -m uvicorn` y `npm start`).
 - En producción empaquetada, Electron levanta los binarios incluidos (`backend.exe`, `whatsapp-service.exe`).
