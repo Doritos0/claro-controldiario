@@ -98,24 +98,27 @@ class WhatsAppService:
         objetivo_normalizado = _normalizar_texto(fecha_objetivo)
         logging.info(f"Buscando la etiqueta de fecha: {fecha_objetivo}...")
 
-        contenedor_chat = WebDriverWait(chrome, 20).until(
-            EC.presence_of_element_located((By.XPATH, "//div[@id='main']//div[@role='application']"))
-        )
+        contenedor_chat = self._obtener_contenedor_scroll_chat(chrome)
+        if not contenedor_chat:
+            logging.error("No se pudo localizar el contenedor de scroll del chat.")
+            return False
 
         scroll_sin_cambios = 0
         ultimo_scroll_top = None
-        max_intentos = 40
+        max_intentos = 45
 
-        for _ in range(max_intentos):
+        for intento in range(max_intentos):
             if self._fecha_visible_en_chat(chrome, objetivo_normalizado):
                 logging.info(f"¡Etiqueta '{fecha_objetivo}' localizada!")
                 return True
 
             scroll_top = chrome.execute_script("return arguments[0].scrollTop", contenedor_chat)
-            chrome.execute_script("arguments[0].scrollTop = arguments[0].scrollTop - arguments[1]", contenedor_chat, 1500)
+            chrome.execute_script("arguments[0].scrollTop = Math.max(0, arguments[0].scrollTop - arguments[1])", contenedor_chat, 1400)
             time.sleep(1.2)
 
             nuevo_scroll_top = chrome.execute_script("return arguments[0].scrollTop", contenedor_chat)
+            logging.info(f"Intento scroll {intento + 1}/{max_intentos} | scrollTop: {scroll_top} -> {nuevo_scroll_top}")
+
             if ultimo_scroll_top is not None and nuevo_scroll_top == ultimo_scroll_top:
                 scroll_sin_cambios += 1
             else:
@@ -123,6 +126,7 @@ class WhatsAppService:
 
             ultimo_scroll_top = nuevo_scroll_top
             if scroll_sin_cambios >= 3 or nuevo_scroll_top == scroll_top:
+                logging.info("Scroll estancado, se detiene búsqueda hacia arriba.")
                 break
 
         return self._fecha_visible_en_chat(chrome, objetivo_normalizado)
@@ -212,6 +216,39 @@ class WhatsAppService:
             # Si falla el clic, mandamos la tecla Escape
             from selenium.webdriver.common.keys import Keys
             chrome.find_element(By.TAG_NAME, "body").send_keys(Keys.ESCAPE)
+
+
+    def _obtener_contenedor_scroll_chat(self, chrome):
+        """Localiza de forma robusta el contenedor que realmente hace scroll en el chat."""
+        candidatos_xpath = [
+            "//div[@id='main']//div[contains(@class, 'copyable-area')]",
+            "//div[@id='main']//div[@role='application']",
+            "//div[@id='main']//div[contains(@class, '_aiy2')]",
+            "//div[@id='main']//div[contains(@class, '_amk4')]",
+        ]
+
+        for xpath in candidatos_xpath:
+            elementos = chrome.find_elements(By.XPATH, xpath)
+            for el in elementos:
+                try:
+                    if chrome.execute_script("return arguments[0].scrollHeight > arguments[0].clientHeight", el):
+                        return el
+                except Exception:
+                    continue
+
+        try:
+            return WebDriverWait(chrome, 20).until(
+                lambda drv: drv.execute_script(
+                    """
+                    const main = document.querySelector('#main');
+                    if (!main) return null;
+                    const all = [main, ...main.querySelectorAll('div')];
+                    return all.find(el => el.scrollHeight > el.clientHeight + 40) || null;
+                    """
+                )
+            )
+        except TimeoutException:
+            return None
 
     def _fecha_visible_en_chat(self, chrome, fecha_objetivo: str) -> bool:
         spans_fecha = chrome.find_elements(By.XPATH, "//div[@id='main']//span[@dir='auto']")
