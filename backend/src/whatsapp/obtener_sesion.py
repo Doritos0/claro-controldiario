@@ -264,39 +264,42 @@ class WhatsAppService:
         return False
 
     def _obtener_mensajes_de_fecha(self, chrome, fecha_objetivo: str):
-        """Recorre filas del chat en orden y acumula solo mensajes de la fecha objetivo."""
+        """Obtiene mensajes del día objetivo respetando el orden real del timeline."""
         objetivo_normalizado = _normalizar_texto(fecha_objetivo)
-        resultado = []
-        fecha_actual = None
 
-        filas = chrome.find_elements(By.XPATH, "//div[@id='main']//div[@role='row']")
-        for fila in filas:
-            try:
-                # Separador de fecha (Ayer/Hoy/fecha)
-                separador = fila.find_elements(By.XPATH, ".//div[contains(@class,'x141l45o')]//span[@dir='auto']")
-                if separador:
-                    fecha_actual = _normalizar_texto(separador[0].text)
-                    continue
+        mensajes = chrome.execute_script(
+            """
+            const normalizar = (v) => (v || '').toLowerCase().trim().replace(/\s+/g, ' ');
+            const objetivo = arguments[0];
+            const main = document.querySelector('#main');
+            if (!main) return [];
 
-                # Mensajes multimedia (individual o álbum)
-                mensajes = fila.find_elements(
-                    By.XPATH,
-                    ".//*[contains(@class,'message-in') or contains(@class,'message-out')]"
-                )
-                if not mensajes:
-                    continue
+            const nodos = main.querySelectorAll('div.x141l45o, div.message-in, div.message-out');
+            let fechaActual = '';
+            const salida = [];
 
-                if fecha_actual != objetivo_normalizado:
-                    continue
+            for (const nodo of nodos) {
+                if (nodo.classList.contains('x141l45o')) {
+                    const spanFecha = nodo.querySelector("span[dir='auto']");
+                    if (spanFecha) fechaActual = normalizar(spanFecha.textContent);
+                    continue;
+                }
 
-                for mensaje in mensajes:
-                    clases = mensaje.get_attribute("class") or ""
-                    if "message-in" in clases or "message-out" in clases:
-                        resultado.append(mensaje)
-            except Exception:
-                continue
+                if (!nodo.classList.contains('message-in') && !nodo.classList.contains('message-out')) {
+                    continue;
+                }
 
-        return resultado
+                if (fechaActual === objetivo) {
+                    salida.push(nodo);
+                }
+            }
+
+            return salida;
+            """,
+            objetivo_normalizado,
+        )
+
+        return mensajes or []
 
     def _obtener_remitente(self, mensaje) -> str:
         candidatos = mensaje.find_elements(By.XPATH, ".//span[contains(@class, '_ahxv')] | .//span[contains(@class,'_ahxu')]")
