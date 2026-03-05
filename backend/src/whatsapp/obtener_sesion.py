@@ -177,21 +177,33 @@ class WhatsAppService:
         """Entra en un álbum y recorre las fotos descargando una a una."""
         primera_foto = contenedor_album.find_element(By.XPATH, ".//*[@role='button' and @aria-label='Abrir foto']")
         primera_foto.click()
+        self._esperar_visor_abierto(chrome)
 
         indice = 1
         while True:
             self.ejecutar_descarga_en_visor(chrome, f"{prefijo_archivo}_{indice:02d}")
-            indice += 1
+            estado = self._obtener_estado_carrusel(chrome)
 
-            try:
-                btn_sig = WebDriverWait(chrome, 2).until(
-                    EC.element_to_be_clickable((By.XPATH, "//*[@role='button' and (@aria-label='Siguiente' or @title='Siguiente') ]"))
-                )
-                btn_sig.click()
-                time.sleep(1)
-            except TimeoutException:
-                logging.info("Fin del álbum alcanzado.")
+            if estado:
+                actual, total = estado
+                logging.info(f"Álbum: imagen {actual} de {total}")
+                if actual >= total:
+                    logging.info("Fin del álbum alcanzado por contador de carrusel.")
+                    break
+            else:
+                # Fallback si no hay contador visible
+                if not self._click_siguiente_en_visor(chrome, timeout=2):
+                    logging.info("Fin del álbum alcanzado (sin botón siguiente).")
+                    break
+                indice += 1
+                continue
+
+            if not self._click_siguiente_en_visor(chrome, timeout=4):
+                logging.info("No se pudo avanzar a la siguiente imagen del álbum.")
                 break
+
+            indice += 1
+            time.sleep(0.8)
 
         self.cerrar_visor(chrome)
 
@@ -212,13 +224,14 @@ class WhatsAppService:
     def _esperar_visor_abierto(self, chrome):
         """Espera a que el visor de multimedia esté completamente visible."""
         selectores_visor = [
-            "//*[@role='button' and (@title='Cerrar' or @aria-label='Cerrar' or @aria-label='Close' or @title='Close')]",
-            "//*[@role='button' and (@title='Descargar' or @aria-label='Descargar' or @aria-label='Download' or @title='Download')]",
-            "//*[@data-icon='download' or @data-icon='x' or @data-icon='x-alt']",
+            "//*[@aria-label='Descargar' or @aria-label='Download' or @title='Descargar' or @title='Download']",
+            "//*[@aria-label='Siguiente' or @aria-label='Next' or @title='Siguiente' or @title='Next']",
+            "//*[@aria-label='Cerrar' or @aria-label='Close' or @title='Cerrar' or @title='Close']",
+            "//*[@data-icon='ic-download' or @data-icon='download']",
         ]
         for xpath in selectores_visor:
             try:
-                WebDriverWait(chrome, 6).until(EC.presence_of_element_located((By.XPATH, xpath)))
+                WebDriverWait(chrome, 5).until(EC.presence_of_element_located((By.XPATH, xpath)))
                 return
             except TimeoutException:
                 continue
@@ -227,10 +240,11 @@ class WhatsAppService:
     def _click_descargar_en_visor(self, chrome):
         """Click robusto del botón Descargar con múltiples variantes de selector."""
         candidatos = [
-            "//*[@role='button' and (@title='Descargar' or @aria-label='Descargar')]",
-            "//*[@role='button' and (@title='Download' or @aria-label='Download')]",
-            "//*[self::button or self::div][.//*[@data-icon='download']]",
-            "//*[@data-icon='download']/ancestor::*[@role='button' or self::button][1]",
+            "//button[@aria-label='Descargar' or @title='Descargar']",
+            "//button[@aria-label='Download' or @title='Download']",
+            "//*[@role='button' and (@title='Descargar' or @aria-label='Descargar' or @title='Download' or @aria-label='Download')]",
+            "//*[self::button or self::div][.//*[@data-icon='ic-download' or @data-icon='download']]",
+            "//*[@data-icon='ic-download' or @data-icon='download']/ancestor::*[self::button or @role='button'][1]",
         ]
 
         ultimo_error = None
@@ -250,12 +264,44 @@ class WhatsAppService:
 
         raise TimeoutException(f"No se encontró botón de descarga en el visor: {ultimo_error}")
 
+    def _click_siguiente_en_visor(self, chrome, timeout: int = 4) -> bool:
+        """Avanza a la siguiente imagen del álbum."""
+        candidatos = [
+            "//button[@aria-label='Siguiente' or @title='Siguiente']",
+            "//button[@aria-label='Next' or @title='Next']",
+            "//*[@role='button' and (@aria-label='Siguiente' or @title='Siguiente' or @aria-label='Next' or @title='Next')]",
+            "//*[self::button or self::div][.//*[@data-icon='ic-chevron-right']]",
+            "//*[@data-icon='ic-chevron-right']/ancestor::*[self::button or @role='button'][1]",
+        ]
+
+        for xpath in candidatos:
+            try:
+                btn = WebDriverWait(chrome, timeout).until(EC.presence_of_element_located((By.XPATH, xpath)))
+                try:
+                    btn.click()
+                except Exception:
+                    chrome.execute_script("arguments[0].click();", btn)
+                return True
+            except Exception:
+                continue
+        return False
+
+    def _obtener_estado_carrusel(self, chrome):
+        """Retorna (actual, total) leyendo textos tipo '1 de 4' en el visor."""
+        candidatos = chrome.find_elements(By.XPATH, "//span[contains(normalize-space(.), ' de ')]")
+        for c in candidatos:
+            texto = _normalizar_texto(c.text)
+            match = re.search(r"^(\d+)\s+de\s+(\d+)$", texto)
+            if match:
+                return int(match.group(1)), int(match.group(2))
+        return None
+
     def cerrar_visor(self, chrome):
         """Cierra el visor de imágenes (botón X o tecla Esc)."""
         try:
             btn_cerrar = chrome.find_element(
                 By.XPATH,
-                "//*[@role='button' and (@title='Cerrar' or @aria-label='Cerrar' or @title='Close' or @aria-label='Close')]"
+                "//button[@aria-label='Cerrar' or @title='Cerrar' or @aria-label='Close' or @title='Close'] | //*[@role='button' and (@title='Cerrar' or @aria-label='Cerrar' or @title='Close' or @aria-label='Close')]"
             )
             try:
                 btn_cerrar.click()
