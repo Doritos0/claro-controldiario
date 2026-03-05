@@ -1,6 +1,6 @@
 import logging
-import json
 import time
+import re
 from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -19,6 +19,10 @@ configurar_log()
 BASE_DIR = Path(__file__).resolve().parent
 PROFILE_DIR = BASE_DIR / "chrome_profile"
 DOWNLOAD_DIR = BASE_DIR / "downloads"
+
+
+def _normalizar_texto(valor: str) -> str:
+    return " ".join((valor or "").strip().lower().split())
 
 class WhatsAppService:
     def __init__(self):
@@ -88,39 +92,40 @@ class WhatsAppService:
         chat.click()
 
     def hacer_scroll_hasta_fecha(self, chrome, fecha_objetivo: str):
-            """
-            Sube en el chat poco a poco hasta que la etiqueta de fecha (ej. 'Ayer') sea visible.
-            """
-            logging.info(f"Buscando la etiqueta de fecha: {fecha_objetivo}...")
-            
-            # Identificamos el contenedor de los mensajes que tiene el scroll
-            # En la estructura actual es el div con id='main' y una clase interna que suele ser '_am78'
-            try:
-                contenedor_chat = chrome.find_element(By.XPATH, "//div[@id='main']//div[contains(@class, '_am78')]")
-            except:
-                # Si cambia la clase, intentamos por el rol general
-                contenedor_chat = chrome.find_element(By.XPATH, "//div[@role='application' and @data-tab='8']")
+        """
+        Sube en el chat hasta que la etiqueta de fecha objetivo sea visible.
+        """
+        objetivo_normalizado = _normalizar_texto(fecha_objetivo)
+        logging.info(f"Buscando la etiqueta de fecha: {fecha_objetivo}...")
 
-            intentos = 0
-            max_intentos = 15 # Para no subir infinitamente si la fecha no existe
-            
-            while intentos < max_intentos:
-                try:
-                    # Buscamos el span que contiene el texto exacto (ej: 'Ayer', 'Hoy' o '04/03/2026')
-                    xpath_fecha = f"//span[text()='{fecha_objetivo}']"
-                    elemento_fecha = chrome.find_element(By.XPATH, xpath_fecha)
-                    
-                    if elemento_fecha.is_displayed():
-                        logging.info(f"¡Etiqueta '{fecha_objetivo}' localizada!")
-                        return True
-                except:
-                    # Si no lo encuentra, hace scroll hacia arriba
-                    logging.info("Fecha no visible, subiendo...")
-                    chrome.execute_script("arguments[0].scrollTop -= 1200", contenedor_chat)
-                    time.sleep(2) # Esperar a que carguen los mensajes antiguos
-                    intentos += 1
-            
-            return False
+        contenedor_chat = WebDriverWait(chrome, 20).until(
+            EC.presence_of_element_located((By.XPATH, "//div[@id='main']//div[@role='application']"))
+        )
+
+        scroll_sin_cambios = 0
+        ultimo_scroll_top = None
+        max_intentos = 40
+
+        for _ in range(max_intentos):
+            if self._fecha_visible_en_chat(chrome, objetivo_normalizado):
+                logging.info(f"¡Etiqueta '{fecha_objetivo}' localizada!")
+                return True
+
+            scroll_top = chrome.execute_script("return arguments[0].scrollTop", contenedor_chat)
+            chrome.execute_script("arguments[0].scrollTop = arguments[0].scrollTop - arguments[1]", contenedor_chat, 1500)
+            time.sleep(1.2)
+
+            nuevo_scroll_top = chrome.execute_script("return arguments[0].scrollTop", contenedor_chat)
+            if ultimo_scroll_top is not None and nuevo_scroll_top == ultimo_scroll_top:
+                scroll_sin_cambios += 1
+            else:
+                scroll_sin_cambios = 0
+
+            ultimo_scroll_top = nuevo_scroll_top
+            if scroll_sin_cambios >= 3 or nuevo_scroll_top == scroll_top:
+                break
+
+        return self._fecha_visible_en_chat(chrome, objetivo_normalizado)
 
     def procesar_imagenes_del_dia(self, chrome, fecha_objetivo: str):
         """
@@ -132,76 +137,71 @@ class WhatsAppService:
             logging.warning(f"No se pudo encontrar la sección de {fecha_objetivo} tras varios intentos.")
             return
 
-        # Una vez encontrada la fecha, recolectamos los mensajes que están debajo
-        # Usamos los selectores basados en el HTML que pasaste
         logging.info("Analizando mensajes de la sección...")
-        
-        # Seleccionamos todos los bloques de mensajes
-        mensajes = chrome.find_elements(By.XPATH, "//div[contains(@class, 'message-in') or contains(@class, 'message-out')]")
-        
+
+        mensajes = self._obtener_mensajes_de_fecha(chrome, fecha_objetivo)
+        logging.info(f"Mensajes encontrados para {fecha_objetivo}: {len(mensajes)}")
+
         for msg in mensajes:
             try:
                 data_id = msg.get_attribute("data-id") or ""
-                
-                # Caso A: Es un ÁLBUM (Mosaico)
-                # Según tu HTML: data-id="album-false_..."
+                remitente = self._obtener_remitente(msg)
+                prefijo_archivo = self._crear_prefijo_nombre(fecha_objetivo, remitente)
+
                 if "album" in data_id:
-                    logging.info("Elemento identificado como ÁLBUM.")
-                    self.descargar_album(chrome, msg)
-                
-                # Caso B: Es una IMAGEN SOLITARIA
-                # Según tu HTML: div role="button" aria-label="Abrir foto"
+                    logging.info(f"ÁLBUM detectado de {remitente}.")
+                    self.descargar_album(chrome, msg, prefijo_archivo)
                 else:
-                    botones_foto = msg.find_elements(By.XPATH, ".//div[@role='button' and @aria-label='Abrir foto']")
+                    botones_foto = msg.find_elements(By.XPATH, ".//*[@role='button' and @aria-label='Abrir foto']")
                     if botones_foto:
-                        logging.info("Elemento identificado como FOTO SOLITARIA.")
-                        self.descargar_foto_unica(chrome, botones_foto[0])
-                        
-            except Exception as e:
+                        logging.info(f"FOTO individual detectada de {remitente}.")
+                        self.descargar_foto_unica(chrome, botones_foto[0], prefijo_archivo)
+
+            except Exception:
+                logging.exception("Error procesando mensaje multimedia")
                 continue
 
-    def descargar_foto_unica(self, chrome, elemento_click):
+    def descargar_foto_unica(self, chrome, elemento_click, prefijo_archivo: str):
         """Abre una foto, la descarga y cierra el visor."""
         elemento_click.click()
-        self.ejecutar_descarga_en_visor(chrome)
+        self.ejecutar_descarga_en_visor(chrome, prefijo_archivo)
         self.cerrar_visor(chrome)
 
-    def descargar_album(self, chrome, contenedor_album):
+    def descargar_album(self, chrome, contenedor_album, prefijo_archivo: str):
         """Entra en un álbum y recorre las fotos descargando una a una."""
-        # Hacemos clic en la primera imagen del álbum
-        primera_foto = contenedor_album.find_element(By.XPATH, ".//div[@role='button']")
+        primera_foto = contenedor_album.find_element(By.XPATH, ".//*[@role='button' and @aria-label='Abrir foto']")
         primera_foto.click()
-        
+
+        indice = 1
         while True:
-            # Descargamos la foto actual
-            self.ejecutar_descarga_en_visor(chrome)
-            
-            # Intentamos ir a la siguiente
+            self.ejecutar_descarga_en_visor(chrome, f"{prefijo_archivo}_{indice:02d}")
+            indice += 1
+
             try:
-                # El botón 'Siguiente' suele tener aria-label="Siguiente"
                 btn_sig = WebDriverWait(chrome, 2).until(
-                    EC.element_to_be_clickable((By.XPATH, "//div[@aria-label='Siguiente']"))
+                    EC.element_to_be_clickable((By.XPATH, "//*[@role='button' and (@aria-label='Siguiente' or @title='Siguiente') ]"))
                 )
                 btn_sig.click()
-                time.sleep(1) # Esperar a que cargue la siguiente imagen del álbum
+                time.sleep(1)
             except TimeoutException:
-                # Si no hay botón 'Siguiente', hemos llegado al final del álbum
                 logging.info("Fin del álbum alcanzado.")
                 break
-        
+
         self.cerrar_visor(chrome)
 
-    def ejecutar_descarga_en_visor(self, chrome):
+    def ejecutar_descarga_en_visor(self, chrome, prefijo_archivo: str):
         """Presiona el botón de descarga dentro del visor de imágenes."""
         try:
-            # El botón de descarga tiene un título "Descargar"
+            antes = set(DOWNLOAD_DIR.glob("*"))
             btn_descarga = WebDriverWait(chrome, 5).until(
-                EC.element_to_be_clickable((By.XPATH, "//div[@title='Descargar']"))
+                EC.element_to_be_clickable((By.XPATH, "//*[@role='button' and (@title='Descargar' or @aria-label='Descargar')]"))
             )
             btn_descarga.click()
-            time.sleep(1) # Tiempo para que el navegador procese la descarga
-        except Exception as e:
-            logging.error(f"No se pudo descargar la imagen: {e}")
+            archivo = self._esperar_archivo_descargado(antes)
+            if archivo:
+                self._renombrar_descarga(archivo, prefijo_archivo)
+        except Exception:
+            logging.exception("No se pudo descargar la imagen")
 
     def cerrar_visor(self, chrome):
         """Cierra el visor de imágenes (botón X o tecla Esc)."""
@@ -212,6 +212,68 @@ class WhatsAppService:
             # Si falla el clic, mandamos la tecla Escape
             from selenium.webdriver.common.keys import Keys
             chrome.find_element(By.TAG_NAME, "body").send_keys(Keys.ESCAPE)
+
+    def _fecha_visible_en_chat(self, chrome, fecha_objetivo: str) -> bool:
+        spans_fecha = chrome.find_elements(By.XPATH, "//div[@id='main']//span[@dir='auto']")
+        for span in spans_fecha:
+            if _normalizar_texto(span.text) == fecha_objetivo and span.is_displayed():
+                return True
+        return False
+
+    def _obtener_mensajes_de_fecha(self, chrome, fecha_objetivo: str):
+        objetivo_normalizado = _normalizar_texto(fecha_objetivo)
+        resultado = []
+        fecha_actual = None
+        elementos = chrome.find_elements(By.XPATH, "//div[@id='main']//*[contains(@class,'focusable-list-item')]")
+
+        for el in elementos:
+            try:
+                if "message-" in (el.get_attribute("class") or ""):
+                    if fecha_actual == objetivo_normalizado:
+                        resultado.append(el)
+                    continue
+
+                spans = el.find_elements(By.XPATH, ".//span[@dir='auto']")
+                for span in spans:
+                    texto = _normalizar_texto(span.text)
+                    if texto:
+                        fecha_actual = texto
+                        break
+            except Exception:
+                continue
+        return resultado
+
+    def _obtener_remitente(self, mensaje) -> str:
+        candidatos = mensaje.find_elements(By.XPATH, ".//span[contains(@class, '_ahxv')] | .//span[contains(@class,'_ahxu')]")
+        for candidato in candidatos:
+            texto = (candidato.text or "").strip()
+            if texto:
+                return texto
+        return "desconocido"
+
+    def _crear_prefijo_nombre(self, fecha: str, remitente: str) -> str:
+        limpio = f"{_normalizar_texto(fecha)}_{_normalizar_texto(remitente)}"
+        return re.sub(r"[^a-zA-Z0-9_-]+", "_", limpio).strip("_") or "imagen"
+
+    def _esperar_archivo_descargado(self, archivos_antes: set[Path], timeout: int = 20):
+        fin = time.time() + timeout
+        while time.time() < fin:
+            actuales = set(DOWNLOAD_DIR.glob("*"))
+            nuevos = [f for f in actuales - archivos_antes if f.is_file() and not f.name.endswith(".crdownload")]
+            if nuevos and not list(DOWNLOAD_DIR.glob("*.crdownload")):
+                return max(nuevos, key=lambda f: f.stat().st_mtime)
+            time.sleep(0.4)
+        return None
+
+    def _renombrar_descarga(self, archivo: Path, prefijo: str):
+        sufijo = archivo.suffix or ".jpg"
+        destino = DOWNLOAD_DIR / f"{prefijo}{sufijo}"
+        contador = 1
+        while destino.exists():
+            destino = DOWNLOAD_DIR / f"{prefijo}_{contador:02d}{sufijo}"
+            contador += 1
+        archivo.rename(destino)
+        logging.info(f"Imagen guardada en {destino.name}")
 
     @staticmethod
     def get_chrome(headless: bool) -> WebDriver:
