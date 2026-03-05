@@ -145,6 +145,8 @@ class WhatsAppService:
 
         mensajes = self._obtener_mensajes_de_fecha(chrome, fecha_objetivo)
         logging.info(f"Mensajes encontrados para {fecha_objetivo}: {len(mensajes)}")
+        if not mensajes:
+            logging.warning("No hay mensajes multimedia asociados a la fecha objetivo en las filas cargadas.")
 
         for msg in mensajes:
             try:
@@ -251,33 +253,49 @@ class WhatsAppService:
             return None
 
     def _fecha_visible_en_chat(self, chrome, fecha_objetivo: str) -> bool:
-        spans_fecha = chrome.find_elements(By.XPATH, "//div[@id='main']//span[@dir='auto']")
+        """Valida fecha solo contra separadores de fecha del chat (no contra textos de mensajes)."""
+        spans_fecha = chrome.find_elements(
+            By.XPATH,
+            "//div[@id='main']//div[contains(@class,'x141l45o')]//span[@dir='auto']"
+        )
         for span in spans_fecha:
             if _normalizar_texto(span.text) == fecha_objetivo and span.is_displayed():
                 return True
         return False
 
     def _obtener_mensajes_de_fecha(self, chrome, fecha_objetivo: str):
+        """Recorre filas del chat en orden y acumula solo mensajes de la fecha objetivo."""
         objetivo_normalizado = _normalizar_texto(fecha_objetivo)
         resultado = []
         fecha_actual = None
-        elementos = chrome.find_elements(By.XPATH, "//div[@id='main']//*[contains(@class,'focusable-list-item')]")
 
-        for el in elementos:
+        filas = chrome.find_elements(By.XPATH, "//div[@id='main']//div[@role='row']")
+        for fila in filas:
             try:
-                if "message-" in (el.get_attribute("class") or ""):
-                    if fecha_actual == objetivo_normalizado:
-                        resultado.append(el)
+                # Separador de fecha (Ayer/Hoy/fecha)
+                separador = fila.find_elements(By.XPATH, ".//div[contains(@class,'x141l45o')]//span[@dir='auto']")
+                if separador:
+                    fecha_actual = _normalizar_texto(separador[0].text)
                     continue
 
-                spans = el.find_elements(By.XPATH, ".//span[@dir='auto']")
-                for span in spans:
-                    texto = _normalizar_texto(span.text)
-                    if texto:
-                        fecha_actual = texto
-                        break
+                # Mensajes multimedia (individual o álbum)
+                mensajes = fila.find_elements(
+                    By.XPATH,
+                    ".//*[contains(@class,'message-in') or contains(@class,'message-out')]"
+                )
+                if not mensajes:
+                    continue
+
+                if fecha_actual != objetivo_normalizado:
+                    continue
+
+                for mensaje in mensajes:
+                    clases = mensaje.get_attribute("class") or ""
+                    if "message-in" in clases or "message-out" in clases:
+                        resultado.append(mensaje)
             except Exception:
                 continue
+
         return resultado
 
     def _obtener_remitente(self, mensaje) -> str:
