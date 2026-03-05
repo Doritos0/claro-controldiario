@@ -178,34 +178,34 @@ class WhatsAppService:
         self.cerrar_visor(chrome)
 
     def _descargar_desde_visor(self, chrome, prefijo_archivo: str):
-        """Descarga media en visor: individual o agrupada según botón Siguiente."""
+        """Descarga media en visor; carrusel solo si existe contador X de Y."""
         self._esperar_visor_abierto(chrome)
 
-        # Si no hay siguiente, tratamos la media como individual.
-        if not self._tiene_boton_siguiente(chrome):
+        estado = self._obtener_estado_carrusel(chrome)
+        # Regla requerida: solo tratamos como carrusel si existe el elemento 'X de Y'.
+        if not estado:
             self.ejecutar_descarga_en_visor(chrome, prefijo_archivo)
             return
 
-        # Si hay siguiente, es carrusel/agrupado: avanzar hasta X == Y.
         while True:
-            estado = self._obtener_estado_carrusel(chrome)
-            if estado:
-                actual, total = estado
-                sufijo = f"_{actual:02d}" if total > 1 else ""
-                self.ejecutar_descarga_en_visor(chrome, f"{prefijo_archivo}{sufijo}")
-                logging.info(f"Carrusel: imagen {actual} de {total}")
+            actual, total = estado
+            sufijo = f"_{actual:02d}" if total > 1 else ""
+            self.ejecutar_descarga_en_visor(chrome, f"{prefijo_archivo}{sufijo}")
+            logging.info(f"Carrusel: imagen {actual} de {total}")
 
-                if actual >= total:
-                    logging.info("Fin de carrusel alcanzado por contador X de Y.")
-                    break
-            else:
-                # Fallback defensivo si no aparece el contador.
-                self.ejecutar_descarga_en_visor(chrome, prefijo_archivo)
+            if actual >= total:
+                logging.info("Fin de carrusel alcanzado por contador X de Y.")
+                break
 
             if not self._click_siguiente_en_visor(chrome, timeout=4):
-                logging.info("No hay más elementos en carrusel (botón Siguiente no disponible).")
+                logging.warning("No se pudo avanzar en carrusel con X < Y.")
                 break
+
             time.sleep(0.8)
+            estado = self._obtener_estado_carrusel(chrome)
+            if not estado:
+                logging.warning("Se perdió el contador X de Y; se detiene el carrusel.")
+                break
 
     def ejecutar_descarga_en_visor(self, chrome, prefijo_archivo: str):
         """Presiona el botón de descarga dentro del visor de imágenes."""
@@ -263,15 +263,6 @@ class WhatsAppService:
                 continue
 
         raise TimeoutException(f"No se encontró botón de descarga en el visor: {ultimo_error}")
-
-    def _tiene_boton_siguiente(self, chrome) -> bool:
-        """Indica si el visor tiene navegación al siguiente elemento."""
-        xpath = (
-            "//button[@aria-label='Siguiente' or @title='Siguiente' or @aria-label='Next' or @title='Next']"
-            " | //*[@role='button' and (@aria-label='Siguiente' or @title='Siguiente' or @aria-label='Next' or @title='Next')]"
-        )
-        return bool(chrome.find_elements(By.XPATH, xpath))
-
     def _click_siguiente_en_visor(self, chrome, timeout: int = 4) -> bool:
         """Avanza a la siguiente imagen del álbum."""
         candidatos = [
