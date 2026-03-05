@@ -101,10 +101,12 @@ async function findGroupChatByName(groupName) {
 
 async function fetchMessagesForDate(chat, start, end) {
   const messages = [];
-  let before;
+  const seenMessageIds = new Set();
+
   let reachedOlderThanDay = false;
   const startedAt = Date.now();
   let batchNumber = 0;
+  let beforeMessageId;
 
   while (!reachedOlderThanDay && batchNumber < FETCH_MAX_BATCHES) {
     if (Date.now() - startedAt > FETCH_MAX_MS) {
@@ -112,13 +114,31 @@ async function fetchMessagesForDate(chat, start, end) {
       break;
     }
 
+    const options = { limit: FETCH_BATCH_SIZE };
+    if (beforeMessageId) {
+      options.before = beforeMessageId;
+    }
+
     batchNumber += 1;
-    const batch = await chat.fetchMessages({ limit: FETCH_BATCH_SIZE, ...(before ? { before } : {}) });
+    const batch = await chat.fetchMessages(options);
     if (!batch.length) break;
 
-    console.log(`[WhatsApp] Lote ${batchNumber}: ${batch.length} mensajes`);
+    const firstId = batch[0]?.id?._serialized || 'n/a';
+    const lastId = batch[batch.length - 1]?.id?._serialized || 'n/a';
+    console.log(`[WhatsApp] Lote ${batchNumber}: ${batch.length} mensajes (first=${firstId}, last=${lastId})`);
+
+    if (beforeMessageId && lastId === beforeMessageId) {
+      console.warn('[WhatsApp] Cursor no avanzó; se detiene para evitar repetición de lotes.');
+      break;
+    }
 
     for (const msg of batch) {
+      const messageId = msg.id?._serialized;
+      if (!messageId || seenMessageIds.has(messageId)) {
+        continue;
+      }
+      seenMessageIds.add(messageId);
+
       const msgDate = new Date(msg.timestamp * 1000);
       if (msgDate < start) {
         reachedOlderThanDay = true;
@@ -129,7 +149,7 @@ async function fetchMessagesForDate(chat, start, end) {
       }
     }
 
-    before = batch[batch.length - 1];
+    beforeMessageId = lastId !== 'n/a' ? lastId : undefined;
   }
 
   if (batchNumber >= FETCH_MAX_BATCHES) {
@@ -141,8 +161,12 @@ async function fetchMessagesForDate(chat, start, end) {
 
 async function downloadImagesFromMessages(messages, outputDir, datePrefix) {
   let saved = 0;
+  const downloadedMessageIds = new Set();
 
   for (const msg of messages) {
+    const messageId = msg.id?._serialized;
+    if (!messageId || downloadedMessageIds.has(messageId)) continue;
+    downloadedMessageIds.add(messageId);
     if (!msg.hasMedia) continue;
     if (msg.type !== 'image') continue;
 
