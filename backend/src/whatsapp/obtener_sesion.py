@@ -171,18 +171,17 @@ class WhatsAppService:
         self.cerrar_visor(chrome)
 
     def descargar_album(self, chrome, contenedor_album, prefijo_archivo: str):
-        """Compatibilidad: abre el primer item del contenedor y usa la misma lógica de visor."""
+        """Compatibilidad retroactiva: abre el primer item y reutiliza el flujo de visor."""
         primera_foto = contenedor_album.find_element(By.XPATH, ".//*[@role='button' and @aria-label='Abrir foto']")
         primera_foto.click()
         self._descargar_desde_visor(chrome, prefijo_archivo)
         self.cerrar_visor(chrome)
 
     def _descargar_desde_visor(self, chrome, prefijo_archivo: str):
-        """Descarga media en visor; carrusel solo si existe contador X de Y."""
+        """Descarga media en visor usando el contador X de Y como fuente de verdad."""
         self._esperar_visor_abierto(chrome)
 
         estado = self._obtener_estado_carrusel(chrome)
-        # Regla requerida: solo tratamos como carrusel si existe el elemento 'X de Y'.
         if not estado:
             self.ejecutar_descarga_en_visor(chrome, prefijo_archivo)
             return
@@ -197,11 +196,10 @@ class WhatsAppService:
                 logging.info("Fin de carrusel alcanzado por contador X de Y.")
                 break
 
-            if not self._click_siguiente_en_visor(chrome, timeout=4):
-                logging.warning("No se pudo avanzar en carrusel con X < Y.")
+            if not self._avanzar_carrusel(chrome, actual):
+                logging.warning("No se logró avanzar al siguiente elemento del carrusel.")
                 break
 
-            time.sleep(0.8)
             estado = self._obtener_estado_carrusel(chrome)
             if not estado:
                 logging.warning("Se perdió el contador X de Y; se detiene el carrusel.")
@@ -263,6 +261,7 @@ class WhatsAppService:
                 continue
 
         raise TimeoutException(f"No se encontró botón de descarga en el visor: {ultimo_error}")
+
     def _click_siguiente_en_visor(self, chrome, timeout: int = 4) -> bool:
         """Avanza a la siguiente imagen del álbum."""
         candidatos = [
@@ -285,11 +284,32 @@ class WhatsAppService:
                 continue
         return False
 
+    def _avanzar_carrusel(self, chrome, indice_actual: int) -> bool:
+        """Pulsa siguiente y espera que el contador avance de índice."""
+        for _ in range(2):
+            if not self._click_siguiente_en_visor(chrome, timeout=4):
+                continue
+
+            limite = time.time() + 5
+            while time.time() < limite:
+                estado = self._obtener_estado_carrusel(chrome)
+                if estado and estado[0] > indice_actual:
+                    return True
+                time.sleep(0.25)
+
+        return False
+
     def _obtener_estado_carrusel(self, chrome):
-        """Retorna (actual, total) leyendo textos tipo '1 de 4' en el visor."""
-        candidatos = chrome.find_elements(By.XPATH, "//span[contains(normalize-space(.), ' de ')]")
-        for c in candidatos:
-            texto = _normalizar_texto(c.text)
+        """Retorna (actual, total) leyendo textos tipo '1 de 4'."""
+        candidatos = chrome.find_elements(
+            By.XPATH,
+            "//div[contains(@class,'overlay')]//span[contains(@class,'_alhf') and contains(normalize-space(.), ' de ')]"
+        )
+        if not candidatos:
+            candidatos = chrome.find_elements(By.XPATH, "//span[contains(normalize-space(.), ' de ')]")
+
+        for candidato in candidatos:
+            texto = _normalizar_texto(candidato.text)
             match = re.search(r"^(\d+)\s+de\s+(\d+)$", texto)
             if match:
                 return int(match.group(1)), int(match.group(2))
