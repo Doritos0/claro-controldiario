@@ -21,6 +21,12 @@ class Usuario(SQLModel, table=True):
     password: str
 
 
+class Configuracion(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    usuario_id: int = Field(sa_column=Column(Integer, ForeignKey(USUARIO_ID, ondelete="CASCADE"), nullable=False, unique=True))
+    grupo_wsp: str
+
+
 class Ejecutivo(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     empresa_id: int = Field(sa_column=Column(Integer, ForeignKey(EMPRESA_ID, ondelete="RESTRICT"), nullable=False))

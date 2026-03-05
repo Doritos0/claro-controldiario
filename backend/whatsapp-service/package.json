@@ -1,0 +1,19 @@
+{
+  "name": "whatsapp-service",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "bin": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "build:win": "pkg src/server.js --targets node20-win-x64 --output dist/whatsapp-service.exe"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "qrcode": "^1.5.4",
+    "whatsapp-web.js": "^1.26.0"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  }
+}
