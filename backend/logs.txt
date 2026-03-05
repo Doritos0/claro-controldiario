@@ -172,3 +172,109 @@ urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='localhost', port=6
 2026-03-05 10:30:10,180 INFO root Esperando escaneo de QR (Máximo 120 segundos)...
 2026-03-05 10:30:19,913 INFO root ¡Sesión iniciada correctamente!
 2026-03-05 10:30:26,431 INFO root Cerrando navegador...
+2026-03-05 10:41:24,042 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-05 10:41:24,044 INFO root Iniciando proceso de obtención de imágenes (Solo QR)...
+2026-03-05 10:41:24,044 INFO root Iniciando navegador Chrome con Selenium...
+2026-03-05 10:41:24,045 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-05 10:41:25,145 INFO root Navegando a https://web.whatsapp.com/
+2026-03-05 10:41:26,370 INFO root Esperando escaneo de QR (Máximo 120 segundos)...
+2026-03-05 10:41:31,654 INFO root ¡Sesión iniciada correctamente!
+2026-03-05 10:41:38,108 INFO root Cerrando navegador...
+2026-03-05 10:56:02,913 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-05 10:56:02,915 INFO root Iniciando proceso de obtención de imágenes (Solo QR)...
+2026-03-05 10:56:02,915 INFO root Iniciando navegador Chrome con Selenium...
+2026-03-05 10:56:02,916 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-05 10:56:03,831 INFO root Navegando a https://web.whatsapp.com/
+2026-03-05 10:56:05,155 INFO root Esperando escaneo de QR (Máximo 120 segundos)...
+2026-03-05 10:56:10,778 INFO root ¡Sesión iniciada correctamente!
+2026-03-05 10:56:16,826 INFO root Buscando mensajes del día: AYER
+2026-03-05 10:56:27,260 WARNING root No se visualiza la fecha AYER. Intenta hacer scroll manual o programado.
+2026-03-05 10:56:32,262 INFO root Cerrando navegador...
+2026-03-05 11:01:35,821 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-05 11:01:35,823 INFO root Iniciando proceso de obtención de imágenes (Solo QR)...
+2026-03-05 11:01:35,823 INFO root Iniciando navegador Chrome con Selenium...
+2026-03-05 11:01:35,824 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-05 11:01:36,760 INFO root Navegando a https://web.whatsapp.com/
+2026-03-05 11:01:37,673 INFO root Esperando escaneo de QR (Máximo 120 segundos)...
+2026-03-05 11:01:42,425 INFO root ¡Sesión iniciada correctamente!
+2026-03-05 11:01:48,453 INFO root Buscando la etiqueta de fecha: AYER...
+2026-03-05 11:01:48,546 ERROR root Error durante la espera de la sesión de WhatsApp.
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\whatsapp\obtener_sesion.py", line 99, in hacer_scroll_hasta_fecha
+    contenedor_chat = chrome.find_element(By.XPATH, "//div[@id='main']//div[contains(@class, '_am78')]")
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 816, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 446, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@id='main']//div[contains(@class, '_am78')]"}
+  (Session info: chrome=145.0.7632.117); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff72da6aa55
+	0x7ff72d7c8630
+	0x7ff72d55d75d
+	0x7ff72d5b862e
+	0x7ff72d5b893c
+	0x7ff72d608d87
+	0x7ff72d60591c
+	0x7ff72d5a9098
+	0x7ff72d5a9f83
+	0x7ff72da97810
+	0x7ff72da91afd
+	0x7ff72dab2c1a
+	0x7ff72d7e3345
+	0x7ff72d7eb81c
+	0x7ff72d7d1924
+	0x7ff72d7d1ad6
+	0x7ff72d7b7e47
+	0x7ffac02c7374
+	0x7ffac0c9cc91
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\whatsapp\obtener_sesion.py", line 64, in obtener_imagenes
+    self.procesar_imagenes_del_dia(chrome, "AYER")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\whatsapp\obtener_sesion.py", line 129, in procesar_imagenes_del_dia
+    encontrado = self.hacer_scroll_hasta_fecha(chrome, fecha_objetivo)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\whatsapp\obtener_sesion.py", line 102, in hacer_scroll_hasta_fecha
+    contenedor_chat = chrome.find_element(By.XPATH, "//div[@role='application' and @data-tab='8']")
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 816, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 446, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@role='application' and @data-tab='8']"}
+  (Session info: chrome=145.0.7632.117); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff72da6aa55
+	0x7ff72d7c8630
+	0x7ff72d55d75d
+	0x7ff72d5b862e
+	0x7ff72d5b893c
+	0x7ff72d608d87
+	0x7ff72d60591c
+	0x7ff72d5a9098
+	0x7ff72d5a9f83
+	0x7ff72da97810
+	0x7ff72da91afd
+	0x7ff72dab2c1a
+	0x7ff72d7e3345
+	0x7ff72d7eb81c
+	0x7ff72d7d1924
+	0x7ff72d7d1ad6
+	0x7ff72d7b7e47
+	0x7ffac02c7374
+	0x7ffac0c9cc91
+
+2026-03-05 11:01:48,559 INFO root Cerrando navegador...
