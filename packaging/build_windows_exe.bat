@@ -45,7 +45,7 @@ if errorlevel 1 (
 )
 
 echo [3/3] Generando ejecutable...
-python -m PyInstaller --noconfirm --windowed --name ControlDiarioClaro ^
+python -m PyInstaller --noconfirm --onefile --windowed --name ControlDiarioClaro ^
   --collect-all "googleapiclient" ^
   --collect-all "google_auth_oauthlib" ^
   --collect-all "pydantic" ^
