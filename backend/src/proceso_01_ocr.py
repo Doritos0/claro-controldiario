@@ -9,7 +9,7 @@ from pathlib import Path
 
 from src.bd.bd_ejecutivo import EjecutivoService
 from src.bd.bd_live import LIVEService
-from src.bd.schema import Ejecutivo
+from src.bd.schema import Ejecutivo, LIVE
 from src.gemini.estructura import LIVERespuesta
 from src.config.log_config import configurar_log
 from src.gemini.gemini_ocr_service import GeminiOCRService
@@ -30,6 +30,7 @@ def ejecutar_proceso(empresa_id: int, fecha_objetivo: str | None = None, consoli
         ruta_descargas = BASE_DIR / "whatsapp-service" / "descargas" / fecha_objetivo
         extensiones = ['*.png', '*.jpg', '*.jpeg', '*.webp']
         imagenes = []
+        lives: list[LIVE] = []
 
         ejecutivos = ejecutivo_service.get_ejecutivos_sql(empresa_id)
         dict_ejecutivos = {e.nro_telefono: e for e in ejecutivos if e.nro_telefono}
@@ -64,14 +65,14 @@ def ejecutar_proceso(empresa_id: int, fecha_objetivo: str | None = None, consoli
                 filename=imagen.name
             )
             try:
-                live_service.guardar_LIVE_metricas_sql(ejecutivo.id, imagen.name, res)
+                live = live_service.guardar_LIVE_metricas_sql(ejecutivo.id, imagen.name, res)
                 logging.info(f"Imagen de {ejecutivo.nombre} ingresada correctamente, filename {imagen}")
+                
+                lives.append(live)
+                
             except Exception as e:
                 logging.warning(f"Error ingresando LIVE desde {imagen}")
                 pass
-
+        return lives
     except Exception as e:
         logging.error(f"Error al ejecutar proceso: {e}")
-
-if __name__ == "__main__":
-    ejecutar_proceso(1, "06-03-2026")

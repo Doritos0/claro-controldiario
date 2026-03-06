@@ -19,7 +19,7 @@ class LIVEService():
         live = self.get_LIVE_por_captura(nombre_captura)
         if live:
             logging.debug(f"LIVE ya ingresado")
-            return None
+            return live
         with Session(self.engine) as session:
             LIVE_nuevo = self.get_nuevo_LIVE_sql(ejecutivo_id=ejecutivo_id, nombre_captura=nombre_captura, metricas=metricas)
             session.add(LIVE_nuevo)
