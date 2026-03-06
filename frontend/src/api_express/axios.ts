@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const baseUrl = import.meta.env.VITE_API_EXPRESS || "http://localhost:3000";
+const baseURL = import.meta.env.VITE_API_EXPRESS || "http://localhost:3000";
 
-console.log(baseUrl)
+console.log(baseURL)
 
 const api_express = axios.create({
-    baseUrl,
+    baseURL,
     headers: {
         "Content-Type": "application/json",
     },
