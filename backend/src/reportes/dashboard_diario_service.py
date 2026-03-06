@@ -470,7 +470,12 @@ class DashboardDiarioService:
         return str(value)
 
 
-def resolver_fecha_objetivo(fecha_objetivo: str | None) -> date:
+def resolver_fecha_objetivo(fecha_objetivo: str | None) -> str:
     if fecha_objetivo:
-        return datetime.strptime(fecha_objetivo, "%d/%m/%y").date()
-    return (datetime.now() - timedelta(days=1)).date()
+        # Primero convertimos la entrada (suponiendo que viene como d/m/y) a objeto datetime
+        # y luego la formateamos al nuevo estilo con guiones
+        return datetime.strptime(fecha_objetivo, "%d/%m/%y").strftime("%d-%m-%Y")
+    
+    # Si no hay fecha, restamos un día y formateamos
+    ayer = datetime.now() - timedelta(days=1)
+    return ayer.strftime("%d-%m-%Y")

@@ -21,7 +21,9 @@ def ejecutar_proceso(empresa_id: int, fecha_objetivo: str | None = None, consoli
     load_dotenv()
 
     if fecha_objetivo is None:
+        logging.info(f"Entra al if")
         fecha_objetivo = resolver_fecha_objetivo(fecha_objetivo)
+        logging.info(f"fecha objetivo creada: {fecha_objetivo}")
     try:
         BASE_DIR = Path(__file__).resolve().parent.parent
         gemini_service = GeminiOCRService()
