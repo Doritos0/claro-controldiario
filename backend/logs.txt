@@ -1133,3 +1133,8 @@ WHERE ejecutivo.empresa_id = ?]
 2026-03-06 14:19:20,923 INFO uvicorn.error Waiting for application shutdown.
 2026-03-06 14:19:20,924 INFO uvicorn.error Application shutdown complete.
 2026-03-06 14:19:20,924 INFO uvicorn.error Finished server process [24012]
+2026-03-06 14:19:22,255 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-06 14:19:22,256 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-06 14:19:24,142 INFO uvicorn.error Started server process [23564]
+2026-03-06 14:19:24,142 INFO uvicorn.error Waiting for application startup.
+2026-03-06 14:19:24,143 INFO uvicorn.error Application startup complete.
