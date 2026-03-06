@@ -70,3 +70,5 @@ class WhatsAppDownloader {
         console.log(`Proceso finalizado. Se guardaron ${contador} imágenes en: ${carpeta}`);
     }
 }
+
+module.exports = WhatsAppDownloader;
