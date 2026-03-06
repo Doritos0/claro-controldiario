@@ -1272,3 +1272,19 @@ WHERE ejecutivo.empresa_id = ?]
 2026-03-06 16:58:48,865 INFO uvicorn.error Started server process [14828]
 2026-03-06 16:58:48,865 INFO uvicorn.error Waiting for application startup.
 2026-03-06 16:58:48,866 INFO uvicorn.error Application startup complete.
+2026-03-06 17:04:29,143 INFO uvicorn.access 127.0.0.1:58537 - "GET /api/swagger HTTP/1.1" 200
+2026-03-06 17:04:29,411 INFO uvicorn.access 127.0.0.1:58537 - "GET /api/openapi.json HTTP/1.1" 200
+2026-03-06 17:10:00,221 INFO uvicorn.access 127.0.0.1:58603 - "OPTIONS /login HTTP/1.1" 200
+2026-03-06 17:10:00,242 INFO root Ambiente que llega sqlite
+2026-03-06 17:10:00,244 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-06 17:10:00,301 INFO uvicorn.access 127.0.0.1:58603 - "POST /login HTTP/1.1" 200
+2026-03-06 17:10:03,332 INFO uvicorn.access 127.0.0.1:58603 - "POST /login HTTP/1.1" 200
+2026-03-06 17:10:08,628 INFO uvicorn.access 127.0.0.1:58605 - "POST /login HTTP/1.1" 200
+2026-03-06 17:10:08,828 INFO uvicorn.access 127.0.0.1:58605 - "POST /login HTTP/1.1" 200
+2026-03-06 17:10:09,011 INFO uvicorn.access 127.0.0.1:58605 - "POST /login HTTP/1.1" 200
+2026-03-06 17:10:09,188 INFO uvicorn.access 127.0.0.1:58605 - "POST /login HTTP/1.1" 200
+2026-03-06 17:10:09,345 INFO uvicorn.access 127.0.0.1:58605 - "POST /login HTTP/1.1" 200
+2026-03-06 17:15:35,654 INFO uvicorn.access 127.0.0.1:58734 - "POST /login HTTP/1.1" 200
+2026-03-06 17:15:36,493 INFO uvicorn.access 127.0.0.1:58734 - "POST /login HTTP/1.1" 200
+2026-03-06 17:15:36,739 INFO uvicorn.access 127.0.0.1:58734 - "POST /login HTTP/1.1" 200
+2026-03-06 17:15:36,929 INFO uvicorn.access 127.0.0.1:58734 - "POST /login HTTP/1.1" 200
