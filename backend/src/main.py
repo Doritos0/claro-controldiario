@@ -14,7 +14,7 @@ configurar_log()
 logging.info("env_path: %s", env_file)
 load_dotenv(env_file)
 
-title = "Sandbox Numero WABAPI"
+title = "Claro / WOM Procesamiento diario"
 version = "0.0.1"
 
 app = FastAPI(title=title, version=version, docs_url="/swagger", root_path="/api")
