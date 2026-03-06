@@ -32,20 +32,22 @@ def inicializar_datos():
     usuario_service.guardar_usuario_sql(empresa_id=empresa_wom.id, user="wom", password="wom123")
 
     ejecutivo_service = EjecutivoService()
-    daniela_baeza = ejecutivo_service.guardar_ejecutivo_sql("Daniela Baeza", "ACTIVO", "PHOENIX", empresa_claro.id).id
+    daniela_baeza = ejecutivo_service.guardar_ejecutivo_sql("Daniela Baeza", "ACTIVO", "PHOENIX", empresa_claro.id, 0).id
     assert daniela_baeza is not None
-    ada_rengifo = ejecutivo_service.guardar_ejecutivo_sql("Ada Rengifo", "ACTIVO", "PHOENIX", empresa_claro.id).id
+    ada_rengifo = ejecutivo_service.guardar_ejecutivo_sql("Ada Rengifo", "ACTIVO", "PHOENIX", empresa_claro.id, 0).id
     assert ada_rengifo is not None
-    barbara_cruz = ejecutivo_service.guardar_ejecutivo_sql("Bárbara Cruz", "ACTIVO", "PHOENIX", empresa_claro.id).id
+    barbara_cruz = ejecutivo_service.guardar_ejecutivo_sql("Bárbara Cruz", "ACTIVO", "PHOENIX", empresa_claro.id, 0).id
     assert barbara_cruz is not None
-    paulina_cataldo = ejecutivo_service.guardar_ejecutivo_sql("Paulina Cataldo", "ACTIVO", "PHOENIX", empresa_claro.id).id
+    paulina_cataldo = ejecutivo_service.guardar_ejecutivo_sql("Paulina Cataldo", "ACTIVO", "PHOENIX", empresa_claro.id, 0).id
     assert paulina_cataldo is not None
-    rafael_cayun = ejecutivo_service.guardar_ejecutivo_sql("Rafael Cayun", "ACTIVO", "PHOENIX", empresa_claro.id).id
+    rafael_cayun = ejecutivo_service.guardar_ejecutivo_sql("Rafael Cayun", "ACTIVO", "PHOENIX", empresa_claro.id, 0).id
     assert rafael_cayun is not None
-    tania_alviar = ejecutivo_service.guardar_ejecutivo_sql("Tania Alviar", "ACTIVO", "PHOENIX", empresa_claro.id).id
+    tania_alviar = ejecutivo_service.guardar_ejecutivo_sql("Tania Alviar", "ACTIVO", "PHOENIX", empresa_claro.id, 0).id
     assert tania_alviar is not None
-    blanca_flores = ejecutivo_service.guardar_ejecutivo_sql("Blanca Flores", "ACTIVO", "PHOENIX", empresa_claro.id).id
+    blanca_flores = ejecutivo_service.guardar_ejecutivo_sql("Blanca Flores", "ACTIVO", "PHOENIX", empresa_claro.id, 0).id
     assert blanca_flores is not None
-    isi_pastenes = ejecutivo_service.guardar_ejecutivo_sql("Isi Pastenes", "ACTIVO", "PHOENIX", empresa_claro.id).id
+    isi_pastenes = ejecutivo_service.guardar_ejecutivo_sql("Isi Pastenes", "ACTIVO", "PHOENIX", empresa_claro.id, 0).id
     assert isi_pastenes is not None
+    thae_test = ejecutivo_service.guardar_ejecutivo_sql("Thae Test", "ACTIVO", "PHOENIX", empresa_claro.id, 56964587530).id
+    assert thae_test is not None
     logging.info("Base de datos inicializada con empresas, usuarios y ejecutivos por defecto")

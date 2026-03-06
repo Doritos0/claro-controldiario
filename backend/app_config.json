@@ -1,7 +1,6 @@
 {
   "ambiente": "sqlite",
   "bd_name": "CLARO-TIKTOK",
-  "google_drive_root_folder_id": "REEMPLAZAR_CON_FOLDER_ID_DE_DRIVE",
   "google_drive_credentials_path": "credentials.json",
   "gemini_api_key": "REEMPLAZAR_CON_GEMINI_API_KEY",
   "gemini_model_ocr": "gemini-3-flash-preview"

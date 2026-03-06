@@ -27,6 +27,7 @@ class Ejecutivo(SQLModel, table=True):
     nombre: str
     estado: str #EnumEstado
     eps: str
+    nro_telefono: int
 
 
 class Lead(SQLModel, table=True):

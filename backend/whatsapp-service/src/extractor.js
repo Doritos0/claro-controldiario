@@ -56,11 +56,11 @@ class WhatsAppDownloader {
                 if (media) {
                     const extension = media.mimetype.split('/')[1];
 
-                    const autor = msg.author || msg.from;
-                    const nroTelefono = autor.split('@')[0];
+                    const contacto = await msg.getContact();
+                    const celu = contacto.number;
                     const idMensaje = msg.id.id
 
-                    const fileName = `${nombreCarpeta}_${nroTelefono}_${idMensaje}.${extension}`;
+                    const fileName = `${nombreCarpeta}_${celu}_${idMensaje}.${extension}`;
                     fs.writeFileSync(path.join(carpeta, fileName), media.data, 'base64');
                     contador++;
                 }

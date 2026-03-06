@@ -29,8 +29,16 @@ def inicializar_bd_sqlite() -> Engine:
 
         if "ejecutivo" in tablas:
             cols_ejecutivo = {col['name'] for col in inspector.get_columns("ejecutivo")}
+            
+            # 1. Tu corrección existente para empresa_id
             if "empresa_id" not in cols_ejecutivo:
                 conn.execute(text("ALTER TABLE ejecutivo ADD COLUMN empresa_id INTEGER"))
+            
+            # 2. NUEVA CORRECCIÓN para nro_telefono
+            if "nro_telefono" not in cols_ejecutivo:
+                logging.info("Agregando columna nro_telefono a la tabla ejecutivo")
+                conn.execute(text("ALTER TABLE ejecutivo ADD COLUMN nro_telefono VARCHAR"))
+
             conn.execute(
                 text(
                     "UPDATE ejecutivo SET empresa_id = (SELECT id FROM empresa WHERE lower(nombre)='claro' LIMIT 1) "

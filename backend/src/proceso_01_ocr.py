@@ -1,143 +1,77 @@
+from io import BytesIO
 import json
 import logging
+from dotenv import load_dotenv
 import os
+from pathlib import Path
 from dataclasses import dataclass
 from pathlib import Path
 
+from src.bd.bd_ejecutivo import EjecutivoService
 from src.bd.bd_live import LIVEService
 from src.bd.schema import Ejecutivo
+from src.gemini.estructura import LIVERespuesta
 from src.config.log_config import configurar_log
-from src.drive.drive_imagenes import DriveImagenesService
 from src.gemini.gemini_ocr_service import GeminiOCRService
 from src.reportes.dashboard_diario_service import DashboardDiarioService, resolver_fecha_objetivo
-from src.runtime_setup import bootstrap_runtime
 
 
-@dataclass
-class OCRExecutionResult:
-    dashboard_path: Path | None
-    message: str
-    success: bool
-
-
-def _load_app_config(app_home: Path) -> dict:
-    cfg_path = app_home / "app_config.json"
-    if not cfg_path.exists():
-        return {}
-    try:
-        data = json.loads(cfg_path.read_text(encoding="utf-8"))
-        return data if isinstance(data, dict) else {}
-    except Exception:
-        logging.exception("No se pudo leer app_config.json")
-        return {}
-
-
-def _resolve_runtime_config(app_home: Path) -> tuple[str | None, str | None]:
-    cfg = _load_app_config(app_home)
-
-    credentials_path_raw = os.getenv("GOOGLE_DRIVE_CREDENTIALS_PATH") or cfg.get("google_drive_credentials_path")
-    root_folder_id = os.getenv("GOOGLE_DRIVE_ROOT_FOLDER_ID") or cfg.get("google_drive_root_folder_id")
-
-    credentials_path = None
-    if isinstance(credentials_path_raw, str) and credentials_path_raw.strip():
-        path = Path(credentials_path_raw.strip())
-        if path.is_absolute():
-            credentials_path = str(path)
-        else:
-            credentials_path = str((app_home / path).resolve())
-
-    return credentials_path, root_folder_id
-
-
-def ejecutar_proceso_ocr_con_resultado(
-    fecha_objetivo: str | None = None,
-    full_scan: bool = False,
-    empresa_id: int | None = None,
-) -> OCRExecutionResult:
-    app_home = bootstrap_runtime()
+def ejecutar_proceso(empresa_id: int, fecha_objetivo: str | None = None, consolidado: str | None = None) -> list[LIVERespuesta]:
     configurar_log()
+    load_dotenv()
 
-    credentials_path, root_folder_id = _resolve_runtime_config(app_home)
-
-    if not root_folder_id:
-        msg = (
-            "Falta GOOGLE_DRIVE_ROOT_FOLDER_ID. Configúralo en app_config.json "
-            f"ubicado en: {app_home / 'app_config.json'}"
-        )
-        logging.error(msg)
-        return OCRExecutionResult(dashboard_path=None, message=msg, success=False)
-
-    if not credentials_path or not Path(credentials_path).exists():
-        msg = (
-            "No se encontró credentials.json para Drive. "
-            f"Ruta esperada: {credentials_path or (app_home / 'credentials.json')}"
-        )
-        logging.error(msg)
-        return OCRExecutionResult(dashboard_path=None, message=msg, success=False)
-
-    if not os.getenv("GEMINI_API_KEY"):
-        msg = (
-            "Falta GEMINI_API_KEY. Configúrala en app_config.json "
-            f"ubicado en: {app_home / 'app_config.json'}"
-        )
-        logging.error(msg)
-        return OCRExecutionResult(dashboard_path=None, message=msg, success=False)
-
+    if fecha_objetivo is None:
+        fecha_objetivo = resolver_fecha_objetivo(fecha_objetivo)
     try:
-        fecha_dashboard = resolver_fecha_objetivo(fecha_objetivo)
-
-        drive_service = DriveImagenesService(credentials_path, root_folder_id, empresa_id=empresa_id)
-        ocr_service = GeminiOCRService()
+        BASE_DIR = Path(__file__).resolve().parent.parent
+        gemini_service = GeminiOCRService()
         live_service = LIVEService()
-        dashboard_service = DashboardDiarioService(output_dir=str(app_home / "artifacts"))
+        ejecutivo_service = EjecutivoService()
+        ruta_descargas = BASE_DIR / "whatsapp-service" / "descargas" / fecha_objetivo
+        extensiones = ['*.png', '*.jpg', '*.jpeg', '*.webp']
+        imagenes = []
 
-        imagenes_descargadas = drive_service.obtener_imagenes(fecha_objetivo, full_scan)
+        ejecutivos = ejecutivo_service.get_ejecutivos_sql(empresa_id)
+        dict_ejecutivos = {e.nro_telefono: e for e in ejecutivos if e.nro_telefono}
 
-        if imagenes_descargadas:
-            for item in imagenes_descargadas:
-                ejecutivo: Ejecutivo = item["ejecutivo"]
-                filename = item["filename"]
-                image_bytes = item["data"]
-                resultado = ocr_service.get_respuesta_ocr(image_bytes, filename)
-                live_service.guardar_LIVE_metricas_sql(ejecutivo.id, filename, resultado)
+        if ruta_descargas.exists():
+            for ext in extensiones:
+                imagenes.extend(list(ruta_descargas.glob(ext)))
+        else:
+            logging.warning(f"La carpeta de imagenes no existe: {ruta_descargas}")
+            imagenes=[]
 
-        dashboard_path = dashboard_service.generar_dashboard_diario(fecha_dashboard, empresa_id=empresa_id)
-        if dashboard_path:
-            return OCRExecutionResult(
-                dashboard_path=dashboard_path,
-                message=f"Dashboard diario generado: {dashboard_path}",
-                success=True,
+        logging.info(f"Se encontraron {len(imagenes)} para la fecha {fecha_objetivo}")
+
+        for imagen in imagenes:
+            logging.info(f"Se esta procesando {imagen.name}")
+
+            identificadores = imagen.name.split('_')
+
+            numero_tel = identificadores[1]
+
+            ejecutivo = dict_ejecutivos.get(numero_tel)
+
+            if not ejecutivo:
+                logging.warning(f"Número {numero_tel} no registrado en BD. Saltando...")
+                continue
+
+            with open(imagen, "rb") as f:
+                imagen_bytes = f.read()
+
+            res = gemini_service.get_respuesta_ocr(
+                image_bytes=imagen_bytes,
+                filename=imagen.name
             )
-
-        return OCRExecutionResult(
-            dashboard_path=None,
-            message=(
-                "No se generó dashboard para la fecha objetivo. "
-                "Verifica que existan carpetas/imágenes en Drive para esa fecha y que el root folder sea correcto."
-            ),
-            success=False,
-        )
+            try:
+                live_service.guardar_LIVE_metricas_sql(ejecutivo.id, imagen.name, res)
+                logging.info(f"Imagen de {ejecutivo.nombre} ingresada correctamente, filename {imagen}")
+            except Exception as e:
+                logging.warning(f"Error ingresando LIVE desde {imagen}")
+                pass
 
     except Exception as e:
-        msg = f"Error crítico en el proceso OCR: {e}"
-        logging.exception(msg)
-        return OCRExecutionResult(dashboard_path=None, message=msg, success=False)
-
-
-def ejecutar_proceso_ocr(
-    fecha_objetivo: str | None = None,
-    full_scan: bool = False,
-    empresa_id: int | None = None,
-):
-    return ejecutar_proceso_ocr_con_resultado(
-        fecha_objetivo=fecha_objetivo,
-        full_scan=full_scan,
-        empresa_id=empresa_id,
-    ).dashboard_path
-
+        logging.error(f"Error al ejecutar proceso: {e}")
 
 if __name__ == "__main__":
-    home = bootstrap_runtime()
-    logging.info("App home: %s", home)
-    result = ejecutar_proceso_ocr_con_resultado("02/03/26")
-    logging.info(result.message)
+    ejecutar_proceso(1, "06-03-2026")
