@@ -1138,3 +1138,37 @@ WHERE ejecutivo.empresa_id = ?]
 2026-03-06 14:19:24,142 INFO uvicorn.error Started server process [23564]
 2026-03-06 14:19:24,142 INFO uvicorn.error Waiting for application startup.
 2026-03-06 14:19:24,143 INFO uvicorn.error Application startup complete.
+2026-03-06 14:39:15,119 INFO uvicorn.error Shutting down
+2026-03-06 14:39:15,221 INFO uvicorn.error Waiting for application shutdown.
+2026-03-06 14:39:15,221 INFO uvicorn.error Application shutdown complete.
+2026-03-06 14:39:15,222 INFO uvicorn.error Finished server process [23564]
+2026-03-06 14:39:16,652 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-06 14:39:16,653 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-06 14:39:18,820 INFO uvicorn.error Started server process [7756]
+2026-03-06 14:39:18,821 INFO uvicorn.error Waiting for application startup.
+2026-03-06 14:39:18,822 INFO uvicorn.error Application startup complete.
+2026-03-06 14:39:18,823 INFO uvicorn.access 127.0.0.1:55794 - "GET /api/swagger HTTP/1.1" 200
+2026-03-06 14:39:19,089 INFO uvicorn.access 127.0.0.1:55794 - "GET /api/openapi.json HTTP/1.1" 200
+2026-03-06 14:42:22,915 INFO uvicorn.error Shutting down
+2026-03-06 14:42:23,017 INFO uvicorn.error Waiting for application shutdown.
+2026-03-06 14:42:23,018 INFO uvicorn.error Application shutdown complete.
+2026-03-06 14:42:23,018 INFO uvicorn.error Finished server process [7756]
+2026-03-06 14:42:24,266 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-06 14:42:24,267 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-06 14:42:26,234 INFO uvicorn.error Started server process [27136]
+2026-03-06 14:42:26,235 INFO uvicorn.error Waiting for application startup.
+2026-03-06 14:42:26,236 INFO uvicorn.error Application startup complete.
+2026-03-06 14:43:12,040 INFO uvicorn.error Shutting down
+2026-03-06 14:43:12,151 INFO uvicorn.error Waiting for application shutdown.
+2026-03-06 14:43:12,152 INFO uvicorn.error Application shutdown complete.
+2026-03-06 14:43:12,152 INFO uvicorn.error Finished server process [27136]
+2026-03-06 14:43:13,426 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-06 14:43:13,427 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-06 14:43:15,338 INFO uvicorn.error Started server process [25904]
+2026-03-06 14:43:15,339 INFO uvicorn.error Waiting for application startup.
+2026-03-06 14:43:15,340 INFO uvicorn.error Application startup complete.
+2026-03-06 14:43:15,342 INFO uvicorn.access 127.0.0.1:55871 - "GET /api/swagger HTTP/1.1" 200
+2026-03-06 14:43:15,519 INFO uvicorn.access 127.0.0.1:55871 - "GET /api/openapi.json HTTP/1.1" 200
+2026-03-06 14:43:25,997 INFO root Ambiente que llega sqlite
+2026-03-06 14:43:25,998 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-06 14:43:26,052 INFO uvicorn.access 127.0.0.1:55873 - "POST /api/login HTTP/1.1" 200
