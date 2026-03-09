@@ -1,22 +1,40 @@
 import React, { useState } from "react"
-import endpoints from '../api_fastapi'
+import { AuthApi } from "../api"
+import { webConfig } from "../config"
+import { useNavigate } from 'react-router-dom';
 
 export function Login(){
+    
+    const navigate = useNavigate();
     const [user, setUser] = useState('')
     const [pass, setPass] = useState('')
+    const [error, setError] = useState<string | null>(null);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        try {
-            const { data } = await endpoints.login.entrar(user, pass)
+        const basePath = import.meta.env.VITE_API_PYTHON
+        const api = new AuthApi(webConfig.getApiSinToken(), basePath);
+        const response = await api.autenticarUsuario({
+            loginRequest: {
+                user: user,
+                password: pass
+            }
+        })
+        const accessToken = response.data.access_token;
+        const refreshToken = response.data.refresh_token;
 
-            console.log(data)
-        } catch (error) {
-            alert("Credenciales invalidas")
+        if (!accessToken) {
+            setError('La respuesta no contiene token');
             console.error(error)
+            return;
         }
-    }
 
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+
+        navigate('/home', { replace: true });
+
+    }
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
