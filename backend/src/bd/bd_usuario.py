@@ -4,6 +4,9 @@ from sqlmodel import Session
 from src.backend.auth import hash_password, verify_password
 from src.config.engine_config import get_engine
 from src.bd.schema import Usuario
+from fastapi import HTTPException
+
+from src.backend.auth import create_access_token, create_refresh_token
 
 
 class UsuarioService:
@@ -18,13 +21,22 @@ class UsuarioService:
 
     def autenticar(self, user: str, password: str) -> Usuario | None:
         usuario = self.get_usuario_by_user(user)
-        if not usuario:
-            return None
+
+        if not usuario.password:
+            raise HTTPException(status_code=401, detail="Usuario sin contraseña configurada")
 
         if not verify_password(password, usuario.password):
-            return None
+            raise HTTPException(status_code=401, detail="Credenciales invalidas")
+        
+        access_token, _ = create_access_token(usuario.user, usuario.empresa_id)
+        refresh_token, _ = create_refresh_token(usuario.user, usuario.empresa_id)
 
-        return usuario
+        return {
+            "access_token": access_token,
+            "type": "bearer",
+            "expires_in" : 60 * 60,
+            "refresh_token" : refresh_token
+        }
 
     def guardar_usuario_sql(self, empresa_id: int, user: str, password: str) -> Usuario:
         with Session(self.engine) as session:

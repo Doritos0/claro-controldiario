@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta, timezone
 
+from fastapi import APIRouter, Depends, HTTPException
+
 import jwt
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
@@ -9,6 +11,10 @@ SECRET_KEY = "controlDiario"
 REFRESH_KEY = "controlDiarioRefresh"
 PASSWORD_SECRET = "passwordSecret"
 ALGORITHM = "HS256"
+
+
+ACCESS_TOKEN_EXPIRE_MINUTES = 60
+REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 _password_hasher = PasswordHasher()
 
@@ -28,27 +34,35 @@ def verify_password(password: str, hashed_password: str) -> bool:
         return False
 
 
-def create_access_token(user: str, empresa_id: int) -> str:
+def create_access_token(user: str, empresa_id: int):
+    now = datetime.now(timezone.utc)
+    expire = now + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     payload = {
-        "user": user,
+        
+        "iat" : int(now.timestamp()),
+        "sub": user,
         "empresa_id": empresa_id,
-        "token_type": "access",
+        "type": "access",
         "exp": datetime.now(timezone.utc) + timedelta(hours=1),
     }
-    return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
+    token = jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
+    return token, expire
 
 
-def create_refresh_token(user: str, empresa_id: int) -> str:
+def create_refresh_token(user: str, empresa_id: int):
+    now = datetime.now(timezone.utc)
+    expire = now + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
     payload = {
-        "user": user,
+        "sub": user,
         "empresa_id": empresa_id,
-        "token_type": "refresh",
-        "exp": datetime.now(timezone.utc) + timedelta(days=7),
+        "type": "refresh",
+        "exp": expire,
     }
-    return jwt.encode(payload, REFRESH_KEY, algorithm=ALGORITHM)
+    token = jwt.encode(payload, REFRESH_KEY, algorithm=ALGORITHM)
+    return token, expire
 
 
-def verify_jwt(authorization: str, is_refresh: bool = False) -> dict:
+def verify_jwt(authorization: str, is_refresh: bool = False):
     if not authorization or not authorization.startswith("Bearer "):
         raise ValueError("Bearer token faltante o inválido")
 
@@ -58,10 +72,37 @@ def verify_jwt(authorization: str, is_refresh: bool = False) -> dict:
     try:
         payload = jwt.decode(token, key, algorithms=[ALGORITHM])
         expected_type = "refresh" if is_refresh else "access"
-        if payload.get("token_type") != expected_type:
+        if payload.get("type") != expected_type:
             raise InvalidTokenError("Tipo de token inválido")
         return payload
     except ExpiredSignatureError as e:
         raise ExpiredSignatureError("Token expirado") from e
     except InvalidTokenError as e:
         raise InvalidTokenError("Token inválido") from e
+    
+def refresh_access_token(refresh_token: str):
+    return _refresh_logic(refresh_token)
+
+
+def _refresh_logic(refresh_token: str):
+    try:
+        decoded = jwt.decode(refresh_token, REFRESH_KEY, algorithms=[ALGORITHM])
+
+        if decoded.get("type") != "refresh":
+            raise HTTPException(status_code=401, detail="Token incorrecto")
+
+        new_access_token, _ = create_access_token(
+            decoded["sub"],
+            decoded["empresa_id"],
+        )
+
+        return {
+            "access_token": new_access_token,
+            "token_type": "bearer",
+            "expires_in": ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        }
+
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Refresh token expirado")
+    except jwt.InvalidTokenError:
+        raise HTTPException(status_code=401, detail="Refresh token inválido")
