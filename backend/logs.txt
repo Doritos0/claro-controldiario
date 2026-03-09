@@ -3346,3 +3346,455 @@ AttributeError: 'TokenStruct' object has no attribute 'usuario_ids'. Did you mea
 2026-03-09 13:01:50,222 INFO uvicorn.access 127.0.0.1:50597 - "OPTIONS /login HTTP/1.1" 200
 2026-03-09 13:01:50,306 INFO uvicorn.access 127.0.0.1:50598 - "POST /login HTTP/1.1" 200
 2026-03-09 13:01:50,330 INFO uvicorn.access 127.0.0.1:50598 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:03:45,790 INFO uvicorn.access 127.0.0.1:50655 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:03:47,213 INFO uvicorn.access 127.0.0.1:50655 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:03:48,112 INFO uvicorn.access 127.0.0.1:50655 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:03:48,846 INFO uvicorn.access 127.0.0.1:50655 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:03:50,090 INFO uvicorn.access 127.0.0.1:50655 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:06:22,558 INFO uvicorn.access 127.0.0.1:50694 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:06:35,519 INFO uvicorn.access 127.0.0.1:50695 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:06:45,085 INFO uvicorn.access 127.0.0.1:50706 - "POST /login HTTP/1.1" 200
+2026-03-09 13:06:45,104 INFO uvicorn.access 127.0.0.1:50706 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:06:52,884 INFO uvicorn.access 127.0.0.1:50707 - "POST /login HTTP/1.1" 200
+2026-03-09 13:06:52,909 INFO uvicorn.access 127.0.0.1:50707 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:08:36,644 INFO uvicorn.access 127.0.0.1:50736 - "POST /api/post_configuracion HTTP/1.1" 200
+2026-03-09 13:08:43,750 INFO uvicorn.access 127.0.0.1:50737 - "POST /api/post_configuracion HTTP/1.1" 200
+2026-03-09 13:11:07,516 INFO uvicorn.access 127.0.0.1:50776 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:11:49,608 INFO uvicorn.access 127.0.0.1:50791 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 13:11:49,956 INFO uvicorn.access 127.0.0.1:50791 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 13:28:10,348 INFO uvicorn.access 127.0.0.1:51042 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 13:28:10,685 INFO uvicorn.access 127.0.0.1:51042 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 13:29:50,633 INFO uvicorn.access 127.0.0.1:51086 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 13:29:50,991 INFO uvicorn.access 127.0.0.1:51086 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 13:30:59,713 INFO uvicorn.access 127.0.0.1:51094 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 13:31:00,048 INFO uvicorn.access 127.0.0.1:51094 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 13:35:10,398 INFO uvicorn.access 127.0.0.1:51160 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 13:35:10,763 INFO uvicorn.access 127.0.0.1:51160 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 13:40:04,426 INFO uvicorn.access 127.0.0.1:51227 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-09 13:40:04,436 INFO uvicorn.access 127.0.0.1:51227 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:43:55,882 INFO uvicorn.access 127.0.0.1:51286 - "OPTIONS /login HTTP/1.1" 200
+2026-03-09 13:43:56,009 INFO uvicorn.access 127.0.0.1:51286 - "POST /login HTTP/1.1" 200
+2026-03-09 13:43:56,038 INFO uvicorn.access 127.0.0.1:51286 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:44:01,956 INFO uvicorn.access 127.0.0.1:51288 - "POST /login HTTP/1.1" 200
+2026-03-09 13:44:01,983 INFO uvicorn.access 127.0.0.1:51288 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:44:40,534 INFO uvicorn.access 127.0.0.1:51289 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:44:41,284 INFO uvicorn.access 127.0.0.1:51289 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:44:42,177 INFO uvicorn.access 127.0.0.1:51289 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:44:43,116 INFO uvicorn.access 127.0.0.1:51289 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 13:44:54,168 INFO uvicorn.access 127.0.0.1:51309 - "POST /login HTTP/1.1" 200
+2026-03-09 13:44:54,193 INFO uvicorn.access 127.0.0.1:51309 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 14:03:18,637 INFO uvicorn.access 127.0.0.1:51555 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-09 14:03:18,645 INFO uvicorn.access 127.0.0.1:51555 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 14:03:25,062 INFO uvicorn.access 127.0.0.1:51557 - "OPTIONS /login HTTP/1.1" 200
+2026-03-09 14:03:25,155 INFO uvicorn.access 127.0.0.1:51558 - "POST /login HTTP/1.1" 200
+2026-03-09 14:03:25,179 INFO uvicorn.access 127.0.0.1:51558 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 14:05:31,562 INFO uvicorn.access 127.0.0.1:51593 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 14:05:32,436 INFO uvicorn.access 127.0.0.1:51593 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 14:05:36,715 INFO uvicorn.access 127.0.0.1:51593 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 14:05:37,637 INFO uvicorn.access 127.0.0.1:51593 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 14:06:09,354 INFO uvicorn.access 127.0.0.1:51594 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 14:06:15,903 INFO uvicorn.access 127.0.0.1:51639 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 14:06:56,852 INFO uvicorn.access 127.0.0.1:51640 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:22:39,167 INFO uvicorn.access 127.0.0.1:52601 - "OPTIONS /login HTTP/1.1" 200
+2026-03-09 15:22:39,304 INFO uvicorn.access 127.0.0.1:52601 - "POST /login HTTP/1.1" 200
+2026-03-09 15:22:39,339 INFO uvicorn.access 127.0.0.1:52601 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-09 15:22:39,345 INFO uvicorn.access 127.0.0.1:52601 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:22:42,900 INFO uvicorn.access 127.0.0.1:52601 - "OPTIONS /post_configuracion HTTP/1.1" 200
+2026-03-09 15:22:42,966 INFO uvicorn.access 127.0.0.1:52604 - "POST /post_configuracion HTTP/1.1" 200
+2026-03-09 15:22:54,691 INFO uvicorn.access 127.0.0.1:52605 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:23:17,231 INFO uvicorn.access 127.0.0.1:52606 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:32:46,857 INFO uvicorn.access 127.0.0.1:53031 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-09 15:32:46,867 INFO uvicorn.access 127.0.0.1:53031 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:33:48,804 INFO uvicorn.error Shutting down
+2026-03-09 15:33:48,921 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:33:48,926 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:33:48,929 INFO uvicorn.error Finished server process [13936]
+2026-03-09 15:33:50,440 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:33:50,440 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:33:52,502 INFO uvicorn.error Started server process [14724]
+2026-03-09 15:33:52,503 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:33:52,503 INFO uvicorn.error Application startup complete.
+2026-03-09 15:35:01,026 INFO uvicorn.access 127.0.0.1:53121 - "OPTIONS /login HTTP/1.1" 200
+2026-03-09 15:35:01,049 INFO root Ambiente que llega sqlite
+2026-03-09 15:35:01,050 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 15:35:01,225 INFO uvicorn.access 127.0.0.1:53121 - "POST /login HTTP/1.1" 200
+2026-03-09 15:35:01,271 INFO uvicorn.access 127.0.0.1:53121 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:35:07,540 INFO uvicorn.access 127.0.0.1:53123 - "OPTIONS /post_configuracion HTTP/1.1" 200
+2026-03-09 15:35:07,563 INFO uvicorn.access 127.0.0.1:53124 - "POST /post_configuracion HTTP/1.1" 200
+2026-03-09 15:35:07,572 INFO uvicorn.access 127.0.0.1:53124 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:36:53,730 INFO uvicorn.error Shutting down
+2026-03-09 15:36:53,851 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:36:53,852 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:36:53,852 INFO uvicorn.error Finished server process [14724]
+2026-03-09 15:36:55,101 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:36:55,101 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:36:57,114 INFO uvicorn.error Started server process [23760]
+2026-03-09 15:36:57,114 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:36:57,115 INFO uvicorn.error Application startup complete.
+2026-03-09 15:37:02,997 INFO root Ambiente que llega sqlite
+2026-03-09 15:37:02,999 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 15:37:03,172 INFO uvicorn.access 127.0.0.1:53221 - "POST /login HTTP/1.1" 200
+2026-03-09 15:37:03,213 INFO uvicorn.access 127.0.0.1:53221 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:37:40,525 INFO uvicorn.error Shutting down
+2026-03-09 15:37:40,628 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:37:40,629 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:37:40,629 INFO uvicorn.error Finished server process [23760]
+2026-03-09 15:37:41,925 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:37:41,926 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:38:02,467 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:38:02,468 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:38:04,527 INFO uvicorn.error Started server process [16140]
+2026-03-09 15:38:04,528 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:38:04,528 INFO uvicorn.error Application startup complete.
+2026-03-09 15:38:12,468 INFO root Ambiente que llega sqlite
+2026-03-09 15:38:12,469 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 15:38:12,519 INFO uvicorn.access 127.0.0.1:53278 - "POST /login HTTP/1.1" 500
+2026-03-09 15:38:12,520 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 410, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\applications.py", line 1160, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 326, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\concurrency.py", line 32, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2502, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 986, in run
+    result = context.run(func, *args)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\backend\routes\auth_route.py", line 41, in login
+    return usuario_service.autenticar(payload.user, payload.password)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\bd\bd_usuario.py", line 25, in autenticar
+    if not usuario.password:
+           ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'password'
+2026-03-09 15:39:10,240 INFO uvicorn.error Shutting down
+2026-03-09 15:39:10,354 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:39:10,355 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:39:10,356 INFO uvicorn.error Finished server process [16140]
+2026-03-09 15:39:11,668 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:39:11,669 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:39:13,659 INFO uvicorn.error Started server process [17460]
+2026-03-09 15:39:13,660 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:39:13,660 INFO uvicorn.error Application startup complete.
+2026-03-09 15:39:16,481 INFO root Ambiente que llega sqlite
+2026-03-09 15:39:16,483 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 15:39:16,524 INFO uvicorn.access 127.0.0.1:53324 - "POST /login HTTP/1.1" 404
+2026-03-09 15:39:21,089 INFO uvicorn.access 127.0.0.1:53324 - "POST /login HTTP/1.1" 404
+2026-03-09 15:39:31,360 INFO uvicorn.access 127.0.0.1:53325 - "POST /login HTTP/1.1" 404
+2026-03-09 15:39:36,969 INFO uvicorn.access 127.0.0.1:53338 - "POST /login HTTP/1.1" 404
+2026-03-09 15:40:26,172 INFO uvicorn.error Shutting down
+2026-03-09 15:40:26,285 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:40:26,286 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:40:26,286 INFO uvicorn.error Finished server process [17460]
+2026-03-09 15:40:27,531 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:40:27,531 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:40:29,438 INFO uvicorn.error Started server process [20780]
+2026-03-09 15:40:29,439 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:40:29,440 INFO uvicorn.error Application startup complete.
+2026-03-09 15:40:56,498 INFO uvicorn.error Shutting down
+2026-03-09 15:40:56,600 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:40:56,601 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:40:56,601 INFO uvicorn.error Finished server process [20780]
+2026-03-09 15:40:57,898 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:40:57,899 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:40:59,926 INFO uvicorn.error Started server process [11976]
+2026-03-09 15:40:59,927 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:40:59,927 INFO uvicorn.error Application startup complete.
+2026-03-09 15:41:13,503 INFO uvicorn.error Shutting down
+2026-03-09 15:41:13,605 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:41:13,605 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:41:13,606 INFO uvicorn.error Finished server process [11976]
+2026-03-09 15:41:14,933 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:41:14,933 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:41:16,868 INFO uvicorn.error Started server process [7940]
+2026-03-09 15:41:16,869 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:41:16,870 INFO uvicorn.error Application startup complete.
+2026-03-09 15:41:39,561 INFO uvicorn.error Shutting down
+2026-03-09 15:41:39,668 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:41:39,669 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:41:39,669 INFO uvicorn.error Finished server process [7940]
+2026-03-09 15:41:40,939 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:41:40,939 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:41:42,188 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:41:42,190 INFO root Ambiente que llega sqlite
+2026-03-09 15:41:42,190 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 15:41:42,236 INFO root ya existe claro
+2026-03-09 15:41:42,238 INFO root ya existe wom
+2026-03-09 15:41:42,390 INFO root Se guardo a usuario TEST
+2026-03-09 15:41:42,542 INFO root Se guardo a usuario TEST2
+2026-03-09 15:41:42,561 INFO root Base de datos inicializada con empresas, usuarios y ejecutivos por defecto
+2026-03-09 15:41:42,969 INFO uvicorn.error Started server process [1900]
+2026-03-09 15:41:42,970 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:41:42,970 INFO uvicorn.error Application startup complete.
+2026-03-09 15:42:03,954 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:42:03,956 INFO root Ambiente que llega sqlite
+2026-03-09 15:42:03,956 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 15:42:03,999 INFO root ya existe claro
+2026-03-09 15:42:04,000 INFO root ya existe wom
+2026-03-09 15:42:04,147 INFO root Se guardo a usuario TEST
+2026-03-09 15:42:04,297 INFO root Se guardo a usuario TEST2
+2026-03-09 15:42:04,306 INFO root Base de datos inicializada con empresas, usuarios y ejecutivos por defecto
+2026-03-09 15:43:16,097 INFO uvicorn.error Shutting down
+2026-03-09 15:43:16,206 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:43:16,207 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:43:16,207 INFO uvicorn.error Finished server process [1900]
+2026-03-09 15:43:17,574 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:43:17,575 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:43:18,720 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:43:18,722 INFO root Ambiente que llega sqlite
+2026-03-09 15:43:18,722 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 15:43:18,765 INFO root ya existe claro
+2026-03-09 15:43:18,766 INFO root ya existe wom
+2026-03-09 15:43:18,912 INFO root Se guardo a usuario TEST
+2026-03-09 15:43:19,046 INFO root Se guardo a usuario TEST2
+2026-03-09 15:43:19,056 INFO root Base de datos inicializada con empresas, usuarios y ejecutivos por defecto
+2026-03-09 15:43:19,618 INFO uvicorn.error Started server process [22976]
+2026-03-09 15:43:19,619 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:43:19,620 INFO uvicorn.error Application startup complete.
+2026-03-09 15:43:31,713 INFO uvicorn.error Shutting down
+2026-03-09 15:43:31,828 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:43:31,829 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:43:31,829 INFO uvicorn.error Finished server process [22976]
+2026-03-09 15:43:33,015 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:43:33,019 INFO root Ambiente que llega sqlite
+2026-03-09 15:43:33,020 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 15:43:33,064 INFO root Usuario que entra claro
+2026-03-09 15:43:33,066 INFO root ya existe claro
+2026-03-09 15:43:33,067 INFO root Usuario que entra wom
+2026-03-09 15:43:33,068 INFO root ya existe wom
+2026-03-09 15:43:33,068 INFO root Usuario que entra TEST
+2026-03-09 15:43:33,069 INFO root Usuario TEST no existe, se guardará
+2026-03-09 15:43:33,164 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:43:33,164 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:43:33,209 INFO root Se guardo a usuario TEST
+2026-03-09 15:43:33,209 INFO root Usuario que entra TEST2
+2026-03-09 15:43:33,210 INFO root Usuario TEST2 no existe, se guardará
+2026-03-09 15:43:33,331 INFO root Se guardo a usuario TEST2
+2026-03-09 15:43:33,351 INFO root Base de datos inicializada con empresas, usuarios y ejecutivos por defecto
+2026-03-09 15:43:35,179 INFO uvicorn.error Started server process [13804]
+2026-03-09 15:43:35,180 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:43:35,181 INFO uvicorn.error Application startup complete.
+2026-03-09 15:43:56,252 INFO uvicorn.error Shutting down
+2026-03-09 15:43:56,354 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:43:56,355 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:43:56,356 INFO uvicorn.error Finished server process [13804]
+2026-03-09 15:43:57,656 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:43:57,657 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:43:57,943 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:43:57,945 INFO root Ambiente que llega sqlite
+2026-03-09 15:43:57,946 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 15:43:57,986 INFO root Usuario que entra claro
+2026-03-09 15:43:57,988 INFO root ya existe claro
+2026-03-09 15:43:57,989 INFO root Usuario que entra wom
+2026-03-09 15:43:57,990 INFO root ya existe wom
+2026-03-09 15:43:57,991 INFO root Usuario que entra TEST
+2026-03-09 15:43:57,993 INFO root ya existe TEST
+2026-03-09 15:43:57,993 INFO root Usuario que entra TEST2
+2026-03-09 15:43:57,995 INFO root ya existe TEST2
+2026-03-09 15:43:58,014 INFO root Base de datos inicializada con empresas, usuarios y ejecutivos por defecto
+2026-03-09 15:43:59,664 INFO uvicorn.error Started server process [25908]
+2026-03-09 15:43:59,665 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:43:59,666 INFO uvicorn.error Application startup complete.
+2026-03-09 15:44:23,267 INFO uvicorn.error Shutting down
+2026-03-09 15:44:23,370 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 15:44:23,371 INFO uvicorn.error Application shutdown complete.
+2026-03-09 15:44:23,372 INFO uvicorn.error Finished server process [25908]
+2026-03-09 15:44:24,682 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:44:24,683 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 15:44:26,618 INFO uvicorn.error Started server process [1544]
+2026-03-09 15:44:26,618 INFO uvicorn.error Waiting for application startup.
+2026-03-09 15:44:26,619 INFO uvicorn.error Application startup complete.
+2026-03-09 15:50:02,685 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 15:50:02,687 INFO root Ambiente que llega sqlite
+2026-03-09 15:50:02,688 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 15:50:06,002 INFO root Base de datos inicializada con empresas, usuarios y ejecutivos por defecto
+2026-03-09 15:50:26,114 INFO uvicorn.access 127.0.0.1:53804 - "OPTIONS /login HTTP/1.1" 200
+2026-03-09 15:50:26,137 INFO root Ambiente que llega sqlite
+2026-03-09 15:50:26,139 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 15:50:26,323 INFO uvicorn.access 127.0.0.1:53804 - "POST /login HTTP/1.1" 200
+2026-03-09 15:50:26,360 INFO uvicorn.access 127.0.0.1:53804 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-09 15:50:26,374 INFO uvicorn.access 127.0.0.1:53804 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:50:32,233 INFO uvicorn.access 127.0.0.1:53807 - "OPTIONS /post_configuracion HTTP/1.1" 200
+2026-03-09 15:50:32,261 INFO uvicorn.access 127.0.0.1:53808 - "POST /post_configuracion HTTP/1.1" 200
+2026-03-09 15:50:32,271 INFO uvicorn.access 127.0.0.1:53808 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:50:41,758 INFO uvicorn.access 127.0.0.1:53809 - "POST /login HTTP/1.1" 200
+2026-03-09 15:50:41,791 INFO uvicorn.access 127.0.0.1:53809 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:50:45,549 INFO uvicorn.access 127.0.0.1:53809 - "POST /post_configuracion HTTP/1.1" 200
+2026-03-09 15:50:45,560 INFO uvicorn.access 127.0.0.1:53809 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:50:53,282 INFO uvicorn.access 127.0.0.1:53837 - "POST /login HTTP/1.1" 200
+2026-03-09 15:50:53,311 INFO uvicorn.access 127.0.0.1:53837 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:15,130 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:15,974 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:18,499 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:18,845 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:20,339 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:20,964 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:21,531 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:22,083 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:22,522 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:22,847 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:23,065 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:23,281 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:23,585 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:23,864 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:24,070 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:24,300 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:24,566 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:24,812 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:27,874 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:28,125 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:28,348 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:28,578 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:28,823 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:29,035 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:29,261 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:29,484 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:29,731 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 15:51:30,181 INFO uvicorn.access 127.0.0.1:53839 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 16:04:42,139 INFO uvicorn.access 127.0.0.1:54451 - "OPTIONS /login HTTP/1.1" 200
+2026-03-09 16:04:42,263 INFO uvicorn.access 127.0.0.1:54451 - "POST /login HTTP/1.1" 200
+2026-03-09 16:04:42,291 INFO uvicorn.access 127.0.0.1:54451 - "OPTIONS /descargar HTTP/1.1" 200
+2026-03-09 16:04:42,293 INFO uvicorn.access 127.0.0.1:54451 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-09 16:04:42,296 INFO uvicorn.access 127.0.0.1:54451 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:04:42,301 INFO uvicorn.access 127.0.0.1:54451 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 16:04:43,317 INFO uvicorn.access 127.0.0.1:54451 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:04:45,339 INFO uvicorn.access 127.0.0.1:54451 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:04:45,903 INFO uvicorn.access 127.0.0.1:54451 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 16:04:54,574 INFO uvicorn.access 127.0.0.1:54456 - "POST /login HTTP/1.1" 404
+2026-03-09 16:04:55,535 INFO uvicorn.access 127.0.0.1:54456 - "POST /login HTTP/1.1" 404
+2026-03-09 16:04:58,786 INFO uvicorn.access 127.0.0.1:54456 - "POST /login HTTP/1.1" 404
+2026-03-09 16:05:28,042 INFO uvicorn.access 127.0.0.1:54457 - "POST /login HTTP/1.1" 404
+2026-03-09 16:05:50,538 INFO uvicorn.access 127.0.0.1:54508 - "POST /login HTTP/1.1" 401
+2026-03-09 16:06:30,258 INFO uvicorn.access 127.0.0.1:54538 - "POST /login HTTP/1.1" 200
+2026-03-09 16:06:30,286 INFO uvicorn.access 127.0.0.1:54538 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:06:30,291 INFO uvicorn.access 127.0.0.1:54538 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 16:06:31,307 INFO uvicorn.access 127.0.0.1:54538 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:06:33,317 INFO uvicorn.access 127.0.0.1:54538 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:06:37,348 INFO uvicorn.access 127.0.0.1:54538 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:01,234 INFO uvicorn.access 127.0.0.1:54540 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:02,244 INFO uvicorn.access 127.0.0.1:54540 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:04,256 INFO uvicorn.access 127.0.0.1:54540 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:07,362 INFO uvicorn.access 127.0.0.1:54540 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:07,366 INFO uvicorn.access 127.0.0.1:54541 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 16:07:08,383 INFO uvicorn.access 127.0.0.1:54541 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:10,395 INFO uvicorn.access 127.0.0.1:54541 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:14,422 INFO uvicorn.access 127.0.0.1:54541 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:22,843 INFO uvicorn.access 127.0.0.1:54899 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:23,864 INFO uvicorn.access 127.0.0.1:54899 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:25,884 INFO uvicorn.access 127.0.0.1:54899 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:27,351 INFO uvicorn.access 127.0.0.1:54899 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:27,357 INFO uvicorn.access 127.0.0.1:54900 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 16:07:28,369 INFO uvicorn.access 127.0.0.1:54900 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:30,388 INFO uvicorn.access 127.0.0.1:54900 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:07:33,166 INFO uvicorn.error Shutting down
+2026-03-09 16:07:33,267 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 16:07:33,267 INFO uvicorn.error Application shutdown complete.
+2026-03-09 16:07:33,268 INFO uvicorn.error Finished server process [1544]
+2026-03-09 16:25:19,039 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 16:25:19,039 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 16:25:21,129 INFO uvicorn.error Started server process [21148]
+2026-03-09 16:25:21,129 INFO uvicorn.error Waiting for application startup.
+2026-03-09 16:25:21,130 INFO uvicorn.error Application startup complete.
+2026-03-09 16:26:36,154 INFO uvicorn.error Shutting down
+2026-03-09 16:26:36,265 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 16:26:36,266 INFO uvicorn.error Application shutdown complete.
+2026-03-09 16:26:36,266 INFO uvicorn.error Finished server process [21148]
+2026-03-09 16:26:46,650 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 16:26:46,651 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 16:26:48,730 INFO uvicorn.error Started server process [23136]
+2026-03-09 16:26:48,731 INFO uvicorn.error Waiting for application startup.
+2026-03-09 16:26:48,732 INFO uvicorn.error Application startup complete.
+2026-03-09 16:26:59,466 INFO uvicorn.error Shutting down
+2026-03-09 16:26:59,576 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 16:26:59,577 INFO uvicorn.error Application shutdown complete.
+2026-03-09 16:26:59,577 INFO uvicorn.error Finished server process [23136]
+2026-03-09 16:27:06,763 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 16:27:06,764 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 16:27:08,713 INFO uvicorn.error Started server process [22896]
+2026-03-09 16:27:08,714 INFO uvicorn.error Waiting for application startup.
+2026-03-09 16:27:08,715 INFO uvicorn.error Application startup complete.
+2026-03-09 16:27:29,986 INFO uvicorn.access 127.0.0.1:55802 - "GET / HTTP/1.1" 404
+2026-03-09 16:27:30,820 INFO uvicorn.error Shutting down
+2026-03-09 16:27:30,934 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 16:27:30,935 INFO uvicorn.error Application shutdown complete.
+2026-03-09 16:27:30,935 INFO uvicorn.error Finished server process [22896]
+2026-03-09 16:27:32,248 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 16:27:32,248 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 16:27:34,297 INFO uvicorn.error Started server process [16680]
+2026-03-09 16:27:34,298 INFO uvicorn.error Waiting for application startup.
+2026-03-09 16:27:34,299 INFO uvicorn.error Application startup complete.
+2026-03-09 16:27:37,680 INFO uvicorn.access 127.0.0.1:55815 - "GET / HTTP/1.1" 404
+2026-03-09 16:27:53,464 INFO uvicorn.access 127.0.0.1:55828 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 16:27:53,858 INFO uvicorn.access 127.0.0.1:55828 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 16:29:19,585 INFO uvicorn.access 127.0.0.1:55917 - "OPTIONS /descargar HTTP/1.1" 200
+2026-03-09 16:29:19,587 INFO uvicorn.access 127.0.0.1:55918 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-09 16:29:19,590 INFO uvicorn.access 127.0.0.1:55917 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:29:19,603 INFO root Ambiente que llega sqlite
+2026-03-09 16:29:19,605 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 16:29:19,655 INFO uvicorn.access 127.0.0.1:55918 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 16:29:20,614 INFO uvicorn.access 127.0.0.1:55918 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:29:22,635 INFO uvicorn.access 127.0.0.1:55918 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:29:26,655 INFO uvicorn.access 127.0.0.1:55918 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:29:40,472 INFO uvicorn.access 127.0.0.1:55921 - "POST /descargar HTTP/1.1" 404
+2026-03-09 16:29:41,872 INFO uvicorn.access 127.0.0.1:55921 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 16:31:31,725 INFO uvicorn.access 127.0.0.1:56033 - "POST /get_configuracion HTTP/1.1" 200

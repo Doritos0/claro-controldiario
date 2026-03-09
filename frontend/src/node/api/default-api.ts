@@ -22,8 +22,6 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import type { DescargarFotos200Response } from '../models';
-// @ts-ignore
 import type { DescargarFotosRequest } from '../models';
 /**
  * DefaultApi - axios parameter creator
@@ -84,7 +82,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async descargarFotos(descargarFotosRequest: DescargarFotosRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DescargarFotos200Response>> {
+        async descargarFotos(descargarFotosRequest: DescargarFotosRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.descargarFotos(descargarFotosRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DefaultApi.descargarFotos']?.[localVarOperationServerIndex]?.url;
@@ -107,7 +105,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        descargarFotos(requestParameters: DefaultApiDescargarFotosRequest, options?: RawAxiosRequestConfig): AxiosPromise<DescargarFotos200Response> {
+        descargarFotos(requestParameters: DefaultApiDescargarFotosRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.descargarFotos(requestParameters.descargarFotosRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -127,7 +125,7 @@ export interface DefaultApiInterface {
      * @throws {RequiredError}
      * @memberof DefaultApiInterface
      */
-    descargarFotos(requestParameters: DefaultApiDescargarFotosRequest, options?: RawAxiosRequestConfig): AxiosPromise<DescargarFotos200Response>;
+    descargarFotos(requestParameters: DefaultApiDescargarFotosRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
 
 }
 

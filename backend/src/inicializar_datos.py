@@ -2,6 +2,9 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from src.bd.inicializacion.bd_datos import inicializar_datos
+from src.config.log_config import configurar_log
+
+configurar_log()
 
 
 local_path = Path(__file__).parent

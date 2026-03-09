@@ -7,7 +7,7 @@ All URIs are relative to *http://localhost:3000*
 |[**descargarFotos**](#descargarfotos) | **POST** /descargar | Descargar fotos de un grupo por fecha|
 
 # **descargarFotos**
-> DescargarFotos200Response descargarFotos(descargarFotosRequest)
+> descargarFotos(descargarFotosRequest)
 
 
 ### Example
@@ -38,7 +38,7 @@ const { status, data } = await apiInstance.descargarFotos(
 
 ### Return type
 
-**DescargarFotos200Response**
+void (empty response body)
 
 ### Authorization
 
@@ -47,7 +47,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 
 ### HTTP response details

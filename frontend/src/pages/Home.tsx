@@ -1,7 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";
 import { WebApi, type Configuracion } from "../api";
 import { webConfig } from "../config";
+import React, { useState } from "react";
+import { DefaultApi } from "../node";
 
 interface TokenPayload {
     usuario_id: number;
@@ -10,6 +12,7 @@ interface TokenPayload {
 }
 
 export function Home(){
+    const queryClient = useQueryClient();
     const obtenerDataToken = () => {
         const token = localStorage.getItem('accessToken');
         if (!token) return { usuario: null, empresa: null, sub: null};
@@ -31,6 +34,8 @@ export function Home(){
     const empresa : number | null = dataInicial.empresa
     const usuario : string | null = dataInicial.sub
 
+    const [grupo, setGrupo] = useState<string>("")
+
     const { data: configuracion, isLoading: configLoading} = useQuery<Configuracion | null>({
         queryKey: ['configuracion'],
         queryFn: async () => {
@@ -44,6 +49,43 @@ export function Home(){
         refetchOnMount: false,
     })
 
+    const handleConfig = async (e: React.FormEvent) => {
+        e.preventDefault()
+        try {
+            const api = new WebApi(webConfig.getApiConToken(), import.meta.env.VITE_API_PYTHON)
+            const response = await api.agregarConfiguracion({
+                postConfiguracionRequest: {
+                    grupo_wsp: grupo
+                }
+            })
+
+            console.log("Se envia formulario! con la siguiente informacion: ",response.data.grupo_wsp)
+            queryClient.invalidateQueries({ queryKey: ['configuracion'] })
+        } catch (error) {
+            console.error("Error al guardar: ",error)
+        }
+
+    }
+
+    const { data: wspData } = useQuery({
+        queryKey: ['wspData'],
+        queryFn: async() => {
+            const api = new DefaultApi(import.meta.env.VITE_API_EXPRESS)
+            const data = await api.descargarFotos({
+                descargarFotosRequest: {
+                    nombreGrupo: grupo,
+                    fecha: "04-03-2026"
+                }
+            })
+            console.log(data.data)
+            return data.data
+        }
+    })
+    
+    console.log(import.meta.env.VITE_API_EXPRESS)
+
+    console.log(wspData)
+
     return(
         <>
             {configLoading ? (
@@ -53,18 +95,42 @@ export function Home(){
             ) : (
                 <>
                     <h2 className="text-xl font-bold mb-4">
-                        Hola Mundo! Bienvenido {usuario} para la empresa {empresa} con el identificador {usuarioId}
+                        Bienvenido {usuario}! | Empresa {empresa}
                     </h2>
 
                     {!configuracion ? (
                         <div className="bg-amber-100 text-amber-800 p-4 rounded-md border border-amber-200">
-                            <strong>Aviso:</strong> Necesitas configurar la aplicación antes de seguir.
+                            <strong>Aviso:</strong> No tienes configurado ningun grupo de WhatsApp, agrega el nombre del grupo donde se dejan las capturas de TikTok antes de continuar!
+                        <form className="space-y-6" onSubmit={handleConfig}>
+                            <div>
+                                <label className="bloc text-sm font-medium text-gray-700 mb-1">Grupo WhatsApp</label>
+                                <input
+                                    type="text"
+                                    value={grupo}
+                                    onChange={(e) => setGrupo(e.target.value)}
+                                    placeholder="Ej. CampañaDigital"
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full bg-slate-500 hover:bg-slate-700 text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-slate-200 transition duration-300 transform active:scale-95"
+                            >
+                                Agregar
+                            </button>
+                        </form>
                         </div>
                     ) : (
+                        <>
                         <div className="mt-4 p-4 bg-gray-50 rounded-md border">
                             <p><strong>Configuración actual:</strong></p>
                             <pre className="text-sm">{JSON.stringify(configuracion, null, 2)}</pre>
                         </div>
+                        <div>
+                            <h3>Inicia en WhatsApp</h3>
+
+                        </div>
+                        </>
                     )}
                 </>
             )}

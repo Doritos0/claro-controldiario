@@ -26,10 +26,13 @@ def _get_or_create_empresa(nombre: str) -> Empresa:
 def inicializar_datos():
     empresa_claro = _get_or_create_empresa("Claro")
     empresa_wom = _get_or_create_empresa("WOM")
+    empresa_test = _get_or_create_empresa("TEST")
 
     usuario_service = UsuarioService()
     usuario_service.guardar_usuario_sql(empresa_id=empresa_claro.id, user="claro", password="claro123")
     usuario_service.guardar_usuario_sql(empresa_id=empresa_wom.id, user="wom", password="wom123")
+    usuario_service.guardar_usuario_sql(empresa_id=empresa_test.id, user="TEST", password="12345")
+    usuario_service.guardar_usuario_sql(empresa_id=empresa_test.id, user="TEST2", password="12345")
 
     ejecutivo_service = EjecutivoService()
     daniela_baeza = ejecutivo_service.guardar_ejecutivo_sql("Daniela Baeza", "ACTIVO", "PHOENIX", empresa_claro.id, 0).id

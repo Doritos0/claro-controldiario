@@ -1,3 +1,5 @@
+import logging
+
 from sqlalchemy import Engine, func, select
 from sqlmodel import Session
 
@@ -16,11 +18,14 @@ class UsuarioService:
     def get_usuario_by_user(self, user: str) -> Usuario | None:
         with Session(self.engine) as session:
             return session.exec(
-                select(Usuario).where(func.lower(Usuario.user) == user.lower())
+                select(Usuario).where(Usuario.user == user.lower())
             ).scalars().first()
 
     def autenticar(self, user: str, password: str) -> Usuario | None:
         usuario = self.get_usuario_by_user(user)
+
+        if not usuario:
+            raise HTTPException(status_code=404, detail="Usuario no existe")
 
         if not usuario.password:
             raise HTTPException(status_code=401, detail="Usuario sin contraseña configurada")
@@ -40,10 +45,10 @@ class UsuarioService:
 
     def guardar_usuario_sql(self, empresa_id: int, user: str, password: str) -> Usuario:
         with Session(self.engine) as session:
-            usuario = session.exec(select(Usuario).where(func.lower(Usuario.user) == user.lower())).scalars().first()
+            usuario = session.exec(select(Usuario).where(Usuario.user == user)).scalars().first()
             if usuario:
+                logging.info(f"ya existe {user}")
                 return Usuario.model_validate(usuario)
-
             usuario = Usuario(empresa_id=empresa_id, user=user, password=hash_password(password))
             session.add(usuario)
             session.commit()
