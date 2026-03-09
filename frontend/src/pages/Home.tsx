@@ -56,7 +56,7 @@ export function Home(){
 
             {/* Lógica condicional para la configuración */}
             {!configuracion ? (
-                <div style={{ backgroundColor: '#fff3cd', padding: '10px', borderRadius: '5px' }}>
+                <div className="bg-amber-100 text-amber-800 p-4 rounded-md border border-amber-200">
                     <strong>Aviso:</strong> Necesitas configurar la aplicación antes de seguir.
                 </div>
             ) : (
