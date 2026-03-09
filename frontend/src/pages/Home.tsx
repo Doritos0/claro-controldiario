@@ -35,11 +35,7 @@ export function Home(){
         queryKey: ['configuracion'],
         queryFn: async () => {
             const api = new WebApi(webConfig.getApiConToken(), import.meta.env.VITE_API_PYTHON);
-            const response = await api.obtenerConfiguracion({
-                getConfiguracionRequest:{
-                    usuario_id: usuarioId!
-                }
-            })
+            const response = await api.obtenerConfiguracion()
             return response.data
         },
         enabled: !!usuarioId,
