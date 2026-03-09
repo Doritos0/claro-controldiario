@@ -28,8 +28,8 @@ class UsuarioService:
         if not verify_password(password, usuario.password):
             raise HTTPException(status_code=401, detail="Credenciales invalidas")
         
-        access_token, _ = create_access_token(usuario.user, usuario.empresa_id)
-        refresh_token, _ = create_refresh_token(usuario.user, usuario.empresa_id)
+        access_token, _ = create_access_token(usuario.id, usuario.user, usuario.empresa_id)
+        refresh_token, _ = create_refresh_token(usuario.id, usuario.user, usuario.empresa_id)
 
         return {
             "access_token": access_token,

@@ -22,9 +22,13 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
+import type { Configuracion } from '../models';
+// @ts-ignore
 import type { EjecutarRequest } from '../models';
 // @ts-ignore
 import type { EjecutivoRest } from '../models';
+// @ts-ignore
+import type { GetConfiguracionRequest } from '../models';
 // @ts-ignore
 import type { HTTPValidationError } from '../models';
 // @ts-ignore
@@ -201,6 +205,86 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @summary Get Configuracion
+         * @param {GetConfiguracionRequest} getConfiguracionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        obtenerConfiguracion: async (getConfiguracionRequest: GetConfiguracionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'getConfiguracionRequest' is not null or undefined
+            assertParamExists('obtenerConfiguracion', 'getConfiguracionRequest', getConfiguracionRequest)
+            const localVarPath = `/get_configuracion`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(getConfiguracionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get Configuracion
+         * @param {GetConfiguracionRequest} getConfiguracionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        obtenerConfiguracion_3: async (getConfiguracionRequest: GetConfiguracionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'getConfiguracionRequest' is not null or undefined
+            assertParamExists('obtenerConfiguracion_3', 'getConfiguracionRequest', getConfiguracionRequest)
+            const localVarPath = `/get_configuracion`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(getConfiguracionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Test
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -280,9 +364,9 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registrarUsuario_3: async (registerRequest: RegisterRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        registrarUsuario_4: async (registerRequest: RegisterRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'registerRequest' is not null or undefined
-            assertParamExists('registrarUsuario_3', 'registerRequest', registerRequest)
+            assertParamExists('registrarUsuario_4', 'registerRequest', registerRequest)
             const localVarPath = `/usuarios`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -377,6 +461,32 @@ export const WebApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get Configuracion
+         * @param {GetConfiguracionRequest} getConfiguracionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async obtenerConfiguracion(getConfiguracionRequest: GetConfiguracionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Configuracion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.obtenerConfiguracion(getConfiguracionRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.obtenerConfiguracion']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get Configuracion
+         * @param {GetConfiguracionRequest} getConfiguracionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async obtenerConfiguracion_3(getConfiguracionRequest: GetConfiguracionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Configuracion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.obtenerConfiguracion_3(getConfiguracionRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.obtenerConfiguracion_3']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Test
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -407,10 +517,10 @@ export const WebApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async registrarUsuario_3(registerRequest: RegisterRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.registrarUsuario_3(registerRequest, options);
+        async registrarUsuario_4(registerRequest: RegisterRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registrarUsuario_4(registerRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebApi.registrarUsuario_3']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.registrarUsuario_4']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -465,6 +575,26 @@ export const WebApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
+         * @summary Get Configuracion
+         * @param {WebApiObtenerConfiguracionRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        obtenerConfiguracion(requestParameters: WebApiObtenerConfiguracionRequest, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion> {
+            return localVarFp.obtenerConfiguracion(requestParameters.getConfiguracionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get Configuracion
+         * @param {WebApiObtenerConfiguracion0Request} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        obtenerConfiguracion_3(requestParameters: WebApiObtenerConfiguracion0Request, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion> {
+            return localVarFp.obtenerConfiguracion_3(requestParameters.getConfiguracionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Test
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -489,8 +619,8 @@ export const WebApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registrarUsuario_3(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse> {
-            return localVarFp.registrarUsuario_3(requestParameters.registerRequest, options).then((request) => request(axios, basePath));
+        registrarUsuario_4(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse> {
+            return localVarFp.registrarUsuario_4(requestParameters.registerRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -543,6 +673,26 @@ export interface WebApiInterface {
 
     /**
      * 
+     * @summary Get Configuracion
+     * @param {WebApiObtenerConfiguracionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApiInterface
+     */
+    obtenerConfiguracion(requestParameters: WebApiObtenerConfiguracionRequest, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion>;
+
+    /**
+     * 
+     * @summary Get Configuracion
+     * @param {WebApiObtenerConfiguracion0Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApiInterface
+     */
+    obtenerConfiguracion_3(requestParameters: WebApiObtenerConfiguracion0Request, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion>;
+
+    /**
+     * 
      * @summary Test
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -568,7 +718,7 @@ export interface WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApiInterface
      */
-    registrarUsuario_3(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse>;
+    registrarUsuario_4(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse>;
 
 }
 
@@ -629,6 +779,34 @@ export interface WebApiEjecutarReporteDiario0Request {
 }
 
 /**
+ * Request parameters for obtenerConfiguracion operation in WebApi.
+ * @export
+ * @interface WebApiObtenerConfiguracionRequest
+ */
+export interface WebApiObtenerConfiguracionRequest {
+    /**
+     * 
+     * @type {GetConfiguracionRequest}
+     * @memberof WebApiObtenerConfiguracion
+     */
+    readonly getConfiguracionRequest: GetConfiguracionRequest
+}
+
+/**
+ * Request parameters for obtenerConfiguracion_3 operation in WebApi.
+ * @export
+ * @interface WebApiObtenerConfiguracion0Request
+ */
+export interface WebApiObtenerConfiguracion0Request {
+    /**
+     * 
+     * @type {GetConfiguracionRequest}
+     * @memberof WebApiObtenerConfiguracion0
+     */
+    readonly getConfiguracionRequest: GetConfiguracionRequest
+}
+
+/**
  * Request parameters for registrarUsuario operation in WebApi.
  * @export
  * @interface WebApiRegistrarUsuarioRequest
@@ -643,7 +821,7 @@ export interface WebApiRegistrarUsuarioRequest {
 }
 
 /**
- * Request parameters for registrarUsuario_3 operation in WebApi.
+ * Request parameters for registrarUsuario_4 operation in WebApi.
  * @export
  * @interface WebApiRegistrarUsuario0Request
  */
@@ -713,6 +891,30 @@ export class WebApi extends BaseAPI implements WebApiInterface {
 
     /**
      * 
+     * @summary Get Configuracion
+     * @param {WebApiObtenerConfiguracionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApi
+     */
+    public obtenerConfiguracion(requestParameters: WebApiObtenerConfiguracionRequest, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).obtenerConfiguracion(requestParameters.getConfiguracionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get Configuracion
+     * @param {WebApiObtenerConfiguracion0Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApi
+     */
+    public obtenerConfiguracion_3(requestParameters: WebApiObtenerConfiguracion0Request, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).obtenerConfiguracion_3(requestParameters.getConfiguracionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Test
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -742,8 +944,8 @@ export class WebApi extends BaseAPI implements WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApi
      */
-    public registrarUsuario_3(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig) {
-        return WebApiFp(this.configuration).registrarUsuario_3(requestParameters.registerRequest, options).then((request) => request(this.axios, this.basePath));
+    public registrarUsuario_4(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).registrarUsuario_4(requestParameters.registerRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

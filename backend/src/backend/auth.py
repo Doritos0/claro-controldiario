@@ -34,14 +34,14 @@ def verify_password(password: str, hashed_password: str) -> bool:
         return False
 
 
-def create_access_token(user: str, empresa_id: int):
+def create_access_token(usuario_id: int, user: str, empresa_id: int):
     now = datetime.now(timezone.utc)
     expire = now + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     payload = {
-        
         "iat" : int(now.timestamp()),
         "sub": user,
         "empresa_id": empresa_id,
+        "usuario_id": usuario_id,
         "type": "access",
         "exp": datetime.now(timezone.utc) + timedelta(hours=1),
     }
@@ -49,12 +49,13 @@ def create_access_token(user: str, empresa_id: int):
     return token, expire
 
 
-def create_refresh_token(user: str, empresa_id: int):
+def create_refresh_token(usuario_id: int, user: str, empresa_id: int):
     now = datetime.now(timezone.utc)
     expire = now + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
     payload = {
         "sub": user,
         "empresa_id": empresa_id,
+        "usuario_id": usuario_id,
         "type": "refresh",
         "exp": expire,
     }

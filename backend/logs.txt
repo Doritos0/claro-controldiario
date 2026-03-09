@@ -2661,3 +2661,403 @@ KeyError: 'user'
 2026-03-09 10:31:17,113 INFO root Se esta procesando 04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
 2026-03-09 10:31:17,115 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
 2026-03-09 10:31:17,120 INFO uvicorn.access 127.0.0.1:63240 - "POST /api/ejecutar HTTP/1.1" 200
+2026-03-09 10:42:56,033 INFO uvicorn.access 127.0.0.1:63444 - "GET /api/openapi.json HTTP/1.1" 200
+2026-03-09 10:42:56,281 INFO uvicorn.access 127.0.0.1:63444 - "GET /favicon.ico HTTP/1.1" 404
+2026-03-09 10:45:12,887 INFO uvicorn.access 127.0.0.1:63497 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 10:45:13,395 INFO uvicorn.access 127.0.0.1:63497 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 11:02:26,545 INFO uvicorn.access 127.0.0.1:63742 - "OPTIONS /login HTTP/1.1" 200
+2026-03-09 11:02:26,673 INFO uvicorn.access 127.0.0.1:63742 - "POST /login HTTP/1.1" 200
+2026-03-09 11:03:13,641 INFO uvicorn.access 127.0.0.1:63744 - "OPTIONS //login HTTP/1.1" 200
+2026-03-09 11:03:13,643 INFO uvicorn.access 127.0.0.1:63745 - "POST //login HTTP/1.1" 404
+2026-03-09 11:03:39,323 INFO uvicorn.access 127.0.0.1:63860 - "POST /login HTTP/1.1" 200
+2026-03-09 11:09:52,669 INFO uvicorn.access 127.0.0.1:64141 - "GET /api/swagger HTTP/1.1" 200
+2026-03-09 11:09:53,369 INFO uvicorn.access 127.0.0.1:64141 - "GET /api/openapi.json HTTP/1.1" 200
+2026-03-09 11:10:03,123 INFO uvicorn.access 127.0.0.1:64143 - "POST /api/login HTTP/1.1" 200
+2026-03-09 11:11:43,547 INFO uvicorn.error Shutting down
+2026-03-09 11:11:43,656 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 11:11:43,656 INFO uvicorn.error Application shutdown complete.
+2026-03-09 11:11:43,657 INFO uvicorn.error Finished server process [19424]
+2026-03-09 11:11:45,530 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 11:11:45,531 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 11:12:23,322 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 11:12:23,323 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 11:13:14,038 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 11:13:14,039 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 11:13:16,214 INFO uvicorn.error Started server process [24020]
+2026-03-09 11:13:16,215 INFO uvicorn.error Waiting for application startup.
+2026-03-09 11:13:16,215 INFO uvicorn.error Application startup complete.
+2026-03-09 11:13:20,726 INFO root Ambiente que llega sqlite
+2026-03-09 11:13:20,727 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 11:13:20,893 INFO uvicorn.access 127.0.0.1:64285 - "POST /api/login HTTP/1.1" 200
+2026-03-09 11:23:36,480 INFO uvicorn.access 127.0.0.1:64721 - "OPTIONS /login HTTP/1.1" 200
+2026-03-09 11:23:36,637 INFO uvicorn.access 127.0.0.1:64721 - "POST /login HTTP/1.1" 200
+2026-03-09 11:37:43,004 INFO uvicorn.error Shutting down
+2026-03-09 11:37:43,120 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 11:37:43,120 INFO uvicorn.error Application shutdown complete.
+2026-03-09 11:37:43,121 INFO uvicorn.error Finished server process [24020]
+2026-03-09 11:37:44,521 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 11:37:44,521 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 11:46:23,659 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 11:46:23,660 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 11:46:25,773 INFO uvicorn.error Started server process [23836]
+2026-03-09 11:46:25,774 INFO uvicorn.error Waiting for application startup.
+2026-03-09 11:46:25,774 INFO uvicorn.error Application startup complete.
+2026-03-09 11:46:40,968 INFO uvicorn.access 127.0.0.1:65153 - "GET /api/swagger HTTP/1.1" 200
+2026-03-09 11:46:41,198 INFO uvicorn.access 127.0.0.1:65153 - "GET /api/openapi.json HTTP/1.1" 200
+2026-03-09 11:46:54,911 INFO root Ambiente que llega sqlite
+2026-03-09 11:46:54,912 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 11:46:55,092 INFO uvicorn.access 127.0.0.1:65155 - "POST /api/login HTTP/1.1" 200
+2026-03-09 11:47:39,974 INFO uvicorn.access 127.0.0.1:65164 - "POST /api/get_configuracion HTTP/1.1" 500
+2026-03-09 11:47:39,975 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 410, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\applications.py", line 1160, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 326, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\concurrency.py", line 32, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2502, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 986, in run
+    result = context.run(func, *args)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\backend\routes\routes.py", line 105, in get_configuracion
+    return configuracion_service.get_configuracion(payload.usuario_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\bd\bd_configuracion.py", line 16, in get_configuracion
+    configuracion = session.exec(Configuracion).where(Configuracion.usuario_id == usuario_id)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\sqlmodel\orm\session.py", line 75, in exec
+    results = super().execute(
+        statement,
+    ...<4 lines>...
+        _add_event=_add_event,
+    )
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2147, in _execute_internal
+    statement = coercions.expect(roles.StatementRole, statement)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\sqlalchemy\sql\coercions.py", line 396, in expect
+    resolved = impl._literal_coercion(
+        element, argname=argname, **kw
+    )
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\sqlalchemy\sql\coercions.py", line 635, in _literal_coercion
+    self._raise_for_expected(element, argname)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\sqlalchemy\sql\coercions.py", line 519, in _raise_for_expected
+    raise exc.ArgumentError(msg, code=code) from err
+sqlalchemy.exc.ArgumentError: Executable SQL or text() construct expected, got <class 'src.bd.schema.Configuracion'>.
+2026-03-09 11:49:39,207 INFO uvicorn.error Shutting down
+2026-03-09 11:49:39,319 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 11:49:39,320 INFO uvicorn.error Application shutdown complete.
+2026-03-09 11:49:39,321 INFO uvicorn.error Finished server process [23836]
+2026-03-09 11:49:40,678 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 11:49:40,678 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 11:49:42,637 INFO uvicorn.error Started server process [27244]
+2026-03-09 11:49:42,637 INFO uvicorn.error Waiting for application startup.
+2026-03-09 11:49:42,638 INFO uvicorn.error Application startup complete.
+2026-03-09 11:51:05,326 INFO uvicorn.error Shutting down
+2026-03-09 11:51:05,440 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 11:51:05,441 INFO uvicorn.error Application shutdown complete.
+2026-03-09 11:51:05,442 INFO uvicorn.error Finished server process [27244]
+2026-03-09 11:51:06,874 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 11:51:06,875 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 11:51:08,881 INFO uvicorn.error Started server process [13460]
+2026-03-09 11:51:08,881 INFO uvicorn.error Waiting for application startup.
+2026-03-09 11:51:08,882 INFO uvicorn.error Application startup complete.
+2026-03-09 11:51:11,620 INFO root Ambiente que llega sqlite
+2026-03-09 11:51:11,621 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 11:51:11,665 INFO uvicorn.access 127.0.0.1:65218 - "POST /api/get_configuracion HTTP/1.1" 500
+2026-03-09 11:51:11,666 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 410, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\applications.py", line 1160, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 691, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 296, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 2 validation errors:
+  {'type': 'missing', 'loc': ('response', 'usuario_id'), 'msg': 'Field required', 'input': <sqlalchemy.engine.result.ScalarResult object at 0x000001AF0AF22210>}
+  {'type': 'missing', 'loc': ('response', 'grupo_wsp'), 'msg': 'Field required', 'input': <sqlalchemy.engine.result.ScalarResult object at 0x000001AF0AF22210>}
+
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\backend\routes\routes.py", line 102, in get_configuracion
+    POST /api/get_configuracion
+2026-03-09 11:52:06,440 INFO uvicorn.error Shutting down
+2026-03-09 11:52:06,556 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 11:52:06,557 INFO uvicorn.error Application shutdown complete.
+2026-03-09 11:52:06,557 INFO uvicorn.error Finished server process [13460]
+2026-03-09 11:52:07,914 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 11:52:07,915 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 11:52:09,918 INFO uvicorn.error Started server process [23272]
+2026-03-09 11:52:09,919 INFO uvicorn.error Waiting for application startup.
+2026-03-09 11:52:09,920 INFO uvicorn.error Application startup complete.
+2026-03-09 11:52:14,432 INFO root Ambiente que llega sqlite
+2026-03-09 11:52:14,433 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 11:52:14,486 INFO uvicorn.access 127.0.0.1:65230 - "POST /api/get_configuracion HTTP/1.1" 500
+2026-03-09 11:52:14,487 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 410, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\applications.py", line 1160, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 691, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 296, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\backend\routes\routes.py", line 102, in get_configuracion
+    POST /api/get_configuracion
+2026-03-09 11:53:08,729 INFO uvicorn.error Shutting down
+2026-03-09 11:53:08,837 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 11:53:08,838 INFO uvicorn.error Application shutdown complete.
+2026-03-09 11:53:08,838 INFO uvicorn.error Finished server process [23272]
+2026-03-09 11:53:10,195 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 11:53:10,196 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 11:53:12,283 INFO uvicorn.error Started server process [14248]
+2026-03-09 11:53:12,284 INFO uvicorn.error Waiting for application startup.
+2026-03-09 11:53:12,285 INFO uvicorn.error Application startup complete.
+2026-03-09 11:53:15,061 INFO root Ambiente que llega sqlite
+2026-03-09 11:53:15,062 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 11:53:15,109 INFO uvicorn.access 127.0.0.1:65241 - "POST /api/get_configuracion HTTP/1.1" 500
+2026-03-09 11:53:15,110 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 410, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\applications.py", line 1160, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 691, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 296, in serialize_response
+    raise ResponseValidationError(
+    ...<3 lines>...
+    )
+fastapi.exceptions.ResponseValidationError: 1 validation error:
+  {'type': 'model_attributes_type', 'loc': ('response',), 'msg': 'Input should be a valid dictionary or object to extract fields from', 'input': None}
+
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\backend\routes\routes.py", line 102, in get_configuracion
+    POST /api/get_configuracion
+2026-03-09 11:53:25,484 INFO uvicorn.error Shutting down
+2026-03-09 11:53:25,590 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 11:53:25,591 INFO uvicorn.error Application shutdown complete.
+2026-03-09 11:53:25,592 INFO uvicorn.error Finished server process [14248]
+2026-03-09 11:53:26,924 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 11:53:26,925 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 11:53:28,839 INFO uvicorn.error Started server process [18264]
+2026-03-09 11:53:28,840 INFO uvicorn.error Waiting for application startup.
+2026-03-09 11:53:28,841 INFO uvicorn.error Application startup complete.
+2026-03-09 11:53:30,193 INFO root Ambiente que llega sqlite
+2026-03-09 11:53:30,194 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 11:53:30,246 INFO uvicorn.access 127.0.0.1:65249 - "POST /api/get_configuracion HTTP/1.1" 200
+2026-03-09 11:53:37,416 INFO uvicorn.error Shutting down
+2026-03-09 11:53:37,518 INFO uvicorn.error Waiting for application shutdown.
+2026-03-09 11:53:37,519 INFO uvicorn.error Application shutdown complete.
+2026-03-09 11:53:37,519 INFO uvicorn.error Finished server process [18264]

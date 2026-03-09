@@ -1,5 +1,7 @@
+export * from './configuracion';
 export * from './ejecutar-request';
 export * from './ejecutivo-rest';
+export * from './get-configuracion-request';
 export * from './httpvalidation-error';
 export * from './live';
 export * from './login-request';

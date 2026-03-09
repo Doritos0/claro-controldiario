@@ -8,7 +8,8 @@ from pydantic import BaseModel
 from src.backend.auth import verify_jwt
 from src.bd.bd_ejecutivo import EjecutivoService
 from src.bd.bd_usuario import UsuarioService
-from src.bd.schema import LIVE
+from src.bd.bd_configuracion import ConfiguracionService
+from src.bd.schema import LIVE, Configuracion
 from src.proceso_01_ocr import ejecutar_proceso
 
 _security = HTTPBearer(bearerFormat="JWT", auto_error=False)
@@ -87,7 +88,6 @@ class EjecutarRequest(BaseModel):
     fecha_objetivo: str | None = None
     consolidado: str | None = None
 
-
 @router.post("/ejecutar", operation_id="Ejecutar_reporte_diario", tags=["web"], response_model=list[LIVE])
 def ejecutar(payload: EjecutarRequest) -> list[LIVE]:
     return ejecutar_proceso(
@@ -95,3 +95,11 @@ def ejecutar(payload: EjecutarRequest) -> list[LIVE]:
         fecha_objetivo=payload.fecha_objetivo,
         consolidado=payload.consolidado,
     )
+
+class GetConfiguracionRequest(BaseModel):
+    usuario_id: int
+
+@router.post("/get_configuracion", operation_id="Obtener configuracion", tags=["web"], response_model=Configuracion | None)
+def get_configuracion(payload: GetConfiguracionRequest) -> Configuracion | None:
+    configuracion_service = ConfiguracionService()
+    return configuracion_service.get_configuracion(payload.usuario_id)

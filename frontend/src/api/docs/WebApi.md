@@ -8,6 +8,8 @@ All URIs are relative to *http://localhost:8000/api*
 |[**crearEjecutivo_0**](#crearejecutivo_0) | **POST** /ejecutivos | Crear Ejecutivo|
 |[**ejecutarReporteDiario**](#ejecutarreportediario) | **POST** /ejecutar | Ejecutar|
 |[**ejecutarReporteDiario_0**](#ejecutarreportediario_0) | **POST** /ejecutar | Ejecutar|
+|[**obtenerConfiguracion**](#obtenerconfiguracion) | **POST** /get_configuracion | Get Configuracion|
+|[**obtenerConfiguracion_0**](#obtenerconfiguracion_0) | **POST** /get_configuracion | Get Configuracion|
 |[**peticionTest**](#peticiontest) | **GET** /test | Test|
 |[**registrarUsuario**](#registrarusuario) | **POST** /usuarios | Registrar Usuario|
 |[**registrarUsuario_0**](#registrarusuario_0) | **POST** /usuarios | Registrar Usuario|
@@ -201,6 +203,110 @@ const { status, data } = await apiInstance.ejecutarReporteDiario_0(
 ### Return type
 
 **Array<LIVE>**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **obtenerConfiguracion**
+> Configuracion obtenerConfiguracion(getConfiguracionRequest)
+
+
+### Example
+
+```typescript
+import {
+    WebApi,
+    Configuration,
+    GetConfiguracionRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebApi(configuration);
+
+let getConfiguracionRequest: GetConfiguracionRequest; //
+
+const { status, data } = await apiInstance.obtenerConfiguracion(
+    getConfiguracionRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **getConfiguracionRequest** | **GetConfiguracionRequest**|  | |
+
+
+### Return type
+
+**Configuracion**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **obtenerConfiguracion_0**
+> Configuracion obtenerConfiguracion_0(getConfiguracionRequest)
+
+
+### Example
+
+```typescript
+import {
+    WebApi,
+    Configuration,
+    GetConfiguracionRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebApi(configuration);
+
+let getConfiguracionRequest: GetConfiguracionRequest; //
+
+const { status, data } = await apiInstance.obtenerConfiguracion_0(
+    getConfiguracionRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **getConfiguracionRequest** | **GetConfiguracionRequest**|  | |
+
+
+### Return type
+
+**Configuracion**
 
 ### Authorization
 

@@ -73,3 +73,8 @@ class RequestCache(SQLModel, table=True):  # pyright: ignore[reportCallIssue]
     tokens_thoughts: int = Field(default=0)
     tokens_output: int = Field(default=0)
     tokens_total: int = Field(default=0)
+
+class Configuracion(SQLModel, table=True): # pyright: ignore[reportCallIssue]
+    id: int | None = Field(default=None, primary_key=True)
+    usuario_id: int = Field(sa_column=Column(Integer, ForeignKey(USUARIO_ID, ondelete="RESTRICT"), nullable=False))
+    grupo_wsp: str = Field()
