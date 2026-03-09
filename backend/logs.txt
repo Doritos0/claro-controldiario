@@ -3061,3 +3061,14 @@ fastapi.exceptions.ResponseValidationError: 1 validation error:
 2026-03-09 11:53:37,518 INFO uvicorn.error Waiting for application shutdown.
 2026-03-09 11:53:37,519 INFO uvicorn.error Application shutdown complete.
 2026-03-09 11:53:37,519 INFO uvicorn.error Finished server process [18264]
+2026-03-09 11:53:38,913 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-09 11:53:38,913 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-09 11:53:40,970 INFO uvicorn.error Started server process [8544]
+2026-03-09 11:53:40,971 INFO uvicorn.error Waiting for application startup.
+2026-03-09 11:53:40,972 INFO uvicorn.error Application startup complete.
+2026-03-09 11:53:48,747 INFO uvicorn.access 127.0.0.1:65256 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 11:53:49,114 INFO uvicorn.access 127.0.0.1:65256 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 12:04:57,029 INFO uvicorn.access 127.0.0.1:65439 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-09 12:04:57,052 INFO root Ambiente que llega sqlite
+2026-03-09 12:04:57,053 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-09 12:04:57,093 INFO uvicorn.access 127.0.0.1:65439 - "POST /get_configuracion HTTP/1.1" 200

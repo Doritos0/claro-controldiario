@@ -1,4 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";
+import { WebApi, type Configuracion } from "../api";
+import { webConfig } from "../config";
 
 interface TokenPayload {
     usuario_id: number;
@@ -28,10 +31,40 @@ export function Home(){
     const empresa : number | null = dataInicial.empresa
     const usuario : string | null = dataInicial.sub
 
-
+    const { data: configuracion } = useQuery<Configuracion | null>({
+        queryKey: ['configuracion'],
+        queryFn: async () => {
+            const api = new WebApi(webConfig.getApiConToken(), import.meta.env.VITE_API_PYTHON);
+            const response = await api.obtenerConfiguracion({
+                getConfiguracionRequest:{
+                    usuario_id: usuarioId!
+                }
+            })
+            return response.data
+        },
+        enabled: !!usuarioId,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+        refetchOnMount: false,
+    })
 
     return(
-        <h2>Hola Mundo! Bienvenido { usuario } para la empresa { empresa } con el identificador { usuarioId }</h2>
+        <>
+            <h2>
+                Hola Mundo! Bienvenido {usuario} para la empresa {empresa} con el identificador {usuarioId}
+            </h2>
+
+            {/* Lógica condicional para la configuración */}
+            {!configuracion ? (
+                <div style={{ backgroundColor: '#fff3cd', padding: '10px', borderRadius: '5px' }}>
+                    <strong>Aviso:</strong> Necesitas configurar la aplicación antes de seguir.
+                </div>
+            ) : (
+                <p>
+                    <strong>Configuración actual:</strong> {JSON.stringify(configuracion)}
+                </p>
+            )}
+        </>
     )
 }
 
