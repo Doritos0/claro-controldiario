@@ -1,58 +1,97 @@
 import logging
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from jwt import ExpiredSignatureError, InvalidTokenError
 from pydantic import BaseModel
 
-from src.bd.bd_usuario import UsuarioService
-from src.bd.schema import LIVE, Usuario
+from src.backend.auth import verify_jwt
 from src.bd.bd_ejecutivo import EjecutivoService
+from src.bd.bd_usuario import UsuarioService
+from src.bd.schema import LIVE
 from src.proceso_01_ocr import ejecutar_proceso
 
-router = APIRouter(tags=["web"])
+_security = HTTPBearer(bearerFormat="JWT", auto_error=False)
+
+
+def require_access_token(credentials: HTTPAuthorizationCredentials | None = Depends(_security)) -> dict:
+    try:
+        if not credentials:
+            raise ValueError("Bearer token faltante o inválido")
+        return verify_jwt(authorization=f"Bearer {credentials.credentials}", is_refresh=False)
+    except ValueError as e:
+        raise HTTPException(status_code=401, detail=str(e)) from e
+    except ExpiredSignatureError as e:
+        raise HTTPException(status_code=401, detail="Token expirado") from e
+    except InvalidTokenError as e:
+        raise HTTPException(status_code=401, detail="Token inválido") from e
+
+
+router = APIRouter(tags=["web"], dependencies=[Depends(require_access_token)])
+
 
 @router.get("/test", operation_id="Peticion_test", response_model=str)
 def test() -> str:
-    logging.info(f"Llega la peticion")
+    logging.info("Llega la peticion")
     return "Funciona"
 
-class LoginRequest(BaseModel):
+
+class RegisterRequest(BaseModel):
+    empresa_id: int
     user: str
     password: str
 
-@router.post("/login", operation_id="Autenticar usuario", tags=["web"])
-def login(payload: LoginRequest) -> Usuario | None:
+
+class RegisterResponse(BaseModel):
+    id: int
+    empresa_id: int
+    user: str
+
+
+@router.post("/usuarios", operation_id="Registrar usuario", tags=["web"], response_model=RegisterResponse)
+def registrar_usuario(payload: RegisterRequest) -> RegisterResponse:
     usuario_service = UsuarioService()
-    return usuario_service.autenticar(
+    usuario = usuario_service.guardar_usuario_sql(
+        empresa_id=payload.empresa_id,
         user=payload.user,
-        password=payload.password
+        password=payload.password,
     )
+
+    assert usuario.id is not None
+    return RegisterResponse(id=usuario.id, empresa_id=usuario.empresa_id, user=usuario.user)
+
 
 class EjecutivoRest(BaseModel):
     id: int | None
     nombre: str
-    estado: str #EnumEstado
-    eps: str #PHOENIX
+    estado: str
+    eps: str
     empresa_id: int
+
 
 @router.post("/ejecutivos", operation_id="crear_ejecutivo", tags=["web"], response_model=int)
 def crear_ejecutivo(payload: EjecutivoRest) -> int:
     ejecutivo_service = EjecutivoService()
-    ejecutivo_creado = ejecutivo_service.guardar_ejecutivo_sql(nombre=payload.nombre,
-                                                               estado=payload.estado,
-                                                               eps=payload.eps,
-                                                               empresa_id=payload.empresa_id)
+    ejecutivo_creado = ejecutivo_service.guardar_ejecutivo_sql(
+        nombre=payload.nombre,
+        estado=payload.estado,
+        eps=payload.eps,
+        empresa_id=payload.empresa_id,
+    )
     assert ejecutivo_creado is not None
     return ejecutivo_creado.id
+
 
 class EjecutarRequest(BaseModel):
     empresa_id: int
     fecha_objetivo: str | None = None
     consolidado: str | None = None
 
+
 @router.post("/ejecutar", operation_id="Ejecutar_reporte_diario", tags=["web"], response_model=list[LIVE])
 def ejecutar(payload: EjecutarRequest) -> list[LIVE]:
     return ejecutar_proceso(
         empresa_id=payload.empresa_id,
         fecha_objetivo=payload.fecha_objetivo,
-        consolidado=payload.consolidado
+        consolidado=payload.consolidado,
     )
