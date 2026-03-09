@@ -4,6 +4,8 @@ All URIs are relative to *http://localhost:8000/api*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
+|[**agregarConfiguracion**](#agregarconfiguracion) | **POST** /post_configuracion | Post Configracion|
+|[**agregarConfiguracion_0**](#agregarconfiguracion_0) | **POST** /post_configuracion | Post Configracion|
 |[**crearEjecutivo**](#crearejecutivo) | **POST** /ejecutivos | Crear Ejecutivo|
 |[**crearEjecutivo_0**](#crearejecutivo_0) | **POST** /ejecutivos | Crear Ejecutivo|
 |[**ejecutarReporteDiario**](#ejecutarreportediario) | **POST** /ejecutar | Ejecutar|
@@ -13,6 +15,110 @@ All URIs are relative to *http://localhost:8000/api*
 |[**peticionTest**](#peticiontest) | **GET** /test | Test|
 |[**registrarUsuario**](#registrarusuario) | **POST** /usuarios | Registrar Usuario|
 |[**registrarUsuario_0**](#registrarusuario_0) | **POST** /usuarios | Registrar Usuario|
+
+# **agregarConfiguracion**
+> Configuracion agregarConfiguracion(postConfiguracionRequest)
+
+
+### Example
+
+```typescript
+import {
+    WebApi,
+    Configuration,
+    PostConfiguracionRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebApi(configuration);
+
+let postConfiguracionRequest: PostConfiguracionRequest; //
+
+const { status, data } = await apiInstance.agregarConfiguracion(
+    postConfiguracionRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **postConfiguracionRequest** | **PostConfiguracionRequest**|  | |
+
+
+### Return type
+
+**Configuracion**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **agregarConfiguracion_0**
+> Configuracion agregarConfiguracion_0(postConfiguracionRequest)
+
+
+### Example
+
+```typescript
+import {
+    WebApi,
+    Configuration,
+    PostConfiguracionRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebApi(configuration);
+
+let postConfiguracionRequest: PostConfiguracionRequest; //
+
+const { status, data } = await apiInstance.agregarConfiguracion_0(
+    postConfiguracionRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **postConfiguracionRequest** | **PostConfiguracionRequest**|  | |
+
+
+### Return type
+
+**Configuracion**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **crearEjecutivo**
 > number crearEjecutivo(ejecutivoRest)
@@ -223,7 +329,7 @@ const { status, data } = await apiInstance.ejecutarReporteDiario_0(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **obtenerConfiguracion**
-> Configuracion obtenerConfiguracion(getConfiguracionRequest)
+> Configuracion obtenerConfiguracion()
 
 
 ### Example
@@ -231,25 +337,17 @@ const { status, data } = await apiInstance.ejecutarReporteDiario_0(
 ```typescript
 import {
     WebApi,
-    Configuration,
-    GetConfiguracionRequest
+    Configuration
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new WebApi(configuration);
 
-let getConfiguracionRequest: GetConfiguracionRequest; //
-
-const { status, data } = await apiInstance.obtenerConfiguracion(
-    getConfiguracionRequest
-);
+const { status, data } = await apiInstance.obtenerConfiguracion();
 ```
 
 ### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **getConfiguracionRequest** | **GetConfiguracionRequest**|  | |
+This endpoint does not have any parameters.
 
 
 ### Return type
@@ -262,7 +360,7 @@ const { status, data } = await apiInstance.obtenerConfiguracion(
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -270,12 +368,11 @@ const { status, data } = await apiInstance.obtenerConfiguracion(
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Successful Response |  -  |
-|**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **obtenerConfiguracion_0**
-> Configuracion obtenerConfiguracion_0(getConfiguracionRequest)
+> Configuracion obtenerConfiguracion_0()
 
 
 ### Example
@@ -283,25 +380,17 @@ const { status, data } = await apiInstance.obtenerConfiguracion(
 ```typescript
 import {
     WebApi,
-    Configuration,
-    GetConfiguracionRequest
+    Configuration
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new WebApi(configuration);
 
-let getConfiguracionRequest: GetConfiguracionRequest; //
-
-const { status, data } = await apiInstance.obtenerConfiguracion_0(
-    getConfiguracionRequest
-);
+const { status, data } = await apiInstance.obtenerConfiguracion_0();
 ```
 
 ### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **getConfiguracionRequest** | **GetConfiguracionRequest**|  | |
+This endpoint does not have any parameters.
 
 
 ### Return type
@@ -314,7 +403,7 @@ const { status, data } = await apiInstance.obtenerConfiguracion_0(
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -322,7 +411,6 @@ const { status, data } = await apiInstance.obtenerConfiguracion_0(
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Successful Response |  -  |
-|**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

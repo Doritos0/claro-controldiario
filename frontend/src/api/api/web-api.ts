@@ -28,11 +28,11 @@ import type { EjecutarRequest } from '../models';
 // @ts-ignore
 import type { EjecutivoRest } from '../models';
 // @ts-ignore
-import type { GetConfiguracionRequest } from '../models';
-// @ts-ignore
 import type { HTTPValidationError } from '../models';
 // @ts-ignore
 import type { LIVE } from '../models';
+// @ts-ignore
+import type { PostConfiguracionRequest } from '../models';
 // @ts-ignore
 import type { RegisterRequest } from '../models';
 // @ts-ignore
@@ -43,6 +43,86 @@ import type { RegisterResponse } from '../models';
  */
 export const WebApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @summary Post Configracion
+         * @param {PostConfiguracionRequest} postConfiguracionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agregarConfiguracion: async (postConfiguracionRequest: PostConfiguracionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postConfiguracionRequest' is not null or undefined
+            assertParamExists('agregarConfiguracion', 'postConfiguracionRequest', postConfiguracionRequest)
+            const localVarPath = `/post_configuracion`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(postConfiguracionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Post Configracion
+         * @param {PostConfiguracionRequest} postConfiguracionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agregarConfiguracion_1: async (postConfiguracionRequest: PostConfiguracionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postConfiguracionRequest' is not null or undefined
+            assertParamExists('agregarConfiguracion_1', 'postConfiguracionRequest', postConfiguracionRequest)
+            const localVarPath = `/post_configuracion`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(postConfiguracionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @summary Crear Ejecutivo
@@ -90,9 +170,9 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crearEjecutivo_1: async (ejecutivoRest: EjecutivoRest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        crearEjecutivo_2: async (ejecutivoRest: EjecutivoRest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'ejecutivoRest' is not null or undefined
-            assertParamExists('crearEjecutivo_1', 'ejecutivoRest', ejecutivoRest)
+            assertParamExists('crearEjecutivo_2', 'ejecutivoRest', ejecutivoRest)
             const localVarPath = `/ejecutivos`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -170,9 +250,9 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ejecutarReporteDiario_2: async (ejecutarRequest: EjecutarRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        ejecutarReporteDiario_3: async (ejecutarRequest: EjecutarRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'ejecutarRequest' is not null or undefined
-            assertParamExists('ejecutarReporteDiario_2', 'ejecutarRequest', ejecutarRequest)
+            assertParamExists('ejecutarReporteDiario_3', 'ejecutarRequest', ejecutarRequest)
             const localVarPath = `/ejecutar`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -206,13 +286,10 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
         /**
          * 
          * @summary Get Configuracion
-         * @param {GetConfiguracionRequest} getConfiguracionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        obtenerConfiguracion: async (getConfiguracionRequest: GetConfiguracionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'getConfiguracionRequest' is not null or undefined
-            assertParamExists('obtenerConfiguracion', 'getConfiguracionRequest', getConfiguracionRequest)
+        obtenerConfiguracion: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/get_configuracion`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -231,12 +308,9 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(getConfiguracionRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -246,13 +320,10 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
         /**
          * 
          * @summary Get Configuracion
-         * @param {GetConfiguracionRequest} getConfiguracionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        obtenerConfiguracion_3: async (getConfiguracionRequest: GetConfiguracionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'getConfiguracionRequest' is not null or undefined
-            assertParamExists('obtenerConfiguracion_3', 'getConfiguracionRequest', getConfiguracionRequest)
+        obtenerConfiguracion_4: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/get_configuracion`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -271,12 +342,9 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(getConfiguracionRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -364,9 +432,9 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registrarUsuario_4: async (registerRequest: RegisterRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        registrarUsuario_5: async (registerRequest: RegisterRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'registerRequest' is not null or undefined
-            assertParamExists('registrarUsuario_4', 'registerRequest', registerRequest)
+            assertParamExists('registrarUsuario_5', 'registerRequest', registerRequest)
             const localVarPath = `/usuarios`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -409,6 +477,32 @@ export const WebApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary Post Configracion
+         * @param {PostConfiguracionRequest} postConfiguracionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agregarConfiguracion(postConfiguracionRequest: PostConfiguracionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Configuracion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agregarConfiguracion(postConfiguracionRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.agregarConfiguracion']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Post Configracion
+         * @param {PostConfiguracionRequest} postConfiguracionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agregarConfiguracion_1(postConfiguracionRequest: PostConfiguracionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Configuracion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agregarConfiguracion_1(postConfiguracionRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.agregarConfiguracion_1']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Crear Ejecutivo
          * @param {EjecutivoRest} ejecutivoRest 
          * @param {*} [options] Override http request option.
@@ -427,10 +521,10 @@ export const WebApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async crearEjecutivo_1(ejecutivoRest: EjecutivoRest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.crearEjecutivo_1(ejecutivoRest, options);
+        async crearEjecutivo_2(ejecutivoRest: EjecutivoRest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.crearEjecutivo_2(ejecutivoRest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebApi.crearEjecutivo_1']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.crearEjecutivo_2']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -453,21 +547,20 @@ export const WebApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ejecutarReporteDiario_2(ejecutarRequest: EjecutarRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LIVE>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.ejecutarReporteDiario_2(ejecutarRequest, options);
+        async ejecutarReporteDiario_3(ejecutarRequest: EjecutarRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LIVE>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.ejecutarReporteDiario_3(ejecutarRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebApi.ejecutarReporteDiario_2']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.ejecutarReporteDiario_3']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
          * @summary Get Configuracion
-         * @param {GetConfiguracionRequest} getConfiguracionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async obtenerConfiguracion(getConfiguracionRequest: GetConfiguracionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Configuracion>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.obtenerConfiguracion(getConfiguracionRequest, options);
+        async obtenerConfiguracion(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Configuracion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.obtenerConfiguracion(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebApi.obtenerConfiguracion']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -475,14 +568,13 @@ export const WebApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get Configuracion
-         * @param {GetConfiguracionRequest} getConfiguracionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async obtenerConfiguracion_3(getConfiguracionRequest: GetConfiguracionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Configuracion>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.obtenerConfiguracion_3(getConfiguracionRequest, options);
+        async obtenerConfiguracion_4(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Configuracion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.obtenerConfiguracion_4(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebApi.obtenerConfiguracion_3']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.obtenerConfiguracion_4']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -517,10 +609,10 @@ export const WebApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async registrarUsuario_4(registerRequest: RegisterRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.registrarUsuario_4(registerRequest, options);
+        async registrarUsuario_5(registerRequest: RegisterRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registrarUsuario_5(registerRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebApi.registrarUsuario_4']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.registrarUsuario_5']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -533,6 +625,26 @@ export const WebApiFp = function(configuration?: Configuration) {
 export const WebApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = WebApiFp(configuration)
     return {
+        /**
+         * 
+         * @summary Post Configracion
+         * @param {WebApiAgregarConfiguracionRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agregarConfiguracion(requestParameters: WebApiAgregarConfiguracionRequest, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion> {
+            return localVarFp.agregarConfiguracion(requestParameters.postConfiguracionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Post Configracion
+         * @param {WebApiAgregarConfiguracion0Request} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agregarConfiguracion_1(requestParameters: WebApiAgregarConfiguracion0Request, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion> {
+            return localVarFp.agregarConfiguracion_1(requestParameters.postConfiguracionRequest, options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @summary Crear Ejecutivo
@@ -550,8 +662,8 @@ export const WebApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        crearEjecutivo_1(requestParameters: WebApiCrearEjecutivo0Request, options?: RawAxiosRequestConfig): AxiosPromise<number> {
-            return localVarFp.crearEjecutivo_1(requestParameters.ejecutivoRest, options).then((request) => request(axios, basePath));
+        crearEjecutivo_2(requestParameters: WebApiCrearEjecutivo0Request, options?: RawAxiosRequestConfig): AxiosPromise<number> {
+            return localVarFp.crearEjecutivo_2(requestParameters.ejecutivoRest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -570,28 +682,26 @@ export const WebApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ejecutarReporteDiario_2(requestParameters: WebApiEjecutarReporteDiario0Request, options?: RawAxiosRequestConfig): AxiosPromise<Array<LIVE>> {
-            return localVarFp.ejecutarReporteDiario_2(requestParameters.ejecutarRequest, options).then((request) => request(axios, basePath));
+        ejecutarReporteDiario_3(requestParameters: WebApiEjecutarReporteDiario0Request, options?: RawAxiosRequestConfig): AxiosPromise<Array<LIVE>> {
+            return localVarFp.ejecutarReporteDiario_3(requestParameters.ejecutarRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Get Configuracion
-         * @param {WebApiObtenerConfiguracionRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        obtenerConfiguracion(requestParameters: WebApiObtenerConfiguracionRequest, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion> {
-            return localVarFp.obtenerConfiguracion(requestParameters.getConfiguracionRequest, options).then((request) => request(axios, basePath));
+        obtenerConfiguracion(options?: RawAxiosRequestConfig): AxiosPromise<Configuracion> {
+            return localVarFp.obtenerConfiguracion(options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Get Configuracion
-         * @param {WebApiObtenerConfiguracion0Request} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        obtenerConfiguracion_3(requestParameters: WebApiObtenerConfiguracion0Request, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion> {
-            return localVarFp.obtenerConfiguracion_3(requestParameters.getConfiguracionRequest, options).then((request) => request(axios, basePath));
+        obtenerConfiguracion_4(options?: RawAxiosRequestConfig): AxiosPromise<Configuracion> {
+            return localVarFp.obtenerConfiguracion_4(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -619,8 +729,8 @@ export const WebApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registrarUsuario_4(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse> {
-            return localVarFp.registrarUsuario_4(requestParameters.registerRequest, options).then((request) => request(axios, basePath));
+        registrarUsuario_5(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse> {
+            return localVarFp.registrarUsuario_5(requestParameters.registerRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -631,6 +741,26 @@ export const WebApiFactory = function (configuration?: Configuration, basePath?:
  * @interface WebApi
  */
 export interface WebApiInterface {
+    /**
+     * 
+     * @summary Post Configracion
+     * @param {WebApiAgregarConfiguracionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApiInterface
+     */
+    agregarConfiguracion(requestParameters: WebApiAgregarConfiguracionRequest, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion>;
+
+    /**
+     * 
+     * @summary Post Configracion
+     * @param {WebApiAgregarConfiguracion0Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApiInterface
+     */
+    agregarConfiguracion_1(requestParameters: WebApiAgregarConfiguracion0Request, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion>;
+
     /**
      * 
      * @summary Crear Ejecutivo
@@ -649,7 +779,7 @@ export interface WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApiInterface
      */
-    crearEjecutivo_1(requestParameters: WebApiCrearEjecutivo0Request, options?: RawAxiosRequestConfig): AxiosPromise<number>;
+    crearEjecutivo_2(requestParameters: WebApiCrearEjecutivo0Request, options?: RawAxiosRequestConfig): AxiosPromise<number>;
 
     /**
      * 
@@ -669,27 +799,25 @@ export interface WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApiInterface
      */
-    ejecutarReporteDiario_2(requestParameters: WebApiEjecutarReporteDiario0Request, options?: RawAxiosRequestConfig): AxiosPromise<Array<LIVE>>;
+    ejecutarReporteDiario_3(requestParameters: WebApiEjecutarReporteDiario0Request, options?: RawAxiosRequestConfig): AxiosPromise<Array<LIVE>>;
 
     /**
      * 
      * @summary Get Configuracion
-     * @param {WebApiObtenerConfiguracionRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebApiInterface
      */
-    obtenerConfiguracion(requestParameters: WebApiObtenerConfiguracionRequest, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion>;
+    obtenerConfiguracion(options?: RawAxiosRequestConfig): AxiosPromise<Configuracion>;
 
     /**
      * 
      * @summary Get Configuracion
-     * @param {WebApiObtenerConfiguracion0Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebApiInterface
      */
-    obtenerConfiguracion_3(requestParameters: WebApiObtenerConfiguracion0Request, options?: RawAxiosRequestConfig): AxiosPromise<Configuracion>;
+    obtenerConfiguracion_4(options?: RawAxiosRequestConfig): AxiosPromise<Configuracion>;
 
     /**
      * 
@@ -718,8 +846,36 @@ export interface WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApiInterface
      */
-    registrarUsuario_4(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse>;
+    registrarUsuario_5(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse>;
 
+}
+
+/**
+ * Request parameters for agregarConfiguracion operation in WebApi.
+ * @export
+ * @interface WebApiAgregarConfiguracionRequest
+ */
+export interface WebApiAgregarConfiguracionRequest {
+    /**
+     * 
+     * @type {PostConfiguracionRequest}
+     * @memberof WebApiAgregarConfiguracion
+     */
+    readonly postConfiguracionRequest: PostConfiguracionRequest
+}
+
+/**
+ * Request parameters for agregarConfiguracion_1 operation in WebApi.
+ * @export
+ * @interface WebApiAgregarConfiguracion0Request
+ */
+export interface WebApiAgregarConfiguracion0Request {
+    /**
+     * 
+     * @type {PostConfiguracionRequest}
+     * @memberof WebApiAgregarConfiguracion0
+     */
+    readonly postConfiguracionRequest: PostConfiguracionRequest
 }
 
 /**
@@ -737,7 +893,7 @@ export interface WebApiCrearEjecutivoRequest {
 }
 
 /**
- * Request parameters for crearEjecutivo_1 operation in WebApi.
+ * Request parameters for crearEjecutivo_2 operation in WebApi.
  * @export
  * @interface WebApiCrearEjecutivo0Request
  */
@@ -765,7 +921,7 @@ export interface WebApiEjecutarReporteDiarioRequest {
 }
 
 /**
- * Request parameters for ejecutarReporteDiario_2 operation in WebApi.
+ * Request parameters for ejecutarReporteDiario_3 operation in WebApi.
  * @export
  * @interface WebApiEjecutarReporteDiario0Request
  */
@@ -776,34 +932,6 @@ export interface WebApiEjecutarReporteDiario0Request {
      * @memberof WebApiEjecutarReporteDiario0
      */
     readonly ejecutarRequest: EjecutarRequest
-}
-
-/**
- * Request parameters for obtenerConfiguracion operation in WebApi.
- * @export
- * @interface WebApiObtenerConfiguracionRequest
- */
-export interface WebApiObtenerConfiguracionRequest {
-    /**
-     * 
-     * @type {GetConfiguracionRequest}
-     * @memberof WebApiObtenerConfiguracion
-     */
-    readonly getConfiguracionRequest: GetConfiguracionRequest
-}
-
-/**
- * Request parameters for obtenerConfiguracion_3 operation in WebApi.
- * @export
- * @interface WebApiObtenerConfiguracion0Request
- */
-export interface WebApiObtenerConfiguracion0Request {
-    /**
-     * 
-     * @type {GetConfiguracionRequest}
-     * @memberof WebApiObtenerConfiguracion0
-     */
-    readonly getConfiguracionRequest: GetConfiguracionRequest
 }
 
 /**
@@ -821,7 +949,7 @@ export interface WebApiRegistrarUsuarioRequest {
 }
 
 /**
- * Request parameters for registrarUsuario_4 operation in WebApi.
+ * Request parameters for registrarUsuario_5 operation in WebApi.
  * @export
  * @interface WebApiRegistrarUsuario0Request
  */
@@ -843,6 +971,30 @@ export interface WebApiRegistrarUsuario0Request {
 export class WebApi extends BaseAPI implements WebApiInterface {
     /**
      * 
+     * @summary Post Configracion
+     * @param {WebApiAgregarConfiguracionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApi
+     */
+    public agregarConfiguracion(requestParameters: WebApiAgregarConfiguracionRequest, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).agregarConfiguracion(requestParameters.postConfiguracionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Post Configracion
+     * @param {WebApiAgregarConfiguracion0Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApi
+     */
+    public agregarConfiguracion_1(requestParameters: WebApiAgregarConfiguracion0Request, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).agregarConfiguracion_1(requestParameters.postConfiguracionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Crear Ejecutivo
      * @param {WebApiCrearEjecutivoRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -861,8 +1013,8 @@ export class WebApi extends BaseAPI implements WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApi
      */
-    public crearEjecutivo_1(requestParameters: WebApiCrearEjecutivo0Request, options?: RawAxiosRequestConfig) {
-        return WebApiFp(this.configuration).crearEjecutivo_1(requestParameters.ejecutivoRest, options).then((request) => request(this.axios, this.basePath));
+    public crearEjecutivo_2(requestParameters: WebApiCrearEjecutivo0Request, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).crearEjecutivo_2(requestParameters.ejecutivoRest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -885,32 +1037,30 @@ export class WebApi extends BaseAPI implements WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApi
      */
-    public ejecutarReporteDiario_2(requestParameters: WebApiEjecutarReporteDiario0Request, options?: RawAxiosRequestConfig) {
-        return WebApiFp(this.configuration).ejecutarReporteDiario_2(requestParameters.ejecutarRequest, options).then((request) => request(this.axios, this.basePath));
+    public ejecutarReporteDiario_3(requestParameters: WebApiEjecutarReporteDiario0Request, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).ejecutarReporteDiario_3(requestParameters.ejecutarRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Get Configuracion
-     * @param {WebApiObtenerConfiguracionRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebApi
      */
-    public obtenerConfiguracion(requestParameters: WebApiObtenerConfiguracionRequest, options?: RawAxiosRequestConfig) {
-        return WebApiFp(this.configuration).obtenerConfiguracion(requestParameters.getConfiguracionRequest, options).then((request) => request(this.axios, this.basePath));
+    public obtenerConfiguracion(options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).obtenerConfiguracion(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Get Configuracion
-     * @param {WebApiObtenerConfiguracion0Request} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebApi
      */
-    public obtenerConfiguracion_3(requestParameters: WebApiObtenerConfiguracion0Request, options?: RawAxiosRequestConfig) {
-        return WebApiFp(this.configuration).obtenerConfiguracion_3(requestParameters.getConfiguracionRequest, options).then((request) => request(this.axios, this.basePath));
+    public obtenerConfiguracion_4(options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).obtenerConfiguracion_4(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -944,8 +1094,8 @@ export class WebApi extends BaseAPI implements WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApi
      */
-    public registrarUsuario_4(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig) {
-        return WebApiFp(this.configuration).registrarUsuario_4(requestParameters.registerRequest, options).then((request) => request(this.axios, this.basePath));
+    public registrarUsuario_5(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).registrarUsuario_5(requestParameters.registerRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

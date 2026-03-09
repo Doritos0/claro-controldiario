@@ -11,11 +11,11 @@ docs/AuthApi.md
 docs/Configuracion.md
 docs/EjecutarRequest.md
 docs/EjecutivoRest.md
-docs/GetConfiguracionRequest.md
 docs/HTTPValidationError.md
 docs/LIVE.md
 docs/LoginRequest.md
 docs/LoginResponse.md
+docs/PostConfiguracionRequest.md
 docs/RefreshRequest.md
 docs/RefreshResponse.md
 docs/RegisterRequest.md
@@ -28,12 +28,12 @@ index.ts
 models/configuracion.ts
 models/ejecutar-request.ts
 models/ejecutivo-rest.ts
-models/get-configuracion-request.ts
 models/httpvalidation-error.ts
 models/index.ts
 models/live.ts
 models/login-request.ts
 models/login-response.ts
+models/post-configuracion-request.ts
 models/refresh-request.ts
 models/refresh-response.ts
 models/register-request.ts

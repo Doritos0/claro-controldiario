@@ -1,0 +1,16 @@
+.gitignore
+.npmignore
+.openapi-generator-ignore
+api.ts
+api/default-api.ts
+base.ts
+common.ts
+configuration.ts
+docs/DefaultApi.md
+docs/DescargarFotos200Response.md
+docs/DescargarFotosRequest.md
+git_push.sh
+index.ts
+models/descargar-fotos-request.ts
+models/descargar-fotos200-response.ts
+models/index.ts

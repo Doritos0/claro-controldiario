@@ -1,19 +1,21 @@
-# GetConfiguracionRequest
+# DescargarFotosRequest
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**usuario_id** | **number** |  | [default to undefined]
+**nombreGrupo** | **string** |  | [default to undefined]
+**fecha** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { GetConfiguracionRequest } from './api';
+import { DescargarFotosRequest } from './api';
 
-const instance: GetConfiguracionRequest = {
-    usuario_id,
+const instance: DescargarFotosRequest = {
+    nombreGrupo,
+    fecha,
 };
 ```
 

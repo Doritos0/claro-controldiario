@@ -17,14 +17,20 @@
 /**
  * 
  * @export
- * @interface GetConfiguracionRequest
+ * @interface PostConfiguracionRequest
  */
-export interface GetConfiguracionRequest {
+export interface PostConfiguracionRequest {
     /**
      * 
      * @type {number}
-     * @memberof GetConfiguracionRequest
+     * @memberof PostConfiguracionRequest
      */
-    'usuario_id': number;
+    'usuario_id'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostConfiguracionRequest
+     */
+    'grupo_wsp': string;
 }
 
