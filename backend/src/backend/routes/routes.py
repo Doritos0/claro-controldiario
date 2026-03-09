@@ -96,10 +96,17 @@ def ejecutar(payload: EjecutarRequest, token: TokenStruct = Depends(require_acce
         consolidado=payload.consolidado,
     )
 
-class GetConfiguracionRequest(BaseModel):
-    usuario_id: int
 
 @router.post("/get_configuracion", operation_id="Obtener configuracion", tags=["web"], response_model=Configuracion | None)
-def get_configuracion(payload: GetConfiguracionRequest) -> Configuracion | None:
+def get_configuracion(token: TokenStruct = Depends(require_access_token)) -> Configuracion | None:
     configuracion_service = ConfiguracionService()
-    return configuracion_service.get_configuracion(payload.usuario_id)
+    return configuracion_service.get_configuracion(token.usuario_id)
+
+class PostConfiguracionRequest(BaseModel):
+    usuario_id: int | None = None
+    grupo_wsp: str
+
+@router.post("/post_configuracion", operation_id="Agregar configuracion", tags=["web"], response_model=Configuracion)
+def post_configracion(payload: PostConfiguracionRequest, token: TokenStruct = Depends(require_access_token)) -> Configuracion:
+    configuracion_service = ConfiguracionService()
+    return configuracion_service.guardar_configuracion(usuario_id=token.usuario_id, grupo_wsp=payload.grupo_wsp)
