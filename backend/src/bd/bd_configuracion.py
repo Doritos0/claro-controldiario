@@ -15,3 +15,14 @@ class ConfiguracionService():
         with Session(self.engine) as session:
             configuracion = session.exec(select(Configuracion).where(Configuracion.usuario_id == usuario_id)).first()
             return configuracion
+
+    def guardar_configuracion(self, usuario_id: int, grupo_wsp: str) -> Configuracion:
+        with Session(self.engine) as session:
+            configuracion_existe = session.exec(select(Configuracion).where(Configuracion.usuario_id == usuario_id)).first()
+            if configuracion_existe:
+                return configuracion_existe
+            configuracion = Configuracion(usuario_id=usuario_id, grupo_wsp=grupo_wsp)
+            session.add(configuracion)
+            session.commit()
+            session.refresh(configuracion)
+            return configuracion

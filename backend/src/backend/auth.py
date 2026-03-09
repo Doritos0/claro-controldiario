@@ -6,6 +6,7 @@ import jwt
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
 from jwt import ExpiredSignatureError, InvalidTokenError
+from pydantic import BaseModel
 
 SECRET_KEY = "controlDiario"
 REFRESH_KEY = "controlDiarioRefresh"
@@ -18,6 +19,10 @@ REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 _password_hasher = PasswordHasher()
 
+class TokenStruct(BaseModel):
+    usuario_id: int
+    empresa_id: int
+    sub: str
 
 def _with_pepper(password: str) -> str:
     return f"{password}{PASSWORD_SECRET}"
@@ -63,7 +68,7 @@ def create_refresh_token(usuario_id: int, user: str, empresa_id: int):
     return token, expire
 
 
-def verify_jwt(authorization: str, is_refresh: bool = False):
+def verify_jwt(authorization: str, is_refresh: bool = False) -> TokenStruct:
     if not authorization or not authorization.startswith("Bearer "):
         raise ValueError("Bearer token faltante o inválido")
 
@@ -75,7 +80,11 @@ def verify_jwt(authorization: str, is_refresh: bool = False):
         expected_type = "refresh" if is_refresh else "access"
         if payload.get("type") != expected_type:
             raise InvalidTokenError("Tipo de token inválido")
-        return payload
+        return TokenStruct(
+            usuario_id=payload.get("usuario_id", None),
+            empresa_id=payload.get("empresa_id", None),
+            sub=payload.get("sub", None),
+        )
     except ExpiredSignatureError as e:
         raise ExpiredSignatureError("Token expirado") from e
     except InvalidTokenError as e:

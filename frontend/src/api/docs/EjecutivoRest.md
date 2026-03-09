@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **number** |  | [default to undefined]
+**id** | **number** |  | [optional] [default to undefined]
 **nombre** | **string** |  | [default to undefined]
 **estado** | **string** |  | [default to undefined]
 **eps** | **string** |  | [default to undefined]
-**empresa_id** | **number** |  | [default to undefined]
+**empresa_id** | **number** |  | [optional] [default to undefined]
 
 ## Example
 

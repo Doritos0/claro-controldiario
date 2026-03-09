@@ -25,7 +25,7 @@ export interface EjecutarRequest {
      * @type {number}
      * @memberof EjecutarRequest
      */
-    'empresa_id': number;
+    'empresa_id'?: number | null;
     /**
      * 
      * @type {string}

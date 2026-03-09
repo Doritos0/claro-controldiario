@@ -25,7 +25,7 @@ export interface EjecutivoRest {
      * @type {number}
      * @memberof EjecutivoRest
      */
-    'id': number | null;
+    'id'?: number | null;
     /**
      * 
      * @type {string}
@@ -49,6 +49,6 @@ export interface EjecutivoRest {
      * @type {number}
      * @memberof EjecutivoRest
      */
-    'empresa_id': number;
+    'empresa_id'?: number | null;
 }
 

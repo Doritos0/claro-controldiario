@@ -5,7 +5,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jwt import ExpiredSignatureError, InvalidTokenError
 from pydantic import BaseModel
 
-from src.backend.auth import verify_jwt
+from src.backend.auth import verify_jwt, TokenStruct
 from src.bd.bd_ejecutivo import EjecutivoService
 from src.bd.bd_usuario import UsuarioService
 from src.bd.bd_configuracion import ConfiguracionService
@@ -63,35 +63,35 @@ def registrar_usuario(payload: RegisterRequest) -> RegisterResponse:
 
 
 class EjecutivoRest(BaseModel):
-    id: int | None
+    id: int | None = None
     nombre: str
     estado: str
     eps: str
-    empresa_id: int
+    empresa_id: int | None = None
 
 
 @router.post("/ejecutivos", operation_id="crear_ejecutivo", tags=["web"], response_model=int)
-def crear_ejecutivo(payload: EjecutivoRest) -> int:
+def crear_ejecutivo(payload: EjecutivoRest, token: TokenStruct = Depends(require_access_token)) -> int:
     ejecutivo_service = EjecutivoService()
     ejecutivo_creado = ejecutivo_service.guardar_ejecutivo_sql(
         nombre=payload.nombre,
         estado=payload.estado,
         eps=payload.eps,
-        empresa_id=payload.empresa_id,
+        empresa_id=token.empresa_id,
     )
     assert ejecutivo_creado is not None
     return ejecutivo_creado.id
 
 
 class EjecutarRequest(BaseModel):
-    empresa_id: int
+    empresa_id: int | None = None
     fecha_objetivo: str | None = None
     consolidado: str | None = None
 
 @router.post("/ejecutar", operation_id="Ejecutar_reporte_diario", tags=["web"], response_model=list[LIVE])
-def ejecutar(payload: EjecutarRequest) -> list[LIVE]:
+def ejecutar(payload: EjecutarRequest, token: TokenStruct = Depends(require_access_token)) -> list[LIVE]:
     return ejecutar_proceso(
-        empresa_id=payload.empresa_id,
+        empresa_id=token.empresa_id,
         fecha_objetivo=payload.fecha_objetivo,
         consolidado=payload.consolidado,
     )

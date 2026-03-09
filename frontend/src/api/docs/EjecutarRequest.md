@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**empresa_id** | **number** |  | [default to undefined]
+**empresa_id** | **number** |  | [optional] [default to undefined]
 **fecha_objetivo** | **string** |  | [optional] [default to undefined]
 **consolidado** | **string** |  | [optional] [default to undefined]
 
