@@ -32,8 +32,8 @@ class RefreshResponse(BaseModel):
     expires_in: int
     refresh_token: str | None = None
 
-@router.post("/login", operation_id="Autenticar usuario")
-def login(payload: LoginRequest):
+@router.post("/login", operation_id="Autenticar usuario", response_model=LoginResponse)
+def login(payload: LoginRequest) -> LoginResponse:
     usuario_service = UsuarioService()
     if not payload.user or not payload.password:
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
@@ -41,6 +41,6 @@ def login(payload: LoginRequest):
     return usuario_service.autenticar(payload.user, payload.password)
 
 
-@router.post("/refresh", operation_id="Refrescar access token")
-def refresh_token(payload: RefreshRequest):
+@router.post("/refresh", operation_id="Refrescar access token", response_model=RefreshResponse)
+def refresh_token(payload: RefreshRequest) -> RefreshResponse:
     return refresh_access_token(payload.refresh_token)
