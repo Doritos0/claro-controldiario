@@ -131,7 +131,7 @@ class WhatsAppDownloader {
 
     const grupo = await this.obtenerGrupo(nombreGrupo);
 
-    if (!grupo) return { totalImagenes: 0, carpeta: 0, grupo: '', fecha: fechaStr };;
+    if (!grupo) return { totalImagenes: 0, carpeta: 0, grupo: `No se encontro grupo ${nombreGrupo}`, fecha: fechaStr };;
 
     console.log(`Buscando fotos en "${nombreGrupo}" para el ${fechaStr}...`);
 

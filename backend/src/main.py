@@ -21,7 +21,7 @@ app = FastAPI(title=title, version=version, docs_url="/swagger", root_path="/api
 
 from src.backend.routes import auth_route, routes
 
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"], max_age=1800)
 
 app.include_router(auth_route.router)
 app.include_router(routes.router)

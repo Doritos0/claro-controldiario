@@ -99,6 +99,8 @@ class DashboardDiarioService:
                 return None
 
             filas = self._obtener_filas(fecha_objetivo=fecha_dt, empresa_id=empresa_id)
+
+            logging.info(f"LIVES Encontrados {len(filas)}")
             
             if not filas:
                 logging.warning(f"No hay registros LIVE para el {fecha_objetivo}")
@@ -121,22 +123,14 @@ class DashboardDiarioService:
             statement = select(Ejecutivo)
             if empresa_id is not None:
                 statement = statement.where(Ejecutivo.empresa_id == empresa_id)
-            logging.info(statement)
             ejecutivos = session.exec(statement).all()
-            logging.info(f"Ejecutivos {ejecutivos}")
             for ejecutivo in ejecutivos:
-                logging.info(f"""Ejecutando consulta:
-                select(LIVE).where(
-                    {LIVE.ejecutivo_id} == {ejecutivo.id},
-                    {LIVE.fecha_live} == {fecha_objetivo}
-                )""")
                 lives = session.exec(
                     select(LIVE).where(
                         LIVE.ejecutivo_id == ejecutivo.id,
                         LIVE.fecha_live == fecha_objetivo,
                     )
                 ).all()
-                logging.info(f"LIVES: {lives}")
                 if not lives:
                     continue
 
