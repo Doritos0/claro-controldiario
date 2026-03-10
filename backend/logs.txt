@@ -3870,3 +3870,275 @@ AttributeError: 'NoneType' object has no attribute 'password'
 2026-03-10 11:49:09,947 INFO root Usando SQLite en: CLARO-TIKTOK.db
 2026-03-10 11:49:10,106 INFO uvicorn.access 127.0.0.1:57836 - "POST /login HTTP/1.1" 200
 2026-03-10 11:49:10,147 INFO uvicorn.access 127.0.0.1:57836 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 11:50:29,721 INFO uvicorn.error Shutting down
+2026-03-10 11:50:29,836 INFO uvicorn.error Waiting for application shutdown.
+2026-03-10 11:50:29,836 INFO uvicorn.error Application shutdown complete.
+2026-03-10 11:50:29,837 INFO uvicorn.error Finished server process [15420]
+2026-03-10 11:50:46,953 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 11:50:46,954 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-10 11:50:48,947 INFO uvicorn.error Started server process [26864]
+2026-03-10 11:50:48,948 INFO uvicorn.error Waiting for application startup.
+2026-03-10 11:50:48,949 INFO uvicorn.error Application startup complete.
+2026-03-10 11:51:13,117 INFO uvicorn.access 127.0.0.1:57983 - "GET /api/swagger HTTP/1.1" 200
+2026-03-10 11:51:13,994 INFO uvicorn.access 127.0.0.1:57983 - "GET /api/openapi.json HTTP/1.1" 200
+2026-03-10 11:51:20,090 INFO root Ambiente que llega sqlite
+2026-03-10 11:51:20,091 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-10 11:51:20,139 INFO uvicorn.access 127.0.0.1:58000 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 11:56:50,269 INFO uvicorn.access 127.0.0.1:58214 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-10 11:56:50,279 INFO uvicorn.access 127.0.0.1:58214 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 11:57:03,976 INFO uvicorn.access 127.0.0.1:58216 - "OPTIONS /post_configuracion HTTP/1.1" 200
+2026-03-10 11:57:04,001 INFO uvicorn.access 127.0.0.1:58217 - "POST /post_configuracion HTTP/1.1" 200
+2026-03-10 11:57:04,009 INFO uvicorn.access 127.0.0.1:58217 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 11:58:00,546 INFO uvicorn.access 127.0.0.1:58266 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 11:59:38,174 INFO uvicorn.error Shutting down
+2026-03-10 11:59:38,275 INFO uvicorn.error Waiting for application shutdown.
+2026-03-10 11:59:38,276 INFO uvicorn.error Application shutdown complete.
+2026-03-10 11:59:38,277 INFO uvicorn.error Finished server process [26864]
+2026-03-10 11:59:47,020 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 11:59:47,021 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-10 11:59:49,126 INFO uvicorn.error Started server process [15852]
+2026-03-10 11:59:49,127 INFO uvicorn.error Waiting for application startup.
+2026-03-10 11:59:49,127 INFO uvicorn.error Application startup complete.
+2026-03-10 11:59:53,704 INFO root Ambiente que llega sqlite
+2026-03-10 11:59:53,705 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-10 11:59:53,755 INFO uvicorn.access 127.0.0.1:58392 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:39,557 INFO uvicorn.access 127.0.0.1:58843 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:39,568 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:42,976 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:43,633 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:44,232 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:44,811 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:45,380 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:45,977 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:46,335 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:46,553 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:46,773 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:46,959 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:29:47,139 INFO uvicorn.access 127.0.0.1:58843 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:30:03,448 INFO uvicorn.error Shutting down
+2026-03-10 12:30:03,564 INFO uvicorn.error Waiting for application shutdown.
+2026-03-10 12:30:03,565 INFO uvicorn.error Application shutdown complete.
+2026-03-10 12:30:03,565 INFO uvicorn.error Finished server process [15852]
+2026-03-10 12:30:13,674 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 12:30:13,675 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-10 12:30:15,751 INFO uvicorn.error Started server process [10032]
+2026-03-10 12:30:15,752 INFO uvicorn.error Waiting for application startup.
+2026-03-10 12:30:15,752 INFO uvicorn.error Application startup complete.
+2026-03-10 12:30:28,080 INFO uvicorn.access 127.0.0.1:58878 - "OPTIONS /login HTTP/1.1" 200
+2026-03-10 12:30:28,096 INFO root Ambiente que llega sqlite
+2026-03-10 12:30:28,097 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-10 12:30:28,271 INFO uvicorn.access 127.0.0.1:58878 - "POST /login HTTP/1.1" 200
+2026-03-10 12:30:28,303 INFO uvicorn.access 127.0.0.1:58878 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:36:34,846 INFO uvicorn.access 127.0.0.1:59047 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:36:46,208 INFO uvicorn.access 127.0.0.1:59048 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:37:37,697 INFO uvicorn.error Shutting down
+2026-03-10 12:37:37,806 INFO uvicorn.error Waiting for application shutdown.
+2026-03-10 12:37:37,806 INFO uvicorn.error Application shutdown complete.
+2026-03-10 12:37:37,807 INFO uvicorn.error Finished server process [10032]
+2026-03-10 12:37:44,437 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 12:37:44,438 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-10 12:37:46,465 INFO uvicorn.error Started server process [13864]
+2026-03-10 12:37:46,465 INFO uvicorn.error Waiting for application startup.
+2026-03-10 12:37:46,466 INFO uvicorn.error Application startup complete.
+2026-03-10 12:38:00,440 INFO root Ambiente que llega sqlite
+2026-03-10 12:38:00,442 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-10 12:38:00,488 INFO uvicorn.access 127.0.0.1:59135 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 12:58:27,878 INFO uvicorn.access 127.0.0.1:59996 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-10 12:58:27,889 INFO uvicorn.access 127.0.0.1:59996 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 13:03:48,403 INFO uvicorn.access 127.0.0.1:60237 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 13:08:56,215 INFO uvicorn.error Shutting down
+2026-03-10 13:08:56,330 INFO uvicorn.error Waiting for application shutdown.
+2026-03-10 13:08:56,331 INFO uvicorn.error Application shutdown complete.
+2026-03-10 13:08:56,332 INFO uvicorn.error Finished server process [13864]
+2026-03-10 13:09:02,097 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:09:02,098 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-10 13:09:06,874 INFO uvicorn.error Started server process [23820]
+2026-03-10 13:09:06,875 INFO uvicorn.error Waiting for application startup.
+2026-03-10 13:09:06,876 INFO uvicorn.error Application startup complete.
+2026-03-10 13:09:07,433 INFO uvicorn.access 127.0.0.1:60462 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-10 13:09:07,838 INFO root Ambiente que llega sqlite
+2026-03-10 13:09:07,839 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-10 13:09:20,502 INFO uvicorn.access 127.0.0.1:60464 - "OPTIONS /login HTTP/1.1" 200
+2026-03-10 13:09:20,585 INFO uvicorn.access 127.0.0.1:60465 - "POST /login HTTP/1.1" 200
+2026-03-10 13:09:20,616 INFO uvicorn.access 127.0.0.1:60465 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 13:10:49,056 INFO uvicorn.access 127.0.0.1:60522 - "POST /login HTTP/1.1" 200
+2026-03-10 13:10:49,105 INFO uvicorn.access 127.0.0.1:60522 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 13:17:17,241 INFO uvicorn.access 127.0.0.1:60764 - "OPTIONS /ejecutar HTTP/1.1" 200
+2026-03-10 13:17:17,250 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:17:18,498 INFO root Se encontraron 11 para la fecha 04-03-2026
+2026-03-10 13:17:18,499 INFO root Se esta procesando 04-03-2026_56938912371_ACA2D1547C8088543754FF0B2F42EDBF.jpeg
+2026-03-10 13:17:18,499 WARNING root Número 56938912371 no registrado en BD. Saltando...
+2026-03-10 13:17:18,499 INFO root Se esta procesando 04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-10 13:17:18,500 WARNING root Número 56964587530 no registrado en BD. Saltando...
+2026-03-10 13:17:18,500 INFO root Se esta procesando 04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-10 13:17:18,501 WARNING root Número 56964587530 no registrado en BD. Saltando...
+2026-03-10 13:17:18,501 INFO root Se esta procesando 04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-10 13:17:18,501 WARNING root Número 56964587530 no registrado en BD. Saltando...
+2026-03-10 13:17:18,502 INFO root Se esta procesando 04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-10 13:17:18,502 WARNING root Número 56964587530 no registrado en BD. Saltando...
+2026-03-10 13:17:18,502 INFO root Se esta procesando 04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-10 13:17:18,503 WARNING root Número 56964587530 no registrado en BD. Saltando...
+2026-03-10 13:17:18,503 INFO root Se esta procesando 04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-10 13:17:18,503 WARNING root Número 56964587530 no registrado en BD. Saltando...
+2026-03-10 13:17:18,504 INFO root Se esta procesando 04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-10 13:17:18,504 WARNING root Número 56964587530 no registrado en BD. Saltando...
+2026-03-10 13:17:18,505 INFO root Se esta procesando 04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-10 13:17:18,505 WARNING root Número 56964587530 no registrado en BD. Saltando...
+2026-03-10 13:17:18,505 INFO root Se esta procesando 04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-10 13:17:18,506 WARNING root Número 56964587530 no registrado en BD. Saltando...
+2026-03-10 13:17:18,506 INFO root Se esta procesando 04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-10 13:17:18,507 WARNING root Número 56964587530 no registrado en BD. Saltando...
+2026-03-10 13:17:18,726 INFO uvicorn.access 127.0.0.1:60764 - "POST /ejecutar HTTP/1.1" 200
+2026-03-10 13:17:36,534 INFO uvicorn.access 127.0.0.1:60766 - "POST /login HTTP/1.1" 200
+2026-03-10 13:17:36,573 INFO uvicorn.access 127.0.0.1:60766 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 13:18:10,020 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:18:10,885 INFO root Se encontraron 11 para la fecha 04-03-2026
+2026-03-10 13:18:10,886 INFO root Se esta procesando 04-03-2026_56938912371_ACA2D1547C8088543754FF0B2F42EDBF.jpeg
+2026-03-10 13:18:10,886 WARNING root Número 56938912371 no registrado en BD. Saltando...
+2026-03-10 13:18:10,887 INFO root Se esta procesando 04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-10 13:18:10,908 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-10 13:18:10,909 INFO root Se esta procesando 04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-10 13:18:10,926 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-10 13:18:10,927 INFO root Se esta procesando 04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-10 13:18:10,938 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-10 13:18:10,938 INFO root Se esta procesando 04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-10 13:18:10,949 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-10 13:18:10,949 INFO root Se esta procesando 04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-10 13:18:10,965 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-10 13:18:10,966 INFO root Se esta procesando 04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-10 13:18:10,981 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-10 13:18:10,982 INFO root Se esta procesando 04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-10 13:18:10,991 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-10 13:18:10,992 INFO root Se esta procesando 04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-10 13:18:11,001 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-10 13:18:11,001 INFO root Se esta procesando 04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-10 13:18:11,016 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-10 13:18:11,017 INFO root Se esta procesando 04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-10 13:18:11,026 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-10 13:18:11,031 INFO uvicorn.access 127.0.0.1:60767 - "POST /ejecutar HTTP/1.1" 200
+2026-03-10 13:19:07,890 INFO uvicorn.error Shutting down
+2026-03-10 13:19:08,005 INFO uvicorn.error Waiting for application shutdown.
+2026-03-10 13:19:08,006 INFO uvicorn.error Application shutdown complete.
+2026-03-10 13:19:08,006 INFO uvicorn.error Finished server process [23820]
+2026-03-10 13:19:09,367 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:19:09,368 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-10 13:19:11,412 INFO uvicorn.error Started server process [18508]
+2026-03-10 13:19:11,413 INFO uvicorn.error Waiting for application startup.
+2026-03-10 13:19:11,414 INFO uvicorn.error Application startup complete.
+2026-03-10 13:19:11,415 INFO uvicorn.error Shutting down
+2026-03-10 13:19:11,525 INFO uvicorn.error Waiting for application shutdown.
+2026-03-10 13:19:11,526 INFO uvicorn.error Application shutdown complete.
+2026-03-10 13:19:11,526 INFO uvicorn.error Finished server process [18508]
+2026-03-10 13:19:28,080 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:19:28,082 INFO root Ambiente que llega sqlite
+2026-03-10 13:19:28,083 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-10 13:19:28,122 INFO root ya existe claro
+2026-03-10 13:19:28,123 INFO root ya existe wom
+2026-03-10 13:19:28,125 INFO root ya existe TEST
+2026-03-10 13:19:28,126 INFO root ya existe TEST2
+2026-03-10 13:19:28,279 INFO root Base de datos inicializada con empresas, usuarios y ejecutivos por defecto
+2026-03-10 13:19:33,632 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:19:33,633 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-10 13:19:35,628 INFO uvicorn.error Started server process [13788]
+2026-03-10 13:19:35,628 INFO uvicorn.error Waiting for application startup.
+2026-03-10 13:19:35,629 INFO uvicorn.error Application startup complete.
+2026-03-10 13:19:45,439 INFO uvicorn.access 127.0.0.1:60905 - "OPTIONS /login HTTP/1.1" 200
+2026-03-10 13:19:45,456 INFO root Ambiente que llega sqlite
+2026-03-10 13:19:45,457 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-10 13:19:45,619 INFO uvicorn.access 127.0.0.1:60905 - "POST /login HTTP/1.1" 200
+2026-03-10 13:19:45,658 INFO uvicorn.access 127.0.0.1:60905 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-10 13:19:45,667 INFO uvicorn.access 127.0.0.1:60905 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 13:19:51,590 INFO uvicorn.access 127.0.0.1:60910 - "OPTIONS /post_configuracion HTTP/1.1" 200
+2026-03-10 13:19:51,615 INFO uvicorn.access 127.0.0.1:60911 - "POST /post_configuracion HTTP/1.1" 200
+2026-03-10 13:19:51,624 INFO uvicorn.access 127.0.0.1:60911 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 13:19:59,748 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:20:00,919 INFO root Se encontraron 11 para la fecha 04-03-2026
+2026-03-10 13:20:00,920 INFO root Se esta procesando 04-03-2026_56938912371_ACA2D1547C8088543754FF0B2F42EDBF.jpeg
+2026-03-10 13:20:00,920 WARNING root Número 56938912371 no registrado en BD. Saltando...
+2026-03-10 13:20:00,920 INFO root Se esta procesando 04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-10 13:20:00,938 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-10 13:20:00,938 INFO root Se esta procesando 04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-10 13:20:00,954 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-10 13:20:00,955 INFO root Se esta procesando 04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-10 13:20:00,964 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-10 13:20:00,964 INFO root Se esta procesando 04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-10 13:20:00,980 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-10 13:20:00,981 INFO root Se esta procesando 04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-10 13:20:00,990 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-10 13:20:00,991 INFO root Se esta procesando 04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-10 13:20:01,000 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-10 13:20:01,001 INFO root Se esta procesando 04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-10 13:20:01,017 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-10 13:20:01,017 INFO root Se esta procesando 04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-10 13:20:01,030 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-10 13:20:01,030 INFO root Se esta procesando 04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-10 13:20:01,040 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-10 13:20:01,040 INFO root Se esta procesando 04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-10 13:20:01,051 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-10 13:20:01,055 INFO uvicorn.access 127.0.0.1:60913 - "POST /ejecutar HTTP/1.1" 200
+2026-03-10 13:20:13,662 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:20:14,546 INFO root Se encontraron 11 para la fecha 04-03-2026
+2026-03-10 13:20:14,547 INFO root Se esta procesando 04-03-2026_56938912371_ACA2D1547C8088543754FF0B2F42EDBF.jpeg
+2026-03-10 13:20:14,547 WARNING root Número 56938912371 no registrado en BD. Saltando...
+2026-03-10 13:20:14,548 INFO root Se esta procesando 04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-10 13:20:14,550 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-10 13:20:14,550 INFO root Se esta procesando 04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-10 13:20:14,552 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-10 13:20:14,553 INFO root Se esta procesando 04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-10 13:20:14,555 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-10 13:20:14,555 INFO root Se esta procesando 04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-10 13:20:14,557 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-10 13:20:14,558 INFO root Se esta procesando 04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-10 13:20:14,559 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-10 13:20:14,560 INFO root Se esta procesando 04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-10 13:20:14,562 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-10 13:20:14,563 INFO root Se esta procesando 04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-10 13:20:14,564 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-10 13:20:14,565 INFO root Se esta procesando 04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-10 13:20:14,567 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-10 13:20:14,567 INFO root Se esta procesando 04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-10 13:20:14,569 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-10 13:20:14,570 INFO root Se esta procesando 04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-10 13:20:14,572 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-10 13:20:14,579 INFO uvicorn.access 127.0.0.1:60931 - "POST /ejecutar HTTP/1.1" 200
+2026-03-10 13:22:04,267 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:22:05,119 INFO root Se encontraron 1 para la fecha 06-03-2026
+2026-03-10 13:22:05,119 INFO root Se esta procesando 06-03-2026_56938912371_AC6295E6D22527F638B490DE41D42C9E.jpeg
+2026-03-10 13:22:05,120 WARNING root Número 56938912371 no registrado en BD. Saltando...
+2026-03-10 13:22:05,124 INFO uvicorn.access 127.0.0.1:61004 - "POST /ejecutar HTTP/1.1" 200
+2026-03-10 13:23:00,501 INFO uvicorn.error Shutting down
+2026-03-10 13:23:00,604 INFO uvicorn.error Waiting for application shutdown.
+2026-03-10 13:23:00,604 INFO uvicorn.error Application shutdown complete.
+2026-03-10 13:23:00,604 INFO uvicorn.error Finished server process [13788]
+2026-03-10 13:23:01,678 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:23:01,679 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-10 13:23:03,691 INFO uvicorn.error Started server process [16016]
+2026-03-10 13:23:03,692 INFO uvicorn.error Waiting for application startup.
+2026-03-10 13:23:03,692 INFO uvicorn.error Application startup complete.
+2026-03-10 13:23:05,918 INFO uvicorn.error Shutting down
+2026-03-10 13:23:06,031 INFO uvicorn.error Waiting for application shutdown.
+2026-03-10 13:23:06,032 INFO uvicorn.error Application shutdown complete.
+2026-03-10 13:23:06,032 INFO uvicorn.error Finished server process [16016]
+2026-03-10 13:23:09,054 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:23:09,056 INFO root Ambiente que llega sqlite
+2026-03-10 13:23:09,057 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-10 13:23:09,096 INFO root ya existe claro
+2026-03-10 13:23:09,098 INFO root ya existe wom
+2026-03-10 13:23:09,099 INFO root ya existe TEST
+2026-03-10 13:23:09,100 INFO root ya existe TEST2
+2026-03-10 13:23:09,101 INFO root ya existe CLAROCORRECTO
+2026-03-10 13:23:09,131 INFO root Base de datos inicializada con empresas, usuarios y ejecutivos por defecto
+2026-03-10 13:23:13,185 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:23:13,186 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-10 13:23:15,167 INFO uvicorn.error Started server process [8232]
+2026-03-10 13:23:15,168 INFO uvicorn.error Waiting for application startup.
+2026-03-10 13:23:15,169 INFO uvicorn.error Application startup complete.
+2026-03-10 13:23:19,602 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 13:23:20,746 INFO root Ambiente que llega sqlite
+2026-03-10 13:23:20,747 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-10 13:23:20,788 INFO root Se encontraron 1 para la fecha 06-03-2026
+2026-03-10 13:23:20,789 INFO root Se esta procesando 06-03-2026_56938912371_AC6295E6D22527F638B490DE41D42C9E.jpeg
+2026-03-10 13:23:21,276 INFO google_genai.models AFC is enabled with max remote calls: 10.
+2026-03-10 13:23:23,706 INFO httpx HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-03-10 13:23:23,753 INFO root Imagen de Marcelo ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\06-03-2026\06-03-2026_56938912371_AC6295E6D22527F638B490DE41D42C9E.jpeg
+2026-03-10 13:23:23,758 INFO uvicorn.access 127.0.0.1:61064 - "POST /ejecutar HTTP/1.1" 200

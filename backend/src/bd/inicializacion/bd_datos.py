@@ -33,6 +33,7 @@ def inicializar_datos():
     usuario_service.guardar_usuario_sql(empresa_id=empresa_wom.id, user="wom", password="wom123")
     usuario_service.guardar_usuario_sql(empresa_id=empresa_test.id, user="TEST", password="12345")
     usuario_service.guardar_usuario_sql(empresa_id=empresa_test.id, user="TEST2", password="12345")
+    usuario_service.guardar_usuario_sql(empresa_id=empresa_claro.id, user="CLAROCORRECTO", password="12345")
 
     ejecutivo_service = EjecutivoService()
     daniela_baeza = ejecutivo_service.guardar_ejecutivo_sql("Daniela Baeza", "ACTIVO", "PHOENIX", empresa_claro.id, 0).id
@@ -53,4 +54,6 @@ def inicializar_datos():
     assert isi_pastenes is not None
     thae_test = ejecutivo_service.guardar_ejecutivo_sql("Thae Test", "ACTIVO", "PHOENIX", empresa_claro.id, 56964587530).id
     assert thae_test is not None
+    marselo = ejecutivo_service.guardar_ejecutivo_sql("Marcelo", "ACTIVO", "PHOENIX", empresa_claro.id, 56938912371).id
+    assert marselo is not None
     logging.info("Base de datos inicializada con empresas, usuarios y ejecutivos por defecto")
