@@ -18,7 +18,7 @@ class UsuarioService:
     def get_usuario_by_user(self, user: str) -> Usuario | None:
         with Session(self.engine) as session:
             return session.exec(
-                select(Usuario).where(Usuario.user == user.lower())
+                select(Usuario).where(Usuario.user == user)
             ).scalars().first()
 
     def autenticar(self, user: str, password: str) -> Usuario | None:

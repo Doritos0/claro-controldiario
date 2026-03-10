@@ -14,6 +14,8 @@ export function Login(){
         e.preventDefault();
         const basePath = import.meta.env.VITE_API_PYTHON
         const api = new AuthApi(webConfig.getApiSinToken(), basePath);
+        console.log(user)
+        console.log(pass)
         const response = await api.autenticarUsuario({
             loginRequest: {
                 user: user,
