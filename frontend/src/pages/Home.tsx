@@ -86,11 +86,14 @@ export function Home(){
         return response.data;
     },
     refetchInterval: (query) => {
+        console.log("Se realiza nuevamente petición este es status: ",query.state.data?.ready)
         const data = query.state.data;
-        return data?.ready ? false : 4000;
+        return data?.status == 'ready' ? false : 4000;
     },
     refetchOnWindowFocus: false,
     });
+
+    console.log(wspData?.ready)
 
     const handleLogout = () => {
         localStorage.removeItem('accessToken')
@@ -210,7 +213,7 @@ export function Home(){
                             <pre className="text-sm">{JSON.stringify(configuracion, null, 2)}</pre>
                         </div>
                         <div>
-                            {wspData?.ready ? (
+                            {wspData?.status == 'ready' ? (
                                 <>
                                 <div className="mt-4 p-4 rounded-md border border-green-300 bg-green-100 text-green-800">
                                 WhatsApp conectado correctamente
@@ -248,20 +251,22 @@ export function Home(){
                                     </form>
                                 </div>
                                 </>
-                            ) : wspData?.qr ? (
+                            ) : wspData?.status == 'qr_pending' ? (
                                 <>
                                 <h3>Inicia en WhatsApp</h3>
                                 <div className="border-4 border-indigo-500 p-2 rounded-lg inline-block">
                                 <img
-                                    src={wspData.qr}
+                                    src={wspData.qr ?? undefined}
                                     alt="WhatsApp QR Code"
                                     className="w-64 h-64"
                                 />
                                 <p>Estado Actual: {wspData.status}</p>
                                 </div>
                                 </>
-                            ) : (
+                            ) : wspData?.status == 'initializing' ? (
                                 <p>Generando QR...</p>
+                            ) : (
+                                <p>Procesando...</p>
                             )}
                         </div>
                         </>
