@@ -33,6 +33,7 @@ def inicializar_datos():
     usuario_service.guardar_usuario_sql(empresa_id=empresa_wom.id, user="wom", password="wom123")
     usuario_service.guardar_usuario_sql(empresa_id=empresa_test.id, user="TEST", password="12345")
     usuario_service.guardar_usuario_sql(empresa_id=empresa_test.id, user="TEST2", password="12345")
+    usuario_service.guardar_usuario_sql(empresa_id=empresa_test.id, user="TEST3", password="12345")
     usuario_service.guardar_usuario_sql(empresa_id=empresa_claro.id, user="CLAROCORRECTO", password="12345")
 
     ejecutivo_service = EjecutivoService()
