@@ -92,14 +92,12 @@ class DashboardDiarioService:
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
     def generar_dashboard_diario(self, fecha_objetivo: str, empresa_id: int | None = None) -> Path | None:
-            # 1. Convertimos el string "02-03-2026" a un objeto date real de Python
             try:
                 fecha_dt = datetime.strptime(fecha_objetivo, '%d-%m-%Y').date()
             except ValueError:
                 logging.error(f"Formato de fecha inválido: {fecha_objetivo}. Se esperaba DD-MM-YYYY")
                 return None
 
-            # 2. Usamos el objeto fecha_dt para obtener las filas (SQLModel lo manejará bien)
             filas = self._obtener_filas(fecha_objetivo=fecha_dt, empresa_id=empresa_id)
             
             if not filas:

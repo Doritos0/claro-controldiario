@@ -281,7 +281,7 @@ export function Home(){
 
                     <div className="p-4 bg-white border-l-4 border-green-500 rounded shadow-sm">
                         <h4 className="font-bold text-green-700 mb-2">Respuesta FastAPI (Reporte):</h4>
-                        <pre className="text-xs bg-gray-50 p-2 overflow-auto max-h-40">
+                        <pre className="text-xs bg-gray-50 p-2 overflow-auto">
                             {imagenReporte && (
                                 <div className="mt-6 p-4 bg-white rounded border shadow-sm">
                                     <h4 className="font-bold mb-2">Imagen del reporte:</h4>

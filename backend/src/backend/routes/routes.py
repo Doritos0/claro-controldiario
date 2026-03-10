@@ -5,7 +5,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from fastapi.responses import FileResponse
 from jwt import ExpiredSignatureError, InvalidTokenError
 from pydantic import BaseModel
-
+import os
 from src.backend.auth import verify_jwt, TokenStruct
 from src.bd.bd_ejecutivo import EjecutivoService
 from src.bd.bd_usuario import UsuarioService
@@ -97,11 +97,10 @@ def ejecutar(payload: EjecutarRequest, token: TokenStruct = Depends(require_acce
         consolidado=payload.consolidado,
     )
 
-    return FileResponse(
-        path=ruta_image,
-        media_type="image/png",
-        filename=ruta_image.name
-    )
+    if ruta_image is None or not os.path.exists(ruta_image):
+            return []
+
+    return FileResponse(ruta_image, media_type="image/png")
 
 
 @router.post("/get_configuracion", operation_id="Obtener configuracion", tags=["web"], response_model=Configuracion | None)
