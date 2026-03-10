@@ -8,7 +8,11 @@ common.ts
 configuration.ts
 docs/DefaultApi.md
 docs/DescargarFotosRequest.md
+docs/GroupInfo.md
+docs/SessionState.md
 git_push.sh
 index.ts
 models/descargar-fotos-request.ts
+models/group-info.ts
 models/index.ts
+models/session-state.ts

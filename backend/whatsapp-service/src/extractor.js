@@ -19,14 +19,15 @@ class WhatsAppDownloader {
     this.eventsRegistered = false;
   }
 
-  registerEvents(resolve, reject) {
+  registerEvents() {
     if (this.eventsRegistered) return;
     this.eventsRegistered = true;
 
     this.client.on('qr', (qr) => {
       this.qr = qr;
-      this.status = 'qr';
+      this.status = 'qr_pending';
       this.error = null;
+      this.initializing = false;
       console.log('Escanea el QR');
       qrcode.generate(qr, { small: true });
     });
@@ -38,7 +39,6 @@ class WhatsAppDownloader {
       this.error = null;
       this.initializing = false;
       console.log('Conexión establecida');
-      if (resolve) resolve();
     });
 
     this.client.on('authenticated', () => {
@@ -53,7 +53,6 @@ class WhatsAppDownloader {
       this.error = msg;
       this.initializing = false;
       console.error(`Fallo de autenticación: ${msg}`);
-      if (reject) reject(new Error(`Fallo de autenticación: ${msg}`));
     });
 
     this.client.on('disconnected', (reason) => {
@@ -74,38 +73,49 @@ class WhatsAppDownloader {
       ready: this.ready,
       qr: this.qr,
       error: this.error,
-      status: this.status
+      status: this.status,
+      initializing: this.initializing
     };
   }
 
-  async iniciar() {
-    if (this.ready) {
+  async iniciarSesion() {
+    if (this.ready || this.initializing) {
       return this.getSessionState();
     }
 
-    if (this.initializing) {
-      return this.getSessionState();
-    }
-
+    this.registerEvents();
     this.initializing = true;
     this.status = 'initializing';
     this.error = null;
 
-    return new Promise((resolve, reject) => {
-      this.registerEvents(resolve, reject);
-      this.client.initialize().catch((err) => {
-        this.initializing = false;
-        this.status = 'failed';
-        this.error = err.message;
-        reject(err);
-      });
-
-      // No esperamos obligatoriamente a "ready" para devolver el estado.
-      // Damos un pequeño margen para que aparezca el QR.
-      setTimeout(() => {
-        resolve(this.getSessionState());
-      }, 1500);
+    this.client.initialize().catch((err) => {
+      this.initializing = false;
+      this.status = 'failed';
+      this.error = err.message;
+      console.error('Error al inicializar cliente de WhatsApp:', err.message);
     });
+
+    return this.getSessionState();
+  }
+
+  async listarGrupos() {
+    if (!this.ready) {
+      throw new Error('WhatsApp aún no está listo');
+    }
+
+    const chats = await this.client.getChats();
+    return chats
+      .filter((chat) => chat.isGroup)
+      .map((chat) => ({
+        id: chat.id?._serialized,
+        nombre: chat.name
+      }))
+      .sort((a, b) => a.nombre.localeCompare(b.nombre));
+  }
+
+  async obtenerGrupo(nombreGrupo) {
+    const chats = await this.client.getChats();
+    return chats.find((c) => c.isGroup && c.name === nombreGrupo);
   }
 
   async descargarFotosPorFecha(nombreGrupo, fechaStr) {
@@ -119,8 +129,7 @@ class WhatsAppDownloader {
     const inicioDia = new Date(año, mes - 1, dia, 0, 0, 0).getTime() / 1000;
     const finDia = new Date(año, mes - 1, dia, 23, 59, 59).getTime() / 1000;
 
-    const chats = await this.client.getChats();
-    const grupo = chats.find(c => c.isGroup && c.name === nombreGrupo);
+    const grupo = await this.obtenerGrupo(nombreGrupo);
 
     if (!grupo) throw new Error(`Grupo "${nombreGrupo}" no encontrado.`);
 
@@ -157,7 +166,7 @@ class WhatsAppDownloader {
     }
 
     console.log(`Proceso finalizado. Se guardaron ${contador} imágenes en: ${carpeta}`);
-    return { totalImagenes: contador, carpeta };
+    return { totalImagenes: contador, carpeta, grupo: nombreGrupo, fecha: fechaStr };
   }
 }
 

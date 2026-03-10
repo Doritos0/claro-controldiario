@@ -3798,3 +3798,58 @@ AttributeError: 'NoneType' object has no attribute 'password'
 2026-03-09 16:29:40,472 INFO uvicorn.access 127.0.0.1:55921 - "POST /descargar HTTP/1.1" 404
 2026-03-09 16:29:41,872 INFO uvicorn.access 127.0.0.1:55921 - "POST /get_configuracion HTTP/1.1" 200
 2026-03-09 16:31:31,725 INFO uvicorn.access 127.0.0.1:56033 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 18:17:30,145 INFO uvicorn.access 127.0.0.1:60182 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 18:17:30,506 INFO uvicorn.access 127.0.0.1:60182 - "GET /openapi.json HTTP/1.1" 200
+2026-03-09 18:18:09,009 INFO uvicorn.access 127.0.0.1:60225 - "OPTIONS /login HTTP/1.1" 200
+2026-03-09 18:18:09,212 INFO uvicorn.access 127.0.0.1:60225 - "POST /login HTTP/1.1" 200
+2026-03-09 18:18:09,243 INFO uvicorn.access 127.0.0.1:60225 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-09 18:18:09,251 INFO uvicorn.access 127.0.0.1:60225 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 18:19:33,999 INFO uvicorn.access 127.0.0.1:60310 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 18:19:40,422 INFO uvicorn.access 127.0.0.1:60311 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 18:22:26,833 INFO uvicorn.access 127.0.0.1:60430 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 18:41:41,065 INFO uvicorn.access 127.0.0.1:61777 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-09 18:41:41,074 INFO uvicorn.access 127.0.0.1:61777 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 18:41:48,027 INFO uvicorn.access 127.0.0.1:61779 - "OPTIONS /login HTTP/1.1" 200
+2026-03-09 18:41:48,149 INFO uvicorn.access 127.0.0.1:61780 - "POST /login HTTP/1.1" 401
+2026-03-09 18:42:03,552 INFO uvicorn.access 127.0.0.1:61792 - "POST /login HTTP/1.1" 200
+2026-03-09 18:42:03,579 INFO uvicorn.access 127.0.0.1:61792 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 18:42:06,891 INFO uvicorn.access 127.0.0.1:61792 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 18:42:07,900 INFO uvicorn.access 127.0.0.1:61792 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-09 18:42:31,978 INFO uvicorn.access 127.0.0.1:61794 - "POST /login HTTP/1.1" 200
+2026-03-09 18:42:32,019 INFO uvicorn.access 127.0.0.1:61794 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 10:56:10,406 INFO uvicorn.access 127.0.0.1:55652 - "OPTIONS /login HTTP/1.1" 200
+2026-03-10 10:56:10,586 INFO uvicorn.access 127.0.0.1:55652 - "POST /login HTTP/1.1" 200
+2026-03-10 10:56:10,612 INFO uvicorn.access 127.0.0.1:55652 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-10 10:56:10,619 INFO uvicorn.access 127.0.0.1:55652 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 10:56:57,164 INFO uvicorn.access 127.0.0.1:55657 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 10:56:58,982 INFO uvicorn.access 127.0.0.1:55657 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 10:57:08,071 INFO uvicorn.access 127.0.0.1:55658 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 10:57:09,174 INFO uvicorn.access 127.0.0.1:55658 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 10:57:10,848 INFO uvicorn.access 127.0.0.1:55658 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 10:57:11,801 INFO uvicorn.access 127.0.0.1:55658 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 10:57:14,522 INFO uvicorn.access 127.0.0.1:55658 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 10:57:24,127 INFO uvicorn.access 127.0.0.1:55737 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 10:57:32,866 INFO uvicorn.access 127.0.0.1:55738 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 10:57:50,350 INFO uvicorn.access 127.0.0.1:55772 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 11:29:43,897 INFO uvicorn.access 127.0.0.1:57081 - "OPTIONS /login HTTP/1.1" 200
+2026-03-10 11:29:44,033 INFO uvicorn.access 127.0.0.1:57081 - "POST /login HTTP/1.1" 200
+2026-03-10 11:29:44,077 INFO uvicorn.access 127.0.0.1:57081 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-10 11:29:44,083 INFO uvicorn.access 127.0.0.1:57081 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 11:29:57,087 INFO uvicorn.access 127.0.0.1:57108 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 11:33:28,431 INFO uvicorn.access 127.0.0.1:57256 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 11:41:46,782 INFO uvicorn.access 127.0.0.1:57578 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-10 11:41:46,790 INFO uvicorn.access 127.0.0.1:57578 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-10 11:42:07,155 INFO uvicorn.error Shutting down
+2026-03-10 11:42:07,262 INFO uvicorn.error Waiting for application shutdown.
+2026-03-10 11:42:07,267 INFO uvicorn.error Application shutdown complete.
+2026-03-10 11:42:07,268 INFO uvicorn.error Finished server process [16680]
+2026-03-10 11:42:22,056 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-10 11:42:22,057 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-10 11:42:24,943 INFO uvicorn.error Started server process [14404]
+2026-03-10 11:42:24,944 INFO uvicorn.error Waiting for application startup.
+2026-03-10 11:42:24,944 INFO uvicorn.error Application startup complete.
+2026-03-10 11:42:34,850 INFO uvicorn.access 127.0.0.1:57600 - "OPTIONS /login HTTP/1.1" 200
+2026-03-10 11:42:34,863 INFO root Ambiente que llega sqlite
+2026-03-10 11:42:34,865 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-10 11:42:35,143 INFO uvicorn.access 127.0.0.1:57600 - "POST /login HTTP/1.1" 200
+2026-03-10 11:42:35,213 INFO uvicorn.access 127.0.0.1:57600 - "POST /get_configuracion HTTP/1.1" 200

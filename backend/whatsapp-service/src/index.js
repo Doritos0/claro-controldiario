@@ -20,53 +20,96 @@ const options = {
     openapi: '3.0.0',
     info: {
       title: 'Mi API de Node (WhatsApp Extractor)',
-      version: '1.0.0',
-      description: 'Servicio para extraer fotos de grupos de WhatsApp'
+      version: '1.1.0',
+      description: 'Servicio para autenticación y descarga de fotos de grupos de WhatsApp'
     },
     servers: [
       {
-        url: 'http://localhost:3000',
-      },
+        url: 'http://localhost:3000'
+      }
     ],
+    components: {
+      schemas: {
+        SessionState: {
+          type: 'object',
+          properties: {
+            status: { type: 'string', example: 'qr_pending' },
+            ready: { type: 'boolean' },
+            initializing: { type: 'boolean' },
+            qr: { type: 'string', nullable: true, description: 'QR en base64 data url' },
+            error: { type: 'string', nullable: true }
+          }
+        },
+        GroupInfo: {
+          type: 'object',
+          properties: {
+            id: { type: 'string' },
+            nombre: { type: 'string' }
+          }
+        },
+        DescargarFotosRequest: {
+          type: 'object',
+          required: ['nombreGrupo', 'fecha'],
+          properties: {
+            nombreGrupo: { type: 'string', example: 'Reportes Diarios' },
+            fecha: { type: 'string', example: '09/03/2026' }
+          }
+        }
+      }
+    }
   },
-  apis: [__filename],
+  apis: [__filename]
 };
 
 const swaggerSpec = swaggerJsdoc(options);
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.get('/openapi.json', (req, res) => {
+app.get('/openapi.json', (_req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(swaggerSpec);
 });
 
 const downloader = new WhatsAppDownloader();
 
+const buildSessionPayload = async () => {
+  const state = downloader.getSessionState();
+  const qrImage = state.qr ? await QRCode.toDataURL(state.qr) : null;
+
+  return {
+    status: state.status,
+    ready: state.ready,
+    initializing: state.initializing,
+    qr: qrImage,
+    error: state.error
+  };
+};
+
 /**
  * @openapi
  * /iniciar-sesion:
  *   post:
- *     summary: Inicializa WhatsApp y devuelve el QR si aún no está autenticado
+ *     summary: Inicializa la sesión de WhatsApp y devuelve estado + QR
+ *     operationId: iniciarSesionWhatsapp
  *     responses:
  *       200:
  *         description: Estado de sesión de WhatsApp
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SessionState'
  */
 app.post('/iniciar-sesion', async (_req, res) => {
   try {
-    await downloader.iniciar();
-    const state = downloader.getSessionState();
-    const qrImage = state.qr ? await QRCode.toDataURL(state.qr) : null;
-
-    res.json({
-      status: state.status,
-      ready: state.ready,
-      qr: qrImage,
-      error: state.error
-    });
+    await downloader.iniciarSesion();
+    const payload = await buildSessionPayload();
+    res.json(payload);
   } catch (error) {
     res.status(500).json({
       status: 'failed',
+      ready: false,
+      initializing: false,
+      qr: null,
       error: error.message
     });
   }
@@ -77,20 +120,49 @@ app.post('/iniciar-sesion', async (_req, res) => {
  * /estado-sesion:
  *   get:
  *     summary: Devuelve el estado actual de la sesión de WhatsApp
+ *     operationId: obtenerEstadoSesionWhatsapp
  *     responses:
  *       200:
  *         description: Estado actual
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SessionState'
  */
 app.get('/estado-sesion', async (_req, res) => {
-  const state = downloader.getSessionState();
-  const qrImage = state.qr ? await QRCode.toDataURL(state.qr) : null;
+  const payload = await buildSessionPayload();
+  res.json(payload);
+});
 
-  res.json({
-    status: state.status,
-    ready: state.ready,
-    qr: qrImage,
-    error: state.error
-  });
+/**
+ * @openapi
+ * /grupos:
+ *   get:
+ *     summary: Lista los grupos disponibles de la sesión autenticada
+ *     operationId: listarGruposWhatsapp
+ *     responses:
+ *       200:
+ *         description: Lista de grupos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/GroupInfo'
+ *       503:
+ *         description: WhatsApp no está listo
+ */
+app.get('/grupos', async (_req, res) => {
+  if (!downloader.estaListo()) {
+    return res.status(503).json({ error: 'WhatsApp aún no está listo' });
+  }
+
+  try {
+    const grupos = await downloader.listarGrupos();
+    return res.json(grupos);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
 
 /**
@@ -104,22 +176,14 @@ app.get('/estado-sesion', async (_req, res) => {
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             required:
- *               - nombreGrupo
- *               - fecha
- *             properties:
- *               nombreGrupo:
- *                 type: string
- *                 example: "Reportes Diarios"
- *               fecha:
- *                 type: string
- *                 example: "09/03/2026"
+ *             $ref: '#/components/schemas/DescargarFotosRequest'
  *     responses:
  *       200:
  *         description: Proceso finalizado
  *       400:
  *         description: Parámetros inválidos
+ *       503:
+ *         description: WhatsApp no está listo
  *       500:
  *         description: Error en el servidor
  */

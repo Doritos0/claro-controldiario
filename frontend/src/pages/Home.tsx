@@ -1,8 +1,8 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";
 import { WebApi, type Configuracion } from "../api";
 import { webConfig } from "../config";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DefaultApi } from "../node";
 
 interface TokenPayload {
@@ -13,6 +13,10 @@ interface TokenPayload {
 
 export function Home(){
     const queryClient = useQueryClient();
+    const apiNode = new DefaultApi(import.meta.env.VITE_API_EXPRESS)
+    const iniciarSesion = useMutation({
+        mutationFn: () => apiNode.iniciarSesionWhatsapp()
+    })
     const obtenerDataToken = () => {
         const token = localStorage.getItem('accessToken');
         if (!token) return { usuario: null, empresa: null, sub: null};
@@ -68,23 +72,25 @@ export function Home(){
     }
 
     const { data: wspData } = useQuery({
-        queryKey: ['wspData'],
-        queryFn: async() => {
-            const api = new DefaultApi(import.meta.env.VITE_API_EXPRESS)
-            const data = await api.descargarFotos({
-                descargarFotosRequest: {
-                    nombreGrupo: grupo,
-                    fecha: "04-03-2026"
-                }
-            })
-            console.log(data.data)
-            return data.data
-        }
-    })
+    queryKey: ['wspEstado'],
+    queryFn: async () => {
+        const response = await apiNode.obtenerEstadoSesionWhatsapp();
+        return response.data;
+    },
+    refetchInterval: (query) => {
+        const data = query.state.data;
+        return data?.ready ? false : 2000;
+    },
+    refetchOnWindowFocus: false,
+    });
     
     console.log(import.meta.env.VITE_API_EXPRESS)
 
     console.log(wspData)
+
+    useEffect(() => {
+        iniciarSesion.mutate()
+    }, [])
 
     return(
         <>
@@ -129,6 +135,21 @@ export function Home(){
                         <div>
                             <h3>Inicia en WhatsApp</h3>
 
+                            {wspData?.ready ? (
+                                <div className="mt-4 p-4 rounded-md border border-green-300 bg-green-100 text-green-800">
+                                WhatsApp conectado correctamente
+                                </div>
+                            ) : wspData?.qr ? (
+                                <div className="border-4 border-indigo-500 p-2 rounded-lg inline-block">
+                                <img
+                                    src={wspData.qr}
+                                    alt="WhatsApp QR Code"
+                                    className="w-64 h-64"
+                                />
+                                </div>
+                            ) : (
+                                <p>Generando QR...</p>
+                            )}
                         </div>
                         </>
                     )}
