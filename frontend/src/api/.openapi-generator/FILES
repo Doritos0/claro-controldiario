@@ -12,7 +12,6 @@ docs/Configuracion.md
 docs/EjecutarRequest.md
 docs/EjecutivoRest.md
 docs/HTTPValidationError.md
-docs/LIVE.md
 docs/LoginRequest.md
 docs/LoginResponse.md
 docs/PostConfiguracionRequest.md
@@ -30,7 +29,6 @@ models/ejecutar-request.ts
 models/ejecutivo-rest.ts
 models/httpvalidation-error.ts
 models/index.ts
-models/live.ts
 models/login-request.ts
 models/login-response.ts
 models/post-configuracion-request.ts

@@ -225,7 +225,7 @@ const { status, data } = await apiInstance.crearEjecutivo_0(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ejecutarReporteDiario**
-> Array<LIVE> ejecutarReporteDiario(ejecutarRequest)
+> any ejecutarReporteDiario(ejecutarRequest)
 
 
 ### Example
@@ -256,7 +256,7 @@ const { status, data } = await apiInstance.ejecutarReporteDiario(
 
 ### Return type
 
-**Array<LIVE>**
+**any**
 
 ### Authorization
 
@@ -277,7 +277,7 @@ const { status, data } = await apiInstance.ejecutarReporteDiario(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ejecutarReporteDiario_0**
-> Array<LIVE> ejecutarReporteDiario_0(ejecutarRequest)
+> any ejecutarReporteDiario_0(ejecutarRequest)
 
 
 ### Example
@@ -308,7 +308,7 @@ const { status, data } = await apiInstance.ejecutarReporteDiario_0(
 
 ### Return type
 
-**Array<LIVE>**
+**any**
 
 ### Authorization
 

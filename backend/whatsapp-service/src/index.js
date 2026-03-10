@@ -8,7 +8,10 @@ const QRCode = require('qrcode');
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173',
+    'https://5g6lhmg0-5173.brs.devtunnels.ms'
+  ],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -210,8 +213,10 @@ app.post('/descargar', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      error: 'Error al procesar la descarga',
-      detalle: error.message
+      mensaje: 'Error al procesar la descarga',
+      fecha,
+      totalImagenes: 0,
+      carpeta: ''
     });
   }
 });

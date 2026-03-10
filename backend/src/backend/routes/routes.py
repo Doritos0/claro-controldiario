@@ -2,6 +2,7 @@ import logging
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from fastapi.responses import FileResponse
 from jwt import ExpiredSignatureError, InvalidTokenError
 from pydantic import BaseModel
 
@@ -88,12 +89,18 @@ class EjecutarRequest(BaseModel):
     fecha_objetivo: str | None = None
     consolidado: str | None = None
 
-@router.post("/ejecutar", operation_id="Ejecutar_reporte_diario", tags=["web"], response_model=list[LIVE])
-def ejecutar(payload: EjecutarRequest, token: TokenStruct = Depends(require_access_token)) -> list[LIVE]:
-    return ejecutar_proceso(
+@router.post("/ejecutar", operation_id="Ejecutar_reporte_diario", tags=["web"])#, response_model=list[LIVE])
+def ejecutar(payload: EjecutarRequest, token: TokenStruct = Depends(require_access_token)):# -> list[LIVE]:
+    ruta_image = ejecutar_proceso(
         empresa_id=token.empresa_id,
         fecha_objetivo=payload.fecha_objetivo,
         consolidado=payload.consolidado,
+    )
+
+    return FileResponse(
+        path=ruta_image,
+        media_type="image/png",
+        filename=ruta_image.name
     )
 
 

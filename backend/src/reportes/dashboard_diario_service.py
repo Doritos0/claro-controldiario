@@ -91,16 +91,29 @@ class DashboardDiarioService:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
-    def generar_dashboard_diario(self, fecha_objetivo: date, empresa_id: int | None = None) -> Path | None:
-        filas = self._obtener_filas(fecha_objetivo, empresa_id=empresa_id)
-        if not filas:
-            logging.warning("No hay registros LIVE para construir dashboard diario")
-            return None
+    def generar_dashboard_diario(self, fecha_objetivo: str, empresa_id: int | None = None) -> Path | None:
+            # 1. Convertimos el string "02-03-2026" a un objeto date real de Python
+            try:
+                fecha_dt = datetime.strptime(fecha_objetivo, '%d-%m-%Y').date()
+            except ValueError:
+                logging.error(f"Formato de fecha inválido: {fecha_objetivo}. Se esperaba DD-MM-YYYY")
+                return None
 
-        ruta = self.output_dir / f"dashboard_{fecha_objetivo.isoformat()}.png"
-        self._render_dashboard(ruta, filas, fecha_objetivo)
-        logging.info("Dashboard diario generado en %s", ruta)
-        return ruta
+            # 2. Usamos el objeto fecha_dt para obtener las filas (SQLModel lo manejará bien)
+            filas = self._obtener_filas(fecha_objetivo=fecha_dt, empresa_id=empresa_id)
+            
+            if not filas:
+                logging.warning(f"No hay registros LIVE para el {fecha_objetivo}")
+                return None
+
+            # 3. Ahora .isoformat() SÍ funcionará porque fecha_dt es un objeto date
+            ruta = self.output_dir / f"dashboard_{fecha_dt.isoformat()}.png"
+            
+            # 4. Renderizamos usando el objeto fecha_dt
+            self._render_dashboard(ruta, filas, fecha_dt)
+            
+            logging.info("Dashboard diario generado en %s", ruta)
+            return ruta # Retornamos la ruta generada
 
     def _obtener_filas(self, fecha_objetivo: date, empresa_id: int | None = None) -> list[DashboardFila]:
         filas: list[DashboardFila] = []
@@ -110,14 +123,22 @@ class DashboardDiarioService:
             statement = select(Ejecutivo)
             if empresa_id is not None:
                 statement = statement.where(Ejecutivo.empresa_id == empresa_id)
+            logging.info(statement)
             ejecutivos = session.exec(statement).all()
+            logging.info(f"Ejecutivos {ejecutivos}")
             for ejecutivo in ejecutivos:
+                logging.info(f"""Ejecutando consulta:
+                select(LIVE).where(
+                    {LIVE.ejecutivo_id} == {ejecutivo.id},
+                    {LIVE.fecha_live} == {fecha_objetivo}
+                )""")
                 lives = session.exec(
                     select(LIVE).where(
                         LIVE.ejecutivo_id == ejecutivo.id,
                         LIVE.fecha_live == fecha_objetivo,
                     )
                 ).all()
+                logging.info(f"LIVES: {lives}")
                 if not lives:
                     continue
 

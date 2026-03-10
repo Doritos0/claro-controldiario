@@ -4,6 +4,7 @@ import { WebApi, type Configuracion } from "../api";
 import { webConfig } from "../config";
 import React, { useEffect, useState } from "react";
 import { DefaultApi } from "../node";
+import { useNavigate } from 'react-router-dom';
 
 interface TokenPayload {
     usuario_id: number;
@@ -13,6 +14,7 @@ interface TokenPayload {
 
 export function Home(){
     const queryClient = useQueryClient();
+    const navigate = useNavigate();
     const apiNode = new DefaultApi(import.meta.env.VITE_API_EXPRESS)
     const iniciarSesion = useMutation({
         mutationFn: () => apiNode.iniciarSesionWhatsapp()
@@ -40,6 +42,10 @@ export function Home(){
 
     const [grupo, setGrupo] = useState<string>("")
     const [fechaReporte, setFechaReporte] = useState<Date | null>(null)
+    // Solo guardaremos el contenido de los objetos de respuesta
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [resultadoReporte, setResultadoReporte] = useState<{ node: any; fastapi: any } | null>(null);
+    const [imagenReporte, setImagenReporte] = useState<string | null>(null);
 
     const { data: configuracion, isLoading: configLoading} = useQuery<Configuracion | null>({
         queryKey: ['configuracion'],
@@ -86,6 +92,14 @@ export function Home(){
     refetchOnWindowFocus: false,
     });
 
+    const handleLogout = () => {
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
+        console.log("Tokens Eliminados")
+        
+        navigate('/login', { replace: true });
+    }
+
     const handleReport = async (e: React.FormEvent) => {
         e.preventDefault()
         if (!fechaReporte) return;
@@ -105,12 +119,24 @@ export function Home(){
         console.log(responseNode.data)
 
         const api = new WebApi(webConfig.getApiConToken(), import.meta.env.VITE_API_PYTHON)
-        const responseFast = await api.ejecutarReporteDiario({
-            ejecutarRequest: {
-                fecha_objetivo: formatFechaGuion(fechaReporte)
+        const responseFast = await api.ejecutarReporteDiario(
+            {
+                ejecutarRequest: {
+                    fecha_objetivo: formatFechaGuion(fechaReporte)
+                }
+            },
+            {
+                responseType: "blob"
             }
-        })
+        )
         console.log(responseFast.data)
+        const imageBlob = responseFast.data;
+        const imageUrl = URL.createObjectURL(imageBlob);
+        setImagenReporte(imageUrl);
+        setResultadoReporte({
+            node: responseNode.data,     // Aquí capturas el return de Node
+            fastapi: responseFast.data   // Aquí capturas el return de FastAPI
+        });
     }
 
     const formatFechaSlash = (date: Date) => {
@@ -142,9 +168,18 @@ export function Home(){
             ) : (
                 <>
                 <div className="space-y-6 p-4">
-                    <h2 className="text-xl font-bold mb-4">
-                        Bienvenido {usuario}! | Empresa {empresa}
-                    </h2>
+                    <div className="flex items-center justify-between p-4">
+                        <h2 className="text-xl font-bold mb-4">
+                            Bienvenido {usuario}! | Empresa {empresa}
+                        </h2>
+
+                        <button
+                            onClick={handleLogout}   
+                            className="px-4 py-2 rounded-lg bg-red-500 text-white text-sm font-medium hover:bg-red-600 transition"
+                        >
+                            Cerrar sesión
+                        </button>
+                    </div>
 
                     {!configuracion ? (
                         <div className="bg-amber-100 text-amber-800 p-4 rounded-md border border-amber-200">
@@ -209,6 +244,7 @@ export function Home(){
                                         >
                                             Descarga Imagenes (Por ahora luego reporte)
                                         </button>
+                                        <p></p>
                                     </form>
                                 </div>
                                 </>
@@ -233,6 +269,39 @@ export function Home(){
                 
                 </div>
                 </>
+            )}
+            {resultadoReporte && (
+                <div className="mt-6 space-y-4">
+                    <div className="p-4 bg-white border-l-4 border-blue-500 rounded shadow-sm">
+                        <h4 className="font-bold text-blue-700 mb-2">Respuesta Node (Descarga):</h4>
+                        <pre className="text-xs bg-gray-50 p-2 overflow-auto max-h-40">
+                            {JSON.stringify(resultadoReporte.node, null, 2)}
+                        </pre>
+                    </div>
+
+                    <div className="p-4 bg-white border-l-4 border-green-500 rounded shadow-sm">
+                        <h4 className="font-bold text-green-700 mb-2">Respuesta FastAPI (Reporte):</h4>
+                        <pre className="text-xs bg-gray-50 p-2 overflow-auto max-h-40">
+                            {imagenReporte && (
+                                <div className="mt-6 p-4 bg-white rounded border shadow-sm">
+                                    <h4 className="font-bold mb-2">Imagen del reporte:</h4>
+                                    <img
+                                        src={imagenReporte}
+                                        alt="Reporte generado"
+                                        className="max-w-full rounded border"
+                                    />
+                                </div>
+                            )}
+                        </pre>
+                    </div>
+                    
+                    <button 
+                        onClick={() => setResultadoReporte(null)}
+                        className="text-xs text-gray-400 hover:text-red-500 transition"
+                    >
+                        Limpiar consola de resultados
+                    </button>
+                </div>
             )}
         </>
     )

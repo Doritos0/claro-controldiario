@@ -29,6 +29,7 @@ def ejecutar_proceso(empresa_id: int, fecha_objetivo: str | None = None, consoli
         gemini_service = GeminiOCRService()
         live_service = LIVEService()
         ejecutivo_service = EjecutivoService()
+        dashboard_service = DashboardDiarioService()
         ruta_descargas = BASE_DIR / "whatsapp-service" / "descargas" / fecha_objetivo
         extensiones = ['*.png', '*.jpg', '*.jpeg', '*.webp']
         imagenes = []
@@ -75,6 +76,8 @@ def ejecutar_proceso(empresa_id: int, fecha_objetivo: str | None = None, consoli
             except Exception as e:
                 logging.warning(f"Error ingresando LIVE desde {imagen}")
                 pass
-        return lives
+
+        dashboard_path = dashboard_service.generar_dashboard_diario(fecha_objetivo=fecha_objetivo, empresa_id=empresa_id)
+        return dashboard_path
     except Exception as e:
         logging.error(f"Error al ejecutar proceso: {e}")

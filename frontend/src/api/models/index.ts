@@ -2,7 +2,6 @@ export * from './configuracion';
 export * from './ejecutar-request';
 export * from './ejecutivo-rest';
 export * from './httpvalidation-error';
-export * from './live';
 export * from './login-request';
 export * from './login-response';
 export * from './post-configuracion-request';

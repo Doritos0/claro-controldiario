@@ -30,8 +30,6 @@ import type { EjecutivoRest } from '../models';
 // @ts-ignore
 import type { HTTPValidationError } from '../models';
 // @ts-ignore
-import type { LIVE } from '../models';
-// @ts-ignore
 import type { PostConfiguracionRequest } from '../models';
 // @ts-ignore
 import type { RegisterRequest } from '../models';
@@ -534,7 +532,7 @@ export const WebApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ejecutarReporteDiario(ejecutarRequest: EjecutarRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LIVE>>> {
+        async ejecutarReporteDiario(ejecutarRequest: EjecutarRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ejecutarReporteDiario(ejecutarRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebApi.ejecutarReporteDiario']?.[localVarOperationServerIndex]?.url;
@@ -547,7 +545,7 @@ export const WebApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ejecutarReporteDiario_3(ejecutarRequest: EjecutarRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LIVE>>> {
+        async ejecutarReporteDiario_3(ejecutarRequest: EjecutarRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.ejecutarReporteDiario_3(ejecutarRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebApi.ejecutarReporteDiario_3']?.[localVarOperationServerIndex]?.url;
@@ -672,7 +670,7 @@ export const WebApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ejecutarReporteDiario(requestParameters: WebApiEjecutarReporteDiarioRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<LIVE>> {
+        ejecutarReporteDiario(requestParameters: WebApiEjecutarReporteDiarioRequest, options?: RawAxiosRequestConfig): AxiosPromise<any> {
             return localVarFp.ejecutarReporteDiario(requestParameters.ejecutarRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -682,7 +680,7 @@ export const WebApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ejecutarReporteDiario_3(requestParameters: WebApiEjecutarReporteDiario0Request, options?: RawAxiosRequestConfig): AxiosPromise<Array<LIVE>> {
+        ejecutarReporteDiario_3(requestParameters: WebApiEjecutarReporteDiario0Request, options?: RawAxiosRequestConfig): AxiosPromise<any> {
             return localVarFp.ejecutarReporteDiario_3(requestParameters.ejecutarRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -789,7 +787,7 @@ export interface WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApiInterface
      */
-    ejecutarReporteDiario(requestParameters: WebApiEjecutarReporteDiarioRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<LIVE>>;
+    ejecutarReporteDiario(requestParameters: WebApiEjecutarReporteDiarioRequest, options?: RawAxiosRequestConfig): AxiosPromise<any>;
 
     /**
      * 
@@ -799,7 +797,7 @@ export interface WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApiInterface
      */
-    ejecutarReporteDiario_3(requestParameters: WebApiEjecutarReporteDiario0Request, options?: RawAxiosRequestConfig): AxiosPromise<Array<LIVE>>;
+    ejecutarReporteDiario_3(requestParameters: WebApiEjecutarReporteDiario0Request, options?: RawAxiosRequestConfig): AxiosPromise<any>;
 
     /**
      * 
