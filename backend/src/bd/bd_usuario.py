@@ -55,6 +55,23 @@ class UsuarioService:
             session.refresh(usuario)
             return usuario
 
+
+    def modificar_usuario_sql(self, usuario_id: int, user: str | None = None, password: str | None = None) -> Usuario | None:
+        with Session(self.engine) as session:
+            usuario = session.exec(select(Usuario).where(Usuario.id == usuario_id)).scalars().first()
+            if not usuario:
+                return None
+
+            if user:
+                usuario.user = user
+            if password:
+                usuario.password = hash_password(password)
+
+            session.add(usuario)
+            session.commit()
+            session.refresh(usuario)
+            return usuario
+
     def get_usuarios_sql(self) -> list[Usuario]:
         with Session(self.engine) as session:
             return list(session.exec(select(Usuario)).scalars().all())
