@@ -9748,3 +9748,10 @@ AttributeError: can't set attribute
 2026-03-12 14:49:17,460 INFO uvicorn.access 127.0.0.1:49807 - "POST /get_configuracion HTTP/1.1" 200
 2026-03-12 14:49:27,831 INFO uvicorn.access 127.0.0.1:49811 - "OPTIONS /ejecutar HTTP/1.1" 200
 2026-03-12 14:49:28,080 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-12 14:49:29,244 INFO root Se encontraron 1 para la fecha 27-02-2026
+2026-03-12 14:49:29,245 INFO root Se esta procesando 27-02-2026_56977305330_AC4D38F28DCB8C8AC93C018A9B093CB4.jpeg
+2026-03-12 14:49:29,245 WARNING root Número 56977305330 no registrado en BD. Saltando...
+2026-03-12 14:49:29,258 INFO root LIVES Encontrados 6
+2026-03-12 14:49:29,479 INFO root Dashboard diario generado en artifacts\dashboard_2026-02-27.png
+2026-03-12 14:49:29,484 INFO uvicorn.access 127.0.0.1:49811 - "POST /ejecutar HTTP/1.1" 200
+2026-03-12 14:50:54,823 INFO uvicorn.access 127.0.0.1:49826 - "POST /get_ejecutivos HTTP/1.1" 200
