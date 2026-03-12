@@ -3,6 +3,20 @@ const qrcode = require('qrcode-terminal');
 const fs = require('fs');
 const path = require('path');
 
+const resolveStoragePath = (envName, fallbackFolder) => {
+  const customPath = process.env[envName];
+  const basePath = customPath && customPath.trim().length > 0
+    ? customPath
+    : path.resolve(__dirname, '..', '..', fallbackFolder);
+
+  if (!fs.existsSync(basePath)) {
+    fs.mkdirSync(basePath, { recursive: true });
+  }
+
+  return basePath;
+};
+
+
 class WhatsAppDownloader {
   constructor() {
     this.ready = false;
@@ -12,7 +26,7 @@ class WhatsAppDownloader {
     this.initializing = false;
 
     this.client = new Client({
-      authStrategy: new LocalAuth({ dataPath: './sessions' }),
+      authStrategy: new LocalAuth({ dataPath: resolveStoragePath('SESSION_DIR', 'sessions') }),
       puppeteer: { headless: true }
     });
 
@@ -139,7 +153,8 @@ class WhatsAppDownloader {
 
     let contador = 0;
     const nombreCarpeta = fechaStr.replace(/[\/]/g, '-');
-    const carpeta = `./descargas/${nombreCarpeta}`;
+    const baseDescargas = resolveStoragePath('DOWNLOADS_DIR', 'descargas');
+    const carpeta = path.join(baseDescargas, nombreCarpeta);
 
     if (!fs.existsSync(carpeta)) fs.mkdirSync(carpeta, { recursive: true });
 

@@ -5,13 +5,13 @@ from dotenv import load_dotenv
 import os
 from pathlib import Path
 from dataclasses import dataclass
-from pathlib import Path
 
 from src.bd.bd_ejecutivo import EjecutivoService
 from src.bd.bd_live import LIVEService
 from src.bd.schema import Ejecutivo, LIVE
 from src.gemini.estructura import LIVERespuesta
 from src.config.log_config import configurar_log
+from src.config.path_config import get_downloads_dir
 from src.gemini.gemini_ocr_service import GeminiOCRService
 from src.reportes.dashboard_diario_service import DashboardDiarioService, resolver_fecha_objetivo
 
@@ -25,12 +25,11 @@ def ejecutar_proceso(empresa_id: int, fecha_objetivo: str | None = None, consoli
         fecha_objetivo = resolver_fecha_objetivo(fecha_objetivo)
         logging.info(f"fecha objetivo creada: {fecha_objetivo}")
     try:
-        BASE_DIR = Path(__file__).resolve().parent.parent
         gemini_service = GeminiOCRService()
         live_service = LIVEService()
         ejecutivo_service = EjecutivoService()
         dashboard_service = DashboardDiarioService()
-        ruta_descargas = BASE_DIR / "whatsapp-service" / "descargas" / fecha_objetivo
+        ruta_descargas = get_downloads_dir() / fecha_objetivo
         extensiones = ['*.png', '*.jpg', '*.jpeg', '*.webp']
         imagenes = []
         lives: list[LIVE] = []
