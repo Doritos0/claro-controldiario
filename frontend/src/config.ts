@@ -16,5 +16,13 @@ export const webConfig = {
         return new Configuration({
             basePath: basePath,
         });
+    },
+
+    getApiNode() {
+        const basePath = import.meta.env.VITE_API_EXPRESS;
+        console.log(basePath)
+        return new Configuration({
+            basePath: basePath,
+        });
     }
 }

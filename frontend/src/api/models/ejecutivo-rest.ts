@@ -50,5 +50,11 @@ export interface EjecutivoRest {
      * @memberof EjecutivoRest
      */
     'empresa_id'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof EjecutivoRest
+     */
+    'nro_telefono': number;
 }
 

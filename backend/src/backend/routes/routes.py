@@ -69,6 +69,7 @@ class EjecutivoRest(BaseModel):
     estado: str
     eps: str
     empresa_id: int | None = None
+    nro_telefono: int
 
 
 @router.post("/ejecutivos", operation_id="crear_ejecutivo", tags=["web"], response_model=int)
@@ -79,6 +80,7 @@ def crear_ejecutivo(payload: EjecutivoRest, token: TokenStruct = Depends(require
         estado=payload.estado,
         eps=payload.eps,
         empresa_id=token.empresa_id,
+        nro_telefono=payload.nro_telefono
     )
     assert ejecutivo_creado is not None
     return ejecutivo_creado.id
@@ -116,3 +118,38 @@ class PostConfiguracionRequest(BaseModel):
 def post_configracion(payload: PostConfiguracionRequest, token: TokenStruct = Depends(require_access_token)) -> Configuracion:
     configuracion_service = ConfiguracionService()
     return configuracion_service.guardar_configuracion(usuario_id=token.usuario_id, grupo_wsp=payload.grupo_wsp)
+
+class GetEjecutivosRequest(BaseModel):
+    incluir_elimados: bool
+
+@router.post("/get_ejecutivos", operation_id="Obtener ejecutivos", tags=["web"], response_model=list[EjecutivoRest])
+def get_ejecutivos(payload: GetEjecutivosRequest, token: TokenStruct = Depends(require_access_token)) -> list[EjecutivoRest]:
+    ejecutivo_service = EjecutivoService()
+    return ejecutivo_service.get_ejecutivos_sql(
+        empresa_id=token.empresa_id,
+        incluir_eliminados=payload.incluir_elimados
+    )
+
+class ModificarEjecutivoRequest(BaseModel):
+    ejecutivo_id: int
+    nombre: str
+    estado: str
+    nro_telefono: int
+
+@router.put("/modificar_ejecutivo", operation_id="Modificar ejecutivo", tags=["web"], response_model=EjecutivoRest | None)
+def put_ejecutivo(payload: ModificarEjecutivoRequest, token : TokenStruct = Depends(require_access_token)) -> EjecutivoRest | None:
+    ejecutivo_service = EjecutivoService()
+    return ejecutivo_service.modificar_ejecutivo_sql(
+        payload.ejecutivo_id,
+        nombre=payload.nombre,
+        estado=payload.estado,
+        nro_telefono=payload.nro_telefono
+    )
+
+class EliminarEjecutivoRequest(BaseModel):
+    ejecutivo_id: int
+
+@router.put("/eliminar_ejecutivo", operation_id="Eliminar ejecutivo", tags=["web"], response_model=EjecutivoRest | None)
+def eliminar_ejecutivo(payload: EliminarEjecutivoRequest, token : TokenStruct = Depends(require_access_token)) -> EjecutivoRest | None:
+    ejecutivo_service = EjecutivoService()
+    return ejecutivo_service.eliminar_ejecutivo_sql(payload.ejecutivo_id)

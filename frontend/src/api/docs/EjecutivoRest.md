@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **estado** | **string** |  | [default to undefined]
 **eps** | **string** |  | [default to undefined]
 **empresa_id** | **number** |  | [optional] [default to undefined]
+**nro_telefono** | **number** |  | [default to undefined]
 
 ## Example
 
@@ -22,6 +23,7 @@ const instance: EjecutivoRest = {
     estado,
     eps,
     empresa_id,
+    nro_telefono,
 };
 ```
 

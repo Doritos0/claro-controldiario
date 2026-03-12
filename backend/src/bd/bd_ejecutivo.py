@@ -10,6 +10,10 @@ class EjecutivoService:
     def __init__(self, engine: Engine | None = None):
         self.engine = engine or get_engine()
 
+    def obtener_id(self, ejecutivo_id: int) -> Ejecutivo | None:
+        with Session(self.engine) as session:
+            ejecutivo = session.get(Ejecutivo, ejecutivo_id)
+
     def guardar_ejecutivo_sql(self, nombre: str, estado: str, eps: str, empresa_id: int, nro_telefono: int) -> Ejecutivo:
         with Session(self.engine) as session:
             ejecutivo_existe = session.exec(select(Ejecutivo).where(func.lower(Ejecutivo.nombre) == nombre.lower())).scalars().first()
@@ -21,10 +25,38 @@ class EjecutivoService:
             session.refresh(ejecutivo)
             return ejecutivo
 
-    def get_ejecutivos_sql(self, empresa_id: int | None = None) -> list[Ejecutivo]:
+    def get_ejecutivos_sql(self, empresa_id: int | None = None, incluir_eliminados: bool = False) -> list[Ejecutivo]:
         with Session(self.engine) as session:
             statement = select(Ejecutivo)
             if empresa_id is not None:
                 statement = statement.where(Ejecutivo.empresa_id == empresa_id)
+            if not incluir_eliminados:
+                statement = statement.where(func.lower(Ejecutivo.estado) != "eliminado")
             ejecutivos = session.exec(statement).scalars().all()
             return list(ejecutivos)
+        
+    def modificar_ejecutivo_sql(self, ejecutivo_id: int, nombre: str, estado: str, nro_telefono: int) -> Ejecutivo | None:
+        with Session(self.engine) as session:
+            ejecutivo = session.get(Ejecutivo, ejecutivo_id)
+            if not ejecutivo:
+                return None
+
+            ejecutivo.nombre = nombre
+            ejecutivo.estado = estado
+            ejecutivo.nro_telefono = nro_telefono
+            session.add(ejecutivo)
+            session.commit()
+            session.refresh(ejecutivo)
+            return ejecutivo
+
+    def eliminar_ejecutivo_sql(self, ejecutivo_id: int) -> Ejecutivo | None:
+        with Session(self.engine) as session:
+            ejecutivo = session.get(Ejecutivo, ejecutivo_id)
+            if not ejecutivo:
+                return None
+
+            ejecutivo.estado = "ELIMINADO"
+            session.add(ejecutivo)
+            session.commit()
+            session.refresh(ejecutivo)
+            return ejecutivo

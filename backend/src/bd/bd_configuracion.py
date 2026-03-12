@@ -20,22 +20,13 @@ class ConfiguracionService():
         with Session(self.engine) as session:
             configuracion_existe = session.exec(select(Configuracion).where(Configuracion.usuario_id == usuario_id)).first()
             if configuracion_existe:
+                configuracion_existe.grupo_wsp = grupo_wsp
+                session.add(configuracion_existe)
+                session.commit()
+                session.refresh(configuracion_existe)
                 return configuracion_existe
             configuracion = Configuracion(usuario_id=usuario_id, grupo_wsp=grupo_wsp)
             session.add(configuracion)
             session.commit()
             session.refresh(configuracion)
-            return configuracion
-
-    def modificar_configuracion(self, usuario_id: int, grupo_nuevo: str) -> Configuracion:
-        with Session(self.engine) as session:
-            configuracion_existe = session.exec(select(Configuracion).where(Configuracion.grupo_wsp == grupo_nuevo and Configuracion.usuario_id == usuario_id)).first()
-            if configuracion_existe:
-                return configuracion_existe
-            configuracion = session.exec(select(Configuracion).where(Configuracion.usuario_id == usuario_id)).first()
-            configuracion.grupo_wsp = grupo_nuevo
-            session.add(configuracion)
-            session.commit()
-            session.refresh(configuracion)
-
             return configuracion

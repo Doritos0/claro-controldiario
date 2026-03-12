@@ -28,7 +28,13 @@ import type { EjecutarRequest } from '../models';
 // @ts-ignore
 import type { EjecutivoRest } from '../models';
 // @ts-ignore
+import type { EliminarEjecutivoRequest } from '../models';
+// @ts-ignore
+import type { GetEjecutivosRequest } from '../models';
+// @ts-ignore
 import type { HTTPValidationError } from '../models';
+// @ts-ignore
+import type { ModificarEjecutivoRequest } from '../models';
 // @ts-ignore
 import type { PostConfiguracionRequest } from '../models';
 // @ts-ignore
@@ -283,6 +289,166 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
+         * @summary Eliminar Ejecutivo
+         * @param {EliminarEjecutivoRequest} eliminarEjecutivoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        eliminarEjecutivo: async (eliminarEjecutivoRequest: EliminarEjecutivoRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'eliminarEjecutivoRequest' is not null or undefined
+            assertParamExists('eliminarEjecutivo', 'eliminarEjecutivoRequest', eliminarEjecutivoRequest)
+            const localVarPath = `/eliminar_ejecutivo`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(eliminarEjecutivoRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Eliminar Ejecutivo
+         * @param {EliminarEjecutivoRequest} eliminarEjecutivoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        eliminarEjecutivo_4: async (eliminarEjecutivoRequest: EliminarEjecutivoRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'eliminarEjecutivoRequest' is not null or undefined
+            assertParamExists('eliminarEjecutivo_4', 'eliminarEjecutivoRequest', eliminarEjecutivoRequest)
+            const localVarPath = `/eliminar_ejecutivo`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(eliminarEjecutivoRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Put Ejecutivo
+         * @param {ModificarEjecutivoRequest} modificarEjecutivoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modificarEjecutivo: async (modificarEjecutivoRequest: ModificarEjecutivoRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'modificarEjecutivoRequest' is not null or undefined
+            assertParamExists('modificarEjecutivo', 'modificarEjecutivoRequest', modificarEjecutivoRequest)
+            const localVarPath = `/modificar_ejecutivo`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(modificarEjecutivoRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Put Ejecutivo
+         * @param {ModificarEjecutivoRequest} modificarEjecutivoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modificarEjecutivo_5: async (modificarEjecutivoRequest: ModificarEjecutivoRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'modificarEjecutivoRequest' is not null or undefined
+            assertParamExists('modificarEjecutivo_5', 'modificarEjecutivoRequest', modificarEjecutivoRequest)
+            const localVarPath = `/modificar_ejecutivo`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(modificarEjecutivoRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Get Configuracion
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -321,7 +487,7 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        obtenerConfiguracion_4: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        obtenerConfiguracion_6: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/get_configuracion`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -343,6 +509,86 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get Ejecutivos
+         * @param {GetEjecutivosRequest} getEjecutivosRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        obtenerEjecutivos: async (getEjecutivosRequest: GetEjecutivosRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'getEjecutivosRequest' is not null or undefined
+            assertParamExists('obtenerEjecutivos', 'getEjecutivosRequest', getEjecutivosRequest)
+            const localVarPath = `/get_ejecutivos`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(getEjecutivosRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get Ejecutivos
+         * @param {GetEjecutivosRequest} getEjecutivosRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        obtenerEjecutivos_7: async (getEjecutivosRequest: GetEjecutivosRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'getEjecutivosRequest' is not null or undefined
+            assertParamExists('obtenerEjecutivos_7', 'getEjecutivosRequest', getEjecutivosRequest)
+            const localVarPath = `/get_ejecutivos`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(getEjecutivosRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -430,9 +676,9 @@ export const WebApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registrarUsuario_5: async (registerRequest: RegisterRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        registrarUsuario_8: async (registerRequest: RegisterRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'registerRequest' is not null or undefined
-            assertParamExists('registrarUsuario_5', 'registerRequest', registerRequest)
+            assertParamExists('registrarUsuario_8', 'registerRequest', registerRequest)
             const localVarPath = `/usuarios`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -553,6 +799,58 @@ export const WebApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Eliminar Ejecutivo
+         * @param {EliminarEjecutivoRequest} eliminarEjecutivoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async eliminarEjecutivo(eliminarEjecutivoRequest: EliminarEjecutivoRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EjecutivoRest>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.eliminarEjecutivo(eliminarEjecutivoRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.eliminarEjecutivo']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Eliminar Ejecutivo
+         * @param {EliminarEjecutivoRequest} eliminarEjecutivoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async eliminarEjecutivo_4(eliminarEjecutivoRequest: EliminarEjecutivoRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EjecutivoRest>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.eliminarEjecutivo_4(eliminarEjecutivoRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.eliminarEjecutivo_4']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Put Ejecutivo
+         * @param {ModificarEjecutivoRequest} modificarEjecutivoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modificarEjecutivo(modificarEjecutivoRequest: ModificarEjecutivoRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EjecutivoRest>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modificarEjecutivo(modificarEjecutivoRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.modificarEjecutivo']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Put Ejecutivo
+         * @param {ModificarEjecutivoRequest} modificarEjecutivoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async modificarEjecutivo_5(modificarEjecutivoRequest: ModificarEjecutivoRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EjecutivoRest>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modificarEjecutivo_5(modificarEjecutivoRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.modificarEjecutivo_5']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Get Configuracion
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -569,10 +867,36 @@ export const WebApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async obtenerConfiguracion_4(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Configuracion>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.obtenerConfiguracion_4(options);
+        async obtenerConfiguracion_6(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Configuracion>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.obtenerConfiguracion_6(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebApi.obtenerConfiguracion_4']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.obtenerConfiguracion_6']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get Ejecutivos
+         * @param {GetEjecutivosRequest} getEjecutivosRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async obtenerEjecutivos(getEjecutivosRequest: GetEjecutivosRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EjecutivoRest>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.obtenerEjecutivos(getEjecutivosRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.obtenerEjecutivos']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get Ejecutivos
+         * @param {GetEjecutivosRequest} getEjecutivosRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async obtenerEjecutivos_7(getEjecutivosRequest: GetEjecutivosRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EjecutivoRest>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.obtenerEjecutivos_7(getEjecutivosRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.obtenerEjecutivos_7']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -607,10 +931,10 @@ export const WebApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async registrarUsuario_5(registerRequest: RegisterRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.registrarUsuario_5(registerRequest, options);
+        async registrarUsuario_8(registerRequest: RegisterRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registrarUsuario_8(registerRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebApi.registrarUsuario_5']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['WebApi.registrarUsuario_8']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -685,6 +1009,46 @@ export const WebApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
+         * @summary Eliminar Ejecutivo
+         * @param {WebApiEliminarEjecutivoRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        eliminarEjecutivo(requestParameters: WebApiEliminarEjecutivoRequest, options?: RawAxiosRequestConfig): AxiosPromise<EjecutivoRest> {
+            return localVarFp.eliminarEjecutivo(requestParameters.eliminarEjecutivoRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Eliminar Ejecutivo
+         * @param {WebApiEliminarEjecutivo0Request} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        eliminarEjecutivo_4(requestParameters: WebApiEliminarEjecutivo0Request, options?: RawAxiosRequestConfig): AxiosPromise<EjecutivoRest> {
+            return localVarFp.eliminarEjecutivo_4(requestParameters.eliminarEjecutivoRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Put Ejecutivo
+         * @param {WebApiModificarEjecutivoRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modificarEjecutivo(requestParameters: WebApiModificarEjecutivoRequest, options?: RawAxiosRequestConfig): AxiosPromise<EjecutivoRest> {
+            return localVarFp.modificarEjecutivo(requestParameters.modificarEjecutivoRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Put Ejecutivo
+         * @param {WebApiModificarEjecutivo0Request} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modificarEjecutivo_5(requestParameters: WebApiModificarEjecutivo0Request, options?: RawAxiosRequestConfig): AxiosPromise<EjecutivoRest> {
+            return localVarFp.modificarEjecutivo_5(requestParameters.modificarEjecutivoRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Get Configuracion
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -698,8 +1062,28 @@ export const WebApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        obtenerConfiguracion_4(options?: RawAxiosRequestConfig): AxiosPromise<Configuracion> {
-            return localVarFp.obtenerConfiguracion_4(options).then((request) => request(axios, basePath));
+        obtenerConfiguracion_6(options?: RawAxiosRequestConfig): AxiosPromise<Configuracion> {
+            return localVarFp.obtenerConfiguracion_6(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get Ejecutivos
+         * @param {WebApiObtenerEjecutivosRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        obtenerEjecutivos(requestParameters: WebApiObtenerEjecutivosRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<EjecutivoRest>> {
+            return localVarFp.obtenerEjecutivos(requestParameters.getEjecutivosRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get Ejecutivos
+         * @param {WebApiObtenerEjecutivos0Request} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        obtenerEjecutivos_7(requestParameters: WebApiObtenerEjecutivos0Request, options?: RawAxiosRequestConfig): AxiosPromise<Array<EjecutivoRest>> {
+            return localVarFp.obtenerEjecutivos_7(requestParameters.getEjecutivosRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -727,8 +1111,8 @@ export const WebApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registrarUsuario_5(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse> {
-            return localVarFp.registrarUsuario_5(requestParameters.registerRequest, options).then((request) => request(axios, basePath));
+        registrarUsuario_8(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse> {
+            return localVarFp.registrarUsuario_8(requestParameters.registerRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -801,6 +1185,46 @@ export interface WebApiInterface {
 
     /**
      * 
+     * @summary Eliminar Ejecutivo
+     * @param {WebApiEliminarEjecutivoRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApiInterface
+     */
+    eliminarEjecutivo(requestParameters: WebApiEliminarEjecutivoRequest, options?: RawAxiosRequestConfig): AxiosPromise<EjecutivoRest>;
+
+    /**
+     * 
+     * @summary Eliminar Ejecutivo
+     * @param {WebApiEliminarEjecutivo0Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApiInterface
+     */
+    eliminarEjecutivo_4(requestParameters: WebApiEliminarEjecutivo0Request, options?: RawAxiosRequestConfig): AxiosPromise<EjecutivoRest>;
+
+    /**
+     * 
+     * @summary Put Ejecutivo
+     * @param {WebApiModificarEjecutivoRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApiInterface
+     */
+    modificarEjecutivo(requestParameters: WebApiModificarEjecutivoRequest, options?: RawAxiosRequestConfig): AxiosPromise<EjecutivoRest>;
+
+    /**
+     * 
+     * @summary Put Ejecutivo
+     * @param {WebApiModificarEjecutivo0Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApiInterface
+     */
+    modificarEjecutivo_5(requestParameters: WebApiModificarEjecutivo0Request, options?: RawAxiosRequestConfig): AxiosPromise<EjecutivoRest>;
+
+    /**
+     * 
      * @summary Get Configuracion
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -815,7 +1239,27 @@ export interface WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApiInterface
      */
-    obtenerConfiguracion_4(options?: RawAxiosRequestConfig): AxiosPromise<Configuracion>;
+    obtenerConfiguracion_6(options?: RawAxiosRequestConfig): AxiosPromise<Configuracion>;
+
+    /**
+     * 
+     * @summary Get Ejecutivos
+     * @param {WebApiObtenerEjecutivosRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApiInterface
+     */
+    obtenerEjecutivos(requestParameters: WebApiObtenerEjecutivosRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<EjecutivoRest>>;
+
+    /**
+     * 
+     * @summary Get Ejecutivos
+     * @param {WebApiObtenerEjecutivos0Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApiInterface
+     */
+    obtenerEjecutivos_7(requestParameters: WebApiObtenerEjecutivos0Request, options?: RawAxiosRequestConfig): AxiosPromise<Array<EjecutivoRest>>;
 
     /**
      * 
@@ -844,7 +1288,7 @@ export interface WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApiInterface
      */
-    registrarUsuario_5(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse>;
+    registrarUsuario_8(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig): AxiosPromise<RegisterResponse>;
 
 }
 
@@ -933,6 +1377,90 @@ export interface WebApiEjecutarReporteDiario0Request {
 }
 
 /**
+ * Request parameters for eliminarEjecutivo operation in WebApi.
+ * @export
+ * @interface WebApiEliminarEjecutivoRequest
+ */
+export interface WebApiEliminarEjecutivoRequest {
+    /**
+     * 
+     * @type {EliminarEjecutivoRequest}
+     * @memberof WebApiEliminarEjecutivo
+     */
+    readonly eliminarEjecutivoRequest: EliminarEjecutivoRequest
+}
+
+/**
+ * Request parameters for eliminarEjecutivo_4 operation in WebApi.
+ * @export
+ * @interface WebApiEliminarEjecutivo0Request
+ */
+export interface WebApiEliminarEjecutivo0Request {
+    /**
+     * 
+     * @type {EliminarEjecutivoRequest}
+     * @memberof WebApiEliminarEjecutivo0
+     */
+    readonly eliminarEjecutivoRequest: EliminarEjecutivoRequest
+}
+
+/**
+ * Request parameters for modificarEjecutivo operation in WebApi.
+ * @export
+ * @interface WebApiModificarEjecutivoRequest
+ */
+export interface WebApiModificarEjecutivoRequest {
+    /**
+     * 
+     * @type {ModificarEjecutivoRequest}
+     * @memberof WebApiModificarEjecutivo
+     */
+    readonly modificarEjecutivoRequest: ModificarEjecutivoRequest
+}
+
+/**
+ * Request parameters for modificarEjecutivo_5 operation in WebApi.
+ * @export
+ * @interface WebApiModificarEjecutivo0Request
+ */
+export interface WebApiModificarEjecutivo0Request {
+    /**
+     * 
+     * @type {ModificarEjecutivoRequest}
+     * @memberof WebApiModificarEjecutivo0
+     */
+    readonly modificarEjecutivoRequest: ModificarEjecutivoRequest
+}
+
+/**
+ * Request parameters for obtenerEjecutivos operation in WebApi.
+ * @export
+ * @interface WebApiObtenerEjecutivosRequest
+ */
+export interface WebApiObtenerEjecutivosRequest {
+    /**
+     * 
+     * @type {GetEjecutivosRequest}
+     * @memberof WebApiObtenerEjecutivos
+     */
+    readonly getEjecutivosRequest: GetEjecutivosRequest
+}
+
+/**
+ * Request parameters for obtenerEjecutivos_7 operation in WebApi.
+ * @export
+ * @interface WebApiObtenerEjecutivos0Request
+ */
+export interface WebApiObtenerEjecutivos0Request {
+    /**
+     * 
+     * @type {GetEjecutivosRequest}
+     * @memberof WebApiObtenerEjecutivos0
+     */
+    readonly getEjecutivosRequest: GetEjecutivosRequest
+}
+
+/**
  * Request parameters for registrarUsuario operation in WebApi.
  * @export
  * @interface WebApiRegistrarUsuarioRequest
@@ -947,7 +1475,7 @@ export interface WebApiRegistrarUsuarioRequest {
 }
 
 /**
- * Request parameters for registrarUsuario_5 operation in WebApi.
+ * Request parameters for registrarUsuario_8 operation in WebApi.
  * @export
  * @interface WebApiRegistrarUsuario0Request
  */
@@ -1041,6 +1569,54 @@ export class WebApi extends BaseAPI implements WebApiInterface {
 
     /**
      * 
+     * @summary Eliminar Ejecutivo
+     * @param {WebApiEliminarEjecutivoRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApi
+     */
+    public eliminarEjecutivo(requestParameters: WebApiEliminarEjecutivoRequest, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).eliminarEjecutivo(requestParameters.eliminarEjecutivoRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Eliminar Ejecutivo
+     * @param {WebApiEliminarEjecutivo0Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApi
+     */
+    public eliminarEjecutivo_4(requestParameters: WebApiEliminarEjecutivo0Request, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).eliminarEjecutivo_4(requestParameters.eliminarEjecutivoRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Put Ejecutivo
+     * @param {WebApiModificarEjecutivoRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApi
+     */
+    public modificarEjecutivo(requestParameters: WebApiModificarEjecutivoRequest, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).modificarEjecutivo(requestParameters.modificarEjecutivoRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Put Ejecutivo
+     * @param {WebApiModificarEjecutivo0Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApi
+     */
+    public modificarEjecutivo_5(requestParameters: WebApiModificarEjecutivo0Request, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).modificarEjecutivo_5(requestParameters.modificarEjecutivoRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Get Configuracion
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1057,8 +1633,32 @@ export class WebApi extends BaseAPI implements WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApi
      */
-    public obtenerConfiguracion_4(options?: RawAxiosRequestConfig) {
-        return WebApiFp(this.configuration).obtenerConfiguracion_4(options).then((request) => request(this.axios, this.basePath));
+    public obtenerConfiguracion_6(options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).obtenerConfiguracion_6(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get Ejecutivos
+     * @param {WebApiObtenerEjecutivosRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApi
+     */
+    public obtenerEjecutivos(requestParameters: WebApiObtenerEjecutivosRequest, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).obtenerEjecutivos(requestParameters.getEjecutivosRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get Ejecutivos
+     * @param {WebApiObtenerEjecutivos0Request} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebApi
+     */
+    public obtenerEjecutivos_7(requestParameters: WebApiObtenerEjecutivos0Request, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).obtenerEjecutivos_7(requestParameters.getEjecutivosRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1092,8 +1692,8 @@ export class WebApi extends BaseAPI implements WebApiInterface {
      * @throws {RequiredError}
      * @memberof WebApi
      */
-    public registrarUsuario_5(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig) {
-        return WebApiFp(this.configuration).registrarUsuario_5(requestParameters.registerRequest, options).then((request) => request(this.axios, this.basePath));
+    public registrarUsuario_8(requestParameters: WebApiRegistrarUsuario0Request, options?: RawAxiosRequestConfig) {
+        return WebApiFp(this.configuration).registrarUsuario_8(requestParameters.registerRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

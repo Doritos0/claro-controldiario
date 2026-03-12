@@ -10,8 +10,14 @@ All URIs are relative to *http://localhost:8000/api*
 |[**crearEjecutivo_0**](#crearejecutivo_0) | **POST** /ejecutivos | Crear Ejecutivo|
 |[**ejecutarReporteDiario**](#ejecutarreportediario) | **POST** /ejecutar | Ejecutar|
 |[**ejecutarReporteDiario_0**](#ejecutarreportediario_0) | **POST** /ejecutar | Ejecutar|
+|[**eliminarEjecutivo**](#eliminarejecutivo) | **PUT** /eliminar_ejecutivo | Eliminar Ejecutivo|
+|[**eliminarEjecutivo_0**](#eliminarejecutivo_0) | **PUT** /eliminar_ejecutivo | Eliminar Ejecutivo|
+|[**modificarEjecutivo**](#modificarejecutivo) | **PUT** /modificar_ejecutivo | Put Ejecutivo|
+|[**modificarEjecutivo_0**](#modificarejecutivo_0) | **PUT** /modificar_ejecutivo | Put Ejecutivo|
 |[**obtenerConfiguracion**](#obtenerconfiguracion) | **POST** /get_configuracion | Get Configuracion|
 |[**obtenerConfiguracion_0**](#obtenerconfiguracion_0) | **POST** /get_configuracion | Get Configuracion|
+|[**obtenerEjecutivos**](#obtenerejecutivos) | **POST** /get_ejecutivos | Get Ejecutivos|
+|[**obtenerEjecutivos_0**](#obtenerejecutivos_0) | **POST** /get_ejecutivos | Get Ejecutivos|
 |[**peticionTest**](#peticiontest) | **GET** /test | Test|
 |[**registrarUsuario**](#registrarusuario) | **POST** /usuarios | Registrar Usuario|
 |[**registrarUsuario_0**](#registrarusuario_0) | **POST** /usuarios | Registrar Usuario|
@@ -328,6 +334,214 @@ const { status, data } = await apiInstance.ejecutarReporteDiario_0(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **eliminarEjecutivo**
+> EjecutivoRest eliminarEjecutivo(eliminarEjecutivoRequest)
+
+
+### Example
+
+```typescript
+import {
+    WebApi,
+    Configuration,
+    EliminarEjecutivoRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebApi(configuration);
+
+let eliminarEjecutivoRequest: EliminarEjecutivoRequest; //
+
+const { status, data } = await apiInstance.eliminarEjecutivo(
+    eliminarEjecutivoRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **eliminarEjecutivoRequest** | **EliminarEjecutivoRequest**|  | |
+
+
+### Return type
+
+**EjecutivoRest**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **eliminarEjecutivo_0**
+> EjecutivoRest eliminarEjecutivo_0(eliminarEjecutivoRequest)
+
+
+### Example
+
+```typescript
+import {
+    WebApi,
+    Configuration,
+    EliminarEjecutivoRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebApi(configuration);
+
+let eliminarEjecutivoRequest: EliminarEjecutivoRequest; //
+
+const { status, data } = await apiInstance.eliminarEjecutivo_0(
+    eliminarEjecutivoRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **eliminarEjecutivoRequest** | **EliminarEjecutivoRequest**|  | |
+
+
+### Return type
+
+**EjecutivoRest**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **modificarEjecutivo**
+> EjecutivoRest modificarEjecutivo(modificarEjecutivoRequest)
+
+
+### Example
+
+```typescript
+import {
+    WebApi,
+    Configuration,
+    ModificarEjecutivoRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebApi(configuration);
+
+let modificarEjecutivoRequest: ModificarEjecutivoRequest; //
+
+const { status, data } = await apiInstance.modificarEjecutivo(
+    modificarEjecutivoRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **modificarEjecutivoRequest** | **ModificarEjecutivoRequest**|  | |
+
+
+### Return type
+
+**EjecutivoRest**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **modificarEjecutivo_0**
+> EjecutivoRest modificarEjecutivo_0(modificarEjecutivoRequest)
+
+
+### Example
+
+```typescript
+import {
+    WebApi,
+    Configuration,
+    ModificarEjecutivoRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebApi(configuration);
+
+let modificarEjecutivoRequest: ModificarEjecutivoRequest; //
+
+const { status, data } = await apiInstance.modificarEjecutivo_0(
+    modificarEjecutivoRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **modificarEjecutivoRequest** | **ModificarEjecutivoRequest**|  | |
+
+
+### Return type
+
+**EjecutivoRest**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **obtenerConfiguracion**
 > Configuracion obtenerConfiguracion()
 
@@ -411,6 +625,110 @@ This endpoint does not have any parameters.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Successful Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **obtenerEjecutivos**
+> Array<EjecutivoRest> obtenerEjecutivos(getEjecutivosRequest)
+
+
+### Example
+
+```typescript
+import {
+    WebApi,
+    Configuration,
+    GetEjecutivosRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebApi(configuration);
+
+let getEjecutivosRequest: GetEjecutivosRequest; //
+
+const { status, data } = await apiInstance.obtenerEjecutivos(
+    getEjecutivosRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **getEjecutivosRequest** | **GetEjecutivosRequest**|  | |
+
+
+### Return type
+
+**Array<EjecutivoRest>**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **obtenerEjecutivos_0**
+> Array<EjecutivoRest> obtenerEjecutivos_0(getEjecutivosRequest)
+
+
+### Example
+
+```typescript
+import {
+    WebApi,
+    Configuration,
+    GetEjecutivosRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebApi(configuration);
+
+let getEjecutivosRequest: GetEjecutivosRequest; //
+
+const { status, data } = await apiInstance.obtenerEjecutivos_0(
+    getEjecutivosRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **getEjecutivosRequest** | **GetEjecutivosRequest**|  | |
+
+
+### Return type
+
+**Array<EjecutivoRest>**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
