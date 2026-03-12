@@ -35,6 +35,15 @@ def _resolve_node_binary(root: Path) -> str:
     return "node"
 
 
+def _resolve_whatsapp_command(root: Path, whatsapp_dir: Path) -> tuple[list[str], Path]:
+    if os.name == "nt":
+        bundled_service = root / "runtime" / "whatsapp-service" / "whatsapp-service.exe"
+        if bundled_service.exists():
+            return [str(bundled_service)], bundled_service.parent
+
+    return [_resolve_node_binary(root), "src/index.js"], whatsapp_dir
+
+
 def main() -> int:
     root = _repo_root()
     backend_dir = root / "backend"
@@ -52,9 +61,8 @@ def main() -> int:
     processes: list[subprocess.Popen] = []
 
     try:
-        node_bin = _resolve_node_binary(root)
-        node_cmd = [node_bin, "src/index.js"]
-        processes.append(subprocess.Popen(node_cmd, cwd=whatsapp_dir, env=env))
+        whatsapp_cmd, whatsapp_cwd = _resolve_whatsapp_command(root, whatsapp_dir)
+        processes.append(subprocess.Popen(whatsapp_cmd, cwd=whatsapp_cwd, env=env))
 
         py_cmd = [
             sys.executable,

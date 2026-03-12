@@ -1,20 +1,20 @@
-# Crear y probar el ejecutable (`.exe`) de este proyecto
+# Crear un `.exe` realmente portable (sin Python ni Node instalados)
 
-Esta guía sí está alineada con la estructura actual del repo:
-- `frontend` (React)
-- `backend` (FastAPI)
-- `backend/whatsapp-service` (Node/Express)
+Sí, **`--onefile` sí hace falta** para el launcher Python (y ya está incluido).
+Pero ojo: `--onefile` solo empaqueta **Python**. Para no depender de Node también, hay que empaquetar el servicio Node como `.exe` adicional y meterlo dentro del bundle final.
 
-## 1) Qué cambia al pasar a `.exe`
+## Estrategia final
 
-Para escritorio no debes depender de rutas relativas del repo. Ya quedó preparado:
-- DB SQLite en `APP_DATA_DIR` (o `BD_PATH` si lo defines)
-- imágenes descargadas en `DOWNLOADS_DIR`
-- Node configurable por `NODE_PORT`, `FRONTEND_ORIGIN`, `SESSION_DIR`, `DOWNLOADS_DIR`
+1. Compilar `frontend` (`npm run build`).
+2. Compilar `backend/whatsapp-service` a `whatsapp-service.exe` usando `pkg`.
+3. Empaquetar `desktop_launcher.py` con PyInstaller `--onefile`, incluyendo:
+   - `backend/`
+   - `frontend/dist/`
+   - `runtime/whatsapp-service/whatsapp-service.exe`
 
-## 2) Variables de entorno recomendadas
+Con eso, en el PC destino no necesitas Python ni Node instalados.
 
-Backend/Node compartido:
+## Variables recomendadas
 
 ```env
 AMBIENTE=sqlite
@@ -27,52 +27,22 @@ GEMINI_API_KEY=TU_API_KEY
 GEMINI_MODEL_OCR=gemini-3-flash-preview
 ```
 
-Frontend build:
-
-```env
-VITE_API_PYTHON=http://127.0.0.1:8000
-VITE_API_EXPRESS=http://127.0.0.1:3000
-```
-
-## 3) Prueba local antes de empaquetar
-
-En 3 terminales:
-
-```bash
-# terminal 1
-cd backend
-python -m uvicorn src.main:app --host 127.0.0.1 --port 8000
-```
-
-```bash
-# terminal 2
-cd backend/whatsapp-service
-node src/index.js
-```
-
-```bash
-# terminal 3
-cd frontend
-npm ci
-npm run dev -- --host 127.0.0.1 --port 5173
-```
-
-Verificaciones:
-- FastAPI: `http://127.0.0.1:8000/swagger`
-- Node docs: `http://127.0.0.1:3000/docs`
-- Frontend: `http://127.0.0.1:5173`
-
-## 4) Crear el `.exe` (launcher único)
-
-Se añadió `desktop_launcher.py` para abrir los 3 componentes (Node + FastAPI + UI estática) desde un solo proceso.
-
-### Build manual (Windows)
+## Build automático (Windows)
 
 ```powershell
-pip install pyinstaller
-cd <raiz-del-repo>
+./scripts/build_windows_exe.ps1
+```
 
-# build frontend para incluirlo dentro del exe
+Este script hace:
+- build frontend
+- build Node `.exe` con `pkg`
+- copia a `runtime/whatsapp-service/whatsapp-service.exe`
+- build final de `dist/ClaroControlDiario.exe` con `--onefile`
+
+## Build manual (Windows)
+
+```powershell
+# 1) Frontend
 cd frontend
 $env:VITE_API_PYTHON="http://127.0.0.1:8000"
 $env:VITE_API_EXPRESS="http://127.0.0.1:3000"
@@ -80,40 +50,37 @@ npm ci
 npm run build
 cd ..
 
-# generar exe
+# 2) Node service -> exe
+cd backend/whatsapp-service
+npm ci
+npx pkg src/index.js --targets node20-win-x64 --output dist/whatsapp-service.exe
+cd ../..
+mkdir runtime\whatsapp-service -Force
+copy backend\whatsapp-service\dist\whatsapp-service.exe runtime\whatsapp-service\whatsapp-service.exe
+
+# 3) Launcher Python -> onefile
+pip install pyinstaller
 pyinstaller --noconfirm --clean --onefile --name ClaroControlDiario `
   --add-data "backend;backend" `
   --add-data "frontend/dist;frontend/dist" `
+  --add-data "runtime;runtime" `
   desktop_launcher.py
 ```
 
-O usa el helper:
+## Cómo probar el `.exe`
 
-```powershell
-./scripts/build_windows_exe.ps1
-```
-
-Salida:
-- `dist/ClaroControlDiario.exe`
-
-## 5) Cómo probar el `.exe`
-
-1. Copia y abre `dist/ClaroControlDiario.exe`.
-2. Verifica que levanta:
+1. Ejecuta `dist/ClaroControlDiario.exe`.
+2. Verifica:
    - `http://127.0.0.1:8000/swagger`
    - `http://127.0.0.1:3000/docs`
-   - `http://127.0.0.1:5173` (si `frontend/dist` fue incluido correctamente)
-3. Ejecuta flujo real:
-   - iniciar sesión web
-   - iniciar sesión de WhatsApp (QR)
-   - descargar fotos por fecha
-   - ejecutar OCR/reporte
-4. Confirma datos en carpeta de usuario (`APP_DATA_DIR`) y que persiste entre reinicios.
+   - `http://127.0.0.1:5173`
+3. Prueba flujo completo:
+   - login
+   - QR WhatsApp
+   - descarga por fecha
+   - OCR y dashboard
+4. Reinicia app y valida persistencia de DB/descargas en `%LOCALAPPDATA%/ClaroControlDiario`.
 
-## 6) Punto importante de distribución
+## Nota importante
 
-El launcher puede usar `node` del sistema. Si quieres **cero dependencias en el PC destino**, empaqueta también Node runtime y colócalo en:
-
-- `dist/runtime/node/node.exe`
-
-Así el launcher usará ese binario y no dependerá de instalación previa de Node.
+`whatsapp-web.js` usa Chromium/Puppeteer; en algunas máquinas puede requerir ajustes adicionales de runtime (dependencias del navegador). Si pasa, documenta esa dependencia en tu instalador final.
