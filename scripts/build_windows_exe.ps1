@@ -1,26 +1,112 @@
 $ErrorActionPreference = "Stop"
 
-Write-Host "[1/5] Build frontend"
-Push-Location frontend
-$env:VITE_API_PYTHON = "http://127.0.0.1:8000"
-$env:VITE_API_EXPRESS = "http://127.0.0.1:3000"
-npm ci
-npm run build
-Pop-Location
+function Invoke-Step {
+  param(
+    [string]$Name,
+    [scriptblock]$Action
+  )
 
-Write-Host "[2/5] Build WhatsApp service executable (pkg)"
-Push-Location backend/whatsapp-service
-npm ci
-npx pkg src/index.js --targets node20-win-x64 --output dist/whatsapp-service.exe
-Pop-Location
+  Write-Host $Name
+  & $Action
+  if ($LASTEXITCODE -ne 0) {
+    throw "Step failed ($Name) with exit code $LASTEXITCODE"
+  }
+}
 
-Write-Host "[3/5] Prepare runtime folder"
-New-Item -ItemType Directory -Force -Path runtime/whatsapp-service | Out-Null
-Copy-Item -Force backend/whatsapp-service/dist/whatsapp-service.exe runtime/whatsapp-service/whatsapp-service.exe
+function Install-NodeDeps {
+  param([string]$Path)
 
-Write-Host "[4/5] Build launcher exe (PyInstaller onefile)"
-pyinstaller --noconfirm --clean --onefile --name ClaroControlDiario --add-data "backend;backend" --add-data "frontend/dist;frontend/dist" --add-data "runtime;runtime" desktop_launcher.py
+  Push-Location $Path
+  try {
+    # First try: reproducible install
+    npm ci
+    if ($LASTEXITCODE -eq 0) {
+      return
+    }
 
-Write-Host "[5/5] Done"
-Write-Host "Output: dist/ClaroControlDiario.exe"
-Write-Host "Este ejecutable ya no depende de Node instalado (usa runtime/whatsapp-service/whatsapp-service.exe)."
+    Write-Warning "npm ci falló en $Path. Reintentando con limpieza por posible lock/EPERM..."
+
+    if (Test-Path node_modules) {
+      try {
+        Remove-Item -Recurse -Force node_modules
+      } catch {
+        Write-Warning "No se pudo eliminar node_modules en el primer intento. Reintentando..."
+        Start-Sleep -Seconds 2
+        Remove-Item -Recurse -Force node_modules
+      }
+    }
+
+    if (Test-Path package-lock.json) {
+      try {
+        Remove-Item -Force package-lock.json
+      } catch {
+        Write-Warning "No se pudo eliminar package-lock.json; continuando..."
+      }
+    }
+
+    npm install
+    if ($LASTEXITCODE -ne 0) {
+      throw "npm install también falló en $Path"
+    }
+  }
+  finally {
+    Pop-Location
+  }
+}
+
+Invoke-Step "[1/6] Build frontend" {
+  $env:VITE_API_PYTHON = "http://127.0.0.1:8000"
+  $env:VITE_API_EXPRESS = "http://127.0.0.1:3000"
+
+  Install-NodeDeps "frontend"
+
+  Push-Location frontend
+  try {
+    npm run build
+    if ($LASTEXITCODE -ne 0) {
+      throw "npm run build falló en frontend"
+    }
+  }
+  finally {
+    Pop-Location
+  }
+}
+
+Invoke-Step "[2/6] Build WhatsApp service executable (pkg)" {
+  Install-NodeDeps "backend/whatsapp-service"
+
+  Push-Location backend/whatsapp-service
+  try {
+    # pkg no soporta Node 20+ en targets; usar node18-win-x64
+    npm exec --yes pkg@5.8.1 -- src/index.js --targets node18-win-x64 --output dist/whatsapp-service.exe
+    if ($LASTEXITCODE -ne 0) {
+      throw "pkg falló generando whatsapp-service.exe"
+    }
+  }
+  finally {
+    Pop-Location
+  }
+}
+
+Invoke-Step "[3/6] Validate WhatsApp executable" {
+  if (!(Test-Path "backend/whatsapp-service/dist/whatsapp-service.exe")) {
+    throw "No se generó backend/whatsapp-service/dist/whatsapp-service.exe"
+  }
+}
+
+Invoke-Step "[4/6] Prepare runtime folder" {
+  New-Item -ItemType Directory -Force -Path runtime/whatsapp-service | Out-Null
+  Copy-Item -Force backend/whatsapp-service/dist/whatsapp-service.exe runtime/whatsapp-service/whatsapp-service.exe
+}
+
+Invoke-Step "[5/6] Build launcher exe (PyInstaller onefile)" {
+  pyinstaller --noconfirm --clean --onefile --name ClaroControlDiario --add-data "backend;backend" --add-data "frontend/dist;frontend/dist" --add-data "runtime;runtime" desktop_launcher.py
+  if ($LASTEXITCODE -ne 0) {
+    throw "PyInstaller falló"
+  }
+}
+
+Invoke-Step "[6/6] Done" {
+  Write-Host "Output: dist/ClaroControlDiario.exe"
+  Write-Host "Portable: no requiere Python/Node instalados en PC destino."
+}

@@ -1,18 +1,31 @@
 # Crear un `.exe` realmente portable (sin Python ni Node instalados)
 
-Sí, **`--onefile` sí hace falta** para el launcher Python (y ya está incluido).
-Pero ojo: `--onefile` solo empaqueta **Python**. Para no depender de Node también, hay que empaquetar el servicio Node como `.exe` adicional y meterlo dentro del bundle final.
+Sí, **`--onefile` sí hace falta** para el launcher Python.
+Y además, para no depender de Node en la PC destino, se empaqueta `whatsapp-service` como `.exe` con `pkg`.
 
 ## Estrategia final
 
-1. Compilar `frontend` (`npm run build`).
-2. Compilar `backend/whatsapp-service` a `whatsapp-service.exe` usando `pkg`.
-3. Empaquetar `desktop_launcher.py` con PyInstaller `--onefile`, incluyendo:
-   - `backend/`
-   - `frontend/dist/`
-   - `runtime/whatsapp-service/whatsapp-service.exe`
+1. Build `frontend`.
+2. Build `backend/whatsapp-service` a `whatsapp-service.exe`.
+3. Build `desktop_launcher.py` con PyInstaller `--onefile`, incluyendo backend + frontend + runtime.
 
-Con eso, en el PC destino no necesitas Python ni Node instalados.
+Con esto el usuario final ejecuta **solo** `dist/ClaroControlDiario.exe`.
+
+---
+
+## Build automático (Windows)
+
+```powershell
+./scripts/build_windows_exe.ps1
+```
+
+El script ahora:
+- valida errores de cada paso y se detiene si algo falla,
+- reintenta instalación npm en caso de `EPERM` (lock de archivos),
+- usa `pkg@5.8.1` con target `node18-win-x64` (compatible),
+- valida que exista `backend/whatsapp-service/dist/whatsapp-service.exe` antes de continuar.
+
+---
 
 ## Variables recomendadas
 
@@ -27,60 +40,61 @@ GEMINI_API_KEY=TU_API_KEY
 GEMINI_MODEL_OCR=gemini-3-flash-preview
 ```
 
-## Build automático (Windows)
+---
 
+## Troubleshooting (errores que reportaste)
+
+### 1) `EPERM ... lightningcss.win32-x64-msvc.node`
+Causa común: archivo bloqueado por antivirus/editor/proceso Node.
+
+Qué hacer:
+1. Cierra VSCode, terminales y cualquier `node.exe` activo.
+2. Desactiva temporalmente antivirus en carpeta del proyecto (o agrega excepción).
+3. Ejecuta PowerShell como Administrador.
+4. Reintenta `./scripts/build_windows_exe.ps1`.
+
+Extra útil:
 ```powershell
-./scripts/build_windows_exe.ps1
+Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force
 ```
 
-Este script hace:
-- build frontend
-- build Node `.exe` con `pkg`
-- copia a `runtime/whatsapp-service/whatsapp-service.exe`
-- build final de `dist/ClaroControlDiario.exe` con `--onefile`
+### 2) `"tsc" no se reconoce...`
+Suele pasar cuando falló instalación de dependencias del frontend y no existe `node_modules/.bin/tsc`.
 
-## Build manual (Windows)
+Con el script nuevo esto se corrige porque:
+- intenta `npm ci`,
+- si falla, limpia y hace `npm install`,
+- recién entonces ejecuta `npm run build`.
 
-```powershell
-# 1) Frontend
-cd frontend
-$env:VITE_API_PYTHON="http://127.0.0.1:8000"
-$env:VITE_API_EXPRESS="http://127.0.0.1:3000"
-npm ci
-npm run build
-cd ..
+### 3) `pkg ... No available node version satisfies 'node20'`
+Correcto: `pkg` no soporta ese target en tu contexto.
 
-# 2) Node service -> exe
-cd backend/whatsapp-service
-npm ci
-npx pkg src/index.js --targets node20-win-x64 --output dist/whatsapp-service.exe
-cd ../..
-mkdir runtime\whatsapp-service -Force
-copy backend\whatsapp-service\dist\whatsapp-service.exe runtime\whatsapp-service\whatsapp-service.exe
+Solución aplicada:
+- target cambiado a `node18-win-x64`.
 
-# 3) Launcher Python -> onefile
-pip install pyinstaller
-pyinstaller --noconfirm --clean --onefile --name ClaroControlDiario `
-  --add-data "backend;backend" `
-  --add-data "frontend/dist;frontend/dist" `
-  --add-data "runtime;runtime" `
-  desktop_launcher.py
-```
+### 4) `Copy-Item ... whatsapp-service.exe no existe`
+Ese error era consecuencia del fallo anterior de `pkg`.
+
+Solución aplicada:
+- el script valida existencia del archivo y aborta con mensaje claro antes de copiar.
+
+---
 
 ## Cómo probar el `.exe`
 
 1. Ejecuta `dist/ClaroControlDiario.exe`.
-2. Verifica:
+2. Verifica endpoints:
    - `http://127.0.0.1:8000/swagger`
    - `http://127.0.0.1:3000/docs`
    - `http://127.0.0.1:5173`
-3. Prueba flujo completo:
+3. Flujo funcional:
    - login
    - QR WhatsApp
-   - descarga por fecha
-   - OCR y dashboard
-4. Reinicia app y valida persistencia de DB/descargas en `%LOCALAPPDATA%/ClaroControlDiario`.
+   - descargar por fecha
+   - OCR + dashboard
+4. Reinicia app y valida persistencia en `%LOCALAPPDATA%/ClaroControlDiario`.
 
-## Nota importante
+---
 
-`whatsapp-web.js` usa Chromium/Puppeteer; en algunas máquinas puede requerir ajustes adicionales de runtime (dependencias del navegador). Si pasa, documenta esa dependencia en tu instalador final.
+## Nota
+`whatsapp-web.js` depende de Chromium/Puppeteer; en algunas máquinas puede requerir ajustes adicionales del runtime del navegador.
