@@ -13,12 +13,49 @@ function Invoke-Step {
   }
 }
 
+function Stop-LockingProcesses {
+  Write-Warning "Intentando liberar archivos bloqueados (node/esbuild/vite)..."
+  $processNames = @("node", "esbuild", "vite", "npm")
+  foreach ($p in $processNames) {
+    Get-Process -Name $p -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+  }
+  Start-Sleep -Seconds 2
+}
+
+function Remove-PathRobust {
+  param([string]$TargetPath)
+
+  if (!(Test-Path $TargetPath)) {
+    return
+  }
+
+  $attempt = 0
+  while ($attempt -lt 3 -and (Test-Path $TargetPath)) {
+    try {
+      Remove-Item -Recurse -Force $TargetPath -ErrorAction Stop
+    }
+    catch {
+      Write-Warning "No se pudo borrar $TargetPath con Remove-Item (intento $($attempt + 1))."
+      Stop-LockingProcesses
+
+      # Fallback con cmd/rmdir, a veces maneja mejor locks parciales en Windows
+      cmd /c "rmdir /s /q \"$TargetPath\"" | Out-Null
+      Start-Sleep -Seconds 1
+    }
+
+    $attempt++
+  }
+
+  if (Test-Path $TargetPath) {
+    throw "No se pudo eliminar $TargetPath. Cierra VSCode/explorador/terminales y antivirus, luego reintenta."
+  }
+}
+
 function Install-NodeDeps {
   param([string]$Path)
 
   Push-Location $Path
   try {
-    # First try: reproducible install
     npm ci
     if ($LASTEXITCODE -eq 0) {
       return
@@ -26,21 +63,17 @@ function Install-NodeDeps {
 
     Write-Warning "npm ci falló en $Path. Reintentando con limpieza por posible lock/EPERM..."
 
-    if (Test-Path node_modules) {
-      try {
-        Remove-Item -Recurse -Force node_modules
-      } catch {
-        Write-Warning "No se pudo eliminar node_modules en el primer intento. Reintentando..."
-        Start-Sleep -Seconds 2
-        Remove-Item -Recurse -Force node_modules
-      }
-    }
+    Stop-LockingProcesses
+    Remove-PathRobust "node_modules"
 
-    if (Test-Path package-lock.json) {
+    if (Test-Path "package-lock.json") {
       try {
-        Remove-Item -Force package-lock.json
-      } catch {
-        Write-Warning "No se pudo eliminar package-lock.json; continuando..."
+        Remove-Item -Force "package-lock.json" -ErrorAction Stop
+      }
+      catch {
+        Write-Warning "No se pudo eliminar package-lock.json. Reintentando tras liberar locks..."
+        Stop-LockingProcesses
+        Remove-Item -Force "package-lock.json" -ErrorAction Stop
       }
     }
 
@@ -77,7 +110,6 @@ Invoke-Step "[2/6] Build WhatsApp service executable (pkg)" {
 
   Push-Location backend/whatsapp-service
   try {
-    # pkg no soporta Node 20+ en targets; usar node18-win-x64
     npm exec --yes pkg@5.8.1 -- src/index.js --targets node18-win-x64 --output dist/whatsapp-service.exe
     if ($LASTEXITCODE -ne 0) {
       throw "pkg falló generando whatsapp-service.exe"

@@ -21,6 +21,7 @@ Con esto el usuario final ejecuta **solo** `dist/ClaroControlDiario.exe`.
 
 El script ahora:
 - valida errores de cada paso y se detiene si algo falla,
+- libera procesos que bloquean archivos (`node`, `esbuild`, `vite`, `npm`),
 - reintenta instalación npm en caso de `EPERM` (lock de archivos),
 - usa `pkg@5.8.1` con target `node18-win-x64` (compatible),
 - valida que exista `backend/whatsapp-service/dist/whatsapp-service.exe` antes de continuar.
@@ -44,14 +45,19 @@ GEMINI_MODEL_OCR=gemini-3-flash-preview
 
 ## Troubleshooting (errores que reportaste)
 
-### 1) `EPERM ... lightningcss.win32-x64-msvc.node`
-Causa común: archivo bloqueado por antivirus/editor/proceso Node.
+### 1) `EPERM ... lightningcss.win32-x64-msvc.node` o `Acceso denegado ... esbuild.exe`
+Causa común: binarios nativos bloqueados por procesos activos (Node/Vite/esbuild), antivirus o explorador.
 
 Qué hacer:
 1. Cierra VSCode, terminales y cualquier `node.exe` activo.
 2. Desactiva temporalmente antivirus en carpeta del proyecto (o agrega excepción).
 3. Ejecuta PowerShell como Administrador.
 4. Reintenta `./scripts/build_windows_exe.ps1`.
+
+El script actualizado ya intenta esto automáticamente:
+- mata procesos bloqueantes (`node`, `esbuild`, `vite`, `npm`),
+- elimina `node_modules` con estrategia robusta (`Remove-Item` + fallback `rmdir /s /q`),
+- reinstala dependencias.
 
 Extra útil:
 ```powershell
