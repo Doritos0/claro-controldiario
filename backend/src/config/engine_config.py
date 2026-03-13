@@ -6,6 +6,8 @@ from pathlib import Path
 
 from sqlalchemy import Engine, create_engine
 
+from src.config.path_config import get_app_data_dir
+
 
 def _get_engine_sqlite() -> Engine:
     bd_path = environ.get("BD_PATH")
@@ -13,7 +15,7 @@ def _get_engine_sqlite() -> Engine:
         db_file = Path(bd_path)
     else:
         bd_name = environ.get("BD_NAME", "CLARO-TIKTOK")
-        db_file = Path(f"{bd_name}.db")
+        db_file = get_app_data_dir() / f"{bd_name}.db"
 
     db_file.parent.mkdir(parents=True, exist_ok=True)
     url = f"sqlite:///{db_file}"

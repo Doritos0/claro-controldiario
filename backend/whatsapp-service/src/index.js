@@ -4,14 +4,16 @@ const WhatsAppDownloader = require('./extractor');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const QRCode = require('qrcode');
+const path = require('path');
+
+require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '.env') });
 
 const app = express();
 
+const frontendOrigin = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
+
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://5g6lhmg0-5173.brs.devtunnels.ms'
-  ],
+  origin: [frontendOrigin],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -28,7 +30,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000'
+        url: `http://localhost:${process.env.NODE_PORT || 3000}`
       }
     ],
     components: {
@@ -225,7 +227,7 @@ app.get('/health', (_req, res) => {
   res.json({ ok: true, whatsappReady: downloader.estaListo() });
 });
 
-const PORT = 3000;
+const PORT = Number(process.env.NODE_PORT || 3000);
 app.listen(PORT, () => {
   console.log(`Servidor de Node listo en http://localhost:${PORT}`);
   console.log(`Documentación en http://localhost:${PORT}/docs`);
