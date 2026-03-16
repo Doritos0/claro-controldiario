@@ -78,3 +78,9 @@ class Configuracion(SQLModel, table=True): # pyright: ignore[reportCallIssue]
     id: int | None = Field(default=None, primary_key=True)
     usuario_id: int = Field(sa_column=Column(Integer, ForeignKey(USUARIO_ID, ondelete="RESTRICT"), nullable=False))
     grupo_wsp: str = Field()
+
+class Credenciales(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    usuario_id: int = Field(sa_column=Column(Integer, ForeignKey(USUARIO_ID, ondelete="RESTRICT"), nullable=False))
+    login_user: str = Field()
+    login_pass: str = Field()

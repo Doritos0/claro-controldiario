@@ -3,10 +3,15 @@ import logging
 from sqlalchemy import func, select
 from sqlmodel import Session
 
+from src.config.log_config import configurar_log
+
 from src.bd.bd_ejecutivo import EjecutivoService
 from src.bd.bd_usuario import UsuarioService
+from src.bd.bd_credenciales import CredencialesService
 from src.bd.schema import Empresa
 from src.config.engine_config import get_engine
+
+configurar_log()
 
 
 def _get_or_create_empresa(nombre: str) -> Empresa:
@@ -57,4 +62,23 @@ def inicializar_datos():
     assert thae_test is not None
     marselo = ejecutivo_service.guardar_ejecutivo_sql("Marcelo", "ACTIVO", "PHOENIX", empresa_claro.id, 56938912371).id
     assert marselo is not None
+
+    credenciales_service = CredencialesService()
+    daniela_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=daniela_baeza, login_user="199203444", login_pass="0LEZp7z0.xL5").id
+    assert daniela_credenciales is not None
+    ada_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=ada_rengifo, login_user="165787307", login_pass="Claro.2025").id
+    assert ada_credenciales is not None
+    barbara_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=barbara_cruz, login_user="146025986", login_pass="BAclaro-2026").id
+    assert barbara_credenciales is not None
+    rafa_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=rafael_cayun, login_user="190045846", login_pass="PJw9Kmw3).9U").id
+    assert rafa_credenciales is not None
+    pauli_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=paulina_cataldo, login_user="199203444", login_pass="9IsLb.m-M92V").id
+    assert pauli_credenciales is not None
+    tania_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=tania_alviar, login_user="171027306", login_pass="w8n,u56Fx#D.").id
+    assert tania_credenciales is not None
+    blanca_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=blanca_flores, login_user="211049251", login_pass="j|P8!csWQ;.P").id
+    assert blanca_credenciales is not None
+    isidora_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=isi_pastenes, login_user="199611933", login_pass="H,blxyx@(7sB").id
+    assert isidora_credenciales is not None
+
     logging.info("Base de datos inicializada con empresas, usuarios y ejecutivos por defecto")
