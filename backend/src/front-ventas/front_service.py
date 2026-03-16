@@ -1,6 +1,8 @@
 import json
 import logging
 import time
+import os
+from pathlib import Path
 
 from src.config.log_config import configurar_log
 from src.bd.bd_credenciales import CredencialesService
@@ -42,11 +44,11 @@ class FrontService:
                     logging.info(f"Llenando campo de usuario...")
                     input_user = wait.until(EC.presence_of_element_located((By.ID, "loginUser")))
                     input_user.send_keys(n.login_user)
-                    logging.info(f"Usuario ingresado...")
+                    logging.info(f"Usuario ingresado {n.login_user}...")
                     
                     input_pass = wait.until(EC.presence_of_element_located((By.ID, "loginPass")))
                     input_pass.send_keys(n.login_pass)
-                    logging.info(f"Contraseña ingresada...")
+                    logging.info(f"Contraseña ingresada {n.login_pass}...")
                     
                     boton_login = wait.until(EC.element_to_be_clickable((By.ID, "loginBtn")))
                     boton_login.click()
@@ -145,6 +147,22 @@ class FrontService:
         options.add_experimental_option("useAutomationExtension", False)
 
         logging.info("Configurando ChromeDriver para ambiente local...")
+
+        
+        carpeta = Path(__file__).resolve().parent.parent
+        ruta_excels = carpeta / "front-web"
+        ruta_excels.mkdir(exist_ok=True)
+
+        logging.info(f"Path obtenido {carpeta}")
+
+        prefs = {
+            "download.default_directory": str(ruta_excels), 
+            "download.prompt_for_download": False,
+            "download.directory_upgrade": True,
+            "safebrowsing.enabled": True
+        }
+        options.add_experimental_option("prefs", prefs)
+
         return webdriver.Chrome(options=options)
 
 if __name__ == "__main__":

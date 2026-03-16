@@ -10294,3 +10294,256 @@ AttributeError: can't set attribute
 2026-03-16 12:28:33,223 INFO root Ingresando las credenciales para usuario 8
 2026-03-16 12:28:33,223 INFO root Login Usuario: 199611933
 2026-03-16 12:28:33,224 INFO root Login Password: H,blxyx@(7sB
+2026-03-16 12:51:43,096 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-16 12:51:43,097 INFO root Inicializando servicio...
+2026-03-16 12:51:43,098 INFO root Ambiente que llega sqlite
+2026-03-16 12:51:43,098 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-16 12:51:43,119 INFO root Obteniendo excel...
+2026-03-16 12:51:43,119 INFO root Iniciando navegador chrome...
+2026-03-16 12:51:43,119 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-16 12:51:45,996 INFO root Ingresando las credenciales para usuario 1
+2026-03-16 12:51:45,996 INFO root Login Usuario: 199203444
+2026-03-16 12:51:45,996 INFO root Login Password: 0LEZp7z0.xL5
+2026-03-16 12:51:45,997 INFO root Ingresando las credenciales para usuario 2
+2026-03-16 12:51:45,997 INFO root Login Usuario: 165787307
+2026-03-16 12:51:45,997 INFO root Login Password: Claro.2025
+2026-03-16 12:51:45,998 INFO root Ingresando las credenciales para usuario 3
+2026-03-16 12:51:45,998 INFO root Login Usuario: 146025986
+2026-03-16 12:51:45,998 INFO root Login Password: BAclaro-2026
+2026-03-16 12:51:45,999 INFO root Ingresando las credenciales para usuario 5
+2026-03-16 12:51:45,999 INFO root Login Usuario: 190045846
+2026-03-16 12:51:45,999 INFO root Login Password: PJw9Kmw3).9U
+2026-03-16 12:51:46,000 INFO root Ingresando las credenciales para usuario 4
+2026-03-16 12:51:46,000 INFO root Login Usuario: 199203444
+2026-03-16 12:51:46,000 INFO root Login Password: 9IsLb.m-M92V
+2026-03-16 12:51:46,001 INFO root Ingresando las credenciales para usuario 6
+2026-03-16 12:51:46,001 INFO root Login Usuario: 171027306
+2026-03-16 12:51:46,001 INFO root Login Password: w8n,u56Fx#D.
+2026-03-16 12:51:46,002 INFO root Ingresando las credenciales para usuario 7
+2026-03-16 12:51:46,002 INFO root Login Usuario: 211049251
+2026-03-16 12:51:46,002 INFO root Login Password: j|P8!csWQ;.P
+2026-03-16 12:51:46,003 INFO root Ingresando las credenciales para usuario 8
+2026-03-16 12:51:46,003 INFO root Login Usuario: 199611933
+2026-03-16 12:51:46,003 INFO root Login Password: H,blxyx@(7sB
+2026-03-16 13:01:39,753 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-16 13:01:39,754 INFO root Inicializando servicio...
+2026-03-16 13:01:39,755 INFO root Ambiente que llega sqlite
+2026-03-16 13:01:39,755 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-16 13:01:39,789 INFO root Obteniendo excel...
+2026-03-16 13:01:39,789 INFO root Iniciando navegador chrome...
+2026-03-16 13:01:39,789 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-16 13:01:40,664 INFO root Path obtenido C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\front-ventas\front_service.py
+2026-03-16 13:01:40,682 INFO root Ingresando las credenciales para usuario 1
+2026-03-16 13:01:40,682 INFO root Login Usuario: 199203444
+2026-03-16 13:01:40,683 INFO root Login Password: 0LEZp7z0.xL5
+2026-03-16 13:01:40,683 INFO root Ingresando las credenciales para usuario 2
+2026-03-16 13:01:40,683 INFO root Login Usuario: 165787307
+2026-03-16 13:01:40,684 INFO root Login Password: Claro.2025
+2026-03-16 13:01:40,684 INFO root Ingresando las credenciales para usuario 3
+2026-03-16 13:01:40,684 INFO root Login Usuario: 146025986
+2026-03-16 13:01:40,685 INFO root Login Password: BAclaro-2026
+2026-03-16 13:01:40,685 INFO root Ingresando las credenciales para usuario 5
+2026-03-16 13:01:40,686 INFO root Login Usuario: 190045846
+2026-03-16 13:01:40,686 INFO root Login Password: PJw9Kmw3).9U
+2026-03-16 13:01:40,686 INFO root Ingresando las credenciales para usuario 4
+2026-03-16 13:01:40,687 INFO root Login Usuario: 199203444
+2026-03-16 13:01:40,687 INFO root Login Password: 9IsLb.m-M92V
+2026-03-16 13:01:40,688 INFO root Ingresando las credenciales para usuario 6
+2026-03-16 13:01:40,688 INFO root Login Usuario: 171027306
+2026-03-16 13:01:40,688 INFO root Login Password: w8n,u56Fx#D.
+2026-03-16 13:01:40,689 INFO root Ingresando las credenciales para usuario 7
+2026-03-16 13:01:40,689 INFO root Login Usuario: 211049251
+2026-03-16 13:01:40,690 INFO root Login Password: j|P8!csWQ;.P
+2026-03-16 13:01:40,690 INFO root Ingresando las credenciales para usuario 8
+2026-03-16 13:01:40,691 INFO root Login Usuario: 199611933
+2026-03-16 13:01:40,691 INFO root Login Password: H,blxyx@(7sB
+2026-03-16 13:03:10,910 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-16 13:03:10,911 INFO root Inicializando servicio...
+2026-03-16 13:03:10,912 INFO root Ambiente que llega sqlite
+2026-03-16 13:03:10,913 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-16 13:03:10,950 INFO root Obteniendo excel...
+2026-03-16 13:03:10,951 INFO root Iniciando navegador chrome...
+2026-03-16 13:03:10,951 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-16 13:03:11,757 INFO root Path obtenido C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\front-ventas\front_service.py
+2026-03-16 13:03:11,762 INFO root Path obtenido 2 C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\front-ventas\front_service.py
+2026-03-16 13:03:11,776 INFO root Ingresando las credenciales para usuario 1
+2026-03-16 13:03:11,776 INFO root Login Usuario: 199203444
+2026-03-16 13:03:11,776 INFO root Login Password: 0LEZp7z0.xL5
+2026-03-16 13:03:11,777 INFO root Ingresando las credenciales para usuario 2
+2026-03-16 13:03:11,777 INFO root Login Usuario: 165787307
+2026-03-16 13:03:11,777 INFO root Login Password: Claro.2025
+2026-03-16 13:03:11,777 INFO root Ingresando las credenciales para usuario 3
+2026-03-16 13:03:11,778 INFO root Login Usuario: 146025986
+2026-03-16 13:03:11,778 INFO root Login Password: BAclaro-2026
+2026-03-16 13:03:11,778 INFO root Ingresando las credenciales para usuario 5
+2026-03-16 13:03:11,779 INFO root Login Usuario: 190045846
+2026-03-16 13:03:11,779 INFO root Login Password: PJw9Kmw3).9U
+2026-03-16 13:03:11,779 INFO root Ingresando las credenciales para usuario 4
+2026-03-16 13:03:11,780 INFO root Login Usuario: 199203444
+2026-03-16 13:03:11,780 INFO root Login Password: 9IsLb.m-M92V
+2026-03-16 13:03:11,780 INFO root Ingresando las credenciales para usuario 6
+2026-03-16 13:03:11,780 INFO root Login Usuario: 171027306
+2026-03-16 13:03:11,781 INFO root Login Password: w8n,u56Fx#D.
+2026-03-16 13:03:11,781 INFO root Ingresando las credenciales para usuario 7
+2026-03-16 13:03:11,781 INFO root Login Usuario: 211049251
+2026-03-16 13:03:11,782 INFO root Login Password: j|P8!csWQ;.P
+2026-03-16 13:03:11,782 INFO root Ingresando las credenciales para usuario 8
+2026-03-16 13:03:11,782 INFO root Login Usuario: 199611933
+2026-03-16 13:03:11,783 INFO root Login Password: H,blxyx@(7sB
+2026-03-16 13:03:29,469 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-16 13:03:29,470 INFO root Inicializando servicio...
+2026-03-16 13:03:29,470 INFO root Ambiente que llega sqlite
+2026-03-16 13:03:29,471 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-16 13:03:29,491 INFO root Obteniendo excel...
+2026-03-16 13:03:29,492 INFO root Iniciando navegador chrome...
+2026-03-16 13:03:29,492 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-16 13:03:30,309 INFO root Path obtenido C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\front-ventas\front_service.py
+2026-03-16 13:03:30,309 INFO root Path obtenido 2 C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\front-ventas
+2026-03-16 13:03:30,326 INFO root Ingresando las credenciales para usuario 1
+2026-03-16 13:03:30,327 INFO root Login Usuario: 199203444
+2026-03-16 13:03:30,327 INFO root Login Password: 0LEZp7z0.xL5
+2026-03-16 13:03:30,327 INFO root Ingresando las credenciales para usuario 2
+2026-03-16 13:03:30,328 INFO root Login Usuario: 165787307
+2026-03-16 13:03:30,328 INFO root Login Password: Claro.2025
+2026-03-16 13:03:30,328 INFO root Ingresando las credenciales para usuario 3
+2026-03-16 13:03:30,328 INFO root Login Usuario: 146025986
+2026-03-16 13:03:30,329 INFO root Login Password: BAclaro-2026
+2026-03-16 13:03:30,329 INFO root Ingresando las credenciales para usuario 5
+2026-03-16 13:03:30,329 INFO root Login Usuario: 190045846
+2026-03-16 13:03:30,330 INFO root Login Password: PJw9Kmw3).9U
+2026-03-16 13:03:30,330 INFO root Ingresando las credenciales para usuario 4
+2026-03-16 13:03:30,330 INFO root Login Usuario: 199203444
+2026-03-16 13:03:30,331 INFO root Login Password: 9IsLb.m-M92V
+2026-03-16 13:03:30,331 INFO root Ingresando las credenciales para usuario 6
+2026-03-16 13:03:30,331 INFO root Login Usuario: 171027306
+2026-03-16 13:03:30,331 INFO root Login Password: w8n,u56Fx#D.
+2026-03-16 13:03:30,332 INFO root Ingresando las credenciales para usuario 7
+2026-03-16 13:03:30,332 INFO root Login Usuario: 211049251
+2026-03-16 13:03:30,332 INFO root Login Password: j|P8!csWQ;.P
+2026-03-16 13:03:30,333 INFO root Ingresando las credenciales para usuario 8
+2026-03-16 13:03:30,333 INFO root Login Usuario: 199611933
+2026-03-16 13:03:30,333 INFO root Login Password: H,blxyx@(7sB
+2026-03-16 13:03:39,497 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-16 13:03:39,497 INFO root Inicializando servicio...
+2026-03-16 13:03:39,498 INFO root Ambiente que llega sqlite
+2026-03-16 13:03:39,498 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-16 13:03:39,518 INFO root Obteniendo excel...
+2026-03-16 13:03:39,519 INFO root Iniciando navegador chrome...
+2026-03-16 13:03:39,519 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-16 13:03:40,416 INFO root Path obtenido C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\front-ventas\front_service.py
+2026-03-16 13:03:40,416 INFO root Path obtenido 2 C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src
+2026-03-16 13:03:40,430 INFO root Ingresando las credenciales para usuario 1
+2026-03-16 13:03:40,431 INFO root Login Usuario: 199203444
+2026-03-16 13:03:40,431 INFO root Login Password: 0LEZp7z0.xL5
+2026-03-16 13:03:40,432 INFO root Ingresando las credenciales para usuario 2
+2026-03-16 13:03:40,432 INFO root Login Usuario: 165787307
+2026-03-16 13:03:40,433 INFO root Login Password: Claro.2025
+2026-03-16 13:03:40,433 INFO root Ingresando las credenciales para usuario 3
+2026-03-16 13:03:40,434 INFO root Login Usuario: 146025986
+2026-03-16 13:03:40,434 INFO root Login Password: BAclaro-2026
+2026-03-16 13:03:40,435 INFO root Ingresando las credenciales para usuario 5
+2026-03-16 13:03:40,435 INFO root Login Usuario: 190045846
+2026-03-16 13:03:40,436 INFO root Login Password: PJw9Kmw3).9U
+2026-03-16 13:03:40,436 INFO root Ingresando las credenciales para usuario 4
+2026-03-16 13:03:40,436 INFO root Login Usuario: 199203444
+2026-03-16 13:03:40,437 INFO root Login Password: 9IsLb.m-M92V
+2026-03-16 13:03:40,437 INFO root Ingresando las credenciales para usuario 6
+2026-03-16 13:03:40,438 INFO root Login Usuario: 171027306
+2026-03-16 13:03:40,438 INFO root Login Password: w8n,u56Fx#D.
+2026-03-16 13:03:40,439 INFO root Ingresando las credenciales para usuario 7
+2026-03-16 13:03:40,439 INFO root Login Usuario: 211049251
+2026-03-16 13:03:40,439 INFO root Login Password: j|P8!csWQ;.P
+2026-03-16 13:03:40,440 INFO root Ingresando las credenciales para usuario 8
+2026-03-16 13:03:40,440 INFO root Login Usuario: 199611933
+2026-03-16 13:03:40,440 INFO root Login Password: H,blxyx@(7sB
+2026-03-16 13:07:12,353 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-16 13:07:12,353 INFO root Inicializando servicio...
+2026-03-16 13:07:12,353 INFO root Ambiente que llega sqlite
+2026-03-16 13:07:12,354 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-16 13:07:12,374 INFO root Obteniendo excel...
+2026-03-16 13:07:12,374 INFO root Iniciando navegador chrome...
+2026-03-16 13:07:12,375 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-16 13:07:12,376 INFO root Path obtenido C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src
+2026-03-16 13:07:15,062 ERROR root Fallo critico: Object of type WindowsPath is not JSON serializable
+2026-03-16 13:07:51,614 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-16 13:07:51,615 INFO root Inicializando servicio...
+2026-03-16 13:07:51,616 INFO root Ambiente que llega sqlite
+2026-03-16 13:07:51,617 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-16 13:07:51,646 INFO root Obteniendo excel...
+2026-03-16 13:07:51,647 INFO root Iniciando navegador chrome...
+2026-03-16 13:07:51,647 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-16 13:07:51,648 INFO root Path obtenido C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src
+2026-03-16 13:07:53,853 ERROR root Fallo critico: Object of type WindowsPath is not JSON serializable
+2026-03-16 13:08:06,978 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-16 13:08:06,978 INFO root Inicializando servicio...
+2026-03-16 13:08:06,979 INFO root Ambiente que llega sqlite
+2026-03-16 13:08:06,979 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-16 13:08:07,001 INFO root Obteniendo excel...
+2026-03-16 13:08:07,001 INFO root Iniciando navegador chrome...
+2026-03-16 13:08:07,002 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-16 13:08:07,003 INFO root Path obtenido C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src
+2026-03-16 13:08:09,225 ERROR root Fallo critico: Object of type WindowsPath is not JSON serializable
+2026-03-16 13:09:45,987 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-16 13:09:45,987 INFO root Inicializando servicio...
+2026-03-16 13:09:45,987 INFO root Ambiente que llega sqlite
+2026-03-16 13:09:45,988 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-16 13:09:46,009 INFO root Obteniendo excel...
+2026-03-16 13:09:46,009 INFO root Iniciando navegador chrome...
+2026-03-16 13:09:46,010 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-16 13:09:46,011 INFO root Path obtenido C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src
+2026-03-16 13:09:46,861 INFO root Ingresando las credenciales para usuario 1
+2026-03-16 13:09:46,862 INFO root Login Usuario: 199203444
+2026-03-16 13:09:46,862 INFO root Login Password: 0LEZp7z0.xL5
+2026-03-16 13:09:46,862 INFO root Ingresando las credenciales para usuario 2
+2026-03-16 13:09:46,862 INFO root Login Usuario: 165787307
+2026-03-16 13:09:46,863 INFO root Login Password: Claro.2025
+2026-03-16 13:09:46,863 INFO root Ingresando las credenciales para usuario 3
+2026-03-16 13:09:46,863 INFO root Login Usuario: 146025986
+2026-03-16 13:09:46,863 INFO root Login Password: BAclaro-2026
+2026-03-16 13:09:46,863 INFO root Ingresando las credenciales para usuario 5
+2026-03-16 13:09:46,864 INFO root Login Usuario: 190045846
+2026-03-16 13:09:46,864 INFO root Login Password: PJw9Kmw3).9U
+2026-03-16 13:09:46,864 INFO root Ingresando las credenciales para usuario 4
+2026-03-16 13:09:46,865 INFO root Login Usuario: 199203444
+2026-03-16 13:09:46,865 INFO root Login Password: 9IsLb.m-M92V
+2026-03-16 13:09:46,865 INFO root Ingresando las credenciales para usuario 6
+2026-03-16 13:09:46,865 INFO root Login Usuario: 171027306
+2026-03-16 13:09:46,866 INFO root Login Password: w8n,u56Fx#D.
+2026-03-16 13:09:46,866 INFO root Ingresando las credenciales para usuario 7
+2026-03-16 13:09:46,866 INFO root Login Usuario: 211049251
+2026-03-16 13:09:46,866 INFO root Login Password: j|P8!csWQ;.P
+2026-03-16 13:09:46,867 INFO root Ingresando las credenciales para usuario 8
+2026-03-16 13:09:46,867 INFO root Login Usuario: 199611933
+2026-03-16 13:09:46,867 INFO root Login Password: H,blxyx@(7sB
+2026-03-16 13:09:56,971 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-16 13:09:56,971 INFO root Inicializando servicio...
+2026-03-16 13:09:56,972 INFO root Ambiente que llega sqlite
+2026-03-16 13:09:56,973 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-16 13:09:56,994 INFO root Obteniendo excel...
+2026-03-16 13:09:56,994 INFO root Iniciando navegador chrome...
+2026-03-16 13:09:56,995 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-16 13:09:56,996 INFO root Path obtenido C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src
+2026-03-16 13:09:57,871 INFO root Ingresando las credenciales para usuario 1
+2026-03-16 13:09:57,872 INFO root Login Usuario: 199203444
+2026-03-16 13:09:57,872 INFO root Login Password: 0LEZp7z0.xL5
+2026-03-16 13:09:57,873 INFO root Ingresando las credenciales para usuario 2
+2026-03-16 13:09:57,873 INFO root Login Usuario: 165787307
+2026-03-16 13:09:57,873 INFO root Login Password: Claro.2025
+2026-03-16 13:09:57,874 INFO root Ingresando las credenciales para usuario 3
+2026-03-16 13:09:57,874 INFO root Login Usuario: 146025986
+2026-03-16 13:09:57,874 INFO root Login Password: BAclaro-2026
+2026-03-16 13:09:57,875 INFO root Ingresando las credenciales para usuario 5
+2026-03-16 13:09:57,875 INFO root Login Usuario: 190045846
+2026-03-16 13:09:57,875 INFO root Login Password: PJw9Kmw3).9U
+2026-03-16 13:09:57,875 INFO root Ingresando las credenciales para usuario 4
+2026-03-16 13:09:57,876 INFO root Login Usuario: 199203444
+2026-03-16 13:09:57,876 INFO root Login Password: 9IsLb.m-M92V
+2026-03-16 13:09:57,876 INFO root Ingresando las credenciales para usuario 6
+2026-03-16 13:09:57,877 INFO root Login Usuario: 171027306
+2026-03-16 13:09:57,877 INFO root Login Password: w8n,u56Fx#D.
+2026-03-16 13:09:57,877 INFO root Ingresando las credenciales para usuario 7
+2026-03-16 13:09:57,877 INFO root Login Usuario: 211049251
+2026-03-16 13:09:57,878 INFO root Login Password: j|P8!csWQ;.P
+2026-03-16 13:09:57,878 INFO root Ingresando las credenciales para usuario 8
+2026-03-16 13:09:57,878 INFO root Login Usuario: 199611933
+2026-03-16 13:09:57,879 INFO root Login Password: H,blxyx@(7sB
