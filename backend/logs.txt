@@ -11361,3 +11361,925 @@ Symbols not available. Dumping unresolved backtrace:
 2026-03-17 09:50:03,135 INFO root Buscando boton de descarga...
 2026-03-17 09:50:03,168 INFO root Boton descarga clickeado...
 2026-03-17 09:50:03,168 INFO root Esperando 10 segundos para completar la descarga...
+2026-03-17 09:55:00,413 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 09:55:00,414 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 09:55:03,891 INFO uvicorn.error Started server process [102832]
+2026-03-17 09:55:03,891 INFO uvicorn.error Waiting for application startup.
+2026-03-17 09:55:03,892 INFO uvicorn.error Application startup complete.
+2026-03-17 10:03:51,966 INFO uvicorn.error Shutting down
+2026-03-17 10:03:52,090 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:03:52,091 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:03:52,091 INFO uvicorn.error Finished server process [102832]
+2026-03-17 10:03:53,360 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:03:53,360 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:03:55,452 INFO uvicorn.error Started server process [24988]
+2026-03-17 10:03:55,453 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:03:55,454 INFO uvicorn.error Application startup complete.
+2026-03-17 10:05:07,248 INFO uvicorn.error Shutting down
+2026-03-17 10:05:07,362 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:05:07,363 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:05:07,364 INFO uvicorn.error Finished server process [24988]
+2026-03-17 10:05:08,658 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:05:08,659 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:05:10,670 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:05:10,719 INFO uvicorn.error Started server process [110164]
+2026-03-17 10:05:10,720 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:05:10,720 INFO uvicorn.error Application startup complete.
+2026-03-17 10:05:59,050 INFO uvicorn.error Shutting down
+2026-03-17 10:05:59,166 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:05:59,167 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:05:59,167 INFO uvicorn.error Finished server process [110164]
+2026-03-17 10:06:00,467 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:06:00,468 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:06:02,523 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:06:02,555 INFO uvicorn.error Started server process [103128]
+2026-03-17 10:06:02,556 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:06:02,556 INFO uvicorn.error Application startup complete.
+2026-03-17 10:06:09,879 INFO uvicorn.error Shutting down
+2026-03-17 10:06:09,994 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:06:09,995 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:06:09,996 INFO uvicorn.error Finished server process [103128]
+2026-03-17 10:06:11,326 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:06:11,327 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:06:13,386 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:06:13,420 INFO uvicorn.error Started server process [157220]
+2026-03-17 10:06:13,420 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:06:13,421 INFO uvicorn.error Application startup complete.
+2026-03-17 10:06:13,750 INFO uvicorn.error Shutting down
+2026-03-17 10:06:13,872 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:06:13,873 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:06:13,873 INFO uvicorn.error Finished server process [157220]
+2026-03-17 10:06:15,161 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:06:15,162 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:06:17,149 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:06:17,189 INFO uvicorn.error Started server process [151464]
+2026-03-17 10:06:17,190 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:06:17,191 INFO uvicorn.error Application startup complete.
+2026-03-17 10:14:33,778 INFO uvicorn.error Shutting down
+2026-03-17 10:14:33,887 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:14:33,888 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:14:33,889 INFO uvicorn.error Finished server process [151464]
+2026-03-17 10:14:35,220 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:14:35,221 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:14:37,298 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:14:37,300 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:14:37,354 INFO uvicorn.error Started server process [29532]
+2026-03-17 10:14:37,355 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:14:37,356 INFO uvicorn.error Application startup complete.
+2026-03-17 10:36:48,815 INFO uvicorn.error Shutting down
+2026-03-17 10:36:48,930 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:36:48,931 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:36:48,931 INFO uvicorn.error Finished server process [29532]
+2026-03-17 10:36:50,373 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:36:50,374 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:37:40,676 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:37:40,677 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:37:42,597 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:37:42,636 INFO uvicorn.error Started server process [157248]
+2026-03-17 10:37:42,636 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:37:42,637 INFO uvicorn.error Application startup complete.
+2026-03-17 10:38:05,474 INFO uvicorn.error Shutting down
+2026-03-17 10:38:05,580 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:38:05,580 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:38:05,581 INFO uvicorn.error Finished server process [157248]
+2026-03-17 10:38:06,807 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:38:06,808 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:38:08,674 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:38:08,712 INFO uvicorn.error Started server process [33492]
+2026-03-17 10:38:08,713 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:38:08,714 INFO uvicorn.error Application startup complete.
+2026-03-17 10:39:02,755 INFO uvicorn.error Shutting down
+2026-03-17 10:39:02,872 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:39:02,873 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:39:02,873 INFO uvicorn.error Finished server process [33492]
+2026-03-17 10:39:04,256 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:39:04,257 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:39:06,281 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:39:06,319 INFO uvicorn.error Started server process [31520]
+2026-03-17 10:39:06,319 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:39:06,321 INFO uvicorn.error Application startup complete.
+2026-03-17 10:39:59,546 INFO uvicorn.error Shutting down
+2026-03-17 10:39:59,651 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:39:59,652 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:39:59,652 INFO uvicorn.error Finished server process [31520]
+2026-03-17 10:40:00,985 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:40:00,986 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:40:02,944 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:40:02,976 INFO uvicorn.error Started server process [17784]
+2026-03-17 10:40:02,976 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:40:02,977 INFO uvicorn.error Application startup complete.
+2026-03-17 10:43:40,051 INFO uvicorn.error Shutting down
+2026-03-17 10:43:40,152 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:43:40,153 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:43:40,154 INFO uvicorn.error Finished server process [17784]
+2026-03-17 10:43:41,809 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:43:41,810 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:43:43,796 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:43:43,832 INFO uvicorn.error Started server process [159832]
+2026-03-17 10:43:43,833 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:43:43,833 INFO uvicorn.error Application startup complete.
+2026-03-17 10:44:48,065 INFO uvicorn.error Shutting down
+2026-03-17 10:44:48,170 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:44:48,171 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:44:48,172 INFO uvicorn.error Finished server process [159832]
+2026-03-17 10:44:49,487 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:44:49,488 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:44:51,422 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:44:51,462 INFO uvicorn.error Started server process [154396]
+2026-03-17 10:44:51,462 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:44:51,463 INFO uvicorn.error Application startup complete.
+2026-03-17 10:46:04,359 INFO uvicorn.error Shutting down
+2026-03-17 10:46:04,466 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:46:04,467 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:46:04,467 INFO uvicorn.error Finished server process [154396]
+2026-03-17 10:46:05,774 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:46:05,774 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:46:07,817 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:46:07,849 INFO uvicorn.error Started server process [42792]
+2026-03-17 10:46:07,850 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:46:07,850 INFO uvicorn.error Application startup complete.
+2026-03-17 10:47:43,217 INFO uvicorn.error Shutting down
+2026-03-17 10:47:43,331 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:47:43,331 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:47:43,332 INFO uvicorn.error Finished server process [42792]
+2026-03-17 10:50:38,528 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:50:38,529 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:50:41,238 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:50:41,275 INFO uvicorn.error Started server process [9376]
+2026-03-17 10:50:41,275 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:50:41,276 INFO uvicorn.error Application startup complete.
+2026-03-17 10:50:43,331 INFO uvicorn.access 127.0.0.1:63481 - "GET /api/swagger HTTP/1.1" 200
+2026-03-17 10:50:43,693 INFO uvicorn.access 127.0.0.1:63481 - "GET /api/openapi.json HTTP/1.1" 200
+2026-03-17 10:50:46,625 INFO uvicorn.access 127.0.0.1:63481 - "POST /api/ejecutar HTTP/1.1" 401
+2026-03-17 10:50:54,286 INFO root Entró al endpoint /ejecutar
+2026-03-17 10:50:54,288 ERROR root Error al ejecutar proceso
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\proceso_01_ocr.py", line 30, in ejecutar_proceso
+    gemini_service = GeminiOCRService()
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\gemini\gemini_ocr_service.py", line 14, in __init__
+    super().__init__()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\gemini\gemini_base_service.py", line 21, in __init__
+    llm_config: LlmConfig = get_llm_config()
+                            ~~~~~~~~~~~~~~^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\config\llm_config.py", line 15, in get_llm_config
+    assert gemini_api_key, "La variable de entorno GEMINI_API_KEY no está configurada"
+           ^^^^^^^^^^^^^^
+AssertionError: La variable de entorno GEMINI_API_KEY no está configurada
+2026-03-17 10:50:54,375 INFO uvicorn.access 127.0.0.1:63495 - "POST /ejecutar HTTP/1.1" 500
+2026-03-17 10:50:54,376 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 410, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\applications.py", line 1160, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 326, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\concurrency.py", line 32, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2502, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 986, in run
+    result = context.run(func, *args)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\backend\routes\routes.py", line 103, in ejecutar
+    ruta_image = proceso_service.ejecutar_proceso(
+        empresa_id=token.empresa_id,
+        fecha_objetivo=payload.fecha_objetivo,
+        consolidado=payload.consolidado,
+    )
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\proceso_01_ocr.py", line 30, in ejecutar_proceso
+    gemini_service = GeminiOCRService()
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\gemini\gemini_ocr_service.py", line 14, in __init__
+    super().__init__()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\gemini\gemini_base_service.py", line 21, in __init__
+    llm_config: LlmConfig = get_llm_config()
+                            ~~~~~~~~~~~~~~^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\config\llm_config.py", line 15, in get_llm_config
+    assert gemini_api_key, "La variable de entorno GEMINI_API_KEY no está configurada"
+           ^^^^^^^^^^^^^^
+AssertionError: La variable de entorno GEMINI_API_KEY no está configurada
+2026-03-17 10:51:57,864 INFO uvicorn.error Shutting down
+2026-03-17 10:51:57,965 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:51:57,966 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:51:57,967 INFO uvicorn.error Finished server process [9376]
+2026-03-17 10:52:02,190 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:52:02,191 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:52:04,375 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:52:04,422 INFO uvicorn.error Started server process [45100]
+2026-03-17 10:52:04,422 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:52:04,423 INFO uvicorn.error Application startup complete.
+2026-03-17 10:52:21,360 INFO root Ambiente que llega sqlite
+2026-03-17 10:52:21,362 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-17 10:52:21,519 INFO uvicorn.access 127.0.0.1:63517 - "POST /api/login HTTP/1.1" 200
+2026-03-17 10:52:33,456 INFO root Entró al endpoint /ejecutar
+2026-03-17 10:52:33,459 ERROR root Error al ejecutar proceso
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\proceso_01_ocr.py", line 30, in ejecutar_proceso
+    gemini_service = GeminiOCRService()
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\gemini\gemini_ocr_service.py", line 14, in __init__
+    super().__init__()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\gemini\gemini_base_service.py", line 21, in __init__
+    llm_config: LlmConfig = get_llm_config()
+                            ~~~~~~~~~~~~~~^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\config\llm_config.py", line 18, in get_llm_config
+    assert gemini_model_ocr, "La variable de entorno GEMINI_MODEL_OCR no está configurada"
+           ^^^^^^^^^^^^^^^^
+AssertionError: La variable de entorno GEMINI_MODEL_OCR no está configurada
+2026-03-17 10:52:33,468 INFO uvicorn.access 127.0.0.1:63518 - "POST /api/ejecutar HTTP/1.1" 500
+2026-03-17 10:52:33,469 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 410, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\applications.py", line 1160, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 326, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\concurrency.py", line 32, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2502, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 986, in run
+    result = context.run(func, *args)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\backend\routes\routes.py", line 103, in ejecutar
+    ruta_image = proceso_service.ejecutar_proceso(
+        empresa_id=token.empresa_id,
+        fecha_objetivo=payload.fecha_objetivo,
+        consolidado=payload.consolidado,
+    )
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\proceso_01_ocr.py", line 30, in ejecutar_proceso
+    gemini_service = GeminiOCRService()
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\gemini\gemini_ocr_service.py", line 14, in __init__
+    super().__init__()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\gemini\gemini_base_service.py", line 21, in __init__
+    llm_config: LlmConfig = get_llm_config()
+                            ~~~~~~~~~~~~~~^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\config\llm_config.py", line 18, in get_llm_config
+    assert gemini_model_ocr, "La variable de entorno GEMINI_MODEL_OCR no está configurada"
+           ^^^^^^^^^^^^^^^^
+AssertionError: La variable de entorno GEMINI_MODEL_OCR no está configurada
+2026-03-17 10:55:57,046 INFO uvicorn.error Shutting down
+2026-03-17 10:55:57,169 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:55:57,169 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:55:57,170 INFO uvicorn.error Finished server process [45100]
+2026-03-17 10:56:00,137 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:56:00,137 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:56:02,200 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:56:02,230 INFO uvicorn.error Started server process [134776]
+2026-03-17 10:56:02,230 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:56:02,231 INFO uvicorn.error Application startup complete.
+2026-03-17 10:56:06,521 INFO root Entró al endpoint /ejecutar
+2026-03-17 10:56:09,587 INFO root Ambiente que llega sqlite
+2026-03-17 10:56:09,588 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-17 10:56:09,619 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\25-02-2026
+2026-03-17 10:56:09,646 INFO root Se encontraron 0 para la fecha 25-02-2026
+2026-03-17 10:56:09,676 INFO root LIVES Encontrados 6
+2026-03-17 10:56:10,229 INFO root Dashboard diario generado en artifacts\dashboard_2026-02-25.png
+2026-03-17 10:56:10,235 INFO uvicorn.access 127.0.0.1:63584 - "POST /ejecutar HTTP/1.1" 200
+2026-03-17 10:56:24,526 INFO uvicorn.error Shutting down
+2026-03-17 10:56:24,637 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:56:24,638 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:56:24,639 INFO uvicorn.error Finished server process [134776]
+2026-03-17 10:56:25,969 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:56:25,969 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:56:27,917 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:56:27,948 INFO uvicorn.error Started server process [138472]
+2026-03-17 10:56:27,949 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:56:27,949 INFO uvicorn.error Application startup complete.
+2026-03-17 10:57:49,238 INFO uvicorn.access 127.0.0.1:63603 - "POST /ejecutar HTTP/1.1" 401
+2026-03-17 10:58:01,790 INFO uvicorn.access 127.0.0.1:63604 - "OPTIONS /get_configuracion HTTP/1.1" 200
+2026-03-17 10:58:01,794 INFO uvicorn.access 127.0.0.1:63604 - "POST /get_configuracion HTTP/1.1" 401
+2026-03-17 10:58:03,034 INFO uvicorn.access 127.0.0.1:63604 - "POST /get_configuracion HTTP/1.1" 401
+2026-03-17 10:58:05,063 INFO uvicorn.access 127.0.0.1:63604 - "POST /get_configuracion HTTP/1.1" 401
+2026-03-17 10:58:09,083 INFO uvicorn.access 127.0.0.1:63604 - "POST /get_configuracion HTTP/1.1" 401
+2026-03-17 10:58:18,840 INFO uvicorn.access 127.0.0.1:63612 - "OPTIONS /login HTTP/1.1" 200
+2026-03-17 10:58:18,844 INFO root Ambiente que llega sqlite
+2026-03-17 10:58:18,846 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-17 10:58:19,005 INFO uvicorn.access 127.0.0.1:63612 - "POST /login HTTP/1.1" 200
+2026-03-17 10:58:19,045 INFO uvicorn.access 127.0.0.1:63612 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-17 10:58:21,536 INFO uvicorn.access 127.0.0.1:63612 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-17 10:58:29,950 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026
+2026-03-17 10:58:29,960 INFO root Se encontraron 11 para la fecha 04-03-2026
+2026-03-17 10:58:29,961 INFO root Se esta procesando 04-03-2026_56938912371_ACA2D1547C8088543754FF0B2F42EDBF.jpeg
+2026-03-17 10:58:29,961 WARNING root Número 56938912371 no registrado en BD. Saltando...
+2026-03-17 10:58:29,962 INFO root Se esta procesando 04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-17 10:58:29,969 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-17 10:58:29,970 INFO root Se esta procesando 04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-17 10:58:29,974 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-17 10:58:29,975 INFO root Se esta procesando 04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-17 10:58:29,979 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-17 10:58:29,979 INFO root Se esta procesando 04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-17 10:58:29,983 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-17 10:58:29,984 INFO root Se esta procesando 04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-17 10:58:29,987 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-17 10:58:29,987 INFO root Se esta procesando 04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-17 10:58:29,990 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-17 10:58:29,990 INFO root Se esta procesando 04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-17 10:58:29,992 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-17 10:58:29,993 INFO root Se esta procesando 04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-17 10:58:29,995 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-17 10:58:29,995 INFO root Se esta procesando 04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-17 10:58:29,999 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-17 10:58:30,000 INFO root Se esta procesando 04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-17 10:58:30,002 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-17 10:58:30,019 INFO root LIVES Encontrados 0
+2026-03-17 10:58:30,019 WARNING root No hay registros LIVE para el 04-03-2026
+2026-03-17 10:58:30,023 INFO uvicorn.access 127.0.0.1:63618 - "POST /ejecutar HTTP/1.1" 200
+2026-03-17 10:58:36,561 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026
+2026-03-17 10:58:36,565 INFO root Se encontraron 11 para la fecha 04-03-2026
+2026-03-17 10:58:36,566 INFO root Se esta procesando 04-03-2026_56938912371_ACA2D1547C8088543754FF0B2F42EDBF.jpeg
+2026-03-17 10:58:36,566 WARNING root Número 56938912371 no registrado en BD. Saltando...
+2026-03-17 10:58:36,567 INFO root Se esta procesando 04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-17 10:58:36,571 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-17 10:58:36,572 INFO root Se esta procesando 04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-17 10:58:36,574 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-17 10:58:36,574 INFO root Se esta procesando 04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-17 10:58:36,578 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-17 10:58:36,579 INFO root Se esta procesando 04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-17 10:58:36,583 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-17 10:58:36,583 INFO root Se esta procesando 04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-17 10:58:36,586 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-17 10:58:36,587 INFO root Se esta procesando 04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-17 10:58:36,589 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-17 10:58:36,589 INFO root Se esta procesando 04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-17 10:58:36,591 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-17 10:58:36,592 INFO root Se esta procesando 04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-17 10:58:36,596 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-17 10:58:36,596 INFO root Se esta procesando 04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-17 10:58:36,600 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-17 10:58:36,601 INFO root Se esta procesando 04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-17 10:58:36,604 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-17 10:58:36,612 INFO root LIVES Encontrados 0
+2026-03-17 10:58:36,612 WARNING root No hay registros LIVE para el 04-03-2026
+2026-03-17 10:58:36,616 INFO uvicorn.access 127.0.0.1:63632 - "POST /ejecutar HTTP/1.1" 200
+2026-03-17 10:58:57,945 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026
+2026-03-17 10:58:57,948 WARNING root La carpeta de imagenes no existe: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026
+2026-03-17 10:58:57,948 INFO root Se encontraron 0 para la fecha 04-03-2026
+2026-03-17 10:58:57,955 INFO root LIVES Encontrados 0
+2026-03-17 10:58:57,956 WARNING root No hay registros LIVE para el 04-03-2026
+2026-03-17 10:58:57,961 INFO uvicorn.access 127.0.0.1:63633 - "POST /ejecutar HTTP/1.1" 200
+2026-03-17 10:59:06,876 INFO uvicorn.error Shutting down
+2026-03-17 10:59:06,979 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 10:59:06,980 INFO uvicorn.error Application shutdown complete.
+2026-03-17 10:59:06,980 INFO uvicorn.error Finished server process [138472]
+2026-03-17 10:59:08,381 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:59:08,381 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 10:59:10,508 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 10:59:10,546 INFO uvicorn.error Started server process [152704]
+2026-03-17 10:59:10,546 INFO uvicorn.error Waiting for application startup.
+2026-03-17 10:59:10,547 INFO uvicorn.error Application startup complete.
+2026-03-17 10:59:16,938 INFO root Ambiente que llega sqlite
+2026-03-17 10:59:16,940 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-17 10:59:16,992 INFO uvicorn.access 127.0.0.1:63650 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-17 10:59:29,459 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026
+2026-03-17 10:59:29,465 WARNING root La carpeta de imagenes no existe: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026
+2026-03-17 10:59:29,465 INFO root Se encontraron 0 para la fecha 04-03-2026
+2026-03-17 10:59:29,478 INFO root LIVES Encontrados 0
+2026-03-17 10:59:29,478 WARNING root No hay registros LIVE para el 04-03-2026
+2026-03-17 10:59:29,483 INFO uvicorn.access 127.0.0.1:63653 - "POST /ejecutar HTTP/1.1" 200
+2026-03-17 11:01:15,037 INFO uvicorn.access 127.0.0.1:63689 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-17 11:01:20,745 INFO uvicorn.access 127.0.0.1:63692 - "OPTIONS /post_configuracion HTTP/1.1" 200
+2026-03-17 11:01:20,772 INFO uvicorn.access 127.0.0.1:63692 - "POST /post_configuracion HTTP/1.1" 200
+2026-03-17 11:01:20,780 INFO uvicorn.access 127.0.0.1:63692 - "POST /get_configuracion HTTP/1.1" 200
+2026-03-17 11:01:28,957 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026
+2026-03-17 11:01:28,963 INFO root Se encontraron 11 para la fecha 04-03-2026
+2026-03-17 11:01:28,964 INFO root Se esta procesando 04-03-2026_56938912371_ACA2D1547C8088543754FF0B2F42EDBF.jpeg
+2026-03-17 11:01:28,964 WARNING root Número 56938912371 no registrado en BD. Saltando...
+2026-03-17 11:01:28,965 INFO root Se esta procesando 04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-17 11:01:28,983 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-17 11:01:28,984 INFO root Se esta procesando 04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-17 11:01:28,999 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-17 11:01:28,999 INFO root Se esta procesando 04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-17 11:01:29,009 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-17 11:01:29,010 INFO root Se esta procesando 04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-17 11:01:29,021 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-17 11:01:29,021 INFO root Se esta procesando 04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-17 11:01:29,031 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-17 11:01:29,032 INFO root Se esta procesando 04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-17 11:01:29,041 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-17 11:01:29,042 INFO root Se esta procesando 04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-17 11:01:29,051 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-17 11:01:29,052 INFO root Se esta procesando 04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-17 11:01:29,061 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-17 11:01:29,062 INFO root Se esta procesando 04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-17 11:01:29,071 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-17 11:01:29,072 INFO root Se esta procesando 04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-17 11:01:29,081 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-17 11:01:29,095 INFO root LIVES Encontrados 0
+2026-03-17 11:01:29,095 WARNING root No hay registros LIVE para el 04-03-2026
+2026-03-17 11:01:29,101 INFO uvicorn.access 127.0.0.1:63698 - "POST /ejecutar HTTP/1.1" 200
+2026-03-17 11:01:34,770 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026
+2026-03-17 11:01:34,773 INFO root Se encontraron 11 para la fecha 04-03-2026
+2026-03-17 11:01:34,773 INFO root Se esta procesando 04-03-2026_56938912371_ACA2D1547C8088543754FF0B2F42EDBF.jpeg
+2026-03-17 11:01:34,773 WARNING root Número 56938912371 no registrado en BD. Saltando...
+2026-03-17 11:01:34,774 INFO root Se esta procesando 04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-17 11:01:34,784 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB033E14F4421F81ED443.jpeg
+2026-03-17 11:01:34,785 INFO root Se esta procesando 04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-17 11:01:34,795 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0A3FDB2D58EFA678071.jpeg
+2026-03-17 11:01:34,796 INFO root Se esta procesando 04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-17 11:01:34,812 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0C4A0BDC3DBB793EF2A.jpeg
+2026-03-17 11:01:34,812 INFO root Se esta procesando 04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-17 11:01:34,823 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_3EB0DA1F9919A5229E9765.jpeg
+2026-03-17 11:01:34,824 INFO root Se esta procesando 04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-17 11:01:34,833 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5045DFA06E0FD138768A63888CE695C.jpeg
+2026-03-17 11:01:34,834 INFO root Se esta procesando 04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-17 11:01:34,844 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A53560E557FA1109A93FA40F2206C150.jpeg
+2026-03-17 11:01:34,844 INFO root Se esta procesando 04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-17 11:01:34,854 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A56EE23D7FF9DC68BC0FD3D6574D8E04.jpeg
+2026-03-17 11:01:34,855 INFO root Se esta procesando 04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-17 11:01:34,864 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A57F4A0E4DACBF3637466E796F1D3AC8.jpeg
+2026-03-17 11:01:34,865 INFO root Se esta procesando 04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-17 11:01:34,874 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5B18A6744C844A375D802525D3881D4.jpeg
+2026-03-17 11:01:34,875 INFO root Se esta procesando 04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-17 11:01:34,884 INFO root Imagen de Thae Test ingresada correctamente, filename C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\04-03-2026\04-03-2026_56964587530_A5E651807869AE419B372BFB0E54EA07.jpeg
+2026-03-17 11:01:34,898 INFO root LIVES Encontrados 0
+2026-03-17 11:01:34,898 WARNING root No hay registros LIVE para el 04-03-2026
+2026-03-17 11:01:34,904 INFO uvicorn.access 127.0.0.1:63698 - "POST /ejecutar HTTP/1.1" 200
+2026-03-17 11:01:35,943 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\06-03-2026
+2026-03-17 11:01:35,946 INFO root Se encontraron 1 para la fecha 06-03-2026
+2026-03-17 11:01:35,946 INFO root Se esta procesando 06-03-2026_56938912371_AC6295E6D22527F638B490DE41D42C9E.jpeg
+2026-03-17 11:01:35,946 WARNING root Número 56938912371 no registrado en BD. Saltando...
+2026-03-17 11:01:35,954 INFO root LIVES Encontrados 0
+2026-03-17 11:01:35,954 WARNING root No hay registros LIVE para el 06-03-2026
+2026-03-17 11:01:35,958 INFO uvicorn.access 127.0.0.1:63698 - "POST /ejecutar HTTP/1.1" 200
+2026-03-17 11:01:40,794 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\25-02-2026
+2026-03-17 11:01:40,798 INFO root Se encontraron 0 para la fecha 25-02-2026
+2026-03-17 11:01:40,814 INFO root LIVES Encontrados 6
+2026-03-17 11:01:40,966 INFO root Dashboard diario generado en artifacts\dashboard_2026-02-25.png
+2026-03-17 11:01:40,973 INFO uvicorn.access 127.0.0.1:63698 - "POST /ejecutar HTTP/1.1" 200
+2026-03-17 11:03:54,945 INFO uvicorn.error Shutting down
+2026-03-17 11:03:55,048 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 11:03:55,049 INFO uvicorn.error Application shutdown complete.
+2026-03-17 11:03:55,049 INFO uvicorn.error Finished server process [152704]
+2026-03-17 11:03:56,346 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:03:56,347 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 11:06:15,708 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:06:15,709 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 11:06:17,886 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:06:17,901 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:06:17,933 INFO uvicorn.error Started server process [38764]
+2026-03-17 11:06:17,934 INFO uvicorn.error Waiting for application startup.
+2026-03-17 11:06:17,934 INFO uvicorn.error Application startup complete.
+2026-03-17 11:06:46,807 INFO root Ambiente que llega sqlite
+2026-03-17 11:06:46,809 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-17 11:06:46,836 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\2026-03-17
+2026-03-17 11:06:46,853 WARNING root La carpeta de imagenes no existe: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\2026-03-17
+2026-03-17 11:06:46,854 INFO root Se encontraron 0 para la fecha 2026-03-17
+2026-03-17 11:06:46,854 INFO root Iniciando navegador chrome...
+2026-03-17 11:06:46,854 INFO root Configurando ChromeDriver para ambiente local...
+2026-03-17 11:06:46,856 INFO root Path obtenido C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src
+2026-03-17 11:06:51,736 INFO root Ingresando las credenciales para usuario 1
+2026-03-17 11:06:51,736 INFO root Login Usuario: 199203444
+2026-03-17 11:06:51,737 INFO root Login Password: 0LEZp7z0.xL5
+2026-03-17 11:07:10,575 INFO root Navegando a pagina de login...
+2026-03-17 11:07:10,585 INFO root Llenando campo de usuario...
+2026-03-17 11:07:10,731 INFO root Usuario ingresado 199203444...
+2026-03-17 11:07:10,826 INFO root Contraseña ingresada 0LEZp7z0.xL5...
+2026-03-17 11:07:10,956 INFO root Ingresando...
+2026-03-17 11:07:17,257 INFO root Intento 1: Navegando al dashboard...
+2026-03-17 11:07:17,838 INFO root La capa de carga desapareció normalmente.
+2026-03-17 11:07:17,838 INFO root Limpiando capas de bloqueo...
+2026-03-17 11:07:17,846 INFO root Buscando boton de transacciones...
+2026-03-17 11:07:17,872 INFO root Boton transacciones clickeado...
+2026-03-17 11:07:20,873 INFO root Buscando boton de descarga...
+2026-03-17 11:07:20,929 INFO root Boton descarga clickeado...
+2026-03-17 11:07:20,930 INFO root Esperando 10 segundos para completar la descarga...
+2026-03-17 11:07:30,930 INFO root Ingresando las credenciales para usuario 3
+2026-03-17 11:07:30,931 INFO root Login Usuario: 146025986
+2026-03-17 11:07:30,932 INFO root Login Password: BAclaro-2026
+2026-03-17 11:07:30,958 INFO root Navegando a pagina de login...
+2026-03-17 11:07:30,970 INFO root Llenando campo de usuario...
+2026-03-17 11:07:31,062 INFO root Usuario ingresado 146025986...
+2026-03-17 11:07:31,134 INFO root Contraseña ingresada BAclaro-2026...
+2026-03-17 11:07:31,280 INFO root Ingresando...
+2026-03-17 11:07:33,355 INFO root Intento 1: Navegando al dashboard...
+2026-03-17 11:07:33,928 INFO root La capa de carga desapareció normalmente.
+2026-03-17 11:07:33,928 INFO root Limpiando capas de bloqueo...
+2026-03-17 11:07:33,937 INFO root Buscando boton de transacciones...
+2026-03-17 11:07:33,965 INFO root Boton transacciones clickeado...
+2026-03-17 11:07:36,966 INFO root Buscando boton de descarga...
+2026-03-17 11:07:37,006 INFO root Boton descarga clickeado...
+2026-03-17 11:07:37,007 INFO root Esperando 10 segundos para completar la descarga...
+2026-03-17 11:07:47,008 INFO root Ingresando las credenciales para usuario 5
+2026-03-17 11:07:47,009 INFO root Login Usuario: 190045846
+2026-03-17 11:07:47,009 INFO root Login Password: PJw9Kmw3).9U
+2026-03-17 11:07:47,035 INFO root Navegando a pagina de login...
+2026-03-17 11:07:47,049 INFO root Llenando campo de usuario...
+2026-03-17 11:07:47,139 INFO root Usuario ingresado 190045846...
+2026-03-17 11:07:47,219 INFO root Contraseña ingresada PJw9Kmw3).9U...
+2026-03-17 11:07:47,353 INFO root Ingresando...
+2026-03-17 11:07:49,478 INFO root Intento 1: Navegando al dashboard...
+2026-03-17 11:07:50,045 INFO root La capa de carga desapareció normalmente.
+2026-03-17 11:07:50,045 INFO root Limpiando capas de bloqueo...
+2026-03-17 11:07:50,053 INFO root Buscando boton de transacciones...
+2026-03-17 11:07:50,074 INFO root Boton transacciones clickeado...
+2026-03-17 11:07:53,075 INFO root Buscando boton de descarga...
+2026-03-17 11:07:53,116 INFO root Boton descarga clickeado...
+2026-03-17 11:07:53,117 INFO root Esperando 10 segundos para completar la descarga...
+2026-03-17 11:08:03,118 INFO root Ingresando las credenciales para usuario 4
+2026-03-17 11:08:03,119 INFO root Login Usuario: 192592267
+2026-03-17 11:08:03,119 INFO root Login Password: 9IsLb.m-M92V
+2026-03-17 11:08:03,143 INFO root Navegando a pagina de login...
+2026-03-17 11:08:03,160 INFO root Llenando campo de usuario...
+2026-03-17 11:08:03,258 INFO root Usuario ingresado 192592267...
+2026-03-17 11:08:03,348 INFO root Contraseña ingresada 9IsLb.m-M92V...
+2026-03-17 11:08:03,481 INFO root Ingresando...
+2026-03-17 11:08:05,616 INFO root Intento 1: Navegando al dashboard...
+2026-03-17 11:08:06,188 INFO root La capa de carga desapareció normalmente.
+2026-03-17 11:08:06,189 INFO root Limpiando capas de bloqueo...
+2026-03-17 11:08:06,197 INFO root Buscando boton de transacciones...
+2026-03-17 11:08:06,217 INFO root Boton transacciones clickeado...
+2026-03-17 11:08:09,219 INFO root Buscando boton de descarga...
+2026-03-17 11:08:09,250 INFO root Boton descarga clickeado...
+2026-03-17 11:08:09,251 INFO root Esperando 10 segundos para completar la descarga...
+2026-03-17 11:08:19,252 INFO root Ingresando las credenciales para usuario 6
+2026-03-17 11:08:19,252 INFO root Login Usuario: 171027306
+2026-03-17 11:08:19,253 INFO root Login Password: w8n,u56Fx#D.
+2026-03-17 11:08:19,283 INFO root Navegando a pagina de login...
+2026-03-17 11:08:19,295 INFO root Llenando campo de usuario...
+2026-03-17 11:08:19,381 INFO root Usuario ingresado 171027306...
+2026-03-17 11:08:19,461 INFO root Contraseña ingresada w8n,u56Fx#D....
+2026-03-17 11:08:19,580 INFO root Ingresando...
+2026-03-17 11:08:22,727 INFO root Intento 1: Navegando al dashboard...
+2026-03-17 11:08:23,303 INFO root La capa de carga desapareció normalmente.
+2026-03-17 11:08:23,303 INFO root Limpiando capas de bloqueo...
+2026-03-17 11:08:23,311 INFO root Buscando boton de transacciones...
+2026-03-17 11:08:23,334 INFO root Boton transacciones clickeado...
+2026-03-17 11:08:26,334 INFO root Buscando boton de descarga...
+2026-03-17 11:08:26,382 INFO root Boton descarga clickeado...
+2026-03-17 11:08:26,382 INFO root Esperando 10 segundos para completar la descarga...
+2026-03-17 11:08:36,384 INFO root Ingresando las credenciales para usuario 7
+2026-03-17 11:08:36,384 INFO root Login Usuario: 211049251
+2026-03-17 11:08:36,385 INFO root Login Password: j|P8!csWQ;.P
+2026-03-17 11:08:36,406 INFO root Navegando a pagina de login...
+2026-03-17 11:08:36,424 INFO root Llenando campo de usuario...
+2026-03-17 11:08:36,506 INFO root Usuario ingresado 211049251...
+2026-03-17 11:08:36,588 INFO root Contraseña ingresada j|P8!csWQ;.P...
+2026-03-17 11:08:36,725 INFO root Ingresando...
+2026-03-17 11:08:39,324 INFO root Intento 1: Navegando al dashboard...
+2026-03-17 11:08:39,902 INFO root La capa de carga desapareció normalmente.
+2026-03-17 11:08:39,902 INFO root Limpiando capas de bloqueo...
+2026-03-17 11:08:39,909 INFO root Buscando boton de transacciones...
+2026-03-17 11:08:39,928 INFO root Boton transacciones clickeado...
+2026-03-17 11:08:42,929 INFO root Buscando boton de descarga...
+2026-03-17 11:08:42,963 INFO root Boton descarga clickeado...
+2026-03-17 11:08:42,964 INFO root Esperando 10 segundos para completar la descarga...
+2026-03-17 11:08:52,965 INFO root Ingresando las credenciales para usuario 8
+2026-03-17 11:08:52,965 INFO root Login Usuario: 199611933
+2026-03-17 11:08:52,966 INFO root Login Password: H,blxyx@(7sB
+2026-03-17 11:08:52,999 INFO root Navegando a pagina de login...
+2026-03-17 11:08:53,010 INFO root Llenando campo de usuario...
+2026-03-17 11:08:53,100 INFO root Usuario ingresado 199611933...
+2026-03-17 11:08:53,184 INFO root Contraseña ingresada H,blxyx@(7sB...
+2026-03-17 11:08:53,319 INFO root Ingresando...
+2026-03-17 11:08:55,959 INFO root Intento 1: Navegando al dashboard...
+2026-03-17 11:08:56,526 INFO root La capa de carga desapareció normalmente.
+2026-03-17 11:08:56,527 INFO root Limpiando capas de bloqueo...
+2026-03-17 11:08:56,536 INFO root Buscando boton de transacciones...
+2026-03-17 11:08:56,556 INFO root Boton transacciones clickeado...
+2026-03-17 11:08:59,557 INFO root Buscando boton de descarga...
+2026-03-17 11:08:59,598 INFO root Boton descarga clickeado...
+2026-03-17 11:08:59,599 INFO root Esperando 10 segundos para completar la descarga...
+2026-03-17 11:09:12,580 ERROR root Formato de fecha inválido: 2026-03-17. Se esperaba DD-MM-YYYY
+2026-03-17 11:09:12,586 INFO uvicorn.access 127.0.0.1:63755 - "POST /api/ejecutar HTTP/1.1" 200
+2026-03-17 11:14:45,856 INFO uvicorn.error Shutting down
+2026-03-17 11:14:45,968 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 11:14:45,969 INFO uvicorn.error Application shutdown complete.
+2026-03-17 11:14:45,970 INFO uvicorn.error Finished server process [38764]
+2026-03-17 11:14:47,367 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:14:47,368 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 11:17:00,122 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:17:00,123 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 11:17:05,132 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:17:05,156 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:17:05,203 INFO uvicorn.error Started server process [125584]
+2026-03-17 11:17:05,203 INFO uvicorn.error Waiting for application startup.
+2026-03-17 11:17:05,204 INFO uvicorn.error Application startup complete.
+2026-03-17 11:17:30,435 INFO root Ambiente que llega sqlite
+2026-03-17 11:17:30,436 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-17 11:17:30,462 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\2026-03-17
+2026-03-17 11:17:30,475 WARNING root La carpeta de imagenes no existe: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\2026-03-17
+2026-03-17 11:17:30,476 INFO root Se encontraron 0 para la fecha 2026-03-17
+2026-03-17 11:17:30,476 ERROR root Formato de fecha inválido: 2026-03-17. Se esperaba DD-MM-YYYY
+2026-03-17 11:17:30,480 INFO uvicorn.access 127.0.0.1:63934 - "POST /api/ejecutar HTTP/1.1" 200
+2026-03-17 11:17:48,100 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\17-03-2026
+2026-03-17 11:17:48,102 WARNING root La carpeta de imagenes no existe: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\17-03-2026
+2026-03-17 11:17:48,102 INFO root Se encontraron 0 para la fecha 17-03-2026
+2026-03-17 11:17:48,112 INFO root LIVES Encontrados 0
+2026-03-17 11:17:48,112 WARNING root No hay registros LIVE para el 17-03-2026
+2026-03-17 11:17:48,116 INFO uvicorn.access 127.0.0.1:63935 - "POST /api/ejecutar HTTP/1.1" 200
+2026-03-17 11:19:30,320 INFO uvicorn.error Shutting down
+2026-03-17 11:19:30,430 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 11:19:30,430 INFO uvicorn.error Application shutdown complete.
+2026-03-17 11:19:30,431 INFO uvicorn.error Finished server process [125584]
+2026-03-17 11:19:31,915 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:19:31,916 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 11:19:34,733 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:19:34,747 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:19:34,784 INFO uvicorn.error Started server process [154760]
+2026-03-17 11:19:34,785 INFO uvicorn.error Waiting for application startup.
+2026-03-17 11:19:34,786 INFO uvicorn.error Application startup complete.
+2026-03-17 11:19:54,658 INFO root Ambiente que llega sqlite
+2026-03-17 11:19:54,659 INFO root Usando SQLite en: CLARO-TIKTOK.db
+2026-03-17 11:19:54,686 INFO root Ruta de imagenes C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\17-03-2026
+2026-03-17 11:19:54,703 WARNING root La carpeta de imagenes no existe: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\whatsapp-service\descargas\17-03-2026
+2026-03-17 11:19:54,703 INFO root Se encontraron 0 para la fecha 17-03-2026
+2026-03-17 11:19:54,705 INFO root Leyendo C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\front-web\Excel-1773756440923.xlsx
+2026-03-17 11:19:54,706 ERROR root Error al ejecutar proceso
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\pandas\compat\_optional.py", line 158, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "C:\Users\BI CUARTO\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'openpyxl'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\proceso_01_ocr.py", line 87, in ejecutar_proceso
+    excels = excel_service.procesar_excel()
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\excelservice\excel_service.py", line 16, in procesar_excel
+    df = pd.read_excel(excel)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\pandas\io\excel\_base.py", line 481, in read_excel
+    io = ExcelFile(
+        io,
+    ...<2 lines>...
+        engine_kwargs=engine_kwargs,
+    )
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\pandas\io\excel\_base.py", line 1621, in __init__
+    self._reader = self._engines[engine](
+                   ~~~~~~~~~~~~~~~~~~~~~^
+        self._io,
+        ^^^^^^^^^
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        engine_kwargs=engine_kwargs,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\pandas\io\excel\_openpyxl.py", line 559, in __init__
+    import_optional_dependency("openpyxl")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\pandas\compat\_optional.py", line 161, in import_optional_dependency
+    raise ImportError(msg) from err
+ImportError: `Import openpyxl` failed.  Use pip or conda to install the openpyxl package.
+2026-03-17 11:19:54,718 INFO uvicorn.access 127.0.0.1:63961 - "POST /api/ejecutar HTTP/1.1" 500
+2026-03-17 11:19:54,718 ERROR uvicorn.error Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\pandas\compat\_optional.py", line 158, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "C:\Users\BI CUARTO\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'openpyxl'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 410, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\applications.py", line 1160, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\fastapi\routing.py", line 326, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\starlette\concurrency.py", line 32, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2502, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 986, in run
+    result = context.run(func, *args)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\backend\routes\routes.py", line 101, in ejecutar
+    ruta_image = proceso_service.ejecutar_proceso(
+        empresa_id=token.empresa_id,
+        fecha_objetivo=payload.fecha_objetivo,
+        consolidado=payload.consolidado,
+    )
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\proceso_01_ocr.py", line 87, in ejecutar_proceso
+    excels = excel_service.procesar_excel()
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\src\excelservice\excel_service.py", line 16, in procesar_excel
+    df = pd.read_excel(excel)
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\pandas\io\excel\_base.py", line 481, in read_excel
+    io = ExcelFile(
+        io,
+    ...<2 lines>...
+        engine_kwargs=engine_kwargs,
+    )
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\pandas\io\excel\_base.py", line 1621, in __init__
+    self._reader = self._engines[engine](
+                   ~~~~~~~~~~~~~~~~~~~~~^
+        self._io,
+        ^^^^^^^^^
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        engine_kwargs=engine_kwargs,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\pandas\io\excel\_openpyxl.py", line 559, in __init__
+    import_optional_dependency("openpyxl")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.venv\Lib\site-packages\pandas\compat\_optional.py", line 161, in import_optional_dependency
+    raise ImportError(msg) from err
+ImportError: `Import openpyxl` failed.  Use pip or conda to install the openpyxl package.
+2026-03-17 11:21:00,782 INFO uvicorn.error Shutting down
+2026-03-17 11:21:00,896 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 11:21:00,897 INFO uvicorn.error Application shutdown complete.
+2026-03-17 11:21:00,897 INFO uvicorn.error Finished server process [154760]
+2026-03-17 11:21:40,431 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:21:40,432 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 11:21:43,143 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:21:43,163 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:21:43,204 INFO uvicorn.error Started server process [19104]
+2026-03-17 11:21:43,204 INFO uvicorn.error Waiting for application startup.
+2026-03-17 11:21:43,205 INFO uvicorn.error Application startup complete.
+2026-03-17 11:22:22,481 INFO uvicorn.error Shutting down
+2026-03-17 11:22:22,587 INFO uvicorn.error Waiting for application shutdown.
+2026-03-17 11:22:22,588 INFO uvicorn.error Application shutdown complete.
+2026-03-17 11:22:22,588 INFO uvicorn.error Finished server process [19104]
+2026-03-17 11:22:23,948 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:22:23,948 INFO root env_path: C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\.env
+2026-03-17 11:22:26,494 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:22:26,513 INFO root Logging inicializado en C:\Users\BI CUARTO\Desktop\claro-controldiario\backend\logs.txt
+2026-03-17 11:22:26,550 INFO uvicorn.error Started server process [22336]
+2026-03-17 11:22:26,551 INFO uvicorn.error Waiting for application startup.
+2026-03-17 11:22:26,552 INFO uvicorn.error Application startup complete.

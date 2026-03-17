@@ -6,12 +6,16 @@ from fastapi.responses import FileResponse
 from jwt import ExpiredSignatureError, InvalidTokenError
 from pydantic import BaseModel
 import os
+
+from src.config.log_config import configurar_log
 from src.backend.auth import verify_jwt, TokenStruct
 from src.bd.bd_ejecutivo import EjecutivoService
 from src.bd.bd_usuario import UsuarioService
 from src.bd.bd_configuracion import ConfiguracionService
 from src.bd.schema import LIVE, Configuracion
-from src.proceso_01_ocr import ejecutar_proceso
+from src.proceso_01_ocr import ProcesoService
+
+configurar_log()
 
 _security = HTTPBearer(bearerFormat="JWT", auto_error=False)
 
@@ -93,7 +97,8 @@ class EjecutarRequest(BaseModel):
 
 @router.post("/ejecutar", operation_id="Ejecutar_reporte_diario", tags=["web"])#, response_model=list[LIVE])
 def ejecutar(payload: EjecutarRequest, token: TokenStruct = Depends(require_access_token)):# -> list[LIVE]:
-    ruta_image = ejecutar_proceso(
+    proceso_service = ProcesoService()
+    ruta_image = proceso_service.ejecutar_proceso(
         empresa_id=token.empresa_id,
         fecha_objetivo=payload.fecha_objetivo,
         consolidado=payload.consolidado,
