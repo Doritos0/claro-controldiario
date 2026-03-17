@@ -22,7 +22,7 @@ class FrontService:
         self.credenciales_service = CredencialesService()
 
     def obtener_excel(self, empresa_id):
-        chrome = self.get_chrome(headless=True)
+        chrome = self.get_chrome(headless=False)
         wait = WebDriverWait(chrome, timeout=20, poll_frequency=0.5)
 
         if empresa_id == 1:
@@ -100,6 +100,7 @@ class FrontService:
                     boton_transacciones = wait.until(EC.presence_of_element_located((By.XPATH, xpath_transacciones)))
                     chrome.execute_script("arguments[0].click();", boton_transacciones)
                     logging.info(f"Boton transacciones clickeado...")
+                    time.sleep(3)
 
                     logging.info(f"Buscando boton de descarga...")
                     # XPath flexible que busca el botón por el texto "Descargar"
