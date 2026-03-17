@@ -16,6 +16,7 @@ class CredencialesService:
                 )
                 .join(Ejecutivo, Ejecutivo.id == Credenciales.usuario_id)
                 .where(Ejecutivo.empresa_id == empresa_id)
+                .where(Credenciales.id!=2)
             )
             credenciales_list: list[Credenciales] = session.exec(stmt).scalars().all()
             

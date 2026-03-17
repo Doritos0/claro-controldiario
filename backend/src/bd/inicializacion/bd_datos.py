@@ -66,13 +66,13 @@ def inicializar_datos():
     credenciales_service = CredencialesService()
     daniela_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=daniela_baeza, login_user="199203444", login_pass="0LEZp7z0.xL5").id
     assert daniela_credenciales is not None
-    ada_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=ada_rengifo, login_user="165787307", login_pass="Claro.2025").id
+    ada_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=ada_rengifo, login_user="165787307", login_pass="Claro.2025*").id
     assert ada_credenciales is not None
     barbara_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=barbara_cruz, login_user="146025986", login_pass="BAclaro-2026").id
     assert barbara_credenciales is not None
     rafa_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=rafael_cayun, login_user="190045846", login_pass="PJw9Kmw3).9U").id
     assert rafa_credenciales is not None
-    pauli_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=paulina_cataldo, login_user="199203444", login_pass="9IsLb.m-M92V").id
+    pauli_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=paulina_cataldo, login_user="192592267", login_pass="9IsLb.m-M92V").id
     assert pauli_credenciales is not None
     tania_credenciales = credenciales_service.guardar_credenciales_sql(usuario_id=tania_alviar, login_user="171027306", login_pass="w8n,u56Fx#D.").id
     assert tania_credenciales is not None

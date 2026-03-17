@@ -22,7 +22,7 @@ class FrontService:
         self.credenciales_service = CredencialesService()
 
     def obtener_excel(self, empresa_id):
-        chrome = self.get_chrome(headless=False)
+        chrome = self.get_chrome(headless=True)
         wait = WebDriverWait(chrome, timeout=20, poll_frequency=0.5)
 
         if empresa_id == 1:
@@ -33,7 +33,6 @@ class FrontService:
                 logging.info(f"Ingresando las credenciales para usuario {n.usuario_id}")
                 logging.info(f"Login Usuario: {n.login_user}")
                 logging.info(f"Login Password: {n.login_pass}")
-            '''
                 try:
                     # 1. Proceso de Login
                     url = "https://fvc-prod.clarovtrcloud.com/#/login"
@@ -55,8 +54,6 @@ class FrontService:
                     logging.info(f"Ingresando...")
                     
                     wait.until(EC.presence_of_element_located((By.ID, "user")))
-                    cookies_front = chrome.get_cookies()
-                    logging.info(f"Cookies obtenidas: {len(cookies_front)} encontradas")
                 
                     url_dashboard = "https://fvc-prod.clarovtrcloud.com/#/home/dashboard"
                     max_intentos = 3
@@ -118,11 +115,6 @@ class FrontService:
                 except Exception as e:
                     logging.error(f"Error en el proceso: {str(e)}")
                     raise
-                finally:
-                    logging.info(f"Cerrando navegador...")
-                    chrome.quit()
-            
-            '''
             chrome.quit()
 
         else:
