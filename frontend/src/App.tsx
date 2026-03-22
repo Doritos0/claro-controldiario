@@ -3,11 +3,12 @@ import type { ReactElement } from 'react';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router';
 import Login from './pages/Login.tsx';
 import Home from './pages/Home.tsx';
+import { getAccessToken } from './lib/token-storage';
 
 const queryClient = new QueryClient();
 
 function ProtectedRoute({ children }: { children: ReactElement }) {
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = getAccessToken();
 
   if (!accessToken) {
     return <Navigate to="/login" replace />;

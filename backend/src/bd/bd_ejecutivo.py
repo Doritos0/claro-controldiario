@@ -13,19 +13,38 @@ class EjecutivoService:
     def obtener_id(self, ejecutivo_id: int) -> Ejecutivo | None:
         with Session(self.engine) as session:
             ejecutivo = session.get(Ejecutivo, ejecutivo_id)
+            return ejecutivo
 
-    def guardar_ejecutivo_sql(self, nombre: str, estado: str, eps: str, empresa_id: int, nro_telefono: int) -> Ejecutivo:
+    def guardar_ejecutivo_sql(
+        self, nombre: str, estado: str, eps: str, empresa_id: int, nro_telefono: int
+    ) -> Ejecutivo:
         with Session(self.engine) as session:
-            ejecutivo_existe = session.exec(select(Ejecutivo).where(func.lower(Ejecutivo.nombre) == nombre.lower())).scalars().first()
+            ejecutivo_existe = (
+                session.exec(
+                    select(Ejecutivo).where(
+                        func.lower(Ejecutivo.nombre) == nombre.lower()
+                    )
+                )
+                .scalars()
+                .first()
+            )
             if ejecutivo_existe:
                 return Ejecutivo.model_validate(ejecutivo_existe)
-            ejecutivo = Ejecutivo(empresa_id=empresa_id, nombre=nombre, estado=estado, eps=eps, nro_telefono=nro_telefono)
+            ejecutivo = Ejecutivo(
+                empresa_id=empresa_id,
+                nombre=nombre,
+                estado=estado,
+                eps=eps,
+                nro_telefono=nro_telefono,
+            )
             session.add(ejecutivo)
             session.commit()
             session.refresh(ejecutivo)
             return ejecutivo
 
-    def get_ejecutivos_sql(self, empresa_id: int | None = None, incluir_eliminados: bool = False) -> list[Ejecutivo]:
+    def get_ejecutivos_sql(
+        self, empresa_id: int | None = None, incluir_eliminados: bool = False
+    ) -> list[Ejecutivo]:
         with Session(self.engine) as session:
             statement = select(Ejecutivo)
             if empresa_id is not None:
@@ -34,8 +53,10 @@ class EjecutivoService:
                 statement = statement.where(func.lower(Ejecutivo.estado) != "eliminado")
             ejecutivos = session.exec(statement).scalars().all()
             return list(ejecutivos)
-        
-    def modificar_ejecutivo_sql(self, ejecutivo_id: int, nombre: str, estado: str, nro_telefono: int) -> Ejecutivo | None:
+
+    def modificar_ejecutivo_sql(
+        self, ejecutivo_id: int, nombre: str, estado: str, nro_telefono: int
+    ) -> Ejecutivo | None:
         with Session(self.engine) as session:
             ejecutivo = session.get(Ejecutivo, ejecutivo_id)
             if not ejecutivo:

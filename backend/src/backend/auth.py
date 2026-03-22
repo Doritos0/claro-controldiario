@@ -1,6 +1,8 @@
 from datetime import datetime, timedelta, timezone
+from os import environ
+from typing import cast
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import HTTPException
 
 import jwt
 from argon2 import PasswordHasher
@@ -8,9 +10,9 @@ from argon2.exceptions import VerifyMismatchError
 from jwt import ExpiredSignatureError, InvalidTokenError
 from pydantic import BaseModel
 
-SECRET_KEY = "controlDiario"
-REFRESH_KEY = "controlDiarioRefresh"
-PASSWORD_SECRET = "passwordSecret"
+SECRET_KEY = environ.get("JWT_SECRET_KEY", "controlDiario")
+REFRESH_KEY = environ.get("JWT_REFRESH_KEY", "controlDiarioRefresh")
+PASSWORD_SECRET = environ.get("PASSWORD_SECRET", "passwordSecret")
 ALGORITHM = "HS256"
 
 
@@ -19,10 +21,12 @@ REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 _password_hasher = PasswordHasher()
 
+
 class TokenStruct(BaseModel):
     usuario_id: int
     empresa_id: int
     sub: str
+
 
 def _with_pepper(password: str) -> str:
     return f"{password}{PASSWORD_SECRET}"
@@ -43,12 +47,12 @@ def create_access_token(usuario_id: int, user: str, empresa_id: int):
     now = datetime.now(timezone.utc)
     expire = now + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     payload = {
-        "iat" : int(now.timestamp()),
+        "iat": int(now.timestamp()),
         "sub": user,
         "empresa_id": empresa_id,
         "usuario_id": usuario_id,
         "type": "access",
-        "exp": datetime.now(timezone.utc) + timedelta(hours=1),
+        "exp": expire,
     }
     token = jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
     return token, expire
@@ -80,16 +84,26 @@ def verify_jwt(authorization: str, is_refresh: bool = False) -> TokenStruct:
         expected_type = "refresh" if is_refresh else "access"
         if payload.get("type") != expected_type:
             raise InvalidTokenError("Tipo de token inválido")
+        usuario_id = payload.get("usuario_id")
+        empresa_id = payload.get("empresa_id")
+        sub = payload.get("sub")
+        if (
+            not isinstance(usuario_id, int)
+            or not isinstance(empresa_id, int)
+            or not isinstance(sub, str)
+        ):
+            raise InvalidTokenError("Payload de token inválido")
         return TokenStruct(
-            usuario_id=payload.get("usuario_id", None),
-            empresa_id=payload.get("empresa_id", None),
-            sub=payload.get("sub", None),
+            usuario_id=cast(int, usuario_id),
+            empresa_id=cast(int, empresa_id),
+            sub=cast(str, sub),
         )
     except ExpiredSignatureError as e:
         raise ExpiredSignatureError("Token expirado") from e
     except InvalidTokenError as e:
         raise InvalidTokenError("Token inválido") from e
-    
+
+
 def refresh_access_token(refresh_token: str):
     return _refresh_logic(refresh_token)
 
@@ -102,6 +116,7 @@ def _refresh_logic(refresh_token: str):
             raise HTTPException(status_code=401, detail="Token incorrecto")
 
         new_access_token, _ = create_access_token(
+            decoded["usuario_id"],
             decoded["sub"],
             decoded["empresa_id"],
         )

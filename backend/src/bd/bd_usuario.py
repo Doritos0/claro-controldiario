@@ -8,7 +8,11 @@ from src.config.engine_config import get_engine
 from src.bd.schema import Usuario
 from fastapi import HTTPException
 
-from src.backend.auth import create_access_token, create_refresh_token
+from src.backend.auth import (
+    ACCESS_TOKEN_EXPIRE_MINUTES,
+    create_access_token,
+    create_refresh_token,
+)
 
 
 class UsuarioService:
@@ -17,39 +21,54 @@ class UsuarioService:
 
     def get_usuario_by_user(self, user: str) -> Usuario | None:
         with Session(self.engine) as session:
-            return session.exec(
-                select(Usuario).where(Usuario.user == user)
-            ).scalars().first()
+            return (
+                session.exec(select(Usuario).where(Usuario.user == user))
+                .scalars()
+                .first()
+            )
 
-    def autenticar(self, user: str, password: str) -> Usuario | None:
+    def autenticar(self, user: str, password: str) -> dict[str, str | int]:
         usuario = self.get_usuario_by_user(user)
 
         if not usuario:
             raise HTTPException(status_code=404, detail="Usuario no existe")
 
         if not usuario.password:
-            raise HTTPException(status_code=401, detail="Usuario sin contraseña configurada")
+            raise HTTPException(
+                status_code=401, detail="Usuario sin contraseña configurada"
+            )
 
         if not verify_password(password, usuario.password):
             raise HTTPException(status_code=401, detail="Credenciales invalidas")
-        
-        access_token, _ = create_access_token(usuario.id, usuario.user, usuario.empresa_id)
-        refresh_token, _ = create_refresh_token(usuario.id, usuario.user, usuario.empresa_id)
+
+        assert usuario.id is not None
+        access_token, _ = create_access_token(
+            usuario.id, usuario.user, usuario.empresa_id
+        )
+        refresh_token, _ = create_refresh_token(
+            usuario.id, usuario.user, usuario.empresa_id
+        )
 
         return {
             "access_token": access_token,
-            "type": "bearer",
-            "expires_in" : 60 * 60,
-            "refresh_token" : refresh_token
+            "token_type": "bearer",
+            "expires_in": ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+            "refresh_token": refresh_token,
         }
 
     def guardar_usuario_sql(self, empresa_id: int, user: str, password: str) -> Usuario:
         with Session(self.engine) as session:
-            usuario = session.exec(select(Usuario).where(Usuario.user == user)).scalars().first()
+            usuario = (
+                session.exec(select(Usuario).where(Usuario.user == user))
+                .scalars()
+                .first()
+            )
             if usuario:
                 logging.info(f"ya existe {user}")
                 return Usuario.model_validate(usuario)
-            usuario = Usuario(empresa_id=empresa_id, user=user, password=hash_password(password))
+            usuario = Usuario(
+                empresa_id=empresa_id, user=user, password=hash_password(password)
+            )
             session.add(usuario)
             session.commit()
             session.refresh(usuario)

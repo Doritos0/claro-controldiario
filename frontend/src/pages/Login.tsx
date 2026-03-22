@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { AuthApi } from "../api"
-import { webConfig } from "../config"
 import { useNavigate } from 'react-router-dom';
+import { getAuthApi } from "../lib/api-clients";
+import { setTokens } from "../lib/token-storage";
 
 export function Login(){
     
@@ -12,29 +12,28 @@ export function Login(){
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        const basePath = import.meta.env.VITE_API_PYTHON
-        const api = new AuthApi(webConfig.getApiSinToken(), basePath);
-        console.log(user)
-        console.log(pass)
-        const response = await api.autenticarUsuario({
-            loginRequest: {
-                user: user,
-                password: pass
+        try {
+            setError(null);
+            const api = getAuthApi();
+            const response = await api.autenticarUsuario({
+                loginRequest: {
+                    user: user,
+                    password: pass
+                }
+            })
+            const accessToken = response.data.access_token;
+            const refreshToken = response.data.refresh_token;
+
+            if (!accessToken) {
+                setError('La respuesta no contiene token');
+                return;
             }
-        })
-        const accessToken = response.data.access_token;
-        const refreshToken = response.data.refresh_token;
 
-        if (!accessToken) {
-            setError('La respuesta no contiene token');
-            console.error(error)
-            return;
+            setTokens(accessToken, refreshToken);
+            navigate('/home', { replace: true });
+        } catch {
+            setError('Credenciales inválidas o servidor no disponible');
         }
-
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
-
-        navigate('/home', { replace: true });
 
     }
 
@@ -51,6 +50,11 @@ export function Login(){
 
                 {/* Formulario */}
                 <form className="space-y-6" onSubmit={handleLogin}>
+                    {error && (
+                        <div className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+                            {error}
+                        </div>
+                    )}
                     
                     {/* Campo Usuario */}
                     <div>

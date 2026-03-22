@@ -3,18 +3,27 @@ import logging
 from pydantic import BaseModel
 
 from google.genai import Client
-from google.genai.types import GenerateContentConfig, GenerateContentResponse,Part, ThinkingConfig, ThinkingLevel
+from google.genai.types import (
+    GenerateContentConfig,
+    GenerateContentResponse,
+    Part,
+    ThinkingConfig,
+    ThinkingLevel,
+)
 
 from src.bd.bd_request_cache import RequestCacheService, TokenInfo
+from src.bd.schema import RequestCache
 from src.config.llm_config import LlmConfig, get_llm_config
 
 from src.gemini.estructura import LIVERespuesta
+
 
 class ImagenInfo(BaseModel):
     data: bytes
     mime_type: str
     width: int
     height: int
+
 
 class GeminiBaseService:
     def __init__(self):
@@ -24,29 +33,52 @@ class GeminiBaseService:
         if self.model_ocr.startswith("gemini-2.5"):
             self.model_ocr_config = GenerateContentConfig(
                 response_mime_type="application/json",
-                response_json_schema=LIVERespuesta.model_json_schema()
+                response_json_schema=LIVERespuesta.model_json_schema(),
             )
         elif self.model_ocr.startswith("gemini-3"):
             self.model_ocr_config = GenerateContentConfig(
                 response_mime_type="application/json",
                 response_json_schema=LIVERespuesta.model_json_schema(),
-                thinking_config=ThinkingConfig(thinking_level=ThinkingLevel.LOW)
+                thinking_config=ThinkingConfig(thinking_level=ThinkingLevel.LOW),
             )
         else:
             raise ValueError(f"Modelo OCR no soportado: {self.model_ocr}")
         self.request_cache_service = RequestCacheService()
 
-    def obtener_respuesta_ocr(self, contents: list[Part]) -> tuple[GenerateContentResponse, LIVERespuesta]:
-        response = self.client.models.generate_content(model=self.model_ocr, contents=contents, config=self.model_ocr_config)
-        ocr_respuesta : LIVERespuesta = LIVERespuesta.model_validate_json(response.text)
+    def obtener_respuesta_ocr(
+        self, contents: list[Part]
+    ) -> tuple[GenerateContentResponse, LIVERespuesta]:
+        response = self.client.models.generate_content(
+            model=self.model_ocr, contents=contents, config=self.model_ocr_config
+        )
+        response_text = response.text
+        if not response_text:
+            raise ValueError("Gemini no devolvió contenido para OCR")
+        ocr_respuesta: LIVERespuesta = LIVERespuesta.model_validate_json(response_text)
 
         return response, ocr_respuesta
-    
-    def obtener_request_ocr_hash(self, request_hash: str):
-        response = self.request_cache_service.obtener_request_cache_sql(self.model_ocr, request_hash)
-    
-    def guardar_request_ocr_hash(self, request_text: str, request_hash: str, response_text: str, token_info: TokenInfo, tiempo_ms: int) -> None:
-        self.request_cache_service.guardar_request_cache_sql(self.model_ocr, request_text, request_hash, response_text, token_info, tiempo_ms)
+
+    def obtener_request_ocr_hash(self, request_hash: str) -> RequestCache | None:
+        return self.request_cache_service.obtener_request_cache_sql(
+            self.model_ocr, request_hash
+        )
+
+    def guardar_request_ocr_hash(
+        self,
+        request_text: str,
+        request_hash: str,
+        response_text: str,
+        token_info: TokenInfo | None,
+        tiempo_ms: int,
+    ) -> None:
+        self.request_cache_service.guardar_request_cache_sql(
+            self.model_ocr,
+            request_text,
+            request_hash,
+            response_text,
+            token_info,
+            tiempo_ms,
+        )
 
     @staticmethod
     def hash_contenido(prompt: str, data: bytes) -> str:
@@ -54,11 +86,15 @@ class GeminiBaseService:
         h.update(prompt.encode("utf-8"))
         h.update(data)
         return h.hexdigest()
-    
+
     @staticmethod
-    def get_tokens(imagen_info: ImagenInfo, response: GenerateContentResponse) -> TokenInfo | None:
+    def get_tokens(
+        imagen_info: ImagenInfo, response: GenerateContentResponse
+    ) -> TokenInfo | None:
         try:
             usage = response.usage_metadata
+            if usage is None:
+                return None
             token_info = TokenInfo(
                 size=(len(imagen_info.data)),
                 width=imagen_info.width,
@@ -72,11 +108,13 @@ class GeminiBaseService:
         except Exception as e:
             logging.info(f"No se pudieron registrar los tokens: {e}")
             return None
-        
+
     @staticmethod
     def get_tokens_texto(response: GenerateContentResponse) -> TokenInfo | None:
         try:
             usage = response.usage_metadata
+            if usage is None:
+                return None
             token_info = TokenInfo(
                 size=0,
                 width=0,

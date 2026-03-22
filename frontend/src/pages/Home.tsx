@@ -1,10 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";
-import { WebApi, type Configuracion } from "../api";
-import { webConfig } from "../config";
+import { type Configuracion } from "../api";
 import React, { useEffect, useMemo, useState } from "react";
-import { DefaultApi } from "../node";
 import { Navigate, useNavigate } from "react-router-dom";
+import { getNodeApi, getWebApi } from "../lib/api-clients";
+import { clearTokens } from "../lib/token-storage";
 
 interface TokenPayload {
     usuario_id: number;
@@ -23,8 +23,8 @@ interface EjecutivoGestion {
 export function Home() {
     const queryClient = useQueryClient();
     const navigate = useNavigate();
-    const apiNode = new DefaultApi(webConfig.getApiNode(), import.meta.env.VITE_API_EXPRESS);
-    const apiWeb = new WebApi(webConfig.getApiConToken(), import.meta.env.VITE_API_PYTHON);
+    const apiNode = getNodeApi();
+    const apiWeb = getWebApi();
 
     const obtenerDataToken = () => {
         const token = localStorage.getItem("accessToken");
@@ -55,6 +55,7 @@ export function Home() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [resultadoReporte, setResultadoReporte] = useState<{ node: any; fastapi: any } | null>(null);
     const [imagenReporte, setImagenReporte] = useState<string | null>(null);
+    const [errorReporte, setErrorReporte] = useState<string | null>(null);
 
     const [ejecutivos, setEjecutivos] = useState<EjecutivoGestion[]>([]);
     const [nuevoNombre, setNuevoNombre] = useState<string>("");
@@ -72,8 +73,7 @@ export function Home() {
     const { data: configuracion, isLoading: configLoading } = useQuery<Configuracion | null>({
         queryKey: ["configuracion"],
         queryFn: async () => {
-            const api = new WebApi(webConfig.getApiConToken(), import.meta.env.VITE_API_PYTHON);
-            const response = await api.obtenerConfiguracion();
+            const response = await apiWeb.obtenerConfiguracion();
             return response.data;
         },
         enabled: !!usuarioId,
@@ -120,8 +120,7 @@ export function Home() {
     const handleConfig = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const api = new WebApi(webConfig.getApiConToken(), import.meta.env.VITE_API_PYTHON);
-            await api.agregarConfiguracion({
+            await apiWeb.agregarConfiguracion({
                 postConfiguracionRequest: {
                     grupo_wsp: grupo,
                 },
@@ -221,8 +220,7 @@ export function Home() {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
+        clearTokens();
         navigate("/login", { replace: true });
     };
 
@@ -231,32 +229,38 @@ export function Home() {
         if (!fechaReporte) return;
         if (!configuracion?.grupo_wsp) return;
 
-        const responseNode = await apiNode.descargarFotos({
-            descargarFotosRequest: {
-                nombreGrupo: configuracion.grupo_wsp,
-                fecha: formatFechaSlash(fechaReporte),
-            },
-        });
-
-        const api = new WebApi(webConfig.getApiConToken(), import.meta.env.VITE_API_PYTHON);
-        const responseFast = await api.ejecutarReporteDiario(
-            {
-                ejecutarRequest: {
-                    fecha_objetivo: formatFechaGuion(fechaReporte),
+        try {
+            setErrorReporte(null);
+            const responseNode = await apiNode.descargarFotos({
+                descargarFotosRequest: {
+                    nombreGrupo: configuracion.grupo_wsp,
+                    fecha: formatFechaSlash(fechaReporte),
                 },
-            },
-            {
-                responseType: "blob",
-            }
-        );
+            });
 
-        const imageBlob = responseFast.data;
-        const imageUrl = URL.createObjectURL(imageBlob);
-        setImagenReporte(imageUrl);
-        setResultadoReporte({
-            node: responseNode.data,
-            fastapi: responseFast.data,
-        });
+            const responseFast = await apiWeb.ejecutarReporteDiario(
+                {
+                    ejecutarRequest: {
+                        fecha_objetivo: formatFechaGuion(fechaReporte),
+                    },
+                },
+                {
+                    responseType: "blob",
+                }
+            );
+
+            const imageBlob = responseFast.data;
+            const imageUrl = URL.createObjectURL(imageBlob);
+            setImagenReporte(imageUrl);
+            setResultadoReporte({
+                node: responseNode.data,
+                fastapi: responseFast.data,
+            });
+        } catch {
+            setErrorReporte("No se pudo generar el reporte para la fecha seleccionada");
+            setImagenReporte(null);
+            setResultadoReporte(null);
+        }
     };
 
     const formatFechaSlash = (date: Date) => {
@@ -337,6 +341,11 @@ export function Home() {
                         </div>
 
                         <section className="w-full max-w-xl space-y-5 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+                            {errorReporte && (
+                                <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                                    {errorReporte}
+                                </div>
+                            )}
                             <div className="flex items-center justify-between rounded-lg bg-slate-100 px-4 py-3 text-sm text-slate-700">
                                 <span>
                                     Grupo configurado: <span className="font-semibold">{configuracion.grupo_wsp}</span>
